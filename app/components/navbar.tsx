@@ -108,8 +108,8 @@ export function Navbar() {
 
   return (
     <>
-    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 lg:px-8">
+    <header className="sticky top-0 z-40 border-b border-slate-200 bg-white">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 lg:px-6">
         {/* Mobile Controls + Logo / Brand (mobile-first left alignment) */}
         <div className="flex items-center gap-3 lg:gap-4">
           {/* Mobile hamburger */}
@@ -128,28 +128,29 @@ export function Navbar() {
           </button>
 
           {/* Logo / Brand */}
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex shrink-0 items-center gap-3">
             <Image
               src="/images/branding/TheUrologyPlaceLogo.png"
               alt="The Urology Place"
-              width={180}
-              height={40}
+              width={640}
+              height={338}
               priority
-              className="h-8 w-auto sm:h-10"
+              sizes="(min-width: 1024px) 140px, (min-width: 640px) 200px, 180px"
+              className="h-8 w-auto max-w-[200px] object-contain sm:h-10 lg:max-w-[140px]"
             />
           </Link>
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-6 text-sm font-medium text-slate-700 lg:ml-8 lg:flex">
+        <nav className="hidden h-10 flex-nowrap items-center gap-3 text-sm font-medium text-slate-700 lg:ml-6 lg:mr-6 lg:flex xl:gap-4">
           {NAV_ITEMS.map((item) =>
             item.children ? (
               <div
                 key={item.label}
-                className="group relative pb-3"
+                className="group relative flex h-10 items-center after:absolute after:left-0 after:right-0 after:top-full after:h-2 after:content-['']"
               >
                 <button
-                  className={`flex items-center gap-1 border-b-2 pb-1 transition ${
+                  className={`flex h-10 items-center gap-1 whitespace-nowrap border-b-2 pb-0 pt-0.5 transition ${
                     isActive(item.href)
                       ? "border-blue-600 text-slate-900"
                       : "border-transparent text-slate-700 hover:border-slate-300 hover:text-slate-900"
@@ -178,7 +179,7 @@ export function Navbar() {
               <Link
                 key={item.label}
                 href={item.href || "#"}
-                className={`border-b-2 pb-1 text-sm transition ${
+                className={`flex h-10 items-center whitespace-nowrap border-b-2 pb-0 pt-0.5 text-sm transition ${
                   isActive(item.href)
                     ? "border-blue-600 text-slate-900"
                     : "border-transparent text-slate-700 hover:border-slate-300 hover:text-slate-900"
