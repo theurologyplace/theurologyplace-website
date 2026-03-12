@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -128,17 +129,14 @@ export function Navbar() {
 
           {/* Logo / Brand */}
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600 text-white">
-              <span className="text-lg font-semibold">UP</span>
-            </div>
-            <div className="hidden flex-col leading-tight sm:flex">
-              <span className="text-sm font-semibold tracking-wide text-slate-900">
-                The Urology Place
-              </span>
-              <span className="text-xs text-slate-500">
-                Modern Urologic &amp; Wellness Care
-              </span>
-            </div>
+            <Image
+              src="/images/branding/logo-main.png"
+              alt="The Urology Place"
+              width={180}
+              height={40}
+              priority
+              className="h-8 w-auto sm:h-10"
+            />
           </Link>
         </div>
 
@@ -240,10 +238,13 @@ export function Navbar() {
       >
           <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white">
-                <span className="text-sm font-semibold">UP</span>
-              </div>
-              <span className="text-sm font-semibold text-slate-900">The Urology Place</span>
+              <Image
+                src="/images/branding/logo-main.png"
+                alt="The Urology Place"
+                width={150}
+                height={32}
+                className="h-7 w-auto"
+              />
             </div>
             <button
               type="button"
