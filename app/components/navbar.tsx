@@ -130,7 +130,7 @@ export function Navbar() {
           {/* Logo / Brand */}
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/images/branding/logo-main.png"
+              src="/images/branding/TheUrologyPlaceLogo.png"
               alt="The Urology Place"
               width={180}
               height={40}
@@ -141,7 +141,7 @@ export function Navbar() {
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden items-center gap-6 text-sm font-medium text-slate-700 lg:flex">
+        <nav className="hidden items-center gap-6 text-sm font-medium text-slate-700 lg:ml-8 lg:flex">
           {NAV_ITEMS.map((item) =>
             item.children ? (
               <div
@@ -239,7 +239,7 @@ export function Navbar() {
           <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
             <div className="flex items-center gap-2">
               <Image
-                src="/images/branding/logo-main.png"
+                src="/images/branding/TheUrologyPlaceLogo.png"
                 alt="The Urology Place"
                 width={150}
                 height={32}
