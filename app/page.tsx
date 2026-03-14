@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { PatientReviewCarousel } from "./components/patient-review-carousel";
+import { HomeContactSection } from "./components/home-contact-section";
 
 export default function HomePage() {
   return (
@@ -186,6 +188,44 @@ export default function HomePage() {
           </article>
         </div>
       </section>
+
+      {/* Rotating patient reviews + Leave a review buttons */}
+      <section className="border-t border-slate-200 bg-white py-16 md:py-20">
+        <div className="mx-auto max-w-4xl px-6">
+          <div className="min-h-[200px] md:min-h-[240px]">
+            <PatientReviewCarousel />
+          </div>
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="https://www.google.com/search?q=the+urology+place&oq=the+urolog&aqs=chrome.0.69i59l2j0j69i60l3.1593j0j7&sourceid=chrome&ie=UTF-8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border-2 border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
+            >
+              Leave a review on Google
+            </a>
+            <a
+              href="https://www.facebook.com/UrologyPlace/reviews?ref=page_internal"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border-2 border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
+            >
+              Leave a review on Facebook
+            </a>
+            <a
+              href="https://www.yelp.com/biz/the-urology-place-san-antonio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border-2 border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
+            >
+              Leave a review on Yelp
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Request appointment + contact, map, newsletter, hours */}
+      <HomeContactSection />
     </main>
   );
 }
