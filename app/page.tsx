@@ -33,7 +33,7 @@ export default function HomePage() {
           <div className="mt-8">
             <Link
               href="/patient-resources/contact-us"
-              className="inline-block rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-blue-700"
+              className="inline-block rounded-xl bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Make Appointment
             </Link>
@@ -88,7 +88,7 @@ export default function HomePage() {
             <div className="mt-6">
               <Link
                 href="/in-office-anesthesia"
-                className="inline-block rounded-lg bg-slate-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-700"
+                className="inline-block rounded-xl bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 Learn More
               </Link>
@@ -128,10 +128,7 @@ export default function HomePage() {
                 />
               </div>
             </div>
-            <div className="mt-4 flex justify-center text-4xl font-serif leading-none text-slate-700">
-              &ldquo;
-            </div>
-            <p className="mt-2 text-left text-slate-800">
+            <p className="mt-4 text-left text-slate-800">
               The Urology Place is superb! I trust that he is giving me the same service he would his own loved one. He saved me from an unnecessary, expensive surgery.
             </p>
             <p className="mt-4 text-center font-semibold text-slate-900">
@@ -152,10 +149,7 @@ export default function HomePage() {
                 />
               </div>
             </div>
-            <div className="mt-4 flex justify-center text-4xl font-serif leading-none text-slate-700">
-              &ldquo;
-            </div>
-            <p className="mt-2 text-left text-slate-800">
+            <p className="mt-4 text-left text-slate-800">
               Dr. Kella was recommended to me by a friend who checked him out through a relative up at Mayo. The comments were excellent so my friend chose Dr. Kella and sailed through the robotic prostatectomy operation and recovery. In less than 6 weeks he was back doing his bike races! So, I followed suit and had similar success minus I have had the lowest possible PSA scores for our facility.
             </p>
             <p className="mt-4 text-left text-sm font-medium text-slate-700">
@@ -176,10 +170,7 @@ export default function HomePage() {
                 />
               </div>
             </div>
-            <div className="mt-4 flex justify-center text-4xl font-serif leading-none text-slate-700">
-              &ldquo;
-            </div>
-            <p className="mt-2 text-left text-slate-800">
+            <p className="mt-4 text-left text-slate-800">
               I&apos;m so glad I met the Urology Place. I suffered from urinary incontinence and my biggest fear was needing surgery but they recommended their Emsella chair for treatments. The treatments were quick, painless, and I didn&apos;t even need to remove my clothes! I can sneeze, laugh and cough without fear now! Totally worth it!
             </p>
             <p className="mt-4 text-center font-semibold text-slate-900">
@@ -190,7 +181,7 @@ export default function HomePage() {
       </section>
 
       {/* Rotating patient reviews + Leave a review buttons */}
-      <section className="border-t border-slate-200 bg-white py-16 md:py-20">
+      <section className="border-t border-slate-200 bg-blue-50/80 py-16 md:py-20">
         <div className="mx-auto max-w-4xl px-6">
           <div className="min-h-[200px] md:min-h-[240px]">
             <PatientReviewCarousel />
@@ -200,7 +191,7 @@ export default function HomePage() {
               href="https://www.google.com/search?q=the+urology+place&oq=the+urolog&aqs=chrome.0.69i59l2j0j69i60l3.1593j0j7&sourceid=chrome&ie=UTF-8"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border-2 border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
+              className="inline-block rounded-xl border-2 border-blue-600 bg-white px-5 py-2.5 text-sm font-semibold text-blue-600 shadow-sm transition hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Leave a review on Google
             </a>
@@ -208,7 +199,7 @@ export default function HomePage() {
               href="https://www.facebook.com/UrologyPlace/reviews?ref=page_internal"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border-2 border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
+              className="inline-block rounded-xl border-2 border-blue-600 bg-white px-5 py-2.5 text-sm font-semibold text-blue-600 shadow-sm transition hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Leave a review on Facebook
             </a>
@@ -216,7 +207,7 @@ export default function HomePage() {
               href="https://www.yelp.com/biz/the-urology-place-san-antonio"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border-2 border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-400 hover:bg-slate-50"
+              className="inline-block rounded-xl border-2 border-blue-600 bg-white px-5 py-2.5 text-sm font-semibold text-blue-600 shadow-sm transition hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Leave a review on Yelp
             </a>
