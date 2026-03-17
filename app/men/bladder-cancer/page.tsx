@@ -1,3 +1,5 @@
+import { ContactFormTemplate } from "@/app/components/contact-form-template";
+
 export default function BladderCancerMenPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
@@ -9,6 +11,19 @@ export default function BladderCancerMenPage() {
           Placeholder content for bladder cancer evaluation, staging, treatment
           options, and ongoing surveillance.
         </p>
+      </section>
+
+      <section className="border-t border-slate-200 bg-slate-50/50">
+        <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+          <ContactFormTemplate
+            variant="embedded"
+            title="Contact Us For Bladder Cancer"
+            serviceName="Bladder Cancer"
+            category="Men"
+            sourcePath="/men/bladder-cancer"
+            idPrefix="men-bladder-cancer"
+          />
+        </div>
       </section>
     </main>
   );

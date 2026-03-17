@@ -1,3 +1,5 @@
+import { ContactFormTemplate } from "@/app/components/contact-form-template";
+
 export default function ProstateCancerMenPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
@@ -97,6 +99,19 @@ export default function ProstateCancerMenPage() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-200 bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+          <ContactFormTemplate
+            variant="embedded"
+            title="Contact Us For Prostate Cancer"
+            serviceName="Prostate Cancer"
+            category="Men"
+            sourcePath="/men/prostate-cancer"
+            idPrefix="men-prostate-cancer"
+          />
         </div>
       </section>
     </main>

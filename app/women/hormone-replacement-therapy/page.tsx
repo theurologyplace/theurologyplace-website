@@ -1,3 +1,5 @@
+import { ContactFormTemplate } from "@/app/components/contact-form-template";
+
 export default function HormoneReplacementTherapyPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
@@ -9,6 +11,19 @@ export default function HormoneReplacementTherapyPage() {
           Placeholder content for hormone replacement therapy services,
           including evaluation, treatment options, and follow-up.
         </p>
+      </section>
+
+      <section className="border-t border-slate-200 bg-slate-50/50">
+        <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+          <ContactFormTemplate
+            variant="embedded"
+            title="Contact Us For Hormone Replacement Therapy"
+            serviceName="Hormone Replacement Therapy"
+            category="Women"
+            sourcePath="/women/hormone-replacement-therapy"
+            idPrefix="women-hrt"
+          />
+        </div>
       </section>
     </main>
   );

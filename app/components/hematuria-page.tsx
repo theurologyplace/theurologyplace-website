@@ -39,9 +39,9 @@ const WHEN_TO_SEE_DOCTOR = [
   },
 ] as const;
 
-export function HematuriaPage() {
+export function HematuriaPageContent() {
   return (
-    <main className="min-h-screen bg-white text-slate-900">
+    <>
       {/* Hero window: fixed background per PROJECT_RULES.md */}
       <section
         className="relative min-h-[42vh] flex flex-col items-center justify-center px-6 py-20"
@@ -271,6 +271,14 @@ export function HematuriaPage() {
           </div>
         </section>
       </section>
+    </>
+  );
+}
+
+export function HematuriaPage() {
+  return (
+    <main className="min-h-screen bg-white text-slate-900">
+      <HematuriaPageContent />
     </main>
   );
 }

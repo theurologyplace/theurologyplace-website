@@ -1,3 +1,5 @@
+import { ContactFormTemplate } from "@/app/components/contact-form-template";
+
 export default function MaleSexualDysfunctionPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
@@ -57,6 +59,19 @@ export default function MaleSexualDysfunctionPage() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-200 bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+          <ContactFormTemplate
+            variant="embedded"
+            title="Contact Us For Male Sexual Dysfunction"
+            serviceName="Male Sexual Dysfunction"
+            category="Men"
+            sourcePath="/men/male-sexual-dysfunction"
+            idPrefix="men-male-sexual-dysfunction"
+          />
         </div>
       </section>
     </main>
