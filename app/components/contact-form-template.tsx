@@ -1,5 +1,7 @@
 import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 
+const REACH_OPTIONS = ["Phone", "Email", "Text"] as const;
+
 export type ContactFormTemplateProps = {
   /** Visible heading, e.g. "Contact Us For Kidney Stones" */
   title: string;
@@ -108,6 +110,26 @@ export function ContactFormTemplate({
               type="email"
               className="mt-1 block w-full rounded-lg border border-slate-300 bg-slate-50/80 px-3 py-2 text-slate-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
+          </div>
+
+          <div className="sm:col-span-2">
+            <label
+              htmlFor={id("contact-reach")}
+              className="block text-sm font-medium text-slate-700"
+            >
+              Best Way to Reach Me
+            </label>
+            <select
+              id={id("contact-reach")}
+              name="bestWayToReach"
+              className="mt-1 block w-full rounded-lg border border-slate-300 bg-slate-50/80 px-3 py-2 text-slate-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            >
+              {REACH_OPTIONS.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="sm:col-span-2">
