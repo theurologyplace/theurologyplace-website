@@ -11,6 +11,10 @@ type NavItem = {
   children?: {
     label: string;
     href: string;
+    children?: {
+      label: string;
+      href: string;
+    }[];
   }[];
 };
 
@@ -22,12 +26,37 @@ const NAV_ITEMS: NavItem[] = [
     href: "/men",
     children: [
       { label: "Men's Wellness", href: "/men/mens-wellness" },
-      { label: "Hematuria", href: "/women/hematuria" },
-      { label: "Prostate Cancer", href: "/men/prostate-cancer" },
+      { label: "Hematuria", href: "/men/hematuria" },
+      {
+        label: "Prostate Cancer",
+        href: "/men/prostate-cancer",
+        children: [
+          { label: "Robotic Prostatectomy", href: "/men/prostate-cancer#robotic-prostatectomy" },
+          { label: "Prostate Biopsies", href: "/men/prostate-cancer#prostate-biopsies" },
+          { label: "TULSA for Prostate", href: "/men/prostate-cancer#tulsa" },
+          { label: "Nuclear Medicine", href: "/men/prostate-cancer#nuclear-medicine" },
+        ],
+      },
       { label: "Adult Circumcision", href: "/men/adult-circumcision" },
-      { label: "Enlarged Prostate", href: "/men/enlarged-prostate" },
+      {
+        label: "Enlarged Prostate",
+        href: "/men/enlarged-prostate",
+        children: [
+          { label: "iTind for Enlarged Prostate (BPH)", href: "/men/enlarged-prostate#itind" },
+          { label: "Rezūm", href: "/men/enlarged-prostate#rezum" },
+          { label: "Enlarged Prostate Laser Treatment", href: "/men/enlarged-prostate#laser-treatment" },
+          { label: "UroLift", href: "/men/enlarged-prostate#urolift" },
+        ],
+      },
       { label: "Bladder Cancer", href: "/men/bladder-cancer" },
-      { label: "Male Sexual Dysfunction", href: "/men/male-sexual-dysfunction" },
+      {
+        label: "Male Sexual Dysfunction",
+        href: "/men/male-sexual-dysfunction",
+        children: [
+          { label: "Peyronie's Disease", href: "/men/male-sexual-dysfunction#peyronies" },
+          { label: "GAINSWave", href: "/men/male-sexual-dysfunction#gainswave" },
+        ],
+      },
       { label: "Vasectomy", href: "/men/vasectomy" },
       { label: "Low Testosterone", href: "/men/low-testosterone" },
       { label: "Urinary Incontinence", href: "/men/urinary-incontinence" },
@@ -93,11 +122,22 @@ export function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedMobileSection, setExpandedMobileSection] = useState<string | null>(null);
+  const [expandedMobileSubsection, setExpandedMobileSubsection] = useState<string | null>(null);
+  const [activeDesktopFlyout, setActiveDesktopFlyout] = useState<{
+    parentLabel: string;
+    childLabel: string;
+    topPx: number;
+  } | null>(null);
 
   const toggleMobile = () => setMobileOpen((prev) => !prev);
 
   const toggleMobileSection = (label: string) => {
     setExpandedMobileSection((current) => (current === label ? null : label));
+    setExpandedMobileSubsection(null);
+  };
+
+  const toggleMobileSubsection = (key: string) => {
+    setExpandedMobileSubsection((current) => (current === key ? null : key));
   };
 
   const isActive = (href?: string) => {
@@ -148,6 +188,7 @@ export function Navbar() {
               <div
                 key={item.label}
                 className="group relative flex h-10 items-center after:absolute after:left-0 after:right-0 after:top-full after:h-2 after:content-['']"
+                onMouseLeave={() => setActiveDesktopFlyout(null)}
               >
                 <button
                   className={`flex h-10 items-center gap-1 whitespace-nowrap border-b-2 pb-0 pt-0.5 transition ${
@@ -160,18 +201,80 @@ export function Navbar() {
                   <span className="text-xs text-slate-500">▾</span>
                 </button>
                 <div
-                  className="invisible absolute left-0 top-full mt-0 w-64 rounded-xl border border-slate-200 bg-white pt-2 shadow-lg transition-opacity group-hover:visible group-hover:opacity-100"
+                  className="invisible absolute left-0 top-full mt-0 rounded-xl border border-slate-200 bg-white pt-2 shadow-lg transition-opacity group-hover:visible group-hover:opacity-100"
                 >
-                  <div className="py-2">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                  <div className="relative flex">
+                    {/* Left panel */}
+                    <div className="w-72 py-2">
+                      {item.children.map((child) => {
+                        const hasFlyout = Boolean(child.children?.length);
+                        const isFlyoutActive =
+                          activeDesktopFlyout?.parentLabel === item.label &&
+                          activeDesktopFlyout?.childLabel === child.label;
+
+                        return (
+                          <div
+                            key={child.href}
+                            onMouseEnter={(e) => {
+                              if (hasFlyout) {
+                                setActiveDesktopFlyout({
+                                  parentLabel: item.label,
+                                  childLabel: child.label,
+                                  topPx: (e.currentTarget as HTMLDivElement).offsetTop,
+                                });
+                              } else {
+                                setActiveDesktopFlyout(null);
+                              }
+                            }}
+                            className={`flex items-center justify-between gap-3 px-4 py-2 text-sm transition ${
+                              isFlyoutActive
+                                ? "bg-slate-50 text-slate-900"
+                                : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                            }`}
+                          >
+                            <Link href={child.href} className="min-w-0 flex-1">
+                              {child.label}
+                            </Link>
+                            {hasFlyout ? (
+                              <span className="text-slate-400" aria-hidden>
+                                ▸
+                              </span>
+                            ) : null}
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Right flyout panel (slides in) */}
+                    {(() => {
+                      const activeChild =
+                        activeDesktopFlyout?.parentLabel === item.label
+                          ? item.children.find((c) => c.label === activeDesktopFlyout.childLabel)
+                          : undefined;
+                      const flyoutItems = activeChild?.children ?? [];
+                      const showFlyout = flyoutItems.length > 0;
+
+                      return (
+                        <div
+                          className={`absolute left-[18rem] w-80 rounded-xl border border-slate-200 bg-white py-2 shadow-lg transition-all duration-200 ease-out ${
+                            showFlyout
+                              ? "pointer-events-auto translate-x-0 opacity-100"
+                              : "pointer-events-none translate-x-4 opacity-0"
+                          }`}
+                          style={{ top: activeDesktopFlyout?.topPx ?? 0 }}
+                        >
+                          {flyoutItems.map((grand) => (
+                            <Link
+                              key={grand.href}
+                              href={grand.href}
+                              className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                            >
+                              {grand.label}
+                            </Link>
+                          ))}
+                        </div>
+                      );
+                    })()}
                   </div>
                 </div>
               </div>
@@ -292,19 +395,60 @@ export function Navbar() {
                           expandedMobileSection === item.label ? "visible" : "hidden"
                         }`}
                       >
-                        {item.children.map((child) => (
-                          <li key={child.href}>
-                            <Link
-                              href={child.href}
-                              onClick={() => setMobileOpen(false)}
-                              className={`block py-1.5 text-sm ${
-                                pathname === child.href ? "text-blue-700 font-medium" : "text-slate-700"
-                              }`}
-                            >
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
+                        {item.children.map((child) => {
+                          const hasSub = Boolean(child.children?.length);
+                          const subKey = `${item.label}:${child.label}`;
+                          const isSubOpen = expandedMobileSubsection === subKey;
+
+                          if (!hasSub) {
+                            return (
+                              <li key={child.href}>
+                                <Link
+                                  href={child.href}
+                                  onClick={() => setMobileOpen(false)}
+                                  className={`block py-1.5 text-sm ${
+                                    pathname === child.href
+                                      ? "text-blue-700 font-medium"
+                                      : "text-slate-700"
+                                  }`}
+                                >
+                                  {child.label}
+                                </Link>
+                              </li>
+                            );
+                          }
+
+                          return (
+                            <li key={child.href}>
+                              <button
+                                type="button"
+                                onClick={() => toggleMobileSubsection(subKey)}
+                                className="flex w-full items-center justify-between gap-2 py-1.5 text-left text-sm font-medium text-slate-800 hover:text-slate-900"
+                                aria-expanded={isSubOpen}
+                              >
+                                <span>{child.label}</span>
+                                <span className="text-slate-500" aria-hidden>
+                                  {isSubOpen ? "−" : "+"}
+                                </span>
+                              </button>
+                              {isSubOpen ? (
+                                <ul className="mt-1 space-y-1 pl-4">
+                                  {child.children?.map((grand) => (
+                                    <li key={grand.href}>
+                                      <Link
+                                        href={grand.href}
+                                        onClick={() => setMobileOpen(false)}
+                                        className="block py-1 text-sm text-slate-700 hover:text-slate-900"
+                                      >
+                                        {grand.label}
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : null}
+                            </li>
+                          );
+                        })}
                       </ul>
                     </div>
                   ) : (

@@ -9,6 +9,95 @@ export default function EnlargedProstatePage() {
           Placeholder content for enlarged prostate (BPH) evaluation, symptom
           management, and treatment options.
         </p>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <a
+            href="#itind"
+            className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-50/70"
+          >
+            <h2 className="text-xl font-bold tracking-tight text-slate-900">
+              iTind for Enlarged Prostate (BPH)
+            </h2>
+            <p className="mt-2 text-slate-700">
+              A minimally invasive option designed to improve urinary flow.
+            </p>
+          </a>
+          <a
+            href="#rezum"
+            className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-50/70"
+          >
+            <h2 className="text-xl font-bold tracking-tight text-slate-900">
+              Rezūm
+            </h2>
+            <p className="mt-2 text-slate-700">
+              A water vapor therapy option for select BPH patients.
+            </p>
+          </a>
+          <a
+            href="#laser-treatment"
+            className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-50/70"
+          >
+            <h2 className="text-xl font-bold tracking-tight text-slate-900">
+              Enlarged Prostate Laser Treatment
+            </h2>
+            <p className="mt-2 text-slate-700">
+              Laser-based approaches to relieve obstruction and improve symptoms.
+            </p>
+          </a>
+          <a
+            href="#urolift"
+            className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-50/70"
+          >
+            <h2 className="text-xl font-bold tracking-tight text-slate-900">
+              UroLift
+            </h2>
+            <p className="mt-2 text-slate-700">
+              A minimally invasive implant option to open the urinary channel.
+            </p>
+          </a>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-200 bg-slate-50/50">
+        <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+          <div className="space-y-12">
+            <div id="itind" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                iTind for Enlarged Prostate (BPH)
+              </h2>
+              <p className="mt-4 text-slate-700 leading-relaxed">
+                Details coming soon.
+              </p>
+            </div>
+
+            <div id="rezum" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                Rezūm
+              </h2>
+              <p className="mt-4 text-slate-700 leading-relaxed">
+                Details coming soon.
+              </p>
+            </div>
+
+            <div id="laser-treatment" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                Enlarged Prostate Laser Treatment
+              </h2>
+              <p className="mt-4 text-slate-700 leading-relaxed">
+                Details coming soon.
+              </p>
+            </div>
+
+            <div id="urolift" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                UroLift
+              </h2>
+              <p className="mt-4 text-slate-700 leading-relaxed">
+                Details coming soon.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );

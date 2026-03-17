@@ -1,6 +1,6 @@
 import { HematuriaPage } from "@/app/components/hematuria-page";
 
-export default function HematuriaWomenPage() {
+export default function HematuriaMenPage() {
   return <HematuriaPage />;
 }
 

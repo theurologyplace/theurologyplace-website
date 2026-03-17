@@ -9,6 +9,95 @@ export default function ProstateCancerMenPage() {
           Placeholder content for prostate cancer evaluation, diagnosis, and
           treatment options offered at the clinic.
         </p>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <a
+            href="#robotic-prostatectomy"
+            className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-50/70"
+          >
+            <h2 className="text-xl font-bold tracking-tight text-slate-900">
+              Robotic Prostatectomy
+            </h2>
+            <p className="mt-2 text-slate-700">
+              Surgical treatment options using advanced robotic techniques.
+            </p>
+          </a>
+          <a
+            href="#prostate-biopsies"
+            className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-50/70"
+          >
+            <h2 className="text-xl font-bold tracking-tight text-slate-900">
+              Prostate Biopsies
+            </h2>
+            <p className="mt-2 text-slate-700">
+              Diagnostic biopsy approaches and what to expect.
+            </p>
+          </a>
+          <a
+            href="#tulsa"
+            className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-50/70"
+          >
+            <h2 className="text-xl font-bold tracking-tight text-slate-900">
+              TULSA for Prostate
+            </h2>
+            <p className="mt-2 text-slate-700">
+              Minimally invasive treatment using ultrasound ablation.
+            </p>
+          </a>
+          <a
+            href="#nuclear-medicine"
+            className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-50/70"
+          >
+            <h2 className="text-xl font-bold tracking-tight text-slate-900">
+              Nuclear Medicine
+            </h2>
+            <p className="mt-2 text-slate-700">
+              Advanced imaging and targeted therapies used in prostate cancer care.
+            </p>
+          </a>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-200 bg-slate-50/50">
+        <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+          <div className="space-y-12">
+            <div id="robotic-prostatectomy" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                Robotic Prostatectomy
+              </h2>
+              <p className="mt-4 text-slate-700 leading-relaxed">
+                Details coming soon.
+              </p>
+            </div>
+
+            <div id="prostate-biopsies" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                Prostate Biopsies
+              </h2>
+              <p className="mt-4 text-slate-700 leading-relaxed">
+                Details coming soon.
+              </p>
+            </div>
+
+            <div id="tulsa" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                TULSA for Prostate
+              </h2>
+              <p className="mt-4 text-slate-700 leading-relaxed">
+                Details coming soon.
+              </p>
+            </div>
+
+            <div id="nuclear-medicine" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                Nuclear Medicine
+              </h2>
+              <p className="mt-4 text-slate-700 leading-relaxed">
+                Details coming soon.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );
