@@ -2,6 +2,7 @@ import type { JSX } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import { HormoneReplacementFaqAccordion } from "@/app/components/hormone-replacement-faq-accordion";
 import { BTN_PRIMARY } from "@/app/lib/button-styles";
 
 const HERO_BG = encodeURI(
@@ -307,6 +308,13 @@ export default function HormoneReplacementTherapyPage() {
             </div>
           </div>
         </section>
+
+        {/* FAQ — matches Emsella accordion styling */}
+        <div className="border-t border-slate-200 bg-white">
+          <div className="mx-auto max-w-4xl px-6 py-16 md:py-20">
+            <HormoneReplacementFaqAccordion />
+          </div>
+        </div>
 
         <section className="border-t border-slate-200 bg-slate-50/50">
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
