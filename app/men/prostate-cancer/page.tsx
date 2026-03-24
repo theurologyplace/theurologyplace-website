@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 
 export default function ProstateCancerMenPage() {
@@ -13,8 +14,8 @@ export default function ProstateCancerMenPage() {
         </p>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
-          <a
-            href="#robotic-prostatectomy"
+          <Link
+            href="/men/prostate-cancer/robotic-prostatectomy"
             className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-50/70"
           >
             <h2 className="text-xl font-bold tracking-tight text-slate-900">
@@ -23,7 +24,7 @@ export default function ProstateCancerMenPage() {
             <p className="mt-2 text-slate-700">
               Surgical treatment options using advanced robotic techniques.
             </p>
-          </a>
+          </Link>
           <a
             href="#prostate-biopsies"
             className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-50/70"
@@ -63,15 +64,6 @@ export default function ProstateCancerMenPage() {
       <section className="border-t border-slate-200 bg-slate-50/50">
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
           <div className="space-y-12">
-            <div id="robotic-prostatectomy" className="scroll-mt-28">
-              <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-                Robotic Prostatectomy
-              </h2>
-              <p className="mt-4 text-slate-700 leading-relaxed">
-                Details coming soon.
-              </p>
-            </div>
-
             <div id="prostate-biopsies" className="scroll-mt-28">
               <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
                 Prostate Biopsies
