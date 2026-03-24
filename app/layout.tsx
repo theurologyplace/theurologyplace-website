@@ -30,7 +30,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-white text-slate-900 antialiased`}
       >
         <Navbar />
-        <main className="min-h-screen bg-white pt-4 md:pt-6 lg:pt-8">{children}</main>
+        {/* bg-white comes from body; omit here so page-level fixed backgrounds (e.g. Robotic Prostatectomy) are visible */}
+        <main className="min-h-screen pt-4 md:pt-6 lg:pt-8">{children}</main>
         <Footer />
       </body>
     </html>

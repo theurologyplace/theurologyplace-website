@@ -22,7 +22,7 @@ const SOCIAL = [
 export function Footer() {
   return (
     <footer
-      className="border-t border-slate-200 bg-slate-100/80"
+      className="relative z-30 border-t border-slate-200 bg-slate-100"
       role="contentinfo"
     >
       <div className="mx-auto max-w-6xl px-4 py-8 md:px-6 md:py-10">
