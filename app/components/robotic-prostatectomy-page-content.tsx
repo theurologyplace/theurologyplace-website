@@ -2,10 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
-import {
-  MoreInformationCardGrid,
-  type MoreInformationItem,
-} from "@/app/components/more-information-card-grid";
+import { MoreInformationCardGrid } from "@/app/components/more-information-card-grid";
+import { PROSTATE_CANCER_MORE_INFORMATION_ITEMS } from "@/app/data/prostate-cancer-more-information-items";
 import { RoboticProstatectomyFaqAccordion } from "@/app/components/robotic-prostatectomy-faq-accordion";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 
@@ -46,57 +44,6 @@ const FEATURES = [
     body: 'Video "how-to" step-by-step on YouTube with over 220,000 views',
   },
 ] as const;
-
-const MORE_INFORMATION_ITEMS: MoreInformationItem[] = [
-  {
-    imageSrc: `${IMG_BASE}/image1.png`,
-    imageAlt: "PSA, MRI and Gleason Score",
-    label: "PSA, MRI and Gleason Score",
-    href: "#",
-  },
-  {
-    imageSrc: `${IMG_BASE}/image2.png`,
-    imageAlt: "Prostate Cancer Outcomes",
-    label: "Prostate Cancer Outcomes",
-    href: "#",
-  },
-  {
-    imageSrc: `${IMG_BASE}/image3.png`,
-    imageAlt: "Airseal and Robotic Prostatectomy",
-    label: "Airseal and Robotic Prostatectomy",
-    href: "#",
-  },
-  {
-    imageSrc: `${IMG_BASE}/image4.png`,
-    imageAlt: "Neuromonitoring with ProPep",
-    label: "Neuromonitoring with ProPep",
-    href: "#",
-  },
-  {
-    imageSrc: `${IMG_BASE}/image5.png`,
-    imageAlt: "Patient Testimonial",
-    label: "Patient Testimonial",
-    href: "#",
-  },
-  {
-    imageSrc: `${IMG_BASE}/image6.png`,
-    imageAlt: "GAINSWave for Sexual Function Recovery",
-    label: "GAINSWave for Sexual Function Recovery",
-    href: "#",
-  },
-  {
-    imageSrc: `${IMG_BASE}/image7.png`,
-    imageAlt: "High Intensity Emsella Chair for Continence",
-    label: "High Intensity Emsella Chair for Continence",
-    href: "#",
-  },
-  {
-    imageSrc: `${IMG_BASE}/image8.png`,
-    imageAlt: "Dr. Kella's Thoughts on Choosing Your Prostate Cancer Surgeon",
-    label: "Dr. Kella's Thoughts on Choosing Your Prostate Cancer Surgeon",
-    href: "#",
-  },
-];
 
 export function RoboticProstatectomyPageContent() {
   /* Negate root layout main padding so hero overlay meets navbar (see PROJECT_RULES.md). */
@@ -377,7 +324,7 @@ export function RoboticProstatectomyPageContent() {
           </div>
         </section>
 
-        <MoreInformationCardGrid items={MORE_INFORMATION_ITEMS} />
+        <MoreInformationCardGrid items={PROSTATE_CANCER_MORE_INFORMATION_ITEMS} />
 
         <section className="relative border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
