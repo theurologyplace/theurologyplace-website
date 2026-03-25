@@ -195,7 +195,7 @@ export function PeyroniesDiseasePageContent() {
             <FaqBox title="Does GAINSWave Help with Peyronie's?">
               <p>
                 <Link
-                  href="/men/male-sexual-dysfunction/gainswave/contact-us"
+                  href="/men/male-sexual-dysfunction/gainswave"
                   className="font-medium text-sky-600 underline decoration-sky-600/80 underline-offset-2 hover:text-sky-700"
                 >
                   GAINSWave

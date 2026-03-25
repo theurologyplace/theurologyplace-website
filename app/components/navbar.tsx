@@ -54,7 +54,7 @@ const NAV_ITEMS: NavItem[] = [
         href: "/men/male-sexual-dysfunction",
         children: [
           { label: "Peyronie's Disease", href: "/men/male-sexual-dysfunction/peyronies" },
-          { label: "GAINSWave", href: "/men/male-sexual-dysfunction#gainswave" },
+          { label: "GAINSWave", href: "/men/male-sexual-dysfunction/gainswave" },
         ],
       },
       { label: "Vasectomy", href: "/men/vasectomy" },
