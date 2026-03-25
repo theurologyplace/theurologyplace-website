@@ -1,43 +1,47 @@
 import Image from "next/image";
 
+const HERO_BG = encodeURI("/images/join our team/team-hands-in-middle-white-background.jpg").replace(
+  /\+/g,
+  "%2B",
+);
+
 export default function JoinOurTeamPage() {
   return (
-    <main className="min-h-screen bg-white text-slate-900">
-      {/* Hero window: static background per PROJECT_RULES.md */}
-      <section
-        className="relative min-h-[45vh] flex flex-col items-center justify-center px-6 py-24"
+    <main className="relative isolate min-h-screen text-slate-900 -mt-4 md:-mt-6 lg:-mt-8">
+      <div
+        className="pointer-events-none fixed inset-x-0 bottom-0 top-14 z-0 md:top-[4.5rem]"
+        aria-hidden
         style={{
-          backgroundImage:
-            "url(/images/join our team/form-submission-7464-teamworkisimportantintheworkplace-desktop-768x432-1606698141-85.jpg)",
+          backgroundImage: `url('${HERO_BG}')`,
           backgroundAttachment: "fixed",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-      >
-        <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-3xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
-            Join Our Team
-          </h1>
-        </div>
-      </section>
+      />
 
-      {/* Sliding page */}
-      <section className="rounded-t-3xl border-t border-slate-200 bg-white">
-        {/* Intro copy */}
-        <div className="mx-auto max-w-5xl px-6 py-16 md:py-20">
-          <p className="text-lg text-slate-700 leading-relaxed">
-            At The Urology Place, we’re dedicated to expanding access to quality care
-            while putting our patients’ well-being at the heart of everything we do.
-            We’re looking for passionate, talented individuals who share our commitment
-            to improving lives and delivering exceptional healthcare. Join us and make
-            a meaningful difference every day.
-          </p>
-        </div>
+      <div className="relative z-10">
+        <section className="relative flex min-h-[min(45vh,480px)] flex-col items-center justify-center px-6 py-20 md:min-h-[50vh] md:py-28">
+          <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
+          <div className="relative z-10 mx-auto max-w-3xl text-center">
+            <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+              Join Our Team
+            </h1>
+          </div>
+        </section>
 
-        {/* Positions */}
-        <section className="border-t border-slate-200 bg-slate-50/50">
-          <div className="mx-auto max-w-6xl px-6 py-16 md:py-20 space-y-16">
+        <section className="relative rounded-t-3xl border-t border-slate-200/80 bg-white shadow-[0_-8px_30px_-10px_rgba(15,23,42,0.08)]">
+          <div className="mx-auto max-w-5xl px-6 py-16 md:py-20">
+            <p className="text-lg leading-relaxed text-slate-700">
+              At The Urology Place, we&apos;re dedicated to expanding access to quality care while putting our
+              patients&apos; well-being at the heart of everything we do. We&apos;re looking for passionate, talented
+              individuals who share our commitment to improving lives and delivering exceptional healthcare. Join us
+              and make a meaningful difference every day.
+            </p>
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200 bg-slate-50">
+          <div className="mx-auto max-w-6xl space-y-16 px-6 py-16 md:py-20">
             {/* Physician Assistant */}
             <article className="grid gap-10 md:grid-cols-[minmax(0,0.9fr)_1.1fr] md:items-center">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-slate-100">
@@ -56,11 +60,10 @@ export default function JoinOurTeamPage() {
                 <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-blue-700">
                   Full time or Part time
                 </p>
-                <p className="mt-4 text-slate-700 leading-relaxed">
-                  The Urology Place is seeking a dedicated Physician Assistant to join our
-                  dynamic and patient-focused team. This position offers flexibility for
-                  experienced providers looking for part-time (minimum 3 days/week) or
-                  full-time opportunities.
+                <p className="mt-4 leading-relaxed text-slate-700">
+                  The Urology Place is seeking a dedicated Physician Assistant to join our dynamic and patient-focused
+                  team. This position offers flexibility for experienced providers looking for part-time (minimum 3
+                  days/week) or full-time opportunities.
                 </p>
 
                 <h3 className="mt-6 text-sm font-semibold uppercase tracking-wide text-slate-500">
@@ -102,11 +105,10 @@ export default function JoinOurTeamPage() {
                 <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-blue-700">
                   Full time or Part time
                 </p>
-                <p className="mt-4 text-slate-700 leading-relaxed">
-                  We are looking for a Family Medicine Physician with a passion for chronic
-                  disease management and preventive care to join our innovative practice.
-                  This role focuses on in-office care for a growing panel of patients with
-                  long-term wellness needs.
+                <p className="mt-4 leading-relaxed text-slate-700">
+                  We are looking for a Family Medicine Physician with a passion for chronic disease management and
+                  preventive care to join our innovative practice. This role focuses on in-office care for a growing
+                  panel of patients with long-term wellness needs.
                 </p>
 
                 <h3 className="mt-6 text-sm font-semibold uppercase tracking-wide text-slate-500">
@@ -148,11 +150,10 @@ export default function JoinOurTeamPage() {
                 <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-blue-700">
                   Intern, Part-Time, or Full-Time
                 </p>
-                <p className="mt-4 text-slate-700 leading-relaxed">
-                  We’re seeking a creative and tech-savvy individual to lead and manage our
-                  digital presence. This role is perfect for a marketing student, recent
-                  graduate, or professional with a passion for healthcare communication and
-                  branding.
+                <p className="mt-4 leading-relaxed text-slate-700">
+                  We&apos;re seeking a creative and tech-savvy individual to lead and manage our digital presence. This
+                  role is perfect for a marketing student, recent graduate, or professional with a passion for
+                  healthcare communication and branding.
                 </p>
 
                 <h3 className="mt-6 text-sm font-semibold uppercase tracking-wide text-slate-500">
@@ -179,24 +180,22 @@ export default function JoinOurTeamPage() {
           </div>
         </section>
 
-        {/* How to apply */}
-        <section className="border-t border-slate-200 bg-white">
-          <div className="mx-auto max-w-4xl px-6 py-16 md:py-20 text-slate-700">
+        <section className="relative border-t border-slate-200 bg-white">
+          <div className="mx-auto max-w-4xl px-6 py-16 text-slate-700 md:py-20">
             <p className="text-lg leading-relaxed">
-              If you’re interested in any of these opportunities, please send your resume to{" "}
+              If you&apos;re interested in any of these opportunities, please send your resume to{" "}
               <a
                 href="mailto:messages@theupi.com"
                 className="font-semibold text-blue-600 hover:text-blue-700"
               >
                 messages@theupi.com
               </a>
-              . We look forward to hearing from you! Thank you for considering The Urology
-              Place as your next career home.
+              . We look forward to hearing from you! Thank you for considering The Urology Place as your next career
+              home.
             </p>
           </div>
         </section>
-      </section>
+      </div>
     </main>
   );
 }
-
