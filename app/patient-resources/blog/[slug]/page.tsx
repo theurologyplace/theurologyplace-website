@@ -7,7 +7,7 @@ import type {
   PortableTextBlock,
 } from "@portabletext/types";
 import { BTN_PRIMARY } from "@/app/lib/button-styles";
-import { client, urlFor } from "@/lib/sanity";
+import { blogCategoryLabel, client, urlFor } from "@/lib/sanity";
 
 /** Fetches published post fields. Editors must Publish in Studio for changes to appear on the site; production static pages update on the next deploy unless revalidation is configured. */
 const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
@@ -18,6 +18,13 @@ const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
   excerpt,
   mainImage,
   body,
+  featured,
+  category,
+  tags,
+  readTime,
+  updatedAt,
+  seoTitle,
+  seoDescription,
   ctaText,
   ctaLink,
   relatedPosts[]->{
@@ -29,7 +36,8 @@ const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
   },
   author->{
     _id,
-    name
+    name,
+    image
   }
 }`;
 
@@ -61,6 +69,7 @@ function PostCta({ href, label }: { href: string; label: string }) {
 type Author = {
   _id: string;
   name: string | null;
+  image: Parameters<typeof urlFor>[0] | null;
 };
 
 /** Dereferenced related post from GROQ (may include nulls from broken refs) */
@@ -79,6 +88,13 @@ type BlogPost = {
   publishedAt: string | null;
   excerpt: string | null;
   mainImage: Parameters<typeof urlFor>[0] | null;
+  featured: boolean | null;
+  category: string | null;
+  tags: string[] | null;
+  readTime: number | null;
+  updatedAt: string | null;
+  seoTitle: string | null;
+  seoDescription: string | null;
   /** Portable Text blocks + image objects from Sanity */
   body: Array<PortableTextBlock | ArbitraryTypedObject> | null;
   ctaText: string | null;
@@ -227,16 +243,21 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await client.fetch<Pick<BlogPost, "title" | "excerpt"> | null>(
-    `*[_type == "post" && slug.current == $slug][0]{ title, excerpt }`,
+  const post = await client.fetch<
+    Pick<BlogPost, "title" | "excerpt" | "seoTitle" | "seoDescription"> | null
+  >(
+    `*[_type == "post" && slug.current == $slug][0]{ title, excerpt, seoTitle, seoDescription }`,
     { slug },
   );
   if (!post?.title) {
     return { title: "Blog" };
   }
+  const metaTitle = post.seoTitle?.trim() || post.title;
+  const metaDesc =
+    post.seoDescription?.trim() || post.excerpt?.trim() || undefined;
   return {
-    title: post.title,
-    description: post.excerpt ?? undefined,
+    title: metaTitle,
+    description: metaDesc,
   };
 }
 
@@ -267,6 +288,20 @@ export default async function BlogPostPage({
 
   const relatedPosts = normalizeRelatedPosts(post._id, post.relatedPosts);
 
+  const categoryLabel = blogCategoryLabel(post.category ?? undefined);
+  const tags = post.tags?.filter((t) => t && String(t).trim() !== "") ?? [];
+  const updatedLabel = post.updatedAt
+    ? new Date(post.updatedAt).toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : null;
+  const authorAvatarUrl =
+    post.author?.image != null
+      ? urlFor(post.author.image).width(128).height(128).url()
+      : null;
+
   return (
     <main className="min-h-screen bg-white text-slate-900">
       <article className="mx-auto max-w-3xl px-6 py-16 md:py-24">
@@ -280,23 +315,89 @@ export default async function BlogPostPage({
         </p>
 
         <header className="mt-8">
-          <h1 className="text-4xl font-bold tracking-tight text-slate-900 md:text-5xl">
-            {post.title ?? "Untitled"}
-          </h1>
-          {(dateLabel || post.author?.name) && (
-            <p className="mt-4 text-sm font-medium text-slate-500">
-              {dateLabel ? (
-                <time dateTime={post.publishedAt ?? undefined}>{dateLabel}</time>
-              ) : null}
-              {dateLabel && post.author?.name ? (
-                <span className="mx-1.5 text-slate-400" aria-hidden>
-                  ·
+          {(post.featured === true || categoryLabel || tags.length > 0) && (
+            <div className="flex flex-wrap gap-2">
+              {post.featured === true ? (
+                <span className="rounded-full bg-blue-600 px-3 py-1 text-xs font-semibold text-white">
+                  Featured
                 </span>
               ) : null}
-              {post.author?.name ? (
-                <span className="text-slate-600">{post.author.name}</span>
+              {categoryLabel ? (
+                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
+                  {categoryLabel}
+                </span>
               ) : null}
-            </p>
+              {tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+          <h1
+            className={`text-4xl font-bold tracking-tight text-slate-900 md:text-5xl ${post.featured === true || categoryLabel || tags.length > 0 ? "mt-4" : ""}`}
+          >
+            {post.title ?? "Untitled"}
+          </h1>
+          {(authorAvatarUrl ||
+            dateLabel ||
+            post.author?.name ||
+            (typeof post.readTime === "number" && post.readTime > 0) ||
+            updatedLabel) && (
+            <div className="mt-4 flex flex-col gap-2 text-sm font-medium text-slate-500 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3">
+              <span className="flex flex-wrap items-center gap-2">
+                {authorAvatarUrl ? (
+                  <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full bg-slate-200 ring-1 ring-slate-200/80">
+                    <Image
+                      src={authorAvatarUrl}
+                      alt=""
+                      width={36}
+                      height={36}
+                      className="h-full w-full object-cover"
+                      unoptimized
+                    />
+                  </span>
+                ) : null}
+                {dateLabel ? (
+                  <time dateTime={post.publishedAt ?? undefined}>
+                    {dateLabel}
+                  </time>
+                ) : null}
+                {dateLabel && post.author?.name ? (
+                  <span className="text-slate-400" aria-hidden>
+                    ·
+                  </span>
+                ) : null}
+                {post.author?.name ? (
+                  <span className="text-slate-600">{post.author.name}</span>
+                ) : null}
+              </span>
+              <span className="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+                {typeof post.readTime === "number" && post.readTime > 0 ? (
+                  <span>{post.readTime} min read</span>
+                ) : null}
+                {updatedLabel ? (
+                  <>
+                    {(typeof post.readTime === "number" && post.readTime > 0) ||
+                    dateLabel ||
+                    post.author?.name ? (
+                      <span className="text-slate-400" aria-hidden>
+                        ·
+                      </span>
+                    ) : null}
+                    <span>
+                      Updated{" "}
+                      <time dateTime={post.updatedAt ?? undefined}>
+                        {updatedLabel}
+                      </time>
+                    </span>
+                  </>
+                ) : null}
+              </span>
+            </div>
           )}
         </header>
 

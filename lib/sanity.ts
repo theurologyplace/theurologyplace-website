@@ -26,9 +26,27 @@ export const postsQuery = `
     publishedAt,
     excerpt,
     mainImage,
+    featured,
+    category,
+    readTime,
     author->{
       _id,
-      name
+      name,
+      image
     }
   }
 `
+
+/** Display labels for post category values (see studio/schemaTypes/postType.ts). */
+export const BLOG_CATEGORY_LABELS: Record<string, string> = {
+  'mens-health': "Men's Health",
+  'womens-health': "Women's Health",
+  general: 'General',
+}
+
+export function blogCategoryLabel(
+  value: string | null | undefined,
+): string | null {
+  if (!value || typeof value !== 'string') return null
+  return BLOG_CATEGORY_LABELS[value] ?? value
+}
