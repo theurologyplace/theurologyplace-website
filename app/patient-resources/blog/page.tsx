@@ -10,6 +10,10 @@ type BlogPost = {
   publishedAt: string | null;
   excerpt: string | null;
   mainImage: Parameters<typeof urlFor>[0] | null;
+  author: {
+    _id: string;
+    name: string | null;
+  } | null;
 };
 
 export default async function BlogPage() {
@@ -61,14 +65,27 @@ export default async function BlogPage() {
                       ) : null}
                     </div>
                     <div className="flex flex-1 flex-col border-t border-slate-200 px-4 py-5">
-                      {dateLabel ? (
-                        <time
-                          className="text-xs font-medium text-slate-500"
-                          dateTime={post.publishedAt ?? undefined}
-                        >
-                          {dateLabel}
-                        </time>
-                      ) : null}
+                      {(dateLabel || post.author?.name) && (
+                        <p className="text-xs font-medium text-slate-500">
+                          {dateLabel ? (
+                            <time
+                              dateTime={post.publishedAt ?? undefined}
+                            >
+                              {dateLabel}
+                            </time>
+                          ) : null}
+                          {dateLabel && post.author?.name ? (
+                            <span className="mx-1 text-slate-400" aria-hidden>
+                              ·
+                            </span>
+                          ) : null}
+                          {post.author?.name ? (
+                            <span className="text-slate-600">
+                              {post.author.name}
+                            </span>
+                          ) : null}
+                        </p>
+                      )}
                       <h2 className="mt-2 text-lg font-bold leading-snug text-slate-900 md:text-xl">
                         {post.title ?? "Untitled"}
                       </h2>

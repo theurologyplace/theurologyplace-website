@@ -26,6 +26,9 @@ export const postsQuery = `
     publishedAt,
     excerpt,
     mainImage,
-    body
+    author->{
+      _id,
+      name
+    }
   }
 `
