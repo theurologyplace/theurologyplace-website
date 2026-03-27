@@ -38,6 +38,80 @@ Embedded [Sanity Studio](https://www.sanity.io/) is available at **`/studio`** (
 
 The standalone Studio in `studio/` uses the same config as the embedded Studio; keep all package installs at the root so dependencies stay unified.
 
+## Project documentation (developer guide)
+
+This section describes how the site, CMS, and blog fit together. In production, replace `<your-domain>` with your live hostname (for example `https://your-domain.com/studio` and `https://your-domain.com/patient-resources/blog`). Locally, use `http://localhost:3000` with the same paths.
+
+### Tech stack
+
+- **Next.js** — App Router application under `app/`.
+- **Tailwind CSS** — Utility-first styling (see `app/globals.css` and Tailwind configuration).
+- **Vercel** — Typical hosting and deployment target for this Next.js project; connect the repo and configure the production domain in the Vercel dashboard.
+- **Sanity** — Headless CMS; content lives in the Sanity dataset referenced from `lib/sanity.ts` and `studio/sanity.config.ts`.
+- **Sanity Studio (embedded)** — Editors manage content at **`/studio`** (e.g. `https://<your-domain>/studio`). The Studio is embedded in this Next.js app, not deployed as a separate Sanity-hosted URL by default.
+- **Blog** — Public listing at **`/patient-resources/blog`** and posts at **`/patient-resources/blog/[slug]`**; data is loaded from Sanity at request/build time, not from static files in the repo.
+
+### How the blog works
+
+1. **Authoring** — Blog posts are created and updated in **Sanity Studio** as documents of type **Blog Post** (`post` in the schema).
+2. **Data flow** — The website uses the Sanity client (`lib/sanity.ts`) and GROQ queries to fetch posts for the listing page and for each slug page.
+3. **Rendering** — `app/patient-resources/blog/page.tsx` renders the blog index; `app/patient-resources/blog/[slug]/page.tsx` renders individual posts from Sanity data.
+4. **Config location** — Schema and Studio configuration live under **`studio/`**, but **npm dependencies must be installed only from the repository root** so the embedded `/studio` route and the Next app share one `node_modules` tree (see [Sanity Studio (embedded)](#sanity-studio-embedded)).
+
+### Create and publish a new blog post
+
+1. Open **`https://<your-domain>/studio`** (or **`http://localhost:3000/studio`** locally) and sign in when prompted.
+2. In the **Structure** tool, open **Blog Post** (or the equivalent list for `post` documents).
+3. Click **Create** → **Blog Post** (wording may vary slightly by Studio version).
+4. Complete the fields your editorial workflow requires (see [Blog field reference](#blog-field-reference) below). **Title** and **Slug** are required by the schema.
+5. For **Slug**, use **Generate from title** or type a URL-safe value (this becomes `/patient-resources/blog/<slug>`).
+6. Set **Published at** so the post sorts and displays as intended.
+7. Add **Excerpt**, **Author** (pick or create an **Author** document under Content), **Category**, **Tags**, **Main image**, and **SEO title / SEO description** as needed.
+8. In **Body**, write the article. Use the editor toolbar for headings, lists, and links. Insert **Image** blocks for inline images; add **Alternative text** on images for accessibility.
+9. Under **Related & CTA**, optionally set **Related posts**, **CTA label**, and **CTA link** (use both CTA fields together if you add a call-to-action).
+10. Click **Publish** so the document is live in the public API (drafts do not appear on the public blog until published).
+11. Verify: visit **`/patient-resources/blog`** and open the new post; confirm content, images, and metadata look correct.
+
+### Blog field reference
+
+Concise guidance for the main `post` fields (see `studio/schemaTypes/postType.ts` for the full schema).
+
+| Field | Role | Optional? |
+| --- | --- | --- |
+| **Title** | Page headline and default SEO title | Required |
+| **Slug** | Last segment of the public URL | Required |
+| **Published at** | Listing order and “published” time | Strongly recommended |
+| **Author** | Reference to an **Author** document | Yes |
+| **Excerpt** | Short summary for cards/previews (max 200 characters) | Yes |
+| **Main image** | Hero and card image (hotspot supported) | Yes |
+| **Body** | Portable text: paragraphs, headings, inline **Image** blocks | Required for a full article |
+| **Category** | Men’s Health / Women’s Health / General | Yes |
+| **Tags** | Free-form labels for grouping | Yes |
+| **Featured** | Marks the post as featured when the site uses it | Optional (default off) |
+| **Read time (minutes)** | Estimated read length shown on the site | Yes |
+| **Updated at** | Last revised date if you edit after publication | Yes |
+| **SEO title** | Overrides browser/search title | Yes |
+| **SEO description** | Meta description for search and social | Yes |
+| **Related posts** | References to other `post` documents | Yes |
+| **CTA label** / **CTA link** | End-of-article button text and URL or path | Yes; use both for a working CTA |
+
+### Developer maintenance notes
+
+- **Do not run `npm install` inside `studio/`** — Use the root `package.json` and root `node_modules` only; see [Sanity Studio (embedded)](#sanity-studio-embedded).
+- **Embedded Studio** — Always served at **`/studio`** on the same origin as the marketing site.
+- **If `/studio` breaks** with Sanity UI or styled-components theme errors, follow the **Recovery** steps in [Sanity Studio (embedded)](#sanity-studio-embedded) (remove `studio/node_modules`, clear `.next`, reinstall at root).
+- **After dependency upgrades or CMS schema changes**, manually verify:
+  - `/patient-resources/blog`
+  - At least one `/patient-resources/blog/<slug>`
+  - `/studio`
+
+### Local vs production URLs
+
+| Environment | Studio | Public blog |
+| --- | --- | --- |
+| **Production** | `https://<your-domain>/studio` | `https://<your-domain>/patient-resources/blog` |
+| **Local** | `http://localhost:3000/studio` | `http://localhost:3000/patient-resources/blog` |
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
