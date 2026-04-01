@@ -2,8 +2,7 @@
  * Shared contact form validation + normalization (client and server).
  * Do not trust client-only checks — the API must use this module for every submission.
  *
- * TODO: Add per-IP rate limiting on POST /api/contact.
- * TODO: Verify g-recaptcha-response server-side with Google's secret.
+ * Anti-abuse (honeypot, rate limit, optional reCAPTCHA) is enforced in app/api/contact/route.ts.
  */
 
 import {
@@ -27,6 +26,10 @@ export type RawContactBody = {
   sourcePath?: unknown;
   serviceName?: unknown;
   category?: unknown;
+  /** Honeypot — must be empty; checked in the API before validation. */
+  website?: unknown;
+  /** reCAPTCHA token when verification is enabled server-side. */
+  gRecaptchaResponse?: unknown;
 };
 
 export type NormalizedContact = {

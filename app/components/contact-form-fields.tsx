@@ -216,6 +216,14 @@ export function ContactFormFields({
       return;
     }
 
+    if (recaptchaSiteKey && !String(captchaToken ?? "").trim()) {
+      setErrorMessage(
+        "Please complete the verification step before submitting.",
+      );
+      setSubmitStatus("error");
+      return;
+    }
+
     setSubmitStatus("loading");
 
     const payload = {
@@ -233,6 +241,7 @@ export function ContactFormFields({
       sourcePath,
       serviceName,
       category,
+      website: String(fd.get("website") ?? "").trim(),
       gRecaptchaResponse: String(fd.get("g-recaptcha-response") ?? "").trim(),
     };
 
@@ -317,11 +326,27 @@ export function ContactFormFields({
       ) : null}
 
       <form
-        className="grid gap-6 sm:grid-cols-2"
+        className="relative grid gap-6 sm:grid-cols-2"
         onSubmit={handleSubmit}
         aria-busy={isLoading}
         noValidate
       >
+        {/* Honeypot — leave empty; bots often fill visible-off fields. */}
+        <div
+          className="pointer-events-none absolute left-[-9999px] top-0 h-0 w-0 overflow-hidden opacity-0"
+          aria-hidden="true"
+        >
+          <label htmlFor={id("contact-website-hp")}>Website</label>
+          <input
+            id={id("contact-website-hp")}
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            defaultValue=""
+          />
+        </div>
+
         <input type="hidden" name="serviceName" value={serviceName} />
         <input type="hidden" name="category" value={category} />
         <input type="hidden" name="sourcePath" value={sourcePath} />
