@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import {
@@ -15,8 +15,12 @@ const inputClass =
 
 const PHONE = "210-617-3670";
 
+type SubmitStatus = "idle" | "loading" | "success" | "error";
+
 export type ContactFormFieldsProps = {
   idPrefix?: string;
+  /** Display page/service name for Trello (e.g. "Kidney Stones", "Men's Wellness"). */
+  pageName: string;
   defaultAppointmentReason: AppointmentReasonOption;
   serviceName: string;
   category: string;
@@ -25,6 +29,7 @@ export type ContactFormFieldsProps = {
 
 export function ContactFormFields({
   idPrefix,
+  pageName,
   defaultAppointmentReason,
   serviceName,
   category,
@@ -39,19 +44,122 @@ export function ContactFormFields({
     BEST_TIME_TO_REACH_OPTIONS[0],
   );
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
   const reasonIsOther = appointmentReason === "Other";
   const timeIsOther = bestTimeToReach === "Other";
+  const isLoading = submitStatus === "loading";
 
   useEffect(() => {
     setAppointmentReason(defaultAppointmentReason);
   }, [defaultAppointmentReason]);
 
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (isLoading) return;
+
+    setErrorMessage(null);
+    setSubmitStatus("loading");
+
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    const payload = {
+      firstName: String(fd.get("firstName") ?? "").trim(),
+      lastName: String(fd.get("lastName") ?? "").trim(),
+      phone: String(fd.get("phone") ?? "").trim(),
+      email: String(fd.get("email") ?? "").trim(),
+      appointmentReason: String(fd.get("appointmentReason") ?? "").trim(),
+      otherAppointmentReason: String(
+        fd.get("otherAppointmentReason") ?? "",
+      ).trim(),
+      bestWayToReachMe: String(fd.get("bestWayToReachMe") ?? "").trim(),
+      bestTimeToReachMe: String(fd.get("bestTimeToReachMe") ?? "").trim(),
+      otherBestTimeToReachMe: String(
+        fd.get("otherBestTimeToReachMe") ?? "",
+      ).trim(),
+      message: String(fd.get("message") ?? "").trim(),
+      pageName,
+      sourcePath,
+      serviceName,
+      category,
+      gRecaptchaResponse: String(fd.get("g-recaptcha-response") ?? "").trim(),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+        details?: string[];
+      };
+
+      if (!res.ok || !data.ok) {
+        const detail =
+          Array.isArray(data.details) && data.details.length > 0
+            ? data.details.join(" ")
+            : data.error ?? "Something went wrong. Please try again.";
+        setErrorMessage(detail);
+        setSubmitStatus("error");
+        return;
+      }
+
+      setSubmitStatus("success");
+      form.reset();
+      setAppointmentReason(defaultAppointmentReason);
+      setBestTimeToReach(BEST_TIME_TO_REACH_OPTIONS[0]);
+      setCaptchaToken(null);
+    } catch {
+      setErrorMessage("Network error. Please check your connection and try again.");
+      setSubmitStatus("error");
+    }
+  }
+
   return (
     <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 md:p-8">
-      <form className="grid gap-6 sm:grid-cols-2" action="#" method="post">
+      {submitStatus === "success" ? (
+        <div
+          className="mb-6 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-emerald-900"
+          role="status"
+        >
+          <p className="text-sm font-semibold">Thank you — your request was sent.</p>
+          <p className="mt-1 text-sm text-emerald-800">
+            Our team will reach out shortly. If your inquiry is urgent, please call
+            us at{" "}
+            <a
+              href={`tel:${PHONE.replace(/-/g, "")}`}
+              className="font-semibold text-emerald-900 underline"
+            >
+              {PHONE}
+            </a>
+            .
+          </p>
+        </div>
+      ) : null}
+
+      {submitStatus === "error" && errorMessage ? (
+        <div
+          className="mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-red-900"
+          role="alert"
+        >
+          <p className="text-sm font-semibold">We couldn&apos;t send your request.</p>
+          <p className="mt-1 text-sm">{errorMessage}</p>
+        </div>
+      ) : null}
+
+      <form
+        className="grid gap-6 sm:grid-cols-2"
+        onSubmit={handleSubmit}
+        aria-busy={isLoading}
+      >
         <input type="hidden" name="serviceName" value={serviceName} />
         <input type="hidden" name="category" value={category} />
         <input type="hidden" name="sourcePath" value={sourcePath} />
@@ -75,6 +183,8 @@ export function ContactFormFields({
               type="text"
               autoComplete="given-name"
               className={inputClass}
+              required
+              disabled={isLoading}
             />
           </div>
           <div>
@@ -90,6 +200,8 @@ export function ContactFormFields({
               type="text"
               autoComplete="family-name"
               className={inputClass}
+              required
+              disabled={isLoading}
             />
           </div>
         </div>
@@ -107,6 +219,8 @@ export function ContactFormFields({
             type="tel"
             autoComplete="tel"
             className={inputClass}
+            required
+            disabled={isLoading}
           />
         </div>
 
@@ -123,6 +237,8 @@ export function ContactFormFields({
             type="email"
             autoComplete="email"
             className={inputClass}
+            required
+            disabled={isLoading}
           />
         </div>
 
@@ -139,6 +255,8 @@ export function ContactFormFields({
             className={inputClass}
             value={appointmentReason}
             onChange={(e) => setAppointmentReason(e.target.value)}
+            required
+            disabled={isLoading}
           >
             {APPOINTMENT_REASON_OPTIONS.map((opt) => (
               <option key={opt} value={opt}>
@@ -161,6 +279,8 @@ export function ContactFormFields({
               name="otherAppointmentReason"
               type="text"
               className={inputClass}
+              required={reasonIsOther}
+              disabled={isLoading}
             />
           </div>
         ) : null}
@@ -174,9 +294,11 @@ export function ContactFormFields({
           </label>
           <select
             id={id("contact-reach")}
-            name="bestWayToReach"
+            name="bestWayToReachMe"
             className={inputClass}
             defaultValue={BEST_WAY_TO_REACH_OPTIONS[0]}
+            required
+            disabled={isLoading}
           >
             {BEST_WAY_TO_REACH_OPTIONS.map((opt) => (
               <option key={opt} value={opt}>
@@ -199,6 +321,7 @@ export function ContactFormFields({
             className={inputClass}
             value={bestTimeToReach}
             onChange={(e) => setBestTimeToReach(e.target.value)}
+            disabled={isLoading}
           >
             {BEST_TIME_TO_REACH_OPTIONS.map((opt) => (
               <option key={opt} value={opt}>
@@ -221,6 +344,8 @@ export function ContactFormFields({
               name="otherBestTimeToReachMe"
               type="text"
               className={inputClass}
+              required={timeIsOther}
+              disabled={isLoading}
             />
           </div>
         ) : null}
@@ -237,6 +362,7 @@ export function ContactFormFields({
             name="message"
             rows={6}
             className={`${inputClass} resize-y min-h-[140px]`}
+            disabled={isLoading}
           />
         </div>
 
@@ -267,8 +393,12 @@ export function ContactFormFields({
         </div>
 
         <div className="sm:col-span-2">
-          <button type="submit" className={BTN_PRIMARY_LARGE}>
-            SUBMIT
+          <button
+            type="submit"
+            className={`${BTN_PRIMARY_LARGE} disabled:pointer-events-none disabled:opacity-60`}
+            disabled={isLoading}
+          >
+            {isLoading ? "Sending…" : "SUBMIT"}
           </button>
           <p className="mt-3 text-sm text-slate-600">
             This form is for non-emergency questions only. If you are
