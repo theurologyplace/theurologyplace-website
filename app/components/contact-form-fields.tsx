@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type FormEvent,
+} from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import {
@@ -99,12 +105,23 @@ export function ContactFormFields({
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
+  const recaptchaRef = useRef<InstanceType<typeof ReCAPTCHA> | null>(null);
+
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+
+  /** Clears React token state and resets the widget so UI matches a fresh challenge. */
+  const resetCaptcha = useCallback(() => {
+    recaptchaRef.current?.reset();
+    setCaptchaToken(null);
+  }, []);
 
   const reasonIsOther = appointmentReason === "Other";
   const timeIsOther = bestTimeToReach === "Other";
   const isLoading = submitStatus === "loading";
   const hasFieldErrors = Object.keys(fieldErrors).length > 0;
+  const hasRecaptchaToken = Boolean(String(captchaToken ?? "").trim());
+  const submitBlockedByCaptcha =
+    Boolean(recaptchaSiteKey) && !hasRecaptchaToken;
 
   useEffect(() => {
     setAppointmentReason(defaultAppointmentReason);
@@ -216,11 +233,12 @@ export function ContactFormFields({
       return;
     }
 
-    if (recaptchaSiteKey && !String(captchaToken ?? "").trim()) {
+    if (recaptchaSiteKey && !hasRecaptchaToken) {
       setErrorMessage(
         "Please complete the verification step before submitting.",
       );
       setSubmitStatus("error");
+      resetCaptcha();
       return;
     }
 
@@ -263,19 +281,28 @@ export function ContactFormFields({
           data.error ?? "Something went wrong. Please try again.",
         );
         setSubmitStatus("error");
+        if (recaptchaSiteKey) {
+          resetCaptcha();
+        }
         return;
       }
 
       setSubmitStatus("success");
       setFieldErrors({});
+      setErrorMessage(null);
       form.reset();
       setAppointmentReason(defaultAppointmentReason);
       setBestTimeToReach(BEST_TIME_TO_REACH_OPTIONS[0]);
       setBestWayToReach(BEST_WAY_TO_REACH_OPTIONS[0]);
-      setCaptchaToken(null);
+      if (recaptchaSiteKey) {
+        resetCaptcha();
+      }
     } catch {
       setErrorMessage("Network error. Please check your connection and try again.");
       setSubmitStatus("error");
+      if (recaptchaSiteKey) {
+        resetCaptcha();
+      }
     }
   }
 
@@ -699,8 +726,15 @@ export function ContactFormFields({
           {recaptchaSiteKey ? (
             <div className="mt-2">
               <ReCAPTCHA
+                ref={recaptchaRef}
                 sitekey={recaptchaSiteKey}
                 onChange={(token) => setCaptchaToken(token)}
+                onExpired={() => {
+                  setCaptchaToken(null);
+                }}
+                onErrored={() => {
+                  resetCaptcha();
+                }}
               />
             </div>
           ) : (
@@ -724,7 +758,7 @@ export function ContactFormFields({
           <button
             type="submit"
             className={`${BTN_PRIMARY_LARGE} disabled:pointer-events-none disabled:opacity-60`}
-            disabled={isLoading}
+            disabled={isLoading || submitBlockedByCaptcha}
           >
             {isLoading ? "Sending…" : "SUBMIT"}
           </button>
