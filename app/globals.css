@@ -23,6 +23,18 @@ html {
   background: #ffffff;
 }
 
+/*
+ * Mobile Safari / many mobile browsers: inline background-attachment: fixed often does not
+ * paint the image (flat color). Desktop (md+) is unchanged — this rule only applies below 768px.
+ * Matches React inline styles that include background-attachment: fixed on hero layers.
+ */
+@media (max-width: 767px) {
+  [style*="background-attachment: fixed"],
+  [style*="background-attachment:fixed"] {
+    background-attachment: scroll !important;
+  }
+}
+
 /* Prostate Biopsy — MRI section: slow crossfade between two UroNav images (no separate component file). */
 @keyframes prostate-biopsy-mri-fade-a {
   0%,
