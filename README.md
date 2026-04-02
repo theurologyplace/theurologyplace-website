@@ -1,24 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Urology Place — Marketing Website
+
+Public marketing site for **The Urology Place** (San Antonio). The app lives under `app/` (Next.js App Router). Content-heavy areas (e.g. blog) use **Sanity**; most pages are static React + **Tailwind CSS**.
+
+**Conventions and layout rules** (heroes, buttons, nav patterns): see **[`PROJECT_RULES.md`](./PROJECT_RULES.md)** in the repo root.
+
+## Prerequisites
+
+- **Node.js** — Use a current LTS (e.g. **20.x** or newer) compatible with Next.js 16.
+- **npm** — Install dependencies from the **repository root** only (see Sanity section below).
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser. Edit files under `app/`; the dev server hot-reloads.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### npm scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script | Purpose |
+| --- | --- |
+| `npm run dev` | Dev server (`next dev --webpack`) |
+| `npm run build` | Production build |
+| `npm run start` | Run production server (after `build`) |
+| `npm run lint` | ESLint |
 
 ## Sanity Studio (embedded)
 
@@ -44,10 +53,26 @@ This section describes how the site, CMS, and blog fit together. In production, 
 
 ### Tech stack
 
-- **Next.js** — App Router application under `app/`.
-- **Tailwind CSS** — Utility-first styling (see `app/globals.css` and Tailwind configuration).
-- **Vercel** — Typical hosting and deployment target for this Next.js project; connect the repo and configure the production domain in the Vercel dashboard.
-- **Sanity** — Headless CMS; content lives in the Sanity dataset referenced from `lib/sanity.ts` and `studio/sanity.config.ts`.
+| Layer | Technology |
+| --- | --- |
+| **Framework** | [Next.js](https://nextjs.org) 16 (App Router), [React](https://react.dev) 19 |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com) v4, PostCSS (`app/globals.css`) |
+| **Linting** | ESLint (`eslint-config-next`) |
+| **CMS** | [Sanity](https://www.sanity.io) — `sanity`, `next-sanity`, `@sanity/client`, Portable Text (`@portabletext/react`), image URLs (`@sanity/image-url`), Vision (`@sanity/vision`) |
+| **Studio UI** | `styled-components` (pinned; shared with embedded Studio — install only at repo root) |
+| **Forms / spam** | `react-google-recaptcha` (contact flows) |
+| **Video** | `hls.js` (HLS playback where used) |
+| **Hosting** | [Vercel](https://vercel.com) — typical deploy target; connect the repo and set the production domain in the dashboard |
+| **Project management** | **[Trello](https://trello.com)** — task tracking and team coordination (workflow tool; not a runtime dependency) |
+
+**Source layout**
+
+- **`app/`** — Routes, layouts, and UI components for the public site.
+- **`studio/`** — Sanity schema and Studio config (`sanity.config.ts`); **do not** run `npm install` inside `studio/` (see below).
+- **`lib/sanity.ts`** — Sanity client, project/dataset IDs, and GROQ queries for the blog.
+- **`public/`** — Static assets (images, etc.).
+
 - **Sanity Studio (embedded)** — Editors manage content at **`/studio`** (e.g. `https://<your-domain>/studio`). The Studio is embedded in this Next.js app, not deployed as a separate Sanity-hosted URL by default.
 - **Blog** — Public listing at **`/patient-resources/blog`** and posts at **`/patient-resources/blog/[slug]`**; data is loaded from Sanity at request/build time, not from static files in the repo.
 
@@ -100,6 +125,7 @@ Concise guidance for the main `post` fields (see `studio/schemaTypes/postType.ts
 - **Do not run `npm install` inside `studio/`** — Use the root `package.json` and root `node_modules` only; see [Sanity Studio (embedded)](#sanity-studio-embedded).
 - **Embedded Studio** — Always served at **`/studio`** on the same origin as the marketing site.
 - **If `/studio` breaks** with Sanity UI or styled-components theme errors, follow the **Recovery** steps in [Sanity Studio (embedded)](#sanity-studio-embedded) (remove `studio/node_modules`, clear `.next`, reinstall at root).
+- **UI / layout** — Follow [`PROJECT_RULES.md`](./PROJECT_RULES.md) for full-page heroes (fixed background + sliding content), shared hero tokens (`app/lib/hero.ts`), button styles aligned with the navbar Contact button, and related patterns.
 - **After dependency upgrades or CMS schema changes**, manually verify:
   - `/patient-resources/blog`
   - At least one `/patient-resources/blog/<slug>`
@@ -114,12 +140,8 @@ Concise guidance for the main `post` fields (see `studio/schemaTypes/postType.ts
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Sanity Documentation](https://www.sanity.io/docs)
 
 ## Adding New Patient Reviews (Home Page)
 
@@ -141,6 +163,4 @@ To remove a review, delete its object from the `PATIENT_REVIEWS` array in the sa
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Connect this repository to [Vercel](https://vercel.com) and deploy the Next.js app. Configure environment variables in the Vercel project if your deployment uses any (e.g. reCAPTCHA or Sanity tokens not committed to the repo). See [Next.js deployment](https://nextjs.org/docs/app/building-your-application/deploying) for general guidance.
