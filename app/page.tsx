@@ -67,12 +67,12 @@ export default function HomePage() {
       <section className="border-t border-slate-200 bg-slate-50/50">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 px-6 py-16 md:flex-row md:items-center md:gap-12 md:py-20">
           {/* Speaker image - vertically centered with text block */}
-          <div className="relative h-64 w-full shrink-0 overflow-hidden rounded-l-xl bg-white md:h-80 md:w-[380px] md:max-w-[45%]">
+          <div className="relative h-64 w-full shrink-0 overflow-hidden rounded-xl bg-white md:h-80 md:w-[380px] md:max-w-[45%]">
             <Image
               src="/images/branding/speaker.jpeg"
               alt=""
               fill
-              className="object-contain object-center p-4"
+              className="object-cover object-bottom"
               sizes="(min-width: 768px) 380px, 100vw"
             />
           </div>
