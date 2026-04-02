@@ -1,7 +1,8 @@
 import Link from "next/link";
 import {
+  HERO_AFTER_SLIDE_BASE,
   HERO_FIXED_BACKDROP,
-  HERO_IMAGE_SECTION_ALIGN_CONTENT,
+  HERO_IMAGE_SECTION,
   HERO_SUBTITLE_ON_IMAGE,
   HERO_TITLE_ON_IMAGE,
 } from "@/app/lib/hero";
@@ -84,20 +85,20 @@ export function OutOfTownPatientsPageContent() {
       />
 
       <div className="relative z-10">
-        <section className={HERO_IMAGE_SECTION_ALIGN_CONTENT}>
+        <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
-          <div className="relative z-10 mx-auto w-full max-w-4xl text-center md:text-left">
+          <div className="relative z-10 mx-auto max-w-4xl text-center">
             <h1 className={HERO_TITLE_ON_IMAGE}>
               Coming to San Antonio from Out of Town?
             </h1>
-            <p className={`mt-6 max-w-2xl leading-relaxed md:mx-0 ${HERO_SUBTITLE_ON_IMAGE}`}>
+            <p className={`mt-6 max-w-2xl mx-auto leading-relaxed ${HERO_SUBTITLE_ON_IMAGE}`}>
               We have many patients visit us from all over the nation to have procedures done by board-certified
               urologist, Dr. Naveen Kella in San Antonio, Texas.
             </p>
           </div>
         </section>
 
-        <section className="relative rounded-t-3xl border-t border-slate-200/80 bg-white shadow-[0_-8px_30px_-10px_rgba(15,23,42,0.08)]">
+        <section className={`${HERO_AFTER_SLIDE_BASE} bg-white`}>
           <div className="mx-auto max-w-6xl px-6 py-12 md:py-14">
             <ul className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-6">
               {FEATURES.map((label) => (

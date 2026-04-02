@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BTN_PRIMARY } from "@/app/lib/button-styles";
 import { LaserTreatmentFaqAccordion } from "@/app/components/laser-treatment-faq-accordion";
 import {
+  HERO_AFTER_SLIDE_BASE,
   HERO_FIXED_BACKDROP,
   HERO_IMAGE_SECTION,
   HERO_TITLE_ON_IMAGE,
@@ -70,7 +71,7 @@ export function LaserTreatmentPageContent() {
           </div>
         </section>
 
-        <section className="relative rounded-t-3xl border-t border-slate-200/80 bg-white shadow-[0_-8px_30px_-10px_rgba(15,23,42,0.08)]">
+        <section className={`${HERO_AFTER_SLIDE_BASE} bg-white`}>
           <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
             <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
               {FEATURE_ITEMS.map((label) => (

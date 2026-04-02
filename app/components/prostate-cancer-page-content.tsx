@@ -4,6 +4,7 @@ import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { MoreInformationCardGrid } from "@/app/components/more-information-card-grid";
 import { PROSTATE_CANCER_MORE_INFORMATION_ITEMS } from "@/app/data/prostate-cancer-more-information-items";
 import {
+  HERO_AFTER_SLIDE_BASE,
   HERO_FIXED_BACKDROP,
   HERO_IMAGE_SECTION,
   HERO_SUBTITLE_ON_IMAGE,
@@ -48,7 +49,7 @@ export function ProstateCancerPageContent() {
           </div>
         </section>
 
-        <section className="relative rounded-t-3xl border-t border-slate-200/80 bg-slate-100 shadow-[0_-8px_30px_-10px_rgba(15,23,42,0.08)]">
+        <section className={`${HERO_AFTER_SLIDE_BASE} bg-slate-100`}>
           <div className="mx-auto max-w-4xl px-6 py-14 text-center md:py-20">
             <h2 className="text-xl font-bold tracking-tight text-slate-900 md:text-2xl lg:text-3xl">
               The Urology Place specializes in the treatment of prostate cancer

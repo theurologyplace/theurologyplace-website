@@ -2,7 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { BTN_PRIMARY, BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
-import { HERO_IMAGE_SPACER, HERO_TITLE_UROLIFT_BAND } from "@/app/lib/hero";
+import {
+  HERO_AFTER_SLIDE_BASE,
+  HERO_IMAGE_SPACER,
+  HERO_TITLE_UROLIFT_BAND,
+} from "@/app/lib/hero";
 
 /** Paths under `public/images/urolift/` (encode spaces and `+` in filenames). */
 const IMG = (name: string) => encodeURI(`/images/urolift/${name}`).replace(/\+/g, "%2B");
@@ -82,7 +86,7 @@ export function UroliftPageContent() {
           aria-label="UroLift"
         />
 
-        <section className="relative rounded-t-3xl border-t border-slate-200/80 bg-white shadow-[0_-8px_30px_-10px_rgba(15,23,42,0.08)]">
+        <section className={`${HERO_AFTER_SLIDE_BASE} bg-white`}>
           <div className="mx-auto max-w-4xl px-6 pb-10 pt-10 text-center md:pb-12 md:pt-14">
             <h1 className={HERO_TITLE_UROLIFT_BAND}>
               <span className="block">Urolift for prostate gland enlargement</span>

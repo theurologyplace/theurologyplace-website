@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import {
+  HERO_AFTER_SLIDE_BASE,
   HERO_FIXED_BACKDROP,
   HERO_IMAGE_SECTION,
   HERO_SUBTITLE_ON_IMAGE,
@@ -86,7 +87,7 @@ export function MaleSexualDysfunctionPageContent() {
           </div>
         </section>
 
-        <section className="relative rounded-t-3xl border-t border-slate-200/80 bg-white shadow-[0_-8px_30px_-10px_rgba(15,23,42,0.08)]">
+        <section className={`${HERO_AFTER_SLIDE_BASE} bg-white`}>
           <div className="mx-auto max-w-5xl px-6 py-14 text-center md:py-20">
             <h2 className="text-xl font-bold tracking-tight text-blue-600 md:text-2xl">
               What are the symptoms of Erectile Dysfunction?

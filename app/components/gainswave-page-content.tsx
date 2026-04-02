@@ -5,6 +5,7 @@ import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import { GAINSWAVE_IN_THE_NEWS } from "@/app/data/gainswave-in-the-news";
 import { BTN_PRIMARY, BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import {
+  HERO_AFTER_SLIDE_BASE,
   HERO_EYEBROW_ON_IMAGE,
   HERO_FIXED_BACKDROP,
   HERO_IMAGE_SECTION,
@@ -110,7 +111,7 @@ export function GainswavePageContent() {
           </div>
         </section>
 
-        <section className="relative rounded-t-3xl border-t border-slate-200/80 bg-sky-50/90 shadow-[0_-8px_30px_-10px_rgba(15,23,42,0.08)]">
+        <section className={`${HERO_AFTER_SLIDE_BASE} bg-sky-50/90`}>
           <div className="mx-auto max-w-6xl px-6 py-10 md:py-12">
             <ul className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
               {FEATURES.map((label) => (

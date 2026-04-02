@@ -3,6 +3,7 @@ import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import { TulsaForProstateFaqAccordion } from "@/app/components/tulsa-for-prostate-faq-accordion";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import {
+  HERO_AFTER_SLIDE_BASE,
   HERO_FIXED_BACKDROP,
   HERO_IMAGE_SECTION,
   HERO_SUBTITLE_ON_IMAGE,
@@ -108,10 +109,8 @@ export function TulsaForProstatePageContent() {
           </div>
         </section>
 
-        {/* Features — sliding panel over fixed hero (PROJECT_RULES.md) */}
-        <section
-          className={`relative border-t border-slate-200/80 shadow-[0_-8px_30px_-10px_rgba(15,23,42,0.08)] ${PANEL_BLUE} rounded-t-3xl`}
-        >
+        {/* First content after hero — flat edge (PROJECT_RULES.md) */}
+        <section className={`${HERO_AFTER_SLIDE_BASE} ${PANEL_BLUE}`}>
           <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
             <ul className="grid gap-12 md:grid-cols-3 md:gap-10">
               {FEATURES.map((f) => (

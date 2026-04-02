@@ -52,6 +52,13 @@ const HERO_WINDOW_BASE =
 export const HERO_FIXED_BACKDROP =
   "pointer-events-none fixed inset-x-0 bottom-0 top-16 z-0";
 
+/**
+ * First content section after a full-bleed image hero: flat top (no `rounded-t-*`, no upward
+ * shadow). Append background classes (e.g. `bg-white`, `bg-[#e8edf5]`). Matches Home
+ * (`app/page.tsx`).
+ */
+export const HERO_AFTER_SLIDE_BASE = "relative border-t border-slate-200/80";
+
 /** Default: centered hero block (most pages). */
 export const HERO_IMAGE_SECTION = `${HERO_WINDOW_BASE} text-center`;
 

@@ -6,7 +6,7 @@ Use this pattern for full-page experiences (e.g. Home, About Us, In-Office Anest
 
 - **Static background:** The hero section uses a full-bleed background image with `backgroundAttachment: "fixed"`, `backgroundSize: "cover"`, and `backgroundPosition` (e.g. `"center"` or `"center 30%"`). This keeps the image fixed in the viewport while the user scrolls.
 - **Hero (window):** A single `<section>` with `relative`, `min-h-[Xvh]`, and inline `style={{ backgroundImage: "url(...)", backgroundAttachment: "fixed", ... }}`. Add an overlay (e.g. `absolute inset-0 bg-slate-900/45`) for text contrast. Hero content lives in a `relative z-10` container (e.g. title, subtitle).
-- **Sliding page:** All content below the hero is the “sliding page”: one or more sections with solid backgrounds (`bg-white`, `bg-slate-50/50`, etc.). Give the first of these sections rounded top corners (e.g. `rounded-t-2xl` or `rounded-t-3xl`) so it reads as a card/window sliding over the static background.
+- **Sliding page:** All content below the hero is the “sliding page”: one or more sections with solid backgrounds (`bg-white`, `bg-slate-50/50`, etc.). **The first section immediately after a full-bleed image hero must not use rounded top corners** (`rounded-t-*`) or an upward shadow that reads as a card overlapping the hero. Use a **flat, full-width** transition like the Home page welcome section (straight horizontal edge). Prefer **`HERO_AFTER_SLIDE_BASE`** from `app/lib/hero.ts` plus the right `bg-*` / gradient classes for that row. Rounded corners and card styling are fine on **later** sections when appropriate.
 - **Structure:** `<main>` contains (1) hero section with fixed background, then (2) content sections with borders/backgrounds that scroll over the hero. Do not wrap the sliding content in an extra full-height container; let it flow naturally so the fixed background stays visible behind the hero viewport only.
 
 ### Standardized hero system
@@ -35,6 +35,7 @@ Use these constants for new and updated marketing heroes instead of duplicating 
 | `HERO_IMAGE_SECTION_ALIGN_CONTENT` | Same vertical window; inner layout controls horizontal alignment (e.g. iTind). |
 | `HERO_IMAGE_SPACER` | Empty section over fixed backdrop to show image (`min-h-[48vh]` only). |
 | `HERO_FIXED_BACKDROP` | Fixed full-bleed layer below navbar for fixed-attachment image heroes (`top-16`, z-0). |
+| `HERO_AFTER_SLIDE_BASE` | First section after an image hero: `relative border-t border-slate-200/80` — flat top, no `rounded-t-*`, no upward hero shadow; append `bg-*` as needed. |
 
 When applying these, **do not** change background URLs, `backgroundSize`, `backgroundPosition`, `backgroundAttachment`, or overlay/gradient opacity—only swap in shared typography/layout constants.
 

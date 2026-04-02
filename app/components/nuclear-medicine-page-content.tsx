@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BTN_PRIMARY } from "@/app/lib/button-styles";
 import { NuclearMedicineSideEffectsAccordion } from "@/app/components/nuclear-medicine-side-effects-accordion";
 import {
+  HERO_AFTER_SLIDE_BASE,
   HERO_FIXED_BACKDROP,
   HERO_IMAGE_SECTION,
   HERO_SUBTITLE_ON_IMAGE,
@@ -84,9 +85,7 @@ export function NuclearMedicinePageContent() {
         </section>
 
         {/* Intro — Targeted Treatment */}
-        <section
-          className={`relative border-t border-slate-200/80 shadow-[0_-8px_30px_-10px_rgba(15,23,42,0.08)] ${PANEL} rounded-t-3xl`}
-        >
+        <section className={`${HERO_AFTER_SLIDE_BASE} ${PANEL}`}>
           <div className="mx-auto max-w-3xl px-6 py-14 md:py-16">
             <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
               Targeted Treatment for Prostate Cancer: Pluvicto™
