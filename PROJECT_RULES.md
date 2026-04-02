@@ -9,6 +9,35 @@ Use this pattern for full-page experiences (e.g. Home, About Us, In-Office Anest
 - **Sliding page:** All content below the hero is the “sliding page”: one or more sections with solid backgrounds (`bg-white`, `bg-slate-50/50`, etc.). Give the first of these sections rounded top corners (e.g. `rounded-t-2xl` or `rounded-t-3xl`) so it reads as a card/window sliding over the static background.
 - **Structure:** `<main>` contains (1) hero section with fixed background, then (2) content sections with borders/backgrounds that scroll over the hero. Do not wrap the sliding content in an extra full-height container; let it flow naturally so the fixed background stays visible behind the hero viewport only.
 
+### Standardized hero system
+
+**Source of truth:** `app/lib/hero.ts`. **Visual reference:** Home page hero (`app/page.tsx`).
+
+Use these constants for new and updated marketing heroes instead of duplicating long Tailwind strings.
+
+**Typography**
+
+| Constant | Use for |
+|----------|---------|
+| `HERO_TITLE_ON_IMAGE` | Main `h1` on dark overlay / photo hero (white text). |
+| `HERO_SUBTITLE_ON_IMAGE` | Supporting line under the title on photo heroes. |
+| `HERO_EYEBROW_ON_IMAGE` | Optional kicker above the title. |
+| `HERO_TITLE_BPH_TRIALS` | BPH clinical trials hero only (same scale, `text-sky-100`). |
+| `HERO_TITLE_ON_LIGHT` / `HERO_SUBTITLE_ON_LIGHT` | Top-of-page titles on plain white sections (index/placeholder/blog/contact template page variant). |
+| `HERO_FORM_SECTION_HEADING` | `h2` for embedded contact sections. |
+| `HERO_TITLE_UROLIFT_BAND` | First white-band title on UroLift (uppercase preserved in JSX). |
+
+**Hero window (height / padding for the first image section)**
+
+| Constant | Use for |
+|----------|---------|
+| `HERO_IMAGE_SECTION` | Default photo hero: `min-h-[48vh]`, `px-6 py-14`, centered content, `text-center`. |
+| `HERO_IMAGE_SECTION_ALIGN_CONTENT` | Same vertical window; inner layout controls horizontal alignment (e.g. iTind). |
+| `HERO_IMAGE_SPACER` | Empty section over fixed backdrop to show image (`min-h-[48vh]` only). |
+| `HERO_FIXED_BACKDROP` | Fixed full-bleed layer below navbar for fixed-attachment image heroes (`top-16`, z-0). |
+
+When applying these, **do not** change background URLs, `backgroundSize`, `backgroundPosition`, `backgroundAttachment`, or overlay/gradient opacity—only swap in shared typography/layout constants.
+
 ## UI / Design
 - Mobile-first responsive design
 - Clean professional medical aesthetic

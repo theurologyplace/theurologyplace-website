@@ -1,4 +1,9 @@
 import Image from "next/image";
+import {
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 const STUDY_SECTIONS = [
   {
@@ -119,7 +124,7 @@ export default function ProstateCancerStudiesPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
       <section
-        className="relative flex min-h-[50vh] items-center justify-center px-6 py-24"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage:
             "url('/images/prostate%20cancer%20studies/photo-1522308300961-fdb949cac8aa-58602788-2880w.png')",
@@ -130,10 +135,10 @@ export default function ProstateCancerStudiesPage() {
       >
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
             Prostate Cancer Clinical Trials
           </h1>
-          <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/90 md:text-lg">
+          <p className={`mx-auto mt-6 max-w-3xl leading-relaxed ${HERO_SUBTITLE_ON_IMAGE}`}>
             Join us and participate in the new developments in medicine
           </p>
         </div>

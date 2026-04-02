@@ -5,6 +5,12 @@ import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { HormoneReplacementFaqAccordion } from "@/app/components/hormone-replacement-faq-accordion";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import { BTN_PRIMARY } from "@/app/lib/button-styles";
+import {
+  HERO_EYEBROW_ON_IMAGE,
+  HERO_IMAGE_SECTION_ALIGN_CONTENT,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 const HERO_BG = encodeURI(
   "/images/hormone replacement therapy/photo-1491582990992-68ec88e070a3-2880w.jpg",
@@ -146,7 +152,7 @@ export function LowTestosteronePageContent() {
     <main className="min-h-screen bg-white text-slate-900">
       {/* Hero: static background + overlay (PROJECT_RULES.md) */}
       <section
-        className="relative flex min-h-[52vh] flex-col justify-center px-6 py-20 md:min-h-[56vh] md:py-28"
+        className={HERO_IMAGE_SECTION_ALIGN_CONTENT}
         style={{
           backgroundImage: `url(${HERO_BG})`,
           backgroundAttachment: "fixed",
@@ -157,13 +163,13 @@ export function LowTestosteronePageContent() {
         <div className="absolute inset-0 bg-black/35" aria-hidden />
         <div className="relative z-10 mx-auto w-full max-w-6xl">
           <div className="max-w-2xl text-left">
-            <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl lg:text-[2.75rem]">
+            <h1 className={HERO_TITLE_ON_IMAGE}>
               Low Testosterone
             </h1>
-            <p className="mt-3 text-xl font-normal text-white md:text-2xl">
+            <p className={`mt-3 ${HERO_SUBTITLE_ON_IMAGE}`}>
               at The Urology Place
             </p>
-            <p className="mt-8 text-sm font-normal italic tracking-[0.2em] text-white md:text-base">
+            <p className={`mt-8 ${HERO_EYEBROW_ON_IMAGE}`}>
               A NEW BEGINNING
             </p>
           </div>

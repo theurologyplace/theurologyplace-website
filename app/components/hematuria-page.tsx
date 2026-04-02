@@ -1,5 +1,10 @@
 import Image from "next/image";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
+import {
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 const WHEN_TO_SEE_DOCTOR = [
   {
@@ -45,7 +50,7 @@ export function HematuriaPageContent() {
     <>
       {/* Hero window: fixed background per PROJECT_RULES.md */}
       <section
-        className="relative min-h-[42vh] flex flex-col items-center justify-center px-6 py-20"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage: "url(/images/men/pexels-photo-2280547-2880w.jpeg)",
           backgroundAttachment: "fixed",
@@ -55,10 +60,10 @@ export function HematuriaPageContent() {
       >
         <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
         <div className="relative z-10 mx-auto w-full max-w-4xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
             HEMATURIA
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-sm text-white/90 md:text-base">
+          <p className={`mx-auto mt-4 max-w-2xl ${HERO_SUBTITLE_ON_IMAGE}`}>
             Microscopic hematuria is found in up to 21% of adults during routine
             urine testing, and although many cases are benign, around 5% to 10%
             may be linked to a urologic cancer, especially in higher-risk

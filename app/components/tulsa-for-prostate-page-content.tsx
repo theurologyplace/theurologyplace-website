@@ -2,6 +2,12 @@ import Image from "next/image";
 import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import { TulsaForProstateFaqAccordion } from "@/app/components/tulsa-for-prostate-faq-accordion";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
+import {
+  HERO_FIXED_BACKDROP,
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 const HERO_BG = encodeURI("/images/tulsa for prostate/IMG-3622-2880w.jpg");
 
@@ -74,9 +80,9 @@ const FEATURES = [
 
 export function TulsaForProstatePageContent() {
   return (
-    <div className="relative isolate min-h-screen text-slate-900 -mt-4 md:-mt-6 lg:-mt-8">
+    <div className="relative isolate min-h-screen text-slate-900">
       <div
-        className="pointer-events-none fixed inset-x-0 bottom-0 top-14 z-0 md:top-[4.5rem]"
+        className={HERO_FIXED_BACKDROP}
         aria-hidden
         style={{
           backgroundImage: `url('${HERO_BG}')`,
@@ -88,17 +94,17 @@ export function TulsaForProstatePageContent() {
 
       <div className="relative z-10">
         {/* Hero */}
-        <section className="relative flex min-h-[48vh] flex-col items-center justify-center px-6 py-20 md:min-h-[52vh] md:py-28">
+        <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
           <div className="relative z-10 max-w-4xl text-center">
-            <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+            <h1 className={HERO_TITLE_ON_IMAGE}>
               TULSA-PRO
             </h1>
             <div className="mx-auto mt-6 h-px w-16 bg-white/90" aria-hidden />
-            <p className="mt-6 text-base font-semibold uppercase italic leading-snug tracking-wide text-white md:text-lg lg:text-xl">
+            <p className={`mt-6 ${HERO_SUBTITLE_ON_IMAGE}`}>
               TRANSURETHRAL ULTRASOUND ABLATION FOR PROSTATE CANCER AND ENLARGED PROSTATE
             </p>
-            <p className="mt-4 text-base text-white md:text-lg">in San Antonio, Texas</p>
+            <p className={`mt-4 ${HERO_SUBTITLE_ON_IMAGE}`}>in San Antonio, Texas</p>
           </div>
         </section>
 

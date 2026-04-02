@@ -1,4 +1,5 @@
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import { HERO_IMAGE_SECTION, HERO_TITLE_ON_IMAGE } from "@/app/lib/hero";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 
 const PHONE = "210-617-3670";
@@ -17,7 +18,7 @@ export default function ContactUsPage() {
     <main className="min-h-screen bg-white text-slate-900">
       {/* Hero window: static background per PROJECT_RULES.md */}
       <section
-        className="relative min-h-[42vh] flex flex-col items-center justify-center px-6 py-20"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage: "url(/images/branding/TheUrologyPlaceBuilding.png)",
           backgroundAttachment: "fixed",
@@ -27,7 +28,7 @@ export default function ContactUsPage() {
       >
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
         <div className="relative z-10 mx-auto w-full max-w-4xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
             Contact Us
           </h1>
         </div>

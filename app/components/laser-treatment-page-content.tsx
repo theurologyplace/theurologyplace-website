@@ -2,6 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { BTN_PRIMARY } from "@/app/lib/button-styles";
 import { LaserTreatmentFaqAccordion } from "@/app/components/laser-treatment-faq-accordion";
+import {
+  HERO_FIXED_BACKDROP,
+  HERO_IMAGE_SECTION,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 /** Encode path for `public/images/enlarge prostate laser treatment/` (spaces and `+` in filenames). */
 const IMG = (name: string) => encodeURI(`/images/enlarge prostate laser treatment/${name}`).replace(/\+/g, "%2B");
@@ -37,9 +42,9 @@ function CheckCircleIcon() {
 
 export function LaserTreatmentPageContent() {
   return (
-    <div className="relative isolate min-h-screen text-slate-900 -mt-4 md:-mt-6 lg:-mt-8">
+    <div className="relative isolate min-h-screen text-slate-900">
       <div
-        className="pointer-events-none fixed inset-x-0 bottom-0 top-14 z-0 md:top-[4.5rem]"
+        className={HERO_FIXED_BACKDROP}
         aria-hidden
         style={{
           backgroundImage: `url('${HERO_BG}')`,
@@ -50,10 +55,10 @@ export function LaserTreatmentPageContent() {
       />
 
       <div className="relative z-10">
-        <section className="relative flex min-h-[48vh] flex-col items-center justify-center px-6 py-20 md:min-h-[52vh] md:py-28">
+        <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/55" aria-hidden />
           <div className="relative z-10 mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+            <h1 className={HERO_TITLE_ON_IMAGE}>
               Laser treatment for BPH
             </h1>
             <Link

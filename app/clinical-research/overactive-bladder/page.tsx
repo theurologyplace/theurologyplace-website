@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { BTN_PRIMARY } from "@/app/lib/button-styles";
+import { HERO_IMAGE_SECTION, HERO_TITLE_ON_IMAGE } from "@/app/lib/hero";
 
 type TabId = "procedure" | "treatments" | "expectations";
 
@@ -39,7 +40,7 @@ export default function OveractiveBladderStudiesPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
       <section
-        className="relative flex min-h-[50vh] items-center justify-center px-6 py-24"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage:
             "url('/images/overactive%20bladder%20studies/pexels-photo-1705093-2880w.jpeg')",
@@ -50,7 +51,7 @@ export default function OveractiveBladderStudiesPage() {
       >
         <div className="absolute inset-0 bg-slate-900/55" aria-hidden />
         <div className="relative z-10 mx-auto max-w-5xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
             OVERACTIVE BLADDER STUDY
           </h1>
         </div>

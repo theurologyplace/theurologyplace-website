@@ -2,6 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { BTN_PRIMARY } from "@/app/lib/button-styles";
 import { NuclearMedicineSideEffectsAccordion } from "@/app/components/nuclear-medicine-side-effects-accordion";
+import {
+  HERO_FIXED_BACKDROP,
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 const IMG = (name: string) => encodeURI(`/images/nuclear medicine/${name}`);
 
@@ -50,9 +56,9 @@ const FOLLOW_CARDS = [
 
 export function NuclearMedicinePageContent() {
   return (
-    <div className="relative isolate min-h-screen text-slate-900 -mt-4 md:-mt-6 lg:-mt-8">
+    <div className="relative isolate min-h-screen text-slate-900">
       <div
-        className="pointer-events-none fixed inset-x-0 bottom-0 top-14 z-0 md:top-[4.5rem]"
+        className={HERO_FIXED_BACKDROP}
         aria-hidden
         style={{
           backgroundImage: `url('${HERO_BG}')`,
@@ -64,14 +70,14 @@ export function NuclearMedicinePageContent() {
 
       <div className="relative z-10">
         {/* Hero */}
-        <section className="relative flex min-h-[48vh] flex-col items-center justify-center px-6 py-20 md:min-h-[52vh] md:py-28">
+        <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
           <div className="relative z-10 max-w-4xl text-center">
-            <h1 className="text-2xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+            <h1 className={HERO_TITLE_ON_IMAGE}>
               Lutetium-177 PSMA Therapy for Prostate Cancer (Pluvicto)
             </h1>
             <div className="mx-auto mt-6 h-px w-16 bg-white/90" aria-hidden />
-            <p className="mt-6 text-sm font-semibold uppercase tracking-wide text-white/95 md:text-base">
+            <p className={`mt-6 ${HERO_SUBTITLE_ON_IMAGE}`}>
               Innovative treatment · San Antonio, Texas
             </p>
           </div>

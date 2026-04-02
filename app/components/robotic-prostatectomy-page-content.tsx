@@ -6,6 +6,12 @@ import { MoreInformationCardGrid } from "@/app/components/more-information-card-
 import { PROSTATE_CANCER_MORE_INFORMATION_ITEMS } from "@/app/data/prostate-cancer-more-information-items";
 import { RoboticProstatectomyFaqAccordion } from "@/app/components/robotic-prostatectomy-faq-accordion";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
+import {
+  HERO_FIXED_BACKDROP,
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 /** Encoded public URL so + in filename is not treated as space */
 const IMG_BASE = "/images/robotic%20prostatectomy";
@@ -46,12 +52,11 @@ const FEATURES = [
 ] as const;
 
 export function RoboticProstatectomyPageContent() {
-  /* Negate root layout main padding so hero overlay meets navbar (see PROJECT_RULES.md). */
   return (
-    <div className="relative isolate min-h-screen text-slate-900 -mt-4 md:-mt-6 lg:-mt-8">
+    <div className="relative isolate min-h-screen text-slate-900">
       {/* Fixed backdrop: below sticky header (z-40), above body; inset-x + bottom + top so it does not sit under the navbar */}
       <div
-        className="pointer-events-none fixed inset-x-0 bottom-0 top-14 z-0 md:top-[4.5rem]"
+        className={HERO_FIXED_BACKDROP}
         aria-hidden
         style={{
           backgroundImage: `url('${IMG_BASE}/incrediblemarketing18edited-2880w.jpg')`,
@@ -63,13 +68,13 @@ export function RoboticProstatectomyPageContent() {
 
       <div className="relative z-10">
         {/* 1 — Full-bleed grey opacity over fixed photo (same pattern as Home hero: absolute inset-0 overlay) */}
-        <section className="relative flex min-h-[48vh] flex-col items-center justify-center px-6 py-20 md:min-h-[52vh] md:py-28">
+        <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
           <div className="relative z-10 max-w-4xl text-center">
-            <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+            <h1 className={HERO_TITLE_ON_IMAGE}>
               ROBOTIC PROSTATECTOMY
             </h1>
-            <p className="mt-5 text-base text-white/95 md:text-lg lg:text-xl">
+            <p className={`mt-5 ${HERO_SUBTITLE_ON_IMAGE}`}>
               Naveen Kella M.D., Fellowship Trained, Nationally Recognized Leader in Robotic
               Prostate Surgery
             </p>

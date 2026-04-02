@@ -2,6 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { BTN_PRIMARY } from "@/app/lib/button-styles";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
+import {
+  HERO_FIXED_BACKDROP,
+  HERO_IMAGE_SECTION_ALIGN_CONTENT,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 const IMG = (name: string) => encodeURI(`/images/itind for enlarged prostate/${name}`);
 
@@ -58,9 +64,9 @@ function CheckCircleIcon() {
 
 export function ItindForBphPageContent() {
   return (
-    <div className="relative isolate min-h-screen text-slate-900 -mt-4 md:-mt-6 lg:-mt-8">
+    <div className="relative isolate min-h-screen text-slate-900">
       <div
-        className="pointer-events-none fixed inset-x-0 bottom-0 top-14 z-0 md:top-[4.5rem]"
+        className={HERO_FIXED_BACKDROP}
         aria-hidden
         style={{
           backgroundImage: `url('${HERO_BG}')`,
@@ -72,14 +78,14 @@ export function ItindForBphPageContent() {
 
       <div className="relative z-10">
         {/* Hero — title on the right for open sky/water (screenshot layout) */}
-        <section className="relative flex min-h-[48vh] flex-col justify-center px-6 py-20 md:min-h-[52vh] md:py-28">
+        <section className={HERO_IMAGE_SECTION_ALIGN_CONTENT}>
           <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
           <div className="relative z-10 mx-auto flex w-full max-w-6xl justify-end">
             <div className="max-w-xl text-right md:max-w-2xl">
-              <h1 className="text-2xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+              <h1 className={HERO_TITLE_ON_IMAGE}>
                 iTind for Enlarged Prostate (BPH)
               </h1>
-              <p className="mt-6 text-base leading-relaxed text-white/95 md:text-lg">
+              <p className={`mt-6 leading-relaxed ${HERO_SUBTITLE_ON_IMAGE}`}>
                 The iTind procedure simply reshapes the anatomy of the prostatic urethra, gently
                 creating a wider opening for urine to flow freely.
               </p>

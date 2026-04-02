@@ -4,6 +4,11 @@ import { SoundCloudEmbed } from "@/app/components/soundcloud-embed";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import { GAINSWAVE_IN_THE_NEWS } from "@/app/data/gainswave-in-the-news";
 import { BTN_PRIMARY, BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
+import {
+  HERO_EYEBROW_ON_IMAGE,
+  HERO_FIXED_BACKDROP,
+  HERO_IMAGE_SECTION,
+} from "@/app/lib/hero";
 
 const HERO_BG = encodeURI("/images/gainswave/Testimonial+-+Facebook+D-2880w.png").replace(/\+/g, "%2B");
 
@@ -82,9 +87,9 @@ function InTheNewsTile({ item }: { item: (typeof GAINSWAVE_IN_THE_NEWS)[number] 
 
 export function GainswavePageContent() {
   return (
-    <div className="relative isolate min-h-screen text-slate-900 -mt-4 md:-mt-6 lg:-mt-8">
+    <div className="relative isolate min-h-screen text-slate-900">
       <div
-        className="pointer-events-none fixed inset-x-0 bottom-0 top-14 z-0 md:top-[4.5rem]"
+        className={HERO_FIXED_BACKDROP}
         aria-hidden
         style={{
           backgroundImage: `url('${HERO_BG}')`,
@@ -95,11 +100,11 @@ export function GainswavePageContent() {
       />
 
       <div className="relative z-10">
-        <section className="relative flex min-h-[min(52vh,520px)] flex-col items-center justify-center px-6 py-20 md:min-h-[56vh] md:py-28">
+        <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/25" aria-hidden />
           <div className="relative z-10 mx-auto max-w-4xl text-center">
             <h1 className="sr-only">GAINSWave</h1>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/90">
+            <p className={HERO_EYEBROW_ON_IMAGE}>
               Low-intensity shockwave therapy
             </p>
           </div>

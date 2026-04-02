@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import { HERO_IMAGE_SECTION, HERO_TITLE_ON_IMAGE } from "@/app/lib/hero";
 
 const MARBLE_BG =
   "radial-gradient(1200px 600px at 10% 20%, rgba(15,23,42,0.06), transparent 60%), radial-gradient(900px 500px at 90% 10%, rgba(15,23,42,0.05), transparent 55%), linear-gradient(#ffffff, #ffffff)";
@@ -9,7 +10,7 @@ export default function CounselingAndInjectionsPage() {
     <main className="min-h-screen bg-white text-slate-900">
       {/* Hero window: static background per PROJECT_RULES.md */}
       <section
-        className="relative min-h-[42vh] flex flex-col items-center justify-center px-6 py-20"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage:
             "url('/images/weight%20loss/Untitled+design+(4)-2880w.png')",
@@ -20,7 +21,7 @@ export default function CounselingAndInjectionsPage() {
       >
         <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
         <div className="relative z-10 mx-auto w-full max-w-4xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
             Counseling and Injections
           </h1>
         </div>

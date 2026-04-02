@@ -2,6 +2,11 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import {
+  HERO_FIXED_BACKDROP,
+  HERO_IMAGE_SECTION,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 function peyImg(name: string) {
   return encodeURI(`/images/peyronies disease/${name}`).replace(/\+/g, "%2B");
@@ -35,9 +40,9 @@ function FaqBox({ title, children }: { title: string; children: ReactNode }) {
 
 export function PeyroniesDiseasePageContent() {
   return (
-    <div className="relative isolate min-h-screen text-slate-900 -mt-4 md:-mt-6 lg:-mt-8">
+    <div className="relative isolate min-h-screen text-slate-900">
       <div
-        className="pointer-events-none fixed inset-x-0 bottom-0 top-14 z-0 md:top-[4.5rem]"
+        className={HERO_FIXED_BACKDROP}
         aria-hidden
         style={{
           backgroundImage: `url('${HERO_BG}')`,
@@ -48,10 +53,10 @@ export function PeyroniesDiseasePageContent() {
       />
 
       <div className="relative z-10">
-        <section className="relative flex min-h-[min(52vh,520px)] flex-col items-center justify-center px-6 py-20 md:min-h-[56vh] md:py-28">
+        <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
           <div className="relative z-10 mx-auto max-w-3xl text-center">
-            <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+            <h1 className={HERO_TITLE_ON_IMAGE}>
               Peyronie&apos;s Disease
             </h1>
           </div>

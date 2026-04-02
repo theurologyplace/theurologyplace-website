@@ -8,6 +8,7 @@ import {
   postsQuery,
   urlFor,
 } from "@/lib/sanity";
+import { HERO_SUBTITLE_ON_LIGHT, HERO_TITLE_ON_LIGHT } from "@/app/lib/hero";
 
 type BlogPost = {
   _id: string;
@@ -165,10 +166,10 @@ export default async function BlogPage({
   return (
     <main className="min-h-screen bg-white text-slate-900">
       <section className="mx-auto max-w-6xl px-6 py-24">
-        <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
+        <h1 className={HERO_TITLE_ON_LIGHT}>
           Blog
         </h1>
-        <p className="mt-6 max-w-2xl text-lg text-slate-600">
+        <p className={`mt-6 max-w-2xl ${HERO_SUBTITLE_ON_LIGHT}`}>
           Educational articles and practice updates from our clinic.
         </p>
 

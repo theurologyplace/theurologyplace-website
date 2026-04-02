@@ -2,6 +2,12 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
+import {
+  HERO_EYEBROW_ON_IMAGE,
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 const HERO_BG = encodeURI(
   "/images/kidney stones/photo-1512615199361-5c7a110a8d11-2880w.jpg",
@@ -48,7 +54,7 @@ export function KidneyStonesPageContent({
     <main className="min-h-screen bg-slate-50 text-slate-900 antialiased">
       {/* Hero: fixed backdrop (PROJECT_RULES.md) */}
       <section
-        className="relative flex min-h-[58vh] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[62vh] md:py-32"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage: `url(${HERO_BG})`,
           backgroundAttachment: "fixed",
@@ -61,13 +67,13 @@ export function KidneyStonesPageContent({
           aria-hidden
         />
         <div className="relative z-10 mx-auto max-w-3xl">
-          <p className="text-xs font-medium uppercase tracking-[0.35em] text-white/70">
+          <p className={HERO_EYEBROW_ON_IMAGE}>
             Kidney care
           </p>
-          <h1 className="mt-4 text-3xl font-light tracking-tight text-white md:text-5xl md:leading-tight lg:text-[3.25rem]">
+          <h1 className={`mt-4 ${HERO_TITLE_ON_IMAGE}`}>
             Kidney Stone Treatment in San Antonio
           </h1>
-          <p className="mx-auto mt-8 max-w-2xl text-base font-light leading-relaxed text-white/90 md:text-lg">
+          <p className={`mx-auto mt-8 max-w-2xl leading-relaxed ${HERO_SUBTITLE_ON_IMAGE}`}>
             Almost half of people who have had a kidney stone will experience a
             recurrence unless they take preventive measures.
           </p>

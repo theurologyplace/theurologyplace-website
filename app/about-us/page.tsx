@@ -1,12 +1,13 @@
 import Image from "next/image";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
+import { HERO_IMAGE_SECTION, HERO_TITLE_ON_IMAGE } from "@/app/lib/hero";
 
 export default function AboutUsPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
       {/* Hero: fixed lobby background; content scrolls on top; smaller vertical window */}
       <section
-        className="relative min-h-[38vh] flex flex-col items-center justify-center px-6 py-16"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage: "url(/images/branding/TheUrologyPlaceLobby.jpg)",
           backgroundAttachment: "fixed",
@@ -16,7 +17,7 @@ export default function AboutUsPage() {
       >
         <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
         <div className="relative z-10 max-w-3xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
             About Us
           </h1>
         </div>

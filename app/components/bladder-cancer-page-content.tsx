@@ -3,6 +3,11 @@ import Link from "next/link";
 import { BladderCancerDiagnosisAccordion } from "@/app/components/bladder-cancer-diagnosis-accordion";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
+import {
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 const HERO_BG = encodeURI(
   "/images/bladder cancer/pexels-photo-3900424-2880w.jpeg",
@@ -25,7 +30,7 @@ export function BladderCancerPageContent({
     <main className="min-h-screen bg-white text-slate-900 antialiased">
       {/* Hero: fixed backdrop (PROJECT_RULES.md) */}
       <section
-        className="relative flex min-h-[52vh] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[58vh] md:py-32"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage: `url(${HERO_BG})`,
           backgroundAttachment: "fixed",
@@ -38,10 +43,10 @@ export function BladderCancerPageContent({
           aria-hidden
         />
         <div className="relative z-10 mx-auto max-w-4xl">
-          <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl md:leading-tight lg:text-[3.25rem]">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
             Understanding Bladder Cancer
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg font-normal text-white/95 md:text-xl">
+          <p className={`mx-auto mt-6 max-w-2xl ${HERO_SUBTITLE_ON_IMAGE}`}>
             Your Health Matters—Seek Guidance Early
           </p>
           <div className="mt-10 flex justify-center">

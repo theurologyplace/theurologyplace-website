@@ -3,6 +3,12 @@ import Link from "next/link";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { MoreInformationCardGrid } from "@/app/components/more-information-card-grid";
 import { PROSTATE_CANCER_MORE_INFORMATION_ITEMS } from "@/app/data/prostate-cancer-more-information-items";
+import {
+  HERO_FIXED_BACKDROP,
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 const HERO_BG = encodeURI("/images/prostate cancer/OR+PICTURE-2880w.JPG").replace(/\+/g, "%2B");
 const KELLA_WITH_PATIENT = encodeURI(
@@ -17,9 +23,9 @@ const SUBHEAD_LINK =
 
 export function ProstateCancerPageContent() {
   return (
-    <div className="relative isolate min-h-screen text-slate-900 -mt-4 md:-mt-6 lg:-mt-8">
+    <div className="relative isolate min-h-screen text-slate-900">
       <div
-        className="pointer-events-none fixed inset-x-0 bottom-0 top-14 z-0 md:top-[4.5rem]"
+        className={HERO_FIXED_BACKDROP}
         aria-hidden
         style={{
           backgroundImage: `url('${HERO_BG}')`,
@@ -30,12 +36,12 @@ export function ProstateCancerPageContent() {
       />
 
       <div className="relative z-10">
-        <section className="relative flex min-h-[48vh] flex-col items-center justify-center px-6 py-20 md:min-h-[52vh] md:py-28">
+        <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
           <div className="relative z-10 max-w-4xl text-center">
-            <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+            <h1 className={HERO_TITLE_ON_IMAGE}>
               <span className="block">Prostate Cancer Treatment</span>
-              <span className="mt-2 block text-2xl font-semibold text-white/95 md:text-4xl lg:text-5xl">
+              <span className={`mt-2 block ${HERO_SUBTITLE_ON_IMAGE}`}>
                 at The Urology Place
               </span>
             </h1>

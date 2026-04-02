@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BTN_PRIMARY, BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
+import { HERO_IMAGE_SPACER, HERO_TITLE_UROLIFT_BAND } from "@/app/lib/hero";
 
 /** Paths under `public/images/urolift/` (encode spaces and `+` in filenames). */
 const IMG = (name: string) => encodeURI(`/images/urolift/${name}`).replace(/\+/g, "%2B");
@@ -60,7 +61,7 @@ function CheckCircleIcon() {
 
 export function UroliftPageContent() {
   return (
-    <div className="relative isolate min-h-screen text-slate-900 -mt-4 md:-mt-6 lg:-mt-8">
+    <div className="relative isolate min-h-screen text-slate-900">
       <div
         className="pointer-events-none fixed inset-x-0 bottom-0 top-14 z-0 bg-slate-100 sm:top-16"
         aria-hidden
@@ -77,13 +78,13 @@ export function UroliftPageContent() {
 
       <div className="relative z-10">
         <section
-          className="relative min-h-[min(40vh,420px)] md:min-h-[min(44vh,500px)]"
+          className={HERO_IMAGE_SPACER}
           aria-label="UroLift"
         />
 
         <section className="relative rounded-t-3xl border-t border-slate-200/80 bg-white shadow-[0_-8px_30px_-10px_rgba(15,23,42,0.08)]">
           <div className="mx-auto max-w-4xl px-6 pb-10 pt-10 text-center md:pb-12 md:pt-14">
-            <h1 className="text-2xl font-bold uppercase tracking-tight text-slate-900 md:text-3xl lg:text-4xl">
+            <h1 className={HERO_TITLE_UROLIFT_BAND}>
               <span className="block">Urolift for prostate gland enlargement</span>
             </h1>
             <Link

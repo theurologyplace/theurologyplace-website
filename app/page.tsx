@@ -3,13 +3,18 @@ import Link from "next/link";
 import { PatientReviewCarousel } from "./components/patient-review-carousel";
 import { HomeContactSection } from "./components/home-contact-section";
 import { BTN_PRIMARY, BTN_PRIMARY_LARGE } from "./lib/button-styles";
+import {
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "./lib/hero";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
       {/* Hero: fixed building background + grey overlay; smaller vertical window */}
       <section
-        className="relative min-h-[70vh] flex flex-col items-center justify-center px-6 py-24"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage: "url(/images/branding/TheUrologyPlaceBuilding.png)",
           backgroundAttachment: "fixed",
@@ -25,10 +30,10 @@ export default function HomePage() {
 
         {/* Scrolling content (not part of background) */}
         <div className="relative z-10 max-w-3xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
             Experience Matters
           </h1>
-          <p className="mt-4 text-lg text-white/95 md:text-xl">
+          <p className={`mt-4 ${HERO_SUBTITLE_ON_IMAGE}`}>
             Get the care you need from providers who are experts in their fields.
           </p>
           <div className="mt-8">
@@ -100,7 +105,7 @@ export default function HomePage() {
 
       {/* Patient reviews: fixed Building2 background + white overlay; cards scroll with page */}
       <section
-        className="relative min-h-[70vh] flex flex-col items-center justify-center px-6 py-24"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage: "url(/images/branding/TheUrologyPlaceBuilding2.png)",
           backgroundAttachment: "fixed",

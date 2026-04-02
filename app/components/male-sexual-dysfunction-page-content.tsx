@@ -1,5 +1,11 @@
 import type { ReactNode } from "react";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import {
+  HERO_FIXED_BACKDROP,
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 const HERO_BG = encodeURI(
   "/images/male sexual dysfunction/photo-1525206809752-65312b959c88-2880w.jpg",
@@ -52,9 +58,9 @@ function SolutionIconCircle({ children }: { children: ReactNode }) {
 
 export function MaleSexualDysfunctionPageContent() {
   return (
-    <div className="relative isolate min-h-screen text-slate-900 -mt-4 md:-mt-6 lg:-mt-8">
+    <div className="relative isolate min-h-screen text-slate-900">
       <div
-        className="pointer-events-none fixed inset-x-0 bottom-0 top-14 z-0 md:top-[4.5rem]"
+        className={HERO_FIXED_BACKDROP}
         aria-hidden
         style={{
           backgroundImage: `url('${HERO_BG}')`,
@@ -65,13 +71,13 @@ export function MaleSexualDysfunctionPageContent() {
       />
 
       <div className="relative z-10">
-        <section className="relative flex min-h-[min(52vh,520px)] flex-col items-center justify-center px-6 py-20 md:min-h-[56vh] md:py-28">
+        <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
           <div className="relative z-10 mx-auto max-w-3xl text-center">
-            <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+            <h1 className={HERO_TITLE_ON_IMAGE}>
               Male Sexual Dysfunction
             </h1>
-            <p className="mt-6 text-base leading-relaxed text-white/95 md:text-lg">
+            <p className={`mt-6 leading-relaxed ${HERO_SUBTITLE_ON_IMAGE}`}>
               Our experienced Urologists understand the negative symptoms of Erectile Dysfunction and
               Peyronie&apos;s Disease. Our staff has the skills and cutting edge technology for ED and
               Peyronie&apos;s Disease. We are happy to offer ED treatments in both San Antonio and Austin,

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
+import { HERO_IMAGE_SECTION, HERO_TITLE_ON_IMAGE } from "@/app/lib/hero";
 
 const HERO_BG = encodeURI(
   "/images/urinary incontinence/photo-1501527022782-000a8cd28122-2880w.jpg",
@@ -52,7 +53,7 @@ export function MenUrinaryIncontinencePageContent() {
     <main className="min-h-screen bg-white text-slate-900 antialiased">
       {/* Hero: fixed backdrop (PROJECT_RULES.md) */}
       <section
-        className="relative flex min-h-[48vh] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[52vh] md:py-32"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage: `url(${HERO_BG})`,
           backgroundAttachment: "fixed",
@@ -62,7 +63,7 @@ export function MenUrinaryIncontinencePageContent() {
       >
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
         <div className="relative z-10 mx-auto max-w-4xl">
-          <h1 className="text-3xl font-bold tracking-[0.12em] text-white md:text-4xl lg:text-5xl">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
             URINARY INCONTINENCE
           </h1>
         </div>

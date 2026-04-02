@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { BPH_STAGE_ILLUSTRATIONS } from "@/app/data/bph-stage-illustrations";
+import { HERO_IMAGE_SECTION, HERO_TITLE_BPH_TRIALS } from "@/app/lib/hero";
 
 const HERO_BG =
   "/images/bph%20studies/pexels-photo-4194857-2880w.jpeg";
@@ -47,7 +48,7 @@ export default function BphStudiesPage() {
     <main className="min-h-screen bg-white text-slate-900">
       {/* Hero: fixed background; sliding content below (see PROJECT_RULES.md) */}
       <section
-        className="relative flex min-h-[50vh] flex-col items-center justify-center px-6 py-24"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage: `url(${HERO_BG})`,
           backgroundAttachment: "fixed",
@@ -57,7 +58,7 @@ export default function BphStudiesPage() {
       >
         <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-sky-100 sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className={HERO_TITLE_BPH_TRIALS}>
             BPH / Enlarged Prostate Clinical Trials
           </h1>
         </div>

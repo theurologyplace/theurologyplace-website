@@ -5,6 +5,11 @@ import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import { VasectomyTabs } from "@/app/men/vasectomy/vasectomy-tabs";
 import { BTN_SECONDARY } from "@/app/lib/button-styles";
+import {
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 const HERO_BG = encodeURI(
   "/images/vasectomy/photo-1449177009399-be6867ef0505-2880w.jpg",
@@ -43,7 +48,7 @@ export function VasectomyPageContent() {
     <main className="min-h-screen bg-white text-slate-900 antialiased">
       {/* Hero: fixed backdrop (PROJECT_RULES.md) */}
       <section
-        className="relative flex min-h-[52vh] flex-col items-center justify-center px-6 py-24 text-center md:min-h-[58vh] md:py-32"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage: `url(${HERO_BG})`,
           backgroundAttachment: "fixed",
@@ -53,10 +58,10 @@ export function VasectomyPageContent() {
       >
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
         <div className="relative z-10 mx-auto max-w-4xl">
-          <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
             No-Scalpel, No-Needle Vasectomy
           </h1>
-          <p className="mx-auto mt-6 max-w-3xl text-base leading-relaxed text-white/95 md:text-lg">
+          <p className={`mx-auto mt-6 max-w-3xl leading-relaxed ${HERO_SUBTITLE_ON_IMAGE}`}>
             No-scalpel, no-needle vasectomy with Nitrous gas. We strive to make
             your vasectomy as painless as possible and get you back on your feet
             quickly. We are excited to offer this nearly painless solution!

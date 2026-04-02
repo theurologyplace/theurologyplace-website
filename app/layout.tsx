@@ -31,7 +31,7 @@ export default function RootLayout({
       >
         <Navbar />
         {/* bg-white comes from body; omit here so page-level fixed backgrounds (e.g. Robotic Prostatectomy) are visible */}
-        <main className="min-h-screen pt-4 md:pt-6 lg:pt-8">{children}</main>
+        <main className="min-h-screen">{children}</main>
         <Footer />
       </body>
     </html>

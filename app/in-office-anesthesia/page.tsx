@@ -1,12 +1,17 @@
 import Image from "next/image";
 import { AnesthesiaAccordion } from "../components/anesthesia-accordion";
+import {
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 export default function InOfficeAnesthesiaPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
       {/* Hero: fixed background; content scrolls over (see PROJECT_RULES.md) */}
       <section
-        className="relative min-h-[50vh] flex flex-col items-center justify-center px-6 py-24"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage: "url(/images/branding/pexels-photo-8037024-2880w.jpeg)",
           backgroundAttachment: "fixed",
@@ -16,10 +21,10 @@ export default function InOfficeAnesthesiaPage() {
       >
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
         <div className="relative z-10 max-w-3xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
             In-Office Anesthesia Tailored for Urologic Care
           </h1>
-          <p className="mt-4 text-lg text-white/95 md:text-xl">
+          <p className={`mt-4 ${HERO_SUBTITLE_ON_IMAGE}`}>
             Prioritizing your comfort and safety throughout every treatment
           </p>
         </div>

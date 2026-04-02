@@ -4,6 +4,12 @@ import { BTN_PRIMARY } from "@/app/lib/button-styles";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import { VidscripPlaylistCarousel } from "@/app/components/vidscrip-playlist-carousel";
 import { RezumFaqAccordion } from "@/app/components/rezum-faq-accordion";
+import {
+  HERO_FIXED_BACKDROP,
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 import { REZUM_QUICK_10_VIDEOS, REZUM_QUICK_5_VIDEOS } from "@/app/lib/rezum-vidscrip-playlists";
 
 const IMG = (name: string) => encodeURI(`/images/rezum/${name}`);
@@ -84,9 +90,9 @@ function CheckCircleIcon() {
 
 export function RezumPageContent() {
   return (
-    <div className="relative isolate min-h-screen text-slate-900 -mt-4 md:-mt-6 lg:-mt-8">
+    <div className="relative isolate min-h-screen text-slate-900">
       <div
-        className="pointer-events-none fixed inset-x-0 bottom-0 top-14 z-0 md:top-[4.5rem]"
+        className={HERO_FIXED_BACKDROP}
         aria-hidden
         style={{
           backgroundImage: `url('${HERO_BG}')`,
@@ -98,13 +104,13 @@ export function RezumPageContent() {
 
       <div className="relative z-10">
         {/* Hero */}
-        <section className="relative flex min-h-[48vh] flex-col items-center justify-center px-6 py-20 md:min-h-[52vh] md:py-28">
+        <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
           <div className="relative z-10 mx-auto max-w-2xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+            <h1 className={HERO_TITLE_ON_IMAGE}>
               Rezum
             </h1>
-            <p className="mt-6 text-base leading-relaxed text-white/95 md:text-lg">
+            <p className={`mt-6 leading-relaxed ${HERO_SUBTITLE_ON_IMAGE}`}>
               Rezum water vapor therapy is a safe and effective in-office option designed to transform
               your BPH treatment experience. Rezum improves your urinary symptoms better than
               medication can, without surgery.

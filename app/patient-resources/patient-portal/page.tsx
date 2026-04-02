@@ -1,9 +1,11 @@
+import { HERO_IMAGE_SECTION, HERO_TITLE_ON_IMAGE } from "@/app/lib/hero";
+
 export default function PatientPortalPage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
       {/* Hero window: static background per PROJECT_RULES.md */}
       <section
-        className="relative min-h-[42vh] flex flex-col items-center justify-center px-6 py-20"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage:
             "url(/images/patient%20portal/photo-1516321318423-f06f85e504b3-2880w.jpg)",
@@ -14,7 +16,7 @@ export default function PatientPortalPage() {
       >
         <div className="absolute inset-0 bg-slate-900/55" aria-hidden />
         <div className="relative z-10 mx-auto w-full max-w-4xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
             Patient Portal
           </h1>
         </div>

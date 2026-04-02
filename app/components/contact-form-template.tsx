@@ -1,5 +1,10 @@
 import { ContactFormFields } from "@/app/components/contact-form-fields";
 import { getDefaultAppointmentReasonForPage } from "@/app/lib/contact-form-defaults";
+import {
+  HERO_FORM_SECTION_HEADING,
+  HERO_SUBTITLE_ON_LIGHT,
+  HERO_TITLE_ON_LIGHT,
+} from "@/app/lib/hero";
 
 export type ContactFormTemplateProps = {
   /**
@@ -44,13 +49,13 @@ export function ContactFormTemplate({
   const content = (
     <div>
       {variant === "page" ? (
-        <h1 className="text-4xl font-bold tracking-tight md:text-5xl">{heading}</h1>
+        <h1 className={HERO_TITLE_ON_LIGHT}>{heading}</h1>
       ) : (
-        <h2 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+        <h2 className={HERO_FORM_SECTION_HEADING}>
           {heading}
         </h2>
       )}
-      <p className="mt-4 max-w-2xl text-slate-700 leading-relaxed">
+      <p className={`mt-4 max-w-2xl leading-relaxed ${HERO_SUBTITLE_ON_LIGHT}`}>
         Tell us a bit about what you’re looking for and our team will reach out
         shortly.
       </p>

@@ -3,6 +3,11 @@ import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { EmsellaFaqAccordion } from "@/app/components/emsella-faq-accordion";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
+import {
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 const HERO_BG =
   "/images/emsella%20for%20incontinence/photo-1488778578932-0f84d315fcae-2880w.jpg";
@@ -95,7 +100,7 @@ export default function EmsellaForIncontinencePage() {
     <main className="min-h-screen bg-white text-slate-900">
       {/* Hero: fixed background (PROJECT_RULES.md) */}
       <section
-        className="relative flex min-h-[50vh] flex-col items-center justify-center px-6 py-24"
+        className={HERO_IMAGE_SECTION}
         style={{
           backgroundImage: `url(${HERO_BG})`,
           backgroundAttachment: "fixed",
@@ -105,10 +110,10 @@ export default function EmsellaForIncontinencePage() {
       >
         <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
             Emsella for Incontinence
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-white/95 md:text-xl">
+          <p className={`mx-auto mt-5 max-w-2xl ${HERO_SUBTITLE_ON_IMAGE}`}>
             New technology for an old problem
           </p>
         </div>
