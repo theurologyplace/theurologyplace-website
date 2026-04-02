@@ -2,7 +2,7 @@ import Link from "next/link";
 import { BTN_PRIMARY, BTN_ICON_PRIMARY } from "@/app/lib/button-styles";
 
 const PHONE = "210-617-3670";
-const EMAIL = "messages@theUIP.com";
+const EMAIL = "messages@theupi.com";
 const ADDRESS = "9618 Huebner Road, Suite 120 San Antonio, TX 78240";
 const MAP_EMBED_URL =
   "https://maps.google.com/maps?q=9618+Huebner+Road+Suite+120+San+Antonio+TX+78240&t=&z=15&ie=UTF8&iwloc=&output=embed";

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { THORNE_DISPENSARY_URL } from "@/app/lib/external-links";
 
 type NavItem = {
   label: string;
@@ -17,6 +18,12 @@ type NavItem = {
     }[];
   }[];
 };
+
+const CONTACT_HREF = "/patient-resources/contact-us";
+
+function isExternalNavHref(href: string): boolean {
+  return /^https?:\/\//i.test(href);
+}
 
 const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
@@ -109,14 +116,13 @@ const NAV_ITEMS: NavItem[] = [
       { label: "Insurance", href: "/patient-resources/insurance" },
       { label: "Out of Town Patients", href: "/patient-resources/out-of-town-patients" },
       { label: "Blog", href: "/patient-resources/blog" },
-      { label: "Order Supplements", href: "/patient-resources/order-supplements" },
+      { label: "Order Supplements", href: THORNE_DISPENSARY_URL },
+      { label: "Privacy Policy HIPAA", href: "/patient-resources/privacy-policy-hipaa" },
     ],
   },
   { label: "Join Our Team", href: "/join-our-team" },
   { label: "In-Office Anesthesia", href: "/in-office-anesthesia" },
 ];
-
-const CONTACT_HREF = "/patient-resources/contact-us";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -232,9 +238,20 @@ export function Navbar() {
                                 : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
                             }`}
                           >
-                            <Link href={child.href} className="min-w-0 flex-1">
-                              {child.label}
-                            </Link>
+                            {isExternalNavHref(child.href) ? (
+                              <a
+                                href={child.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="min-w-0 flex-1"
+                              >
+                                {child.label}
+                              </a>
+                            ) : (
+                              <Link href={child.href} className="min-w-0 flex-1">
+                                {child.label}
+                              </Link>
+                            )}
                             {hasFlyout ? (
                               <span className="text-slate-400" aria-hidden>
                                 ▸
@@ -401,19 +418,32 @@ export function Navbar() {
                           const isSubOpen = expandedMobileSubsection === subKey;
 
                           if (!hasSub) {
+                            const external = isExternalNavHref(child.href);
                             return (
                               <li key={child.href}>
-                                <Link
-                                  href={child.href}
-                                  onClick={() => setMobileOpen(false)}
-                                  className={`block py-1.5 text-sm ${
-                                    pathname === child.href
-                                      ? "text-blue-700 font-medium"
-                                      : "text-slate-700"
-                                  }`}
-                                >
-                                  {child.label}
-                                </Link>
+                                {external ? (
+                                  <a
+                                    href={child.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={() => setMobileOpen(false)}
+                                    className="block py-1.5 text-sm text-slate-700"
+                                  >
+                                    {child.label}
+                                  </a>
+                                ) : (
+                                  <Link
+                                    href={child.href}
+                                    onClick={() => setMobileOpen(false)}
+                                    className={`block py-1.5 text-sm ${
+                                      pathname === child.href
+                                        ? "text-blue-700 font-medium"
+                                        : "text-slate-700"
+                                    }`}
+                                  >
+                                    {child.label}
+                                  </Link>
+                                )}
                               </li>
                             );
                           }

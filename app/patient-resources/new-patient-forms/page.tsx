@@ -22,9 +22,13 @@ export default function NewPatientFormsPage() {
         }}
       >
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
-        <div className="relative z-10 mx-auto w-full max-w-3xl text-center">
-          <h1 className={HERO_TITLE_ON_IMAGE}>NEW PATIENT FORMS</h1>
-          <p className={`mt-4 max-w-3xl mx-auto ${HERO_SUBTITLE_ON_IMAGE}`}>
+        <div className="relative z-10 max-w-3xl text-center">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
+            New Patient Forms
+          </h1>
+          <p
+            className={`mt-4 leading-relaxed ${HERO_SUBTITLE_ON_IMAGE}`}
+          >
             If you are interested in scheduling an appointment, please fill out
             this copy of our New Patient Forms and one of our staff members will
             contact you for scheduling.
