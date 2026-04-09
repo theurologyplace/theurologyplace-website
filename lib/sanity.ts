@@ -18,6 +18,21 @@ export function urlFor(source: any) {
   return builder.image(source)
 }
 
+/** About Us — team / staff for /about-us (featured, profile, grid layouts). */
+export const teamMembersQuery = `
+  *[_type == "teamMember"] {
+    _id,
+    name,
+    role,
+    shortSummary,
+    bio,
+    profileImage,
+    credentialImages,
+    layoutVariant,
+    sortOrder
+  }
+`
+
 export const postsQuery = `
   *[_type == "post"] | order(publishedAt desc) {
     _id,
