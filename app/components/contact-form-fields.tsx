@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type FormEvent,
-} from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+import { useEffect, useState, type FormEvent } from "react";
 import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import {
   APPOINTMENT_REASON_OPTIONS,
@@ -23,6 +16,7 @@ import {
   validateContactForClient,
   type RawContactBody,
 } from "@/app/lib/contact-validation";
+import { executeRecaptchaV3Token } from "@/app/lib/recaptcha-v3-client";
 
 const inputClass =
   "mt-1 block w-full rounded-lg border border-slate-300 bg-slate-50/80 px-3 py-2 text-slate-900 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500";
@@ -100,28 +94,16 @@ export function ContactFormFields({
   const [bestWayToReach, setBestWayToReach] = useState<string>(
     BEST_WAY_TO_REACH_OPTIONS[0],
   );
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [submitStatus, setSubmitStatus] = useState<SubmitStatus>("idle");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
-  const recaptchaRef = useRef<InstanceType<typeof ReCAPTCHA> | null>(null);
-
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
-
-  /** Clears React token state and resets the widget so UI matches a fresh challenge. */
-  const resetCaptcha = useCallback(() => {
-    recaptchaRef.current?.reset();
-    setCaptchaToken(null);
-  }, []);
 
   const reasonIsOther = appointmentReason === "Other";
   const timeIsOther = bestTimeToReach === "Other";
   const isLoading = submitStatus === "loading";
   const hasFieldErrors = Object.keys(fieldErrors).length > 0;
-  const hasRecaptchaToken = Boolean(String(captchaToken ?? "").trim());
-  const submitBlockedByCaptcha =
-    Boolean(recaptchaSiteKey) && !hasRecaptchaToken;
 
   useEffect(() => {
     setAppointmentReason(defaultAppointmentReason);
@@ -233,13 +215,17 @@ export function ContactFormFields({
       return;
     }
 
-    if (recaptchaSiteKey && !hasRecaptchaToken) {
-      setErrorMessage(
-        "Please complete the verification step before submitting.",
-      );
-      setSubmitStatus("error");
-      resetCaptcha();
-      return;
+    let gRecaptchaResponse = "";
+    if (recaptchaSiteKey) {
+      try {
+        gRecaptchaResponse = await executeRecaptchaV3Token(recaptchaSiteKey);
+      } catch {
+        setErrorMessage(
+          "We couldn&apos;t verify this submission. Please refresh the page and try again.",
+        );
+        setSubmitStatus("error");
+        return;
+      }
     }
 
     setSubmitStatus("loading");
@@ -260,7 +246,7 @@ export function ContactFormFields({
       serviceName,
       category,
       website: String(fd.get("website") ?? "").trim(),
-      gRecaptchaResponse: String(fd.get("g-recaptcha-response") ?? "").trim(),
+      gRecaptchaResponse,
     };
 
     try {
@@ -281,9 +267,6 @@ export function ContactFormFields({
           data.error ?? "Something went wrong. Please try again.",
         );
         setSubmitStatus("error");
-        if (recaptchaSiteKey) {
-          resetCaptcha();
-        }
         return;
       }
 
@@ -294,15 +277,9 @@ export function ContactFormFields({
       setAppointmentReason(defaultAppointmentReason);
       setBestTimeToReach(BEST_TIME_TO_REACH_OPTIONS[0]);
       setBestWayToReach(BEST_WAY_TO_REACH_OPTIONS[0]);
-      if (recaptchaSiteKey) {
-        resetCaptcha();
-      }
     } catch {
       setErrorMessage("Network error. Please check your connection and try again.");
       setSubmitStatus("error");
-      if (recaptchaSiteKey) {
-        resetCaptcha();
-      }
     }
   }
 
@@ -377,11 +354,6 @@ export function ContactFormFields({
         <input type="hidden" name="serviceName" value={serviceName} />
         <input type="hidden" name="category" value={category} />
         <input type="hidden" name="sourcePath" value={sourcePath} />
-        <input
-          type="hidden"
-          name="g-recaptcha-response"
-          value={captchaToken ?? ""}
-        />
 
         <div className="sm:col-span-2 grid gap-4 sm:grid-cols-2">
           <div>
@@ -721,44 +693,33 @@ export function ContactFormFields({
           ) : null}
         </div>
 
-        <div className="sm:col-span-2">
-          <p className="text-sm font-medium text-slate-700">Verification</p>
-          {recaptchaSiteKey ? (
-            <div className="mt-2">
-              <ReCAPTCHA
-                ref={recaptchaRef}
-                sitekey={recaptchaSiteKey}
-                onChange={(token) => setCaptchaToken(token)}
-                onExpired={() => {
-                  setCaptchaToken(null);
-                }}
-                onErrored={() => {
-                  resetCaptcha();
-                }}
-              />
-            </div>
-          ) : (
+        {!recaptchaSiteKey ? (
+          <div className="sm:col-span-2">
             <div
-              className="mt-2 rounded-lg border border-dashed border-slate-300 bg-slate-50/80 px-4 py-6 text-center"
+              className="rounded-lg border border-dashed border-slate-300 bg-slate-50/80 px-4 py-6 text-center"
               role="status"
-              aria-label="CAPTCHA not configured"
+              aria-label="reCAPTCHA not configured"
             >
               <p className="text-sm text-slate-600">
                 Add{" "}
                 <code className="rounded bg-slate-200 px-1.5 py-0.5 text-xs">
                   NEXT_PUBLIC_RECAPTCHA_SITE_KEY
                 </code>{" "}
-                to enable Google reCAPTCHA on this form.
+                (and{" "}
+                <code className="rounded bg-slate-200 px-1.5 py-0.5 text-xs">
+                  RECAPTCHA_SECRET_KEY
+                </code>{" "}
+                server-side) to enable Google reCAPTCHA v3 on this form.
               </p>
             </div>
-          )}
-        </div>
+          </div>
+        ) : null}
 
         <div className="sm:col-span-2">
           <button
             type="submit"
             className={`${BTN_PRIMARY_LARGE} disabled:pointer-events-none disabled:opacity-60`}
-            disabled={isLoading || submitBlockedByCaptcha}
+            disabled={isLoading}
           >
             {isLoading ? "Sending…" : "SUBMIT"}
           </button>

@@ -1,9 +1,33 @@
 /**
- * Server-side Google reCAPTCHA (v2 checkbox) verification.
+ * Server-side Google reCAPTCHA v3 verification (score + action).
  * Never log tokens or the secret.
  */
 
+import { CONTACT_RECAPTCHA_ACTION } from "@/app/lib/contact-recaptcha-constants";
+
 const VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
+
+/** Minimum score (0–1). Override with RECAPTCHA_SCORE_THRESHOLD (e.g. 0.5). */
+function getRecaptchaScoreThreshold(): number {
+  const raw = process.env.RECAPTCHA_SCORE_THRESHOLD?.trim();
+  if (!raw) return 0.5;
+  const n = Number(raw);
+  if (!Number.isFinite(n) || n < 0 || n > 1) return 0.5;
+  return n;
+}
+
+type SiteVerifyJson =
+  | {
+      success: true;
+      score: number;
+      action: string;
+      challenge_ts?: string;
+      hostname?: string;
+    }
+  | {
+      success: false;
+      "error-codes"?: string[];
+    };
 
 export async function verifyRecaptchaResponse(
   secret: string,
@@ -29,12 +53,21 @@ export async function verifyRecaptchaResponse(
 
   if (!res.ok) return false;
 
+  let data: SiteVerifyJson;
   try {
-    const data = (await res.json()) as { success?: boolean };
-    return data.success === true;
+    data = (await res.json()) as SiteVerifyJson;
   } catch {
     return false;
   }
+
+  if (!data.success) return false;
+
+  if (data.action !== CONTACT_RECAPTCHA_ACTION) return false;
+
+  const threshold = getRecaptchaScoreThreshold();
+  if (typeof data.score !== "number" || data.score < threshold) return false;
+
+  return true;
 }
 
 export function isRecaptchaConfigured(): boolean {

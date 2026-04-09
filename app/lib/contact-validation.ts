@@ -2,7 +2,7 @@
  * Shared contact form validation + normalization (client and server).
  * Do not trust client-only checks — the API must use this module for every submission.
  *
- * Anti-abuse (honeypot, rate limit, optional reCAPTCHA) is enforced in app/api/contact/route.ts.
+ * Anti-abuse (honeypot, rate limit, optional reCAPTCHA v3) is enforced in app/api/contact/route.ts.
  */
 
 import {
@@ -28,7 +28,7 @@ export type RawContactBody = {
   category?: unknown;
   /** Honeypot — must be empty; checked in the API before validation. */
   website?: unknown;
-  /** reCAPTCHA token when verification is enabled server-side. */
+  /** reCAPTCHA v3 token when verification is enabled server-side. */
   gRecaptchaResponse?: unknown;
 };
 

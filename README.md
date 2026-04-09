@@ -61,7 +61,7 @@ This section describes how the site, CMS, and blog fit together. In production, 
 | **Linting** | ESLint (`eslint-config-next`) |
 | **CMS** | [Sanity](https://www.sanity.io) — `sanity`, `next-sanity`, `@sanity/client`, Portable Text (`@portabletext/react`), image URLs (`@sanity/image-url`), Vision (`@sanity/vision`) |
 | **Studio UI** | `styled-components` (pinned; shared with embedded Studio — install only at repo root) |
-| **Forms / spam** | `react-google-recaptcha` (contact flows) |
+| **Forms / spam** | Google reCAPTCHA v3 (invisible; `app/lib/recaptcha-v3-client.ts` + `app/lib/contact-recaptcha.ts`) |
 | **Video** | `hls.js` (HLS playback where used) |
 | **Hosting** | [Vercel](https://vercel.com) — typical deploy target; connect the repo and set the production domain in the dashboard |
 | **Project management** | **[Trello](https://trello.com)** — task tracking and team coordination (workflow tool; not a runtime dependency) |
