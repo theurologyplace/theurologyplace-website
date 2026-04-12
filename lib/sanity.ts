@@ -18,6 +18,18 @@ export function urlFor(source: any) {
   return builder.image(source)
 }
 
+/** Single privacy policy document for /patient-resources/privacy-policy-hipaa */
+export const privacyPolicyQuery = `
+  *[_type == "privacyPolicy"][0] {
+    _id,
+    _updatedAt,
+    internalTitle,
+    leadImage,
+    effectiveDate,
+    body
+  }
+`
+
 /** About Us — team / staff for /about-us (featured, profile, grid layouts). */
 export const teamMembersQuery = `
   *[_type == "teamMember"] {
