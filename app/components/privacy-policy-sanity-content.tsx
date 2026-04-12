@@ -26,25 +26,23 @@ export function formatPrivacyPolicyLastUpdated(iso: string): string {
   });
 }
 
-const effectiveDateComponents: PortableTextComponents = {
+const effectiveDateCaptionComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
-      <p className="text-base leading-relaxed text-slate-700 md:text-lg [&:not(:first-child)]:mt-4">
-        {children}
-      </p>
+      <p className="mt-3 font-normal leading-relaxed first:mt-0">{children}</p>
     ),
   },
   marks: {
     strong: ({ children }) => (
-      <strong className="font-semibold text-slate-900">{children}</strong>
+      <span className="font-normal">{children}</span>
     ),
-    em: ({ children }) => <em className="italic">{children}</em>,
+    em: ({ children }) => <em>{children}</em>,
     link: ({ value, children }) => {
       const href = value?.href ?? "#";
       const external =
         href.startsWith("http://") || href.startsWith("https://");
       const className =
-        "font-medium text-blue-600 underline decoration-blue-600/30 underline-offset-2 hover:text-blue-700";
+        "font-normal text-blue-600 underline decoration-blue-600/35 underline-offset-2 hover:text-blue-700";
       if (external) {
         return (
           <a
@@ -199,14 +197,22 @@ export function PrivacyPolicySanityContent({
 
   return (
     <div className="space-y-10">
-      <header className="text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
-          The Urology Place Privacy Policy
-        </h2>
-        <h3 className="mt-3 text-2xl font-semibold text-slate-800 md:text-3xl">
-          Privacy Policy
-        </h3>
-      </header>
+      <div className="policy-last-updated rounded-2xl border border-slate-200/85 bg-gradient-to-br from-slate-50/95 via-white to-blue-50/25 px-6 py-5 shadow-md ring-1 ring-slate-200/55 md:px-9 md:py-7">
+        <p className="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-slate-500">
+          Last updated
+        </p>
+        <p className="mt-2 text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
+          {formatPrivacyPolicyLastUpdated(data._updatedAt)}
+        </p>
+        {!leadUrl && hasEffective ? (
+          <div className="policy-effective-date mt-5 border-t border-slate-200/70 pt-5 text-sm font-normal leading-relaxed text-slate-600">
+            <PortableText
+              value={data.effectiveDate!}
+              components={effectiveDateCaptionComponents}
+            />
+          </div>
+        ) : null}
+      </div>
 
       {leadUrl ? (
         <figure className="mx-auto max-w-3xl">
@@ -222,28 +228,16 @@ export function PrivacyPolicySanityContent({
               unoptimized
             />
           </div>
+          {hasEffective ? (
+            <figcaption className="policy-effective-date mt-4 text-center text-sm font-normal text-slate-600">
+              <PortableText
+                value={data.effectiveDate!}
+                components={effectiveDateCaptionComponents}
+              />
+            </figcaption>
+          ) : null}
         </figure>
       ) : null}
-
-      <div className="rounded-2xl border border-slate-200/90 bg-white/90 p-8 shadow-sm ring-1 ring-slate-200/60 backdrop-blur-sm md:p-10">
-        {hasEffective ? (
-          <div className="policy-effective-date">
-            <PortableText
-              value={data.effectiveDate!}
-              components={effectiveDateComponents}
-            />
-          </div>
-        ) : null}
-        <p
-          className={
-            hasEffective
-              ? "mt-6 text-sm font-medium text-slate-600 md:text-base"
-              : "text-sm font-medium text-slate-600 md:text-base"
-          }
-        >
-          Last Updated: {formatPrivacyPolicyLastUpdated(data._updatedAt)}
-        </p>
-      </div>
 
       {hasBody ? (
         <div className="prose-policy max-w-none border-t border-slate-200/80 pt-10">
