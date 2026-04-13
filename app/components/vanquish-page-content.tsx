@@ -10,7 +10,7 @@ import {
   HERO_TITLE_ON_IMAGE,
 } from "@/app/lib/hero";
 
-const HERO_BG = encodeURI("/images/prostate cancer/kella+with+patient+jpg-1920w.jpg");
+const HERO_BG = encodeURI("/images/vanquish/1765481756241.jpg");
 const IMG_CONSULT = encodeURI("/images/rezum/photo-1533025782032-634283c7c7ad-1920w.jpg");
 
 const PANEL = "bg-[#e8edf5]";

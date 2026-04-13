@@ -10,7 +10,7 @@ import {
 } from "@/app/lib/hero";
 
 const HERO_BG = encodeURI(
-  "/images/bladder cancer/pexels-photo-3900424-2880w.jpeg",
+  "/images/bladder cancer/Blog_Post-Bladder_Cancer.webp",
 );
 
 const IMG = (file: string) => `/images/bladder cancer/${file}`;

@@ -10,7 +10,7 @@ import {
   HERO_TITLE_ON_IMAGE,
 } from "@/app/lib/hero";
 
-const HERO_BG = encodeURI("/images/male sexual dysfunction/photo-1525206809752-65312b959c88-2880w.jpg");
+const HERO_BG = encodeURI("/images/varicocele/1764649591_2734094-1.jpg");
 const IMG_SECONDARY = encodeURI("/images/peyronies disease/photo-1522308300961-fdb949cac8aa-2880w.jpg");
 
 const PANEL = "bg-[#e8edf5]";

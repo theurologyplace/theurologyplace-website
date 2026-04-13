@@ -10,7 +10,7 @@ import {
   HERO_TITLE_ON_IMAGE,
 } from "@/app/lib/hero";
 
-const HERO_BG = encodeURI("/images/enlarged prostate/OR+PICTURE-2880w.JPG");
+const HERO_BG = encodeURI("/images/pae/What-is-Prostate-Artery-Embolization-PAE.webp");
 const IMG_LIFESTYLE = encodeURI("/images/enlarged prostate/photo-1491484925566-336b202157a5-2880w.jpg");
 
 const PANEL = "bg-[#e8edf5]";
