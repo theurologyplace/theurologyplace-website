@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { HomePrivacyBanner } from "./components/home-privacy-banner";
 import { PatientReviewCarousel } from "./components/patient-review-carousel";
 import { HomeContactSection } from "./components/home-contact-section";
 import { BTN_PRIMARY, BTN_PRIMARY_LARGE } from "./lib/button-styles";
@@ -12,6 +13,7 @@ import {
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
+      <HomePrivacyBanner />
       {/* Hero: fixed building background + grey overlay; smaller vertical window */}
       <section
         className={HERO_IMAGE_SECTION}

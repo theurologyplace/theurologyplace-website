@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { PrivacyPolicyNoticeAcknowledge } from "@/app/components/privacy-policy-notice-acknowledge";
+import {
+  PrivacyPolicySanityContent,
+  type PrivacyPolicySanityData,
+} from "@/app/components/privacy-policy-sanity-content";
 import {
   HERO_AFTER_SLIDE_BASE,
   HERO_IMAGE_SECTION,
   HERO_TITLE_ON_IMAGE,
 } from "@/app/lib/hero";
-import {
-  PrivacyPolicySanityContent,
-  type PrivacyPolicySanityData,
-} from "@/app/components/privacy-policy-sanity-content";
 import { client, privacyPolicyQuery } from "@/lib/sanity";
 
 const IMG_DIR = "/images/privacy policy hippa";
@@ -29,6 +30,7 @@ export default async function PrivacyPolicyHipaaPage() {
 
   return (
     <main className="min-h-screen bg-white text-slate-900 antialiased">
+      <PrivacyPolicyNoticeAcknowledge />
       <section
         className={HERO_IMAGE_SECTION}
         style={{
