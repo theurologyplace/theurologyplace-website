@@ -96,16 +96,6 @@ const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: "Weight Loss",
-    href: "/weight-loss",
-    children: [
-      {
-        label: "Counseling and Injections",
-        href: "/weight-loss/counseling-and-injections",
-      },
-    ],
-  },
-  {
     label: "Patient Resources",
     href: "/patient-resources",
     children: [

@@ -20,7 +20,6 @@ export const APPOINTMENT_REASON_OPTIONS = [
   "Ultrafemme",
   "Vaginal Mesh Removal",
   "Hormone Replacement Therapy",
-  "Weight Loss",
   "Other",
 ] as const;
 
@@ -70,7 +69,6 @@ const PAGE_TO_DEFAULT_REASON: Record<string, AppointmentReasonOption> = {
   "prostate biopsies": "Prostate Cancer",
   "prostate biopsy": "Prostate Cancer",
   "kidney stones": "Kidney Stones",
-  "weight loss": "Weight Loss",
   "prostate cancer": "Prostate Cancer",
   "emsella for incontinence": "Urinary Incontinence",
   "enlarged prostate": "Enlarged Prostate",

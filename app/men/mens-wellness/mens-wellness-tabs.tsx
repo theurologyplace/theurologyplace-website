@@ -9,7 +9,6 @@ export type WellnessTabId =
   | "erectile-dysfunction"
   | "peyronies"
   | "low-testosterone"
-  | "weight-loss"
   | "prostate-health";
 
 type TabConfig = {
@@ -63,19 +62,6 @@ const TABS: TabConfig[] = [
     ),
   },
   {
-    id: "weight-loss",
-    label: "Weight Loss",
-    title: "Weight Management and Counseling",
-    imageSrc: "/images/men/photo-1594264242877-3c384fc6444c-1920w.jpg",
-    imageAlt: "Medical scale in a clinical setting",
-    learnMoreHref: "/weight-loss",
-    body: (
-      <p>
-        We embrace holistic health here at The Urology Place as a form of preventative care. Weight management is one of the best ways to naturally improve your health. Our team can prescribe medical weight loss and other techniques to help improve your health.
-      </p>
-    ),
-  },
-  {
     id: "prostate-health",
     label: "Prostate Health",
     title: "Prostate Care",
@@ -98,7 +84,7 @@ export function MensWellnessTabs() {
     <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 md:p-8">
       {/* Tab list */}
       <div
-        className="flex flex-wrap gap-1 border-b border-slate-200 pb-4"
+        className="flex flex-wrap justify-center gap-1 border-b border-slate-200 pb-4"
         role="tablist"
         aria-label="Men's wellness topics"
       >

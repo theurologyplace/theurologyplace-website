@@ -58,7 +58,7 @@ export default function HomePage() {
           San Antonio expects the best urology doctors to excel in training and experience. Dr. Naveen Kella offers the most experienced combined care in Texas for prostate cancer with robotic surgery and TULSA PRO. Our doctors have completed fellowships with subspecialty training and are leading experts in urological medicine. We are a small practice, which means we provide every patient the attention they deserve.
         </p>
         <p className="mt-4 text-slate-700 leading-relaxed">
-          Board-certified urologist Dr. Kella works alongside his team. Over the years, they have expanded their skills into advanced prostate care, sexual health, weight loss programs and more.
+          Board-certified urologist Dr. Kella works alongside his team. Over the years, they have expanded their skills into advanced prostate care, sexual health, and more.
         </p>
         <p className="mt-8 text-lg font-semibold text-slate-900">
           Our mission is to provide a warm and welcoming environment for experienced care. We thank you for trusting us with your urological and overall health.

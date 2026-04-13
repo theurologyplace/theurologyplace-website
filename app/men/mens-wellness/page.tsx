@@ -43,7 +43,7 @@ export default function MensWellnessPage() {
             Men&apos;s Health and Wellness at The Urology Place
           </h1>
           <p className={`mt-4 ${HERO_SUBTITLE_ON_IMAGE}`}>
-            Our team has expertise in sexual function, hormonal optimization, and weight loss.
+            Our team has expertise in sexual function and hormonal optimization.
           </p>
         </div>
       </section>
@@ -71,7 +71,7 @@ export default function MensWellnessPage() {
               How can The Urology Place help me?
             </h2>
             <p className="mt-6 text-slate-700 leading-relaxed">
-              Our team of providers are led by Board Certified Urologists with expanded skills into sexual wellness, hormonal optimization, and weight loss counseling. Our team stays current on the latest medical advancements to help our patients get the best possible care. We are happy to provide care in San Antonio and Austin, Texas.
+              Our team of providers are led by a Board Certified Urologist with expanded skills into sexual wellness, and hormonal optimization. Our team stays current on the latest medical advancements to help our patients get the best possible care. We are happy to provide care in San Antonio and Austin, Texas.
             </p>
             <div className="mt-10 flex justify-center">
               <div className="relative h-64 w-full max-w-xl overflow-hidden rounded-xl bg-slate-200 md:h-80">
@@ -87,7 +87,7 @@ export default function MensWellnessPage() {
           </div>
         </section>
 
-        {/* Tabbed content: Erectile Dysfunction, Peyronie's, Low T, Weight Loss, Prostate */}
+        {/* Tabbed content: Erectile Dysfunction, Peyronie's, Low T, Prostate */}
         <section className="border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
             <MensWellnessTabs />

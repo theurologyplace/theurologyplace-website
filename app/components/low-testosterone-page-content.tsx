@@ -384,7 +384,7 @@ export function LowTestosteronePageContent() {
               </div>
             </div>
 
-            {/* Testosterone & weight loss — Low T page only */}
+            {/* Testosterone & body composition — Low T page only */}
             <div className="mt-12 rounded-2xl border border-slate-200/90 bg-[#E8E8E8] px-6 py-10 shadow-sm md:px-10 md:py-12">
               <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
                 <div>
@@ -402,10 +402,10 @@ export function LowTestosteronePageContent() {
                   </p>
                   <div className="mt-8">
                     <Link
-                      href="/weight-loss/counseling-and-injections"
+                      href="/patient-resources/contact-us"
                       className={`inline-flex ${BTN_PRIMARY}`}
                     >
-                      Learn More
+                      Contact us
                     </Link>
                   </div>
                 </div>
