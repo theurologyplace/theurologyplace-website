@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { BTN_PRIMARY, BTN_ICON_PRIMARY } from "@/app/lib/button-styles";
-
-const PHONE = "210-617-3670";
+import {
+  CLINIC_BUSINESS_HOURS_ROWS,
+  CLINIC_PHONE,
+} from "@/app/lib/clinic-info";
 const EMAIL = "messages@theupi.com";
 const ADDRESS = "9618 Huebner Road, Suite 120 San Antonio, TX 78240";
 const MAP_EMBED_URL =
@@ -30,12 +32,7 @@ export function Footer() {
           {/* Contact + map */}
           <div className="lg:col-span-5">
             <div className="flex flex-wrap items-center gap-3 text-sm">
-              <a
-                href={`tel:${PHONE.replace(/-/g, "")}`}
-                className="font-medium text-blue-600 hover:text-blue-700"
-              >
-                {PHONE}
-              </a>
+              <span className="font-medium text-slate-800">{CLINIC_PHONE}</span>
               <span className="text-slate-400" aria-hidden>|</span>
               <a
                 href={`mailto:${EMAIL}`}
@@ -87,14 +84,15 @@ export function Footer() {
                 Hours
               </h3>
               <dl className="mt-2 space-y-0.5 text-sm text-slate-700">
-                <div className="flex justify-between gap-4">
-                  <dt>Mon – Fri</dt>
-                  <dd>8:00 am – 5:00 pm</dd>
-                </div>
-                <div className="flex justify-between gap-4">
-                  <dt>Sat – Sun</dt>
-                  <dd>Closed</dd>
-                </div>
+                {CLINIC_BUSINESS_HOURS_ROWS.map((row) => (
+                  <div
+                    key={row.days}
+                    className="grid grid-cols-[10rem_1fr] gap-x-4"
+                  >
+                    <dt>{row.days}</dt>
+                    <dd>{row.hours}</dd>
+                  </div>
+                ))}
               </dl>
             </div>
           </div>
