@@ -42,6 +42,10 @@ const NAV_ITEMS: NavItem[] = [
           { label: "Prostate Biopsy", href: "/men/prostate-cancer/prostate-biopsy" },
           { label: "TULSA for Prostate", href: "/men/prostate-cancer/tulsa-for-prostate" },
           { label: "Nuclear Medicine", href: "/men/prostate-cancer/nuclear-medicine" },
+          {
+            label: "Vanquish (Water Vapor Ablation)",
+            href: "/men/prostate-cancer/vanquish",
+          },
         ],
       },
       { label: "Adult Circumcision", href: "/men/adult-circumcision" },
@@ -53,6 +57,10 @@ const NAV_ITEMS: NavItem[] = [
           { label: "Rezūm", href: "/men/enlarged-prostate/rezum" },
           { label: "Enlarged Prostate Laser Treatment", href: "/men/enlarged-prostate/laser-treatment" },
           { label: "UroLift", href: "/men/enlarged-prostate/urolift" },
+          {
+            label: "Prostatic Artery Embolization (PAE)",
+            href: "/men/enlarged-prostate/prostatic-artery-embolization",
+          },
         ],
       },
       { label: "Bladder Cancer", href: "/men/bladder-cancer" },
@@ -62,6 +70,7 @@ const NAV_ITEMS: NavItem[] = [
         children: [
           { label: "Peyronie's Disease", href: "/men/male-sexual-dysfunction/peyronies" },
           { label: "GAINSWave", href: "/men/male-sexual-dysfunction/gainswave" },
+          { label: "Varicocele", href: "/men/male-sexual-dysfunction/varicocele" },
         ],
       },
       { label: "Vasectomy", href: "/men/vasectomy" },
