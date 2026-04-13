@@ -22,6 +22,8 @@ export type RawContactBody = {
   bestTimeToReachMe?: unknown;
   otherBestTimeToReachMe?: unknown;
   message?: unknown;
+  /** SMS consent: "yes" or "no" (lowercase). */
+  smsConsent?: unknown;
   pageName?: unknown;
   sourcePath?: unknown;
   serviceName?: unknown;
@@ -41,6 +43,7 @@ export type NormalizedContact = {
   bestWayToReachMe: string;
   bestTimeToReachMeFinal: string;
   message: string;
+  smsConsent: "yes" | "no";
   pageName: string;
   sourcePath: string;
 };
@@ -163,6 +166,7 @@ export type ContactFieldKey =
   | "bestWayToReachMe"
   | "bestTimeToReachMe"
   | "message"
+  | "smsConsent"
   | "pageName"
   | "sourcePath";
 
@@ -266,6 +270,17 @@ export function validateAndNormalizeContact(
   }
   const message = collapseWhitespace(rawMessage.slice(0, CONTACT_FIELD_LIMITS.message));
 
+  const smsRaw = collapseWhitespace(str(input.smsConsent)).toLowerCase();
+  let smsConsent: "yes" | "no" | null = null;
+  if (smsRaw === "yes" || smsRaw === "no") {
+    smsConsent = smsRaw;
+  } else {
+    errors.push({
+      field: "smsConsent",
+      message: "Select Yes or No for SMS communications.",
+    });
+  }
+
   let pageName = collapseWhitespace(str(input.pageName).slice(0, CONTACT_FIELD_LIMITS.pageName));
   if (!pageName) pageName = "(not provided)";
 
@@ -294,6 +309,7 @@ export function validateAndNormalizeContact(
     bestWayToReachMe,
     bestTimeToReachMeFinal,
     message,
+    smsConsent: smsConsent as "yes" | "no",
     pageName,
     sourcePath,
   };
@@ -312,7 +328,8 @@ export type ClientValidatedField =
   | "appointmentReason"
   | "bestWayToReachMe"
   | "bestTimeToReachMe"
-  | "message";
+  | "message"
+  | "smsConsent";
 
 const CLIENT_KEYS = new Set<string>([
   "firstName",
@@ -325,6 +342,7 @@ const CLIENT_KEYS = new Set<string>([
   "bestWayToReachMe",
   "bestTimeToReachMe",
   "message",
+  "smsConsent",
 ]);
 
 /**

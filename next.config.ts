@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/privacy-policy",
+        destination: "/patient-resources/privacy-policy-hipaa",
+        permanent: false,
+      },
+      {
         source: "/patient-resources/order-supplements",
         destination: THORNE_DISPENSARY_URL,
         permanent: true,

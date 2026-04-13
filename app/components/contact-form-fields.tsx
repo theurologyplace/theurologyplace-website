@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
 import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import {
@@ -158,6 +159,7 @@ export function ContactFormFields({
       0,
       CONTACT_FIELD_LIMITS.message,
     );
+    const smsConsent = String(fd.get("smsConsent") ?? "").trim().toLowerCase();
 
     const rawPayload: RawContactBody = {
       firstName,
@@ -170,6 +172,7 @@ export function ContactFormFields({
       bestTimeToReachMe,
       otherBestTimeToReachMe,
       message,
+      smsConsent,
       pageName,
       sourcePath,
       serviceName,
@@ -191,6 +194,7 @@ export function ContactFormFields({
         "bestTimeToReachMe",
         "otherBestTimeToReachMe",
         "message",
+        "smsConsent",
       ];
       const scrollElId: Record<ClientValidatedField, string> = {
         firstName: id("contact-first-name"),
@@ -203,6 +207,7 @@ export function ContactFormFields({
         bestTimeToReachMe: id("contact-best-time"),
         otherBestTimeToReachMe: id("contact-other-best-time"),
         message: id("contact-message"),
+        smsConsent: id("contact-sms-consent"),
       };
       for (const key of scrollOrder) {
         if (validation[key]) {
@@ -241,6 +246,7 @@ export function ContactFormFields({
       bestTimeToReachMe,
       otherBestTimeToReachMe,
       message,
+      smsConsent,
       pageName,
       sourcePath,
       serviceName,
@@ -325,6 +331,8 @@ export function ContactFormFields({
           </p>
           <p className="mt-1 text-sm text-amber-900/90">
             All issues are listed next to each field so you can fix them at once.
+            If SMS consent is missing, choose <strong className="font-semibold">Yes</strong> or{" "}
+            <strong className="font-semibold">No</strong> under the message (required).
           </p>
         </div>
       ) : null}
@@ -689,6 +697,74 @@ export function ContactFormFields({
             <InlineFieldError
               id={id("err-message")}
               message={fieldErrors.message}
+            />
+          ) : null}
+        </div>
+
+        <div className="sm:col-span-2 space-y-4">
+          <div className="text-sm leading-relaxed text-slate-700">
+            <p>
+              I agree to receive SMS communications from The Urology Place
+              regarding appointment reminders, scheduling, clinical instructions,
+              and billing. You may opt out by replying STOP or request more
+              information by replying HELP. Message frequency may vary. Message
+              and data rates may apply. You may review our Privacy Policy here:{" "}
+              <Link
+                href="/privacy-policy"
+                className="font-medium text-blue-600 underline decoration-blue-600/40 underline-offset-2 break-all hover:text-blue-700"
+              >
+                https://www.theurologyplace.com/privacy-policy
+              </Link>{" "}
+              to learn how your data is used.
+            </p>
+            <p
+              id={id("sms-consent-prompt")}
+              className="mt-4 text-sm font-medium text-slate-800"
+            >
+              Please select one option below.
+            </p>
+          </div>
+          <div
+            id={id("contact-sms-consent")}
+            role="radiogroup"
+            aria-labelledby={id("sms-consent-prompt")}
+            aria-invalid={!!fieldErrors.smsConsent}
+            aria-describedby={
+              fieldErrors.smsConsent ? id("err-smsConsent") : undefined
+            }
+            className={`flex flex-wrap gap-4 rounded-lg border border-transparent p-1 ${
+              fieldErrors.smsConsent
+                ? "border-red-400 bg-red-50/40 ring-2 ring-red-400/90"
+                : ""
+            }`}
+          >
+            <label className="inline-flex cursor-pointer items-center gap-2 text-sm font-medium text-slate-800">
+              <input
+                type="radio"
+                name="smsConsent"
+                value="yes"
+                className="h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-500"
+                disabled={isLoading}
+                onChange={() => clearFieldError("smsConsent")}
+              />
+              Yes
+            </label>
+            <label className="inline-flex cursor-pointer items-center gap-2 text-sm font-medium text-slate-800">
+              <input
+                type="radio"
+                name="smsConsent"
+                value="no"
+                className="h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-500"
+                disabled={isLoading}
+                onChange={() => clearFieldError("smsConsent")}
+              />
+              No
+            </label>
+          </div>
+          {fieldErrors.smsConsent ? (
+            <InlineFieldError
+              id={id("err-smsConsent")}
+              message={fieldErrors.smsConsent}
             />
           ) : null}
         </div>

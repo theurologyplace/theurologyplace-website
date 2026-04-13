@@ -25,6 +25,7 @@ export function buildTrelloCardDescription(data: NormalizedContact): string {
     `Appointment Reason: ${safeLine(data.appointmentReasonFinal)}`,
     `Best Way to Reach Me: ${safeLine(data.bestWayToReachMe)}`,
     `Best Time to Reach Me: ${safeLine(data.bestTimeToReachMeFinal)}`,
+    `SMS communications consent: ${data.smsConsent === "yes" ? "Yes" : "No"}`,
     "",
     "Message:",
     data.message ? safeLine(data.message) : "(none)",
