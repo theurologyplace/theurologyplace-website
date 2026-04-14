@@ -27,6 +27,17 @@ type RawHomeAnnouncement = {
   linkLabel: string | null;
 };
 
+/** `urlFor` throws if the image has no `asset` (e.g. alt set but file not uploaded). */
+function sanityImageHasAsset(
+  image: Parameters<typeof urlFor>[0] | null | undefined,
+): image is Parameters<typeof urlFor>[0] {
+  if (image == null || typeof image !== "object") return false;
+  const asset = (image as { asset?: unknown }).asset;
+  if (asset == null || typeof asset !== "object") return false;
+  const ref = (asset as { _ref?: unknown })._ref;
+  return typeof ref === "string" && ref.length > 0;
+}
+
 function toHomeAnnouncementCard(
   row: RawHomeAnnouncement,
 ): HomeAnnouncementCard | null {
@@ -34,7 +45,7 @@ function toHomeAnnouncementCard(
     !row.title?.trim() ||
     !row.body?.trim() ||
     !row.linkUrl?.trim() ||
-    row.image == null
+    !sanityImageHasAsset(row.image)
   ) {
     return null;
   }
