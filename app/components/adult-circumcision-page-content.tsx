@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AdultCircumcisionFaqAccordion } from "@/app/components/adult-circumcision-faq-accordion";
+import { AdultCircumcisionPhotosCta } from "@/app/components/adult-circumcision-photos-cta";
 import { AdultCircumcisionTabs } from "@/app/components/adult-circumcision-tabs";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
-import { BTN_PRIMARY, BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
+import { BTN_PRIMARY } from "@/app/lib/button-styles";
 import {
   HERO_AFTER_SLIDE_BASE,
   HERO_IMAGE_SECTION_ALIGN_CONTENT,
@@ -208,14 +209,7 @@ export function AdultCircumcisionPageContent() {
           The Urology Place in San Antonio by Dr. Naveen Kella.
         </p>
         <div className="mt-8">
-          <a
-            href="https://www.theurologyplace.com/circumcision-photos"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`inline-block ${BTN_PRIMARY_LARGE}`}
-          >
-            View Now
-          </a>
+          <AdultCircumcisionPhotosCta />
         </div>
       </section>
 
