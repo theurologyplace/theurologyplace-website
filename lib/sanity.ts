@@ -45,6 +45,19 @@ export const teamMembersQuery = `
   }
 `
 
+/** Home page — “What’s New” announcement cards (ordered slider). */
+export const homeAnnouncementsQuery = `
+  *[_type == "homeAnnouncement"] | order(sortOrder asc, _createdAt asc) {
+    _id,
+    title,
+    body,
+    image,
+    linkUrl,
+    linkLabel,
+    sortOrder
+  }
+`
+
 export const postsQuery = `
   *[_type == "post"] | order(publishedAt desc) {
     _id,

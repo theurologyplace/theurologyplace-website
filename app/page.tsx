@@ -1,5 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  HomeWhatsNewSlider,
+  type HomeAnnouncementCard,
+} from "./components/home-whats-new-slider";
 import { HomePrivacyBanner } from "./components/home-privacy-banner";
 import { PatientReviewCarousel } from "./components/patient-review-carousel";
 import { HomeContactSection } from "./components/home-contact-section";
@@ -9,8 +13,54 @@ import {
   HERO_SUBTITLE_ON_IMAGE,
   HERO_TITLE_ON_IMAGE,
 } from "./lib/hero";
+import { client, homeAnnouncementsQuery, urlFor } from "@/lib/sanity";
 
-export default function HomePage() {
+type RawHomeAnnouncement = {
+  _id: string;
+  title: string | null;
+  body: string | null;
+  image: Parameters<typeof urlFor>[0] | null;
+  linkUrl: string | null;
+  linkLabel: string | null;
+};
+
+function toHomeAnnouncementCard(
+  row: RawHomeAnnouncement,
+): HomeAnnouncementCard | null {
+  if (
+    !row.title?.trim() ||
+    !row.body?.trim() ||
+    !row.linkUrl?.trim() ||
+    row.image == null
+  ) {
+    return null;
+  }
+  const imageUrl = urlFor(row.image).width(1200).height(750).url();
+  const altField =
+    typeof row.image === "object" &&
+    row.image !== null &&
+    "alt" in row.image &&
+    typeof (row.image as { alt?: unknown }).alt === "string"
+      ? (row.image as { alt: string }).alt.trim()
+      : "";
+  return {
+    _id: row._id,
+    title: row.title.trim(),
+    body: row.body.trim(),
+    imageUrl,
+    imageAlt: altField || row.title.trim(),
+    linkUrl: row.linkUrl.trim(),
+    linkLabel: row.linkLabel?.trim() || "Learn more",
+  };
+}
+
+export default async function HomePage() {
+  const rawAnnouncements = await client.fetch<RawHomeAnnouncement[]>(
+    homeAnnouncementsQuery,
+  );
+  const whatsNewCards = rawAnnouncements
+    .map(toHomeAnnouncementCard)
+    .filter((c): c is HomeAnnouncementCard => c !== null);
   return (
     <main className="min-h-screen bg-white text-slate-900">
       <HomePrivacyBanner />
@@ -65,42 +115,14 @@ export default function HomePage() {
         </p>
       </section>
 
-      {/* What&apos;s New: speaker image + text centered next to each other */}
+      {/* What&apos;s New — Sanity-driven card slider */}
       <section className="border-t border-slate-200 bg-slate-50/50">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 px-6 py-16 md:flex-row md:items-center md:gap-12 md:py-20">
-          {/* Speaker image - vertically centered with text block */}
-          <div className="relative h-64 w-full shrink-0 overflow-hidden rounded-xl bg-white md:h-80 md:w-[380px] md:max-w-[45%]">
-            <Image
-              src="/images/branding/speaker.jpeg"
-              alt=""
-              fill
-              className="object-cover object-bottom"
-              sizes="(min-width: 768px) 380px, 100vw"
-            />
-          </div>
-
-          {/* What's New content */}
-          <div className="flex flex-1 flex-col justify-center md:max-w-[55%]">
-            <h2 className="text-2xl font-bold tracking-tight text-blue-700 md:text-3xl">
-              What&apos;s New at The Urology Place?
-            </h2>
-            <p className="mt-4 text-slate-700 leading-relaxed">
-              Dr. Naveen Kella has enhanced the way we perform procedures in our clinic. Through a partnership with a Certified Registered Nurse Anesthetist (CRNA), we are now able to offer safe, convenient in-office anesthesia for select procedures, including vasectomies and circumcisions and many others.
-            </p>
-            <p className="mt-4 text-slate-700 leading-relaxed">
-              This allows our patients to receive high-quality care in a comfortable office setting, without the need for a hospital or surgery center visit. Our goal is to provide a seamless, efficient experience while maintaining the highest standards of safety and patient care.
-            </p>
-            <p className="mt-4 text-sm italic text-slate-600">
-              Please note: Coverage for in-office anesthesia varies by insurance plan. Our team will verify your benefits prior to your procedure; however, depending on your specific plan, anesthesia services may be considered an out-of-pocket expense.
-            </p>
-            <div className="mt-6">
-              <Link
-                href="/in-office-anesthesia"
-                className={`inline-block ${BTN_PRIMARY}`}
-              >
-                Learn More
-              </Link>
-            </div>
+        <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+          <h2 className="text-center text-2xl font-bold tracking-tight text-blue-700 md:text-3xl">
+            What&apos;s New at The Urology Place?
+          </h2>
+          <div className="mt-10 md:mt-12">
+            <HomeWhatsNewSlider cards={whatsNewCards} />
           </div>
         </div>
       </section>
