@@ -15,6 +15,9 @@ import {
 } from "./lib/hero";
 import { client, homeAnnouncementsQuery, urlFor } from "@/lib/sanity";
 
+/** ISR: refetch Sanity-driven home content on production ~every60s (no webhook). Blog routes stay dynamic via searchParams / [slug]. */
+export const revalidate = 60;
+
 type RawHomeAnnouncement = {
   _id: string;
   title: string | null;
