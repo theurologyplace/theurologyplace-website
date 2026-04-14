@@ -2,6 +2,9 @@
 
 # dependencies
 /node_modules
+# Standalone studio/ must use root install only (see README); ignore nested lock + modules
+/studio/node_modules/
+/studio/package-lock.json
 /.pnp
 .pnp.*
 .yarn/*
