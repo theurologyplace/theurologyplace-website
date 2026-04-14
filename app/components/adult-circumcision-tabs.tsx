@@ -16,7 +16,8 @@ type TabConfig = {
   imageAlt?: string;
 };
 
-const AC_IMG = (name: string) => encodeURI(`/images/adult circumcision/${name}`);
+const AC_IMG = (name: string) =>
+  `/images/${encodeURIComponent("adult circumcision")}/${encodeURIComponent(name)}`;
 
 const TABS: TabConfig[] = [
   {
