@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { AdultCircumcisionFaqAccordion } from "@/app/components/adult-circumcision-faq-accordion";
 import { AdultCircumcisionPhotosCta } from "@/app/components/adult-circumcision-photos-cta";
@@ -156,32 +155,20 @@ export function AdultCircumcisionPageContent() {
 
       {/* Dr. Kella */}
       <section className="border-t border-slate-200 bg-slate-500 px-6 py-16 text-white md:py-24">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-8 text-center md:gap-10 lg:flex-row lg:gap-16 xl:gap-24 lg:text-left">
-          <div className="relative h-72 w-72 shrink-0 overflow-hidden rounded-full bg-slate-400 shadow-xl ring-4 ring-white/25 md:h-80 md:w-80 lg:h-96 lg:w-96">
-            <Image
-              src={AC_IMG("dr+kella+headshot-1920w.JPG")}
-              alt="Dr. Naveen Kella"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 384px, (min-width: 768px) 320px, 288px"
-              priority
-            />
-          </div>
-          <div className="w-full max-w-xl lg:min-w-0 lg:flex-1">
-            <div className="mx-auto h-1 w-12 rounded-full bg-white/90 lg:mx-0" aria-hidden />
-            <h2 className="mt-8 text-3xl font-bold tracking-tight md:text-4xl">Dr. Naveen Kella</h2>
-            <p className="mt-2 text-lg font-semibold text-white/95">
-              Founder and Experienced Circumcision Doctor
-            </p>
-            <p className="mt-6 text-[15px] leading-relaxed text-white/90 md:text-base">
-              Dr. Naveen Kella is board certified in urology, with a fellowship in urologic oncology
-              and robotic surgery. He is known for his experience in treating prostate cancer. As a
-              urologist, he has done hundreds of circumcisions. Many patients desiring circumcision
-              appreciate the lower cost of getting a circumcision done in the office. Dr. Kella has
-              trained on doing in-office circumcision. The office procedure is safe and painless as
-              possible and we have the necessary equipment to perform the procedure in the office.
-            </p>
-          </div>
+        <div className="mx-auto max-w-3xl text-center lg:text-left">
+          <div className="mx-auto h-1 w-12 rounded-full bg-white/90 lg:mx-0" aria-hidden />
+          <h2 className="mt-8 text-3xl font-bold tracking-tight md:text-4xl">Dr. Naveen Kella</h2>
+          <p className="mt-2 text-lg font-semibold text-white/95">
+            Founder and Experienced Circumcision Doctor
+          </p>
+          <p className="mt-6 text-[15px] leading-relaxed text-white/90 md:text-base">
+            Dr. Naveen Kella is board certified in urology, with a fellowship in urologic oncology
+            and robotic surgery. He is known for his experience in treating prostate cancer. As a
+            urologist, he has done hundreds of circumcisions. Many patients desiring circumcision
+            appreciate the lower cost of getting a circumcision done in the office. Dr. Kella has
+            trained on doing in-office circumcision. The office procedure is safe and painless as
+            possible and we have the necessary equipment to perform the procedure in the office.
+          </p>
         </div>
       </section>
 
@@ -215,79 +202,67 @@ export function AdultCircumcisionPageContent() {
 
       {/* Out of town */}
       <section className="border-t border-slate-200 bg-white">
-        <div className="grid min-h-[480px] grid-cols-1 lg:grid-cols-2">
-          <div className="relative min-h-[280px] lg:min-h-full">
-            <Image
-              src={AC_IMG("Canva+-+Low+Angle+Photography+of+Airplane-2880w.jpg")}
-              alt="City skyline and airplane — travel for medical care"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              priority={false}
-            />
+        <div className="mx-auto max-w-4xl px-6 py-14 md:py-20">
+          <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+            Coming in from out of town?
+          </h2>
+          <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
+            <p>
+              Many of our patients come from out of town to have their procedure performed with
+              us. Patients can have a telemedicine conference with the doctor prior to the visit.
+              Pictures of the penis are necessary to give us an idea of your condition. The
+              photographs and video conference can help make your visit and procedure go as
+              smoothly as possibly. If everything works out, we can schedule a procedure at our
+              office.
+            </p>
+            <p>
+              You can drive or fly yourself to our office on the same day of the procedure. Pain
+              medications are not usually needed, but we can prescribe some medication and send it
+              to a pharmacy close to our office. Plan on wearing comfortable clothes, but bring an
+              extra pair of snug or elastic underwear. You should use clippers to cut away any
+              pubic hair (not razors—they can cause skin infections). If we are doing the procedure
+              in the office, you can eat as you normally would, but do not eat heavy or right
+              before the procedure. You should be OFF any blood thinners or supplements (vitamin E,
+              for example) for a week. Feel free to bring your phone to watch videos or listen to
+              music.
+            </p>
+            <p>
+              After the procedure is done, we will have you use antibiotic ointment to minimize
+              irritation from the suture. You will have some gauze wrapped around the penis for
+              some expected, minimal oozing. A shower is okay after 24 hours. However, no baths until
+              the sutures are gone. You can drive yourself home after about 3 hours from the
+              procedure. This is to make sure there is no bleeding. If you decided to take any
+              medication prior to the procedure (xanax), then you should have someone who can drive
+              you home.
+            </p>
+            <p>
+              Before scheduling your circumcision, we&apos;ll arrange a virtual consultation with
+              Dr. Naveen Kella to ensure you&apos;re a good candidate for the procedure. To help
+              with the evaluation, we&apos;ll ask for clear photos of the area. If you&apos;re
+              unable to provide photos, we&apos;re happy to see you in person instead.
+            </p>
+            <p>
+              After your procedure, we&apos;ll schedule a follow-up visit—either in person or
+              virtually—about 1 to 2 weeks later to ensure everything is healing well.
+            </p>
+            <p>
+              We advise no sexual activity until the sutures are gone, which is usually within 2-3
+              weeks.
+            </p>
+            <p>Your urination should not be affected.</p>
+            <p>
+              You can get back to desk work right away, but physical activity should be curtailed if
+              it is not comfortable.
+            </p>
+            <p>
+              With proper planning, you can have a relatively painless, in-office procedure with an
+              experienced urologist and return home the same day.
+            </p>
           </div>
-          <div className="flex flex-col justify-center px-6 py-14 md:py-20 lg:pl-12 lg:pr-10">
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-              Coming in from out of town?
-            </h2>
-            <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
-              <p>
-                Many of our patients come from out of town to have their procedure performed with
-                us. Patients can have a telemedicine conference with the doctor prior to the visit.
-                Pictures of the penis are necessary to give us an idea of your condition. The
-                photographs and video conference can help make your visit and procedure go as
-                smoothly as possibly. If everything works out, we can schedule a procedure at our
-                office.
-              </p>
-              <p>
-                You can drive or fly yourself to our office on the same day of the procedure. Pain
-                medications are not usually needed, but we can prescribe some medication and send it
-                to a pharmacy close to our office. Plan on wearing comfortable clothes, but bring an
-                extra pair of snug or elastic underwear. You should use clippers to cut away any
-                pubic hair (not razors—they can cause skin infections). If we are doing the procedure
-                in the office, you can eat as you normally would, but do not eat heavy or right
-                before the procedure. You should be OFF any blood thinners or supplements (vitamin E,
-                for example) for a week. Feel free to bring your phone to watch videos or listen to
-                music.
-              </p>
-              <p>
-                After the procedure is done, we will have you use antibiotic ointment to minimize
-                irritation from the suture. You will have some gauze wrapped around the penis for
-                some expected, minimal oozing. A shower is okay after 24 hours. However, no baths until
-                the sutures are gone. You can drive yourself home after about 3 hours from the
-                procedure. This is to make sure there is no bleeding. If you decided to take any
-                medication prior to the procedure (xanax), then you should have someone who can drive
-                you home.
-              </p>
-              <p>
-                Before scheduling your circumcision, we&apos;ll arrange a virtual consultation with
-                Dr. Naveen Kella to ensure you&apos;re a good candidate for the procedure. To help
-                with the evaluation, we&apos;ll ask for clear photos of the area. If you&apos;re
-                unable to provide photos, we&apos;re happy to see you in person instead.
-              </p>
-              <p>
-                After your procedure, we&apos;ll schedule a follow-up visit—either in person or
-                virtually—about 1 to 2 weeks later to ensure everything is healing well.
-              </p>
-              <p>
-                We advise no sexual activity until the sutures are gone, which is usually within 2-3
-                weeks.
-              </p>
-              <p>Your urination should not be affected.</p>
-              <p>
-                You can get back to desk work right away, but physical activity should be curtailed if
-                it is not comfortable.
-              </p>
-              <p>
-                With proper planning, you can have a relatively painless, in-office procedure with an
-                experienced urologist and return home the same day.
-              </p>
-            </div>
-            <div className="mt-10 flex justify-start lg:justify-end">
-              <Link href="/patient-resources/out-of-town-patients" className={`inline-block ${BTN_PRIMARY}`}>
-                Learn More Here
-              </Link>
-            </div>
+          <div className="mt-10 flex justify-start">
+            <Link href="/patient-resources/out-of-town-patients" className={`inline-block ${BTN_PRIMARY}`}>
+              Learn More Here
+            </Link>
           </div>
         </div>
       </section>
