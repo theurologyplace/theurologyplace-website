@@ -1,8 +1,8 @@
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { GainswaveFaqAccordion } from "@/app/components/gainswave-faq-accordion";
+import { GainswaveInTheNewsSection } from "@/app/components/gainswave-in-the-news";
 import { SoundCloudEmbed } from "@/app/components/soundcloud-embed";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
-import { GAINSWAVE_IN_THE_NEWS } from "@/app/data/gainswave-in-the-news";
 import { BTN_PRIMARY, BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import {
   HERO_AFTER_SLIDE_BASE,
@@ -13,7 +13,6 @@ import {
 
 const HERO_BG = encodeURI("/images/gainswave/Testimonial+-+Facebook+D-2880w.png").replace(/\+/g, "%2B");
 
-const PHONE_DISPLAY = "210-617-3670";
 const PHONE_TEL = "2106173670";
 
 const FEATURES = [
@@ -32,59 +31,6 @@ const VIDEO = {
   testimonialAmazing: "umtepm67qvY",
   treatmentWithKella: "oxPdS4pNumY",
 } as const;
-
-function InTheNewsTile({ item }: { item: (typeof GAINSWAVE_IN_THE_NEWS)[number] }) {
-  if (item.kind === "publication") {
-    return (
-      <div className="group flex min-h-[140px] flex-col justify-center rounded-2xl border border-slate-200/70 bg-white p-5 shadow-sm ring-1 ring-slate-100 transition hover:border-slate-300/80 hover:shadow-md">
-        <p className="text-base font-semibold tracking-tight text-slate-900">{item.title}</p>
-        <p className="mt-2 text-sm leading-snug text-slate-600">{item.subtitle}</p>
-        <span className="mt-3 inline-block h-0.5 w-0 max-w-0 bg-blue-600 transition-all duration-300 group-hover:max-w-full group-hover:w-12" aria-hidden />
-      </div>
-    );
-  }
-  if (item.kind === "stat") {
-    return (
-      <div className="flex min-h-[140px] flex-col items-center justify-center rounded-2xl border border-slate-200/70 bg-gradient-to-br from-slate-50 to-white p-5 text-center shadow-sm ring-1 ring-slate-100">
-        <p className="text-lg font-bold tracking-tight text-slate-900 md:text-xl">{item.line}</p>
-      </div>
-    );
-  }
-  if (item.kind === "quote") {
-    return (
-      <blockquote className="flex min-h-[140px] flex-col justify-between rounded-2xl border border-slate-200/70 bg-white p-5 shadow-sm ring-1 ring-slate-100">
-        <p className="text-sm italic leading-relaxed text-slate-700 md:text-[15px]">&ldquo;{item.quote}&rdquo;</p>
-        <footer className="mt-4 text-xs font-semibold uppercase tracking-wide text-slate-500">
-          — {item.attribution}
-        </footer>
-      </blockquote>
-    );
-  }
-  /* brand */
-  const brandStyles: Record<
-    (typeof item)["variant"],
-    string
-  > = {
-    "mens-health": "bg-[#e31937] text-white",
-    maxim: "bg-black text-white",
-    researchgate: "bg-[#00ccb1] text-white",
-    journal: "bg-gradient-to-br from-amber-700 via-amber-600 to-amber-800 text-amber-50",
-  };
-  return (
-    <div className="flex min-h-[140px] flex-col items-center justify-center rounded-2xl border border-slate-200/70 bg-white p-4 shadow-sm ring-1 ring-slate-100">
-      <div
-        className={`flex h-14 w-full max-w-[200px] items-center justify-center rounded-lg px-4 text-center text-sm font-bold ${brandStyles[item.variant]}`}
-      >
-        {item.label}
-      </div>
-      {item.variant === "journal" && (
-        <p className="mt-2 text-center text-[11px] font-medium uppercase tracking-wider text-slate-500">
-          Journal
-        </p>
-      )}
-    </div>
-  );
-}
 
 export function GainswavePageContent() {
   return (
@@ -367,23 +313,7 @@ export function GainswavePageContent() {
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200 bg-slate-50/90">
-          <div className="mx-auto max-w-6xl px-6 py-14 md:py-20">
-            <h2 className="text-center text-2xl font-bold tracking-tight text-blue-700 md:text-3xl">
-              In the news
-            </h2>
-            <p className="mt-2 text-center text-sm text-slate-600">
-              Press coverage and highlights.
-            </p>
-            <ul className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-              {GAINSWAVE_IN_THE_NEWS.map((item, index) => (
-                <li key={index}>
-                  <InTheNewsTile item={item} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
+        <GainswaveInTheNewsSection />
 
         <section className="relative border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-4xl px-6 py-14 md:py-20">

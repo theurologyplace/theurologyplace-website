@@ -1,26 +1,68 @@
 /**
- * Press / "In the news" tiles for GAINSWave (display-only; links optional later).
+ * Press, testimonials, and highlights for the GAINSWave "In the news" section.
+ * Article cards link to the publication or outlet (homepage or hub when no single article is curated).
  */
-export type GainswaveNewsItem =
-  | { kind: "publication"; title: string; subtitle: string }
-  | { kind: "stat"; line: string }
-  | { kind: "brand"; label: string; variant: "mens-health" | "maxim" | "researchgate" | "journal" }
-  | { kind: "quote"; quote: string; attribution: string };
+
+export type GainswaveNewsArticle = {
+  kind: "article";
+  source: string;
+  tagline?: string;
+  badge?: string;
+  href: string;
+  /** Colored header band when `image` is not set */
+  logoVariant?: "mens-health" | "maxim" | "researchgate" | "journal" | "neutral";
+  image?: { src: string; alt: string };
+};
+
+export type GainswaveNewsQuote = {
+  kind: "quote";
+  quote: string;
+  attribution?: string;
+};
+
+export type GainswaveNewsStat = {
+  kind: "stat";
+  value: string;
+  description: string;
+};
+
+export type GainswaveNewsItem = GainswaveNewsArticle | GainswaveNewsQuote | GainswaveNewsStat;
 
 export const GAINSWAVE_IN_THE_NEWS: GainswaveNewsItem[] = [
   {
-    kind: "publication",
-    title: "Urology Times",
-    subtitle: "The leading news source for urologists",
+    kind: "article",
+    source: "Urology Times",
+    tagline: "The leading news source for urologists",
+    href: "https://www.urologytimes.com/",
+    logoVariant: "neutral",
   },
   {
-    kind: "publication",
-    title: "The World Journal of Men's Health",
-    subtitle: "Peer-reviewed research in men's health",
+    kind: "article",
+    source: "The World Journal of Men's Health",
+    tagline: "Peer-reviewed research in men's health",
+    badge: "Journal",
+    href: "https://wjmh.org/",
+    logoVariant: "neutral",
   },
-  { kind: "stat", line: "No downtime. No side effects." },
-  { kind: "brand", label: "Men's Health", variant: "mens-health" },
-  { kind: "brand", label: "MAXIM", variant: "maxim" },
+  {
+    kind: "stat",
+    value: "0",
+    description: "Downtime with this in-office protocol — no surgery and drug-free for many treatment plans.",
+  },
+  {
+    kind: "article",
+    source: "Men's Health",
+    tagline: "Coverage of men's wellness and sexual health",
+    href: "https://www.menshealth.com/",
+    logoVariant: "mens-health",
+  },
+  {
+    kind: "article",
+    source: "MAXIM",
+    tagline: "Lifestyle and men's interest media",
+    href: "https://www.maxim.com/",
+    logoVariant: "maxim",
+  },
   {
     kind: "quote",
     quote:
@@ -33,11 +75,24 @@ export const GAINSWAVE_IN_THE_NEWS: GainswaveNewsItem[] = [
       "GAINSWave really changed all that. Even after I'm done, me and my wife are able to keep on going and going. It's crazy!",
     attribution: "NBA Hall of Fame Superstar, Dennis Rodman",
   },
-  { kind: "brand", label: "ResearchGate", variant: "researchgate" },
   {
-    kind: "brand",
-    label: "Sexual Medicine Reviews",
-    variant: "journal",
+    kind: "article",
+    source: "ResearchGate",
+    tagline: "Scientific papers and professional discourse",
+    href: "https://www.researchgate.net/",
+    logoVariant: "researchgate",
   },
-  { kind: "stat", line: "76% success rate." },
+  {
+    kind: "article",
+    source: "Sexual Medicine Reviews",
+    tagline: "Scholarly reviews in sexual medicine",
+    badge: "Journal",
+    href: "https://www.sciencedirect.com/journal/sexual-medicine-reviews",
+    logoVariant: "journal",
+  },
+  {
+    kind: "stat",
+    value: "76%",
+    description: "Success rate reported in published studies for shockwave protocols in appropriate candidates.",
+  },
 ];
