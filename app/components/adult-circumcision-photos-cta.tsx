@@ -57,14 +57,14 @@ export function AdultCircumcisionPhotosCta() {
               Before you continue
             </h2>
             <p className="mt-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
-              You are about to view clinical before and after photographs of adult circumcisions.
-              These images are intended for adults and show surgical results with patient consent.
+              Be cautious as the next page contains anatomical photos of Adult Circumcisions performed
+              at The Urology Place with Dr. Naveen Kella.
             </p>
-            <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end sm:gap-4">
-              <button type="button" onClick={close} className={`w-full sm:w-auto ${BTN_SECONDARY}`}>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+              <button type="button" onClick={close} className={BTN_SECONDARY}>
                 Cancel
               </button>
-              <button type="button" onClick={proceed} className={`w-full sm:w-auto ${BTN_PRIMARY}`}>
+              <button type="button" onClick={proceed} className={BTN_PRIMARY}>
                 Proceed
               </button>
             </div>
