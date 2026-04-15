@@ -41,12 +41,14 @@ export default function PatientPortalPage() {
               </div>
 
               <div className="flex justify-center md:justify-end">
-                <button
-                  type="button"
+                <a
+                  href="https://www.app.elationpassport.com/passport/login/?_ga=2.110908675.787134073.1553014148-1791022588.1540820551"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full max-w-md rounded-xl bg-slate-600 px-8 py-10 text-center text-2xl font-medium tracking-tight text-white shadow-sm transition hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   Click here for Patient Portal
-                </button>
+                </a>
               </div>
             </div>
           </div>
