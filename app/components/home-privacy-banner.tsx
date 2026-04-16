@@ -1,35 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useSyncExternalStore } from "react";
-import {
-  isPrivacyNoticeAcknowledged,
-  persistPrivacyNoticeAcknowledged,
-} from "@/app/lib/privacy-notice-storage";
+import { useState } from "react";
 
 const PRIVACY_POLICY_HREF = "/patient-resources/privacy-policy-hipaa";
 
-const noopSubscribe = () => () => {};
-
 export function HomePrivacyBanner() {
   const [sessionDismissed, setSessionDismissed] = useState(false);
-
-  const storageAcknowledged = useSyncExternalStore(
-    noopSubscribe,
-    isPrivacyNoticeAcknowledged,
-    () => true,
-  );
 
   const handleClose = () => {
     setSessionDismissed(true);
   };
 
   const handlePolicyClick = () => {
-    persistPrivacyNoticeAcknowledged();
     setSessionDismissed(true);
   };
 
-  if (storageAcknowledged || sessionDismissed) {
+  if (sessionDismissed) {
     return null;
   }
 
