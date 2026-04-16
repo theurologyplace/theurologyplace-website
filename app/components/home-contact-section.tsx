@@ -13,6 +13,7 @@ export function HomeContactSection() {
         <ContactFormTemplate
           variant="embedded"
           pageName="Home"
+          headingOverride="Contact Us"
           serviceName="Home Page Inquiry"
           category="Home"
           sourcePath="/"
