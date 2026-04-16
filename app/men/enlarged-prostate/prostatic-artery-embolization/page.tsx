@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { ProstaticArteryEmbolizationPageContent } from "@/app/components/prostatic-artery-embolization-page-content";
 
 export const metadata: Metadata = {
-  title: "Prostatic Artery Embolization (PAE)",
+  title: "Prostate Artery Embolization (PAE) in San Antonio, TX",
   description:
-    "Prostatic artery embolization (PAE) for enlarged prostate (BPH) at The Urology Place in San Antonio. Minimally invasive care with coordinated evaluation and follow-up.",
+    "Prostate artery embolization (PAE) for enlarged prostate (BPH) at The Urology Place in San Antonio. Advanced, minimally invasive outpatient treatment without traditional surgery.",
 };
 
 export default function ProstaticArteryEmbolizationPage() {
