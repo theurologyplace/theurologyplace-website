@@ -4,7 +4,7 @@ import { AdultCircumcisionPhotosCta } from "@/app/components/adult-circumcision-
 import { AdultCircumcisionTabs } from "@/app/components/adult-circumcision-tabs";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
-import { BTN_PRIMARY } from "@/app/lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO, BTN_PRIMARY } from "@/app/lib/button-styles";
 import {
   HERO_AFTER_SLIDE_BASE,
   HERO_IMAGE_SECTION_ALIGN_CONTENT,
@@ -92,15 +92,18 @@ export function AdultCircumcisionPageContent() {
         }}
       >
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
-        <div className="relative z-10 mx-auto flex w-full max-w-6xl justify-start px-6">
-          <div className="max-w-2xl text-left">
-            <h1 className={`${HERO_TITLE_ON_IMAGE} uppercase`}>
-              San Antonio Adult Circumcision
-            </h1>
-            <p className={`mt-6 max-w-xl leading-relaxed md:max-w-2xl ${HERO_SUBTITLE_ON_IMAGE}`}>
-              Our Board-Certified Urologists perform in-office Circumcisions and make them as
-              painless as possible
-            </p>
+        <div className="relative z-10 mx-auto w-full max-w-4xl px-6 text-center">
+          <h1 className={`${HERO_TITLE_ON_IMAGE} uppercase`}>
+            San Antonio Adult Circumcision
+          </h1>
+          <p className={`mx-auto mt-6 max-w-2xl leading-relaxed ${HERO_SUBTITLE_ON_IMAGE}`}>
+            Our Board-Certified Urologists perform in-office Circumcisions and make them as
+            painless as possible
+          </p>
+          <div className="mt-8">
+            <a href="#men-adult-circumcision-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+              Make Appointment
+            </a>
           </div>
         </div>
       </section>
@@ -326,7 +329,10 @@ export function AdultCircumcisionPageContent() {
         </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-slate-50/50">
+      <section
+        id="men-adult-circumcision-contact"
+        className="scroll-mt-28 border-t border-slate-200 bg-slate-50/50"
+      >
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
           <ContactFormTemplate
             variant="embedded"

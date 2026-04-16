@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BTN_PRIMARY } from "@/app/lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO, BTN_PRIMARY } from "@/app/lib/button-styles";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import { VidscripPlaylistCarousel } from "@/app/components/vidscrip-playlist-carousel";
 import { RezumFaqAccordion } from "@/app/components/rezum-faq-accordion";
@@ -116,12 +116,14 @@ export function RezumPageContent() {
               your BPH treatment experience. Rezum improves your urinary symptoms better than
               medication can, without surgery.
             </p>
-            <Link
-              href="/men/enlarged-prostate/rezum/contact-us"
-              className={`${BTN_PRIMARY} mt-8 inline-block px-6 py-3 text-base`}
-            >
-              Make Appointment
-            </Link>
+            <div className="mt-8">
+              <Link
+                href="/men/enlarged-prostate/rezum/contact-us"
+                className={BTN_MAKE_APPOINTMENT_HERO}
+              >
+                Make Appointment
+              </Link>
+            </div>
           </div>
         </section>
 

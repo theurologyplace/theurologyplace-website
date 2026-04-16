@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { MensWellnessTabs } from "./mens-wellness-tabs";
+import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import {
   HERO_IMAGE_SECTION,
   HERO_SUBTITLE_ON_IMAGE,
@@ -38,13 +39,18 @@ export default function MensWellnessPage() {
         }}
       >
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
-        <div className="relative z-10 max-w-3xl text-center">
+        <div className="relative z-10 mx-auto max-w-3xl text-center">
           <h1 className={HERO_TITLE_ON_IMAGE}>
             Men&apos;s Health and Wellness at The Urology Place
           </h1>
           <p className={`mt-4 ${HERO_SUBTITLE_ON_IMAGE}`}>
             Our team has expertise in sexual function and hormonal optimization.
           </p>
+          <div className="mt-8">
+            <a href="#mens-wellness-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+              Make Appointment
+            </a>
+          </div>
         </div>
       </section>
 
@@ -95,7 +101,10 @@ export default function MensWellnessPage() {
         </section>
 
         {/* Contact — site-wide form */}
-        <section className="border-t border-slate-200 bg-slate-50/50">
+        <section
+          id="mens-wellness-contact"
+          className="scroll-mt-28 border-t border-slate-200 bg-slate-50/50"
+        >
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
             <ContactFormTemplate
               variant="embedded"

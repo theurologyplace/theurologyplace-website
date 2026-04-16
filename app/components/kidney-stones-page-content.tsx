@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
-import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO, BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import {
   HERO_EYEBROW_ON_IMAGE,
   HERO_IMAGE_SECTION,
@@ -66,7 +66,7 @@ export function KidneyStonesPageContent({
           className="absolute inset-0 bg-gradient-to-b from-slate-950/65 via-slate-900/50 to-slate-950/70"
           aria-hidden
         />
-        <div className="relative z-10 mx-auto max-w-3xl">
+        <div className="relative z-10 mx-auto max-w-3xl text-center">
           <p className={HERO_EYEBROW_ON_IMAGE}>
             Kidney care
           </p>
@@ -77,6 +77,11 @@ export function KidneyStonesPageContent({
             Almost half of people who have had a kidney stone will experience a
             recurrence unless they take preventive measures.
           </p>
+          <div className="mt-8">
+            <a href={`#${idPrefix}-contact`} className={BTN_MAKE_APPOINTMENT_HERO}>
+              Make Appointment
+            </a>
+          </div>
         </div>
       </section>
 
@@ -122,7 +127,7 @@ export function KidneyStonesPageContent({
             </p>
             <div className="mt-10 flex justify-center">
               <Link
-                href="#kidney-stones-contact"
+                href={`#${idPrefix}-contact`}
                 className={BTN_PRIMARY_LARGE}
               >
                 Get Treated Now
@@ -253,8 +258,8 @@ export function KidneyStonesPageContent({
         </div>
 
         <section
-          id="kidney-stones-contact"
-          className="scroll-mt-24 border-t border-slate-200/80 bg-white"
+          id={`${idPrefix}-contact`}
+          className="scroll-mt-28 border-t border-slate-200/80 bg-white"
         >
           <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
             <ContactFormTemplate

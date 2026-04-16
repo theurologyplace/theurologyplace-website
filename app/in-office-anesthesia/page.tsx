@@ -20,7 +20,7 @@ export default function InOfficeAnesthesiaPage() {
         }}
       >
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
-        <div className="relative z-10 max-w-3xl text-center">
+        <div className="relative z-10 mx-auto max-w-3xl text-center">
           <h1 className={HERO_TITLE_ON_IMAGE}>
             In-Office Anesthesia Tailored for Urologic Care
           </h1>

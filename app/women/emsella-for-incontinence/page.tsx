@@ -2,7 +2,7 @@ import Image from "next/image";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { EmsellaFaqAccordion } from "@/app/components/emsella-faq-accordion";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
-import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO, BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import {
   HERO_IMAGE_SECTION,
   HERO_SUBTITLE_ON_IMAGE,
@@ -116,6 +116,11 @@ export default function EmsellaForIncontinencePage() {
           <p className={`mx-auto mt-5 max-w-2xl ${HERO_SUBTITLE_ON_IMAGE}`}>
             New technology for an old problem
           </p>
+          <div className="mt-8">
+            <a href="#women-emsella-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+              Make Appointment
+            </a>
+          </div>
         </div>
       </section>
 
@@ -324,7 +329,10 @@ export default function EmsellaForIncontinencePage() {
         </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-slate-50/50">
+      <section
+        id="women-emsella-contact"
+        className="scroll-mt-28 border-t border-slate-200 bg-slate-50/50"
+      >
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
           <ContactFormTemplate
             variant="embedded"

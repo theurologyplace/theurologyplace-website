@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BTN_PRIMARY } from "@/app/lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO, BTN_PRIMARY } from "@/app/lib/button-styles";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import {
@@ -38,7 +38,7 @@ export function ProstateBiopsyPageContent() {
       <div className="relative z-10">
         <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
-          <div className="relative z-10 max-w-4xl text-center">
+          <div className="relative z-10 mx-auto max-w-4xl text-center">
             <h1 className={HERO_TITLE_ON_IMAGE}>
               PROSTATE BIOPSY
             </h1>
@@ -46,6 +46,11 @@ export function ProstateBiopsyPageContent() {
               More precise, less invasive prostate biopsy with UroNav fusion technology at The Urology
               Place in San Antonio.
             </p>
+            <div className="mt-8">
+              <a href="#men-prostate-biopsy-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+                Make Appointment
+              </a>
+            </div>
           </div>
         </section>
 
@@ -291,7 +296,10 @@ export function ProstateBiopsyPageContent() {
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200 bg-white">
+        <section
+          id="men-prostate-biopsy-contact"
+          className="relative scroll-mt-28 border-t border-slate-200 bg-white"
+        >
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
             <ContactFormTemplate
               variant="embedded"

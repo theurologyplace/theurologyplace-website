@@ -1,8 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import { BladderCancerDiagnosisAccordion } from "@/app/components/bladder-cancer-diagnosis-accordion";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
-import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import {
   HERO_IMAGE_SECTION,
   HERO_SUBTITLE_ON_IMAGE,
@@ -49,10 +48,10 @@ export function BladderCancerPageContent({
           <p className={`mx-auto mt-6 max-w-2xl ${HERO_SUBTITLE_ON_IMAGE}`}>
             Your Health Matters—Seek Guidance Early
           </p>
-          <div className="mt-10 flex justify-center">
-            <Link href="#bladder-cancer-contact" className={BTN_PRIMARY_LARGE}>
-              Learn More
-            </Link>
+          <div className="mt-8 flex justify-center">
+            <a href={`#${idPrefix}-contact`} className={BTN_MAKE_APPOINTMENT_HERO}>
+              Make Appointment
+            </a>
           </div>
         </div>
       </section>
@@ -309,8 +308,8 @@ export function BladderCancerPageContent({
         </div>
 
         <section
-          id="bladder-cancer-contact"
-          className="scroll-mt-24 border-t border-slate-200 bg-white"
+          id={`${idPrefix}-contact`}
+          className="scroll-mt-28 border-t border-slate-200 bg-white"
         >
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
             <ContactFormTemplate

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import {
   HERO_AFTER_SLIDE_BASE,
   HERO_FIXED_BACKDROP,
@@ -84,6 +85,11 @@ export function MaleSexualDysfunctionPageContent() {
               Peyronie&apos;s Disease. We are happy to offer ED treatments in both San Antonio and Austin,
               Texas.
             </p>
+            <div className="mt-8">
+              <a href="#contact-male-sexual-dysfunction" className={BTN_MAKE_APPOINTMENT_HERO}>
+                Make Appointment
+              </a>
+            </div>
           </div>
         </section>
 

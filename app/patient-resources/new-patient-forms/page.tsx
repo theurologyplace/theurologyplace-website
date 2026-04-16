@@ -1,4 +1,5 @@
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import {
   HERO_AFTER_SLIDE_BASE,
   HERO_IMAGE_SECTION,
@@ -22,7 +23,7 @@ export default function NewPatientFormsPage() {
         }}
       >
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
-        <div className="relative z-10 max-w-3xl text-center">
+        <div className="relative z-10 mx-auto max-w-3xl text-center">
           <h1 className={HERO_TITLE_ON_IMAGE}>
             New Patient Forms
           </h1>
@@ -33,10 +34,18 @@ export default function NewPatientFormsPage() {
             this copy of our New Patient Forms and one of our staff members will
             contact you for scheduling.
           </p>
+          <div className="mt-8">
+            <a href="#new-patient-forms-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+              Make Appointment
+            </a>
+          </div>
         </div>
       </section>
 
-      <section className={`${HERO_AFTER_SLIDE_BASE} bg-white`}>
+      <section
+        id="new-patient-forms-contact"
+        className={`${HERO_AFTER_SLIDE_BASE} scroll-mt-28 bg-white`}
+      >
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
           <ContactFormTemplate
             variant="embedded"

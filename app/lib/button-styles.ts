@@ -12,6 +12,12 @@ export const BTN_PRIMARY =
 export const BTN_PRIMARY_LARGE =
   "rounded-full bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2";
 
+/**
+ * Hero “Make Appointment” control — matches Home (`app/page.tsx`): `inline-block` + large primary.
+ * Wrap with `<div className="mt-8">` (or appropriate spacing) like the Home hero.
+ */
+export const BTN_MAKE_APPOINTMENT_HERO = `inline-block ${BTN_PRIMARY_LARGE}`;
+
 /** Secondary / outline: pill shape to match Contact. Use for Leave a review, carousel arrows. */
 export const BTN_SECONDARY =
   "rounded-full border-2 border-blue-600 bg-white px-5 py-2 text-sm font-semibold text-blue-600 shadow-sm transition hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2";

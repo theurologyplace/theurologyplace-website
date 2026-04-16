@@ -4,7 +4,7 @@ import { VasectomyFaqAccordion } from "@/app/components/vasectomy-faq-accordion"
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import { VasectomyTabs } from "@/app/men/vasectomy/vasectomy-tabs";
-import { BTN_SECONDARY } from "@/app/lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO, BTN_SECONDARY } from "@/app/lib/button-styles";
 import {
   HERO_IMAGE_SECTION,
   HERO_SUBTITLE_ON_IMAGE,
@@ -57,7 +57,7 @@ export function VasectomyPageContent() {
         }}
       >
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-4xl">
+        <div className="relative z-10 mx-auto max-w-4xl text-center">
           <h1 className={HERO_TITLE_ON_IMAGE}>
             No-Scalpel, No-Needle Vasectomy
           </h1>
@@ -66,6 +66,11 @@ export function VasectomyPageContent() {
             your vasectomy as painless as possible and get you back on your feet
             quickly. We are excited to offer this nearly painless solution!
           </p>
+          <div className="mt-8">
+            <a href="#men-vasectomy-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+              Make Appointment
+            </a>
+          </div>
         </div>
       </section>
 
@@ -389,7 +394,7 @@ export function VasectomyPageContent() {
           </div>
         </div>
 
-        <section className="border-t border-slate-200 bg-white">
+        <section id="men-vasectomy-contact" className="scroll-mt-28 border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
             <ContactFormTemplate
               variant="embedded"

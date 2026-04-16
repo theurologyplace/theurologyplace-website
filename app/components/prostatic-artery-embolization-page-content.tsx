@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import { BTN_PRIMARY } from "@/app/lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import {
   HERO_AFTER_SLIDE_BASE,
@@ -50,12 +49,11 @@ export function ProstaticArteryEmbolizationPageContent() {
               arteries supplying the prostate. Learn how PAE may fit your symptoms and anatomy at The
               Urology Place in San Antonio.
             </p>
-            <Link
-              href="/men/enlarged-prostate/prostatic-artery-embolization/contact-us"
-              className={`${BTN_PRIMARY} mt-8 inline-block`}
-            >
-              Request a consultation
-            </Link>
+            <div className="mt-8">
+              <a href="#men-pae-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+                Make Appointment
+              </a>
+            </div>
           </div>
         </section>
 
@@ -121,16 +119,15 @@ export function ProstaticArteryEmbolizationPageContent() {
               and benefits with their urology team. We help you compare PAE with medications, in-office
               therapies, and surgery so the choice aligns with your health and preferences.
             </p>
-            <Link
-              href="/men/enlarged-prostate/prostatic-artery-embolization/contact-us"
-              className={`${BTN_PRIMARY} mt-8 inline-block`}
-            >
-              Contact us
-            </Link>
+            <div className="mt-8">
+              <a href="#men-pae-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+                Make Appointment
+              </a>
+            </div>
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200 bg-white">
+        <section id="men-pae-contact" className="relative scroll-mt-28 border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
             <ContactFormTemplate
               variant="embedded"

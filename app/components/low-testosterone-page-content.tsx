@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { HormoneReplacementFaqAccordion } from "@/app/components/hormone-replacement-faq-accordion";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
-import { BTN_PRIMARY } from "@/app/lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO, BTN_PRIMARY } from "@/app/lib/button-styles";
 import {
   HERO_EYEBROW_ON_IMAGE,
   HERO_IMAGE_SECTION_ALIGN_CONTENT,
@@ -161,17 +161,20 @@ export function LowTestosteronePageContent() {
         }}
       >
         <div className="absolute inset-0 bg-black/35" aria-hidden />
-        <div className="relative z-10 mx-auto w-full max-w-6xl">
-          <div className="max-w-2xl text-left">
-            <h1 className={HERO_TITLE_ON_IMAGE}>
-              Low Testosterone
-            </h1>
-            <p className={`mt-3 ${HERO_SUBTITLE_ON_IMAGE}`}>
-              at The Urology Place
-            </p>
-            <p className={`mt-8 ${HERO_EYEBROW_ON_IMAGE}`}>
-              A NEW BEGINNING
-            </p>
+        <div className="relative z-10 mx-auto w-full max-w-3xl text-center">
+          <h1 className={HERO_TITLE_ON_IMAGE}>
+            Low Testosterone
+          </h1>
+          <p className={`mt-3 ${HERO_SUBTITLE_ON_IMAGE}`}>
+            at The Urology Place
+          </p>
+          <p className={`mt-8 ${HERO_EYEBROW_ON_IMAGE}`}>
+            A NEW BEGINNING
+          </p>
+          <div className="mt-8">
+            <a href="#men-low-testosterone-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+              Make Appointment
+            </a>
           </div>
         </div>
       </section>
@@ -486,7 +489,10 @@ export function LowTestosteronePageContent() {
           </div>
         </div>
 
-        <section className="border-t border-slate-200 bg-slate-50/50">
+        <section
+          id="men-low-testosterone-contact"
+          className="scroll-mt-28 border-t border-slate-200 bg-slate-50/50"
+        >
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
             <ContactFormTemplate
               variant="embedded"

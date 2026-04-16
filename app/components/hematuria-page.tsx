@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
+import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import {
   HERO_IMAGE_SECTION,
   HERO_SUBTITLE_ON_IMAGE,
@@ -45,7 +46,12 @@ const WHEN_TO_SEE_DOCTOR = [
   },
 ] as const;
 
-export function HematuriaPageContent() {
+type HematuriaPageContentProps = {
+  /** When set, shows a hero CTA that scrolls to the embedded contact section with this id */
+  contactSectionId?: string;
+};
+
+export function HematuriaPageContent({ contactSectionId }: HematuriaPageContentProps) {
   return (
     <>
       {/* Hero window: fixed background per PROJECT_RULES.md */}
@@ -69,6 +75,13 @@ export function HematuriaPageContent() {
             may be linked to a urologic cancer, especially in higher-risk
             individuals.
           </p>
+          {contactSectionId ? (
+            <div className="mt-8">
+              <a href={`#${contactSectionId}`} className={BTN_MAKE_APPOINTMENT_HERO}>
+                Make Appointment
+              </a>
+            </div>
+          ) : null}
         </div>
       </section>
 

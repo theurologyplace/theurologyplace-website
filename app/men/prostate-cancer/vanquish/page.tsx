@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { VanquishPageContent } from "@/app/components/vanquish-page-content";
 
 export const metadata: Metadata = {
-  title: "Vanquish (Water Vapor Ablation)",
+  title: "Vanquish Water Vapor Therapy in San Antonio, TX",
   description:
-    "Vanquish water vapor ablation for BPH symptoms at The Urology Place in San Antonio. Minimally invasive prostate therapy with personalized evaluation and care.",
+    "Vanquish Water Vapor Therapy at The Urology Place in San Antonio — minimally invasive prostate tissue ablation using water vapor. VAPOR-2 trial site; consultations and scheduling information.",
 };
 
 export default function VanquishPage() {

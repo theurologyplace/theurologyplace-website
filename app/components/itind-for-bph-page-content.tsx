@@ -78,19 +78,16 @@ export function ItindForBphPageContent() {
       />
 
       <div className="relative z-10">
-        {/* Hero — title on the right for open sky/water (screenshot layout) */}
         <section className={HERO_IMAGE_SECTION_ALIGN_CONTENT}>
           <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
-          <div className="relative z-10 mx-auto flex w-full max-w-6xl justify-end">
-            <div className="max-w-xl text-right md:max-w-2xl">
-              <h1 className={HERO_TITLE_ON_IMAGE}>
-                iTind for Enlarged Prostate (BPH)
-              </h1>
-              <p className={`mt-6 leading-relaxed ${HERO_SUBTITLE_ON_IMAGE}`}>
-                The iTind procedure simply reshapes the anatomy of the prostatic urethra, gently
-                creating a wider opening for urine to flow freely.
-              </p>
-            </div>
+          <div className="relative z-10 mx-auto max-w-4xl text-center">
+            <h1 className={HERO_TITLE_ON_IMAGE}>
+              iTind for Enlarged Prostate (BPH)
+            </h1>
+            <p className={`mt-6 leading-relaxed ${HERO_SUBTITLE_ON_IMAGE}`}>
+              The iTind procedure simply reshapes the anatomy of the prostatic urethra, gently
+              creating a wider opening for urine to flow freely.
+            </p>
           </div>
         </section>
 

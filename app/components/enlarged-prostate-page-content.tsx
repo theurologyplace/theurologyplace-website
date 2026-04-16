@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import { EnlargedProstateFaqAccordion } from "@/app/components/enlarged-prostate-faq-accordion";
 import { BPH_STAGE_ILLUSTRATIONS } from "@/app/data/bph-stage-illustrations";
 import {
@@ -88,6 +89,11 @@ export function EnlargedProstatePageContent() {
             60% of men over sixty and 80% of men over eighty years of age have been 
             diagnosed with Benign Prostate Hyperplasia (BPH)
             </p>
+            <div className="mt-8">
+              <a href="#contact-enlarged-prostate" className={BTN_MAKE_APPOINTMENT_HERO}>
+                Make Appointment
+              </a>
+            </div>
           </div>
         </section>
 

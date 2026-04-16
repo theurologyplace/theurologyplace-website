@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BTN_PRIMARY, BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO, BTN_PRIMARY } from "@/app/lib/button-styles";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import {
   HERO_AFTER_SLIDE_BASE,
@@ -91,12 +91,14 @@ export function UroliftPageContent() {
             <h1 className={HERO_TITLE_UROLIFT_BAND}>
               <span className="block">Urolift for prostate gland enlargement</span>
             </h1>
-            <Link
-              href="/men/enlarged-prostate/urolift/contact-us"
-              className={`${BTN_PRIMARY_LARGE} mt-8 inline-block`}
-            >
-              Make Appointment
-            </Link>
+            <div className="mt-8">
+              <Link
+                href="/men/enlarged-prostate/urolift/contact-us"
+                className={BTN_MAKE_APPOINTMENT_HERO}
+              >
+                Make Appointment
+              </Link>
+            </div>
           </div>
 
           <div className="mx-auto max-w-6xl border-t border-slate-200/80 px-6 py-10 md:py-14">

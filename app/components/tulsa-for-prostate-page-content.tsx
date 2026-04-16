@@ -97,7 +97,7 @@ export function TulsaForProstatePageContent() {
         {/* Hero */}
         <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
-          <div className="relative z-10 max-w-4xl text-center">
+          <div className="relative z-10 mx-auto max-w-4xl text-center">
             <h1 className={HERO_TITLE_ON_IMAGE}>
               TULSA-PRO
             </h1>

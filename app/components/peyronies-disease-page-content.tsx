@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import {
   HERO_AFTER_SLIDE_BASE,
   HERO_FIXED_BACKDROP,
@@ -60,6 +61,11 @@ export function PeyroniesDiseasePageContent() {
             <h1 className={HERO_TITLE_ON_IMAGE}>
               Peyronie&apos;s Disease
             </h1>
+            <div className="mt-8">
+              <a href="#contact-peyronies" className={BTN_MAKE_APPOINTMENT_HERO}>
+                Make Appointment
+              </a>
+            </div>
           </div>
         </section>
 

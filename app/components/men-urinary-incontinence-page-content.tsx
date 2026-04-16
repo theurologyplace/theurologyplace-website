@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import { HERO_IMAGE_SECTION, HERO_TITLE_ON_IMAGE } from "@/app/lib/hero";
 
@@ -62,10 +63,15 @@ export function MenUrinaryIncontinencePageContent() {
         }}
       >
         <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
-        <div className="relative z-10 mx-auto max-w-4xl">
+        <div className="relative z-10 mx-auto max-w-4xl text-center">
           <h1 className={HERO_TITLE_ON_IMAGE}>
             URINARY INCONTINENCE
           </h1>
+          <div className="mt-8">
+            <a href="#men-urinary-incontinence-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+              Make Appointment
+            </a>
+          </div>
         </div>
       </section>
 
@@ -185,7 +191,10 @@ export function MenUrinaryIncontinencePageContent() {
           </div>
         </div>
 
-        <section className="border-t border-slate-200 bg-slate-50/50">
+        <section
+          id="men-urinary-incontinence-contact"
+          className="scroll-mt-28 border-t border-slate-200 bg-slate-50/50"
+        >
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
             <ContactFormTemplate
               variant="embedded"

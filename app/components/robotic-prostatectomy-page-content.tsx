@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { MoreInformationCardGrid } from "@/app/components/more-information-card-grid";
 import { PROSTATE_CANCER_MORE_INFORMATION_ITEMS } from "@/app/data/prostate-cancer-more-information-items";
@@ -70,7 +70,7 @@ export function RoboticProstatectomyPageContent() {
         {/* 1 — Full-bleed grey opacity over fixed photo (same pattern as Home hero: absolute inset-0 overlay) */}
         <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
-          <div className="relative z-10 max-w-4xl text-center">
+          <div className="relative z-10 mx-auto max-w-4xl text-center">
             <h1 className={HERO_TITLE_ON_IMAGE}>
               ROBOTIC PROSTATECTOMY
             </h1>
@@ -78,6 +78,11 @@ export function RoboticProstatectomyPageContent() {
               Naveen Kella M.D., Fellowship Trained, Nationally Recognized Leader in Robotic
               Prostate Surgery
             </p>
+            <div className="mt-8">
+              <a href="#men-robotic-prostatectomy-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+                Make Appointment
+              </a>
+            </div>
           </div>
         </section>
 
@@ -159,12 +164,11 @@ export function RoboticProstatectomyPageContent() {
               from cautery and minimize tension, two key factors in recovery. Patients across the
               world have seen Dr. Kella&apos;s team for their expertise.
             </p>
-            <Link
-              href="/men/prostate-cancer/robotic-prostatectomy/contact-us"
-              className={`${BTN_PRIMARY_LARGE} mt-10 inline-block`}
-            >
-              Contact Us
-            </Link>
+            <div className="mt-10">
+              <a href="#men-robotic-prostatectomy-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+                Make Appointment
+              </a>
+            </div>
           </div>
         </section>
 
@@ -331,7 +335,10 @@ export function RoboticProstatectomyPageContent() {
 
         <MoreInformationCardGrid items={PROSTATE_CANCER_MORE_INFORMATION_ITEMS} />
 
-        <section className="relative border-t border-slate-200 bg-white">
+        <section
+          id="men-robotic-prostatectomy-contact"
+          className="relative scroll-mt-28 border-t border-slate-200 bg-white"
+        >
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
             <ContactFormTemplate
               variant="embedded"

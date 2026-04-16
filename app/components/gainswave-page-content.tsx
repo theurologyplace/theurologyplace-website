@@ -3,7 +3,7 @@ import { GainswaveFaqAccordion } from "@/app/components/gainswave-faq-accordion"
 import { GainswaveInTheNewsSection } from "@/app/components/gainswave-in-the-news";
 import { SoundCloudEmbed } from "@/app/components/soundcloud-embed";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
-import { BTN_PRIMARY, BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO, BTN_PRIMARY, BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import {
   HERO_AFTER_SLIDE_BASE,
   HERO_EYEBROW_ON_IMAGE,
@@ -54,6 +54,11 @@ export function GainswavePageContent() {
             <p className={HERO_EYEBROW_ON_IMAGE}>
               Low-intensity shockwave therapy
             </p>
+            <div className="mt-8">
+              <a href="#contact-gainswave" className={BTN_MAKE_APPOINTMENT_HERO}>
+                Make Appointment
+              </a>
+            </div>
           </div>
         </section>
 

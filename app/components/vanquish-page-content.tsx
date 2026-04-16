@@ -1,30 +1,35 @@
-import Image from "next/image";
-import Link from "next/link";
-import { BTN_PRIMARY } from "@/app/lib/button-styles";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import {
   HERO_AFTER_SLIDE_BASE,
   HERO_FIXED_BACKDROP,
   HERO_IMAGE_SECTION,
-  HERO_SUBTITLE_ON_IMAGE,
   HERO_TITLE_ON_IMAGE,
 } from "@/app/lib/hero";
 
 const HERO_BG = encodeURI("/images/vanquish/1765481756241.jpg");
-const IMG_CONSULT = encodeURI("/images/rezum/photo-1533025782032-634283c7c7ad-1920w.jpg");
 
-const PANEL = "bg-[#e8edf5]";
-const CONTENT_CARD =
-  "rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm ring-1 ring-slate-200/60 md:p-8";
-const ROUND_IMG =
-  "relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-md ring-1 ring-slate-200/80";
+const PHONE_DISPLAY = "210-617-3670";
+const PHONE_TEL = "2106173670";
+const EMAIL_SCHEDULING = "messages@theupi.com";
 
-const BENEFITS = [
-  "Minimally invasive procedure performed without abdominal incisions",
-  "Designed to reduce obstructive urinary symptoms from enlarged prostate tissue",
-  "Often completed as an outpatient or in-office treatment with a defined recovery plan",
-  "Treatment planning tailored to your anatomy, symptoms, and goals",
-] as const;
+const SECTION_INNER = "mx-auto max-w-3xl px-6 py-14 md:py-16";
+const H2 = "text-2xl font-bold tracking-tight text-slate-900 md:text-3xl";
+const PROSE = "mt-5 space-y-4 text-[15px] leading-relaxed text-slate-800 md:text-base";
+const LIST = "mt-5 space-y-3 text-[15px] leading-relaxed text-slate-800 md:text-base";
+
+function BulletList({ items }: { items: readonly string[] }) {
+  return (
+    <ul className={LIST}>
+      {items.map((line) => (
+        <li key={line} className="flex gap-3">
+          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600" aria-hidden />
+          <span>{line}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export function VanquishPageContent() {
   return (
@@ -43,95 +48,201 @@ export function VanquishPageContent() {
       <div className="relative z-10">
         <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
-          <div className="relative z-10 mx-auto max-w-4xl text-center">
-            <h1 className={HERO_TITLE_ON_IMAGE}>Vanquish (Water Vapor Ablation)</h1>
-            <p className={`mt-6 max-w-3xl mx-auto ${HERO_SUBTITLE_ON_IMAGE}`}>
-              A minimally invasive option for men with urinary symptoms related to benign prostatic
-              hyperplasia (BPH). The Urology Place in San Antonio helps you understand whether Vanquish™
-              water vapor therapy fits your goals and anatomy.
-            </p>
-            <Link
-              href="/men/prostate-cancer/vanquish/contact-us"
-              className={`${BTN_PRIMARY} mt-8 inline-block`}
-            >
-              Request a consultation
-            </Link>
+          <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+            <h1 className={HERO_TITLE_ON_IMAGE}>Vanquish Water Vapor Therapy in San Antonio, TX</h1>
+            <div className="mt-8">
+              <a href="#vanquish-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+                Make Appointment
+              </a>
+            </div>
           </div>
         </section>
 
-        <section className={`${HERO_AFTER_SLIDE_BASE} ${PANEL}`}>
-          <div className="mx-auto max-w-3xl px-6 py-14 md:py-16">
-            <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-              What is Vanquish water vapor ablation?
-            </h2>
-            <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
+        <section className={`${HERO_AFTER_SLIDE_BASE} bg-white`}>
+          <div className={SECTION_INNER}>
+            <h2 className={H2}>Innovative, Minimally Invasive Treatment for Prostate Tissue Ablation</h2>
+            <div className={PROSE}>
               <p>
-                <strong>Vanquish</strong> uses controlled water vapor energy to treat excess prostate
-                tissue that contributes to blockage and lower urinary tract symptoms. The therapy is
-                delivered through the urethra, so there are no abdominal incisions. Many men consider
-                this category of treatment when they want symptom relief while limiting the impact of
-                traditional surgery on recovery and quality of life.
+                Vanquish Water Vapor Therapy is an advanced, minimally invasive treatment designed to target
+                and ablate prostate tissue using the natural energy of water vapor. This approach offers a
+                precise, effective option for patients seeking alternatives to traditional surgical treatments.
               </p>
               <p>
-                At <strong>The Urology Place</strong>, we review your symptoms, medications, prior
-                procedures, and imaging to confirm whether you are a candidate. We explain what to
-                expect before, during, and after treatment, including catheter use and activity
-                restrictions, so you can plan with confidence.
+                At The Urology Place, we are proud to be at the forefront of this technology and were the
+                first site to treat a patient in the VAPOR-2 pivotal clinical trial, highlighting our
+                commitment to innovation and cutting-edge patient care.{" "}
+                <a
+                  href="https://www.francismedical.com/press-release-francis-medical-announces-first-patient-treated-in-vapor2-pivotal-trial/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-blue-600 underline decoration-blue-600/80 underline-offset-2 hover:text-blue-700"
+                >
+                  Read the Francis Medical press release
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200/80 bg-slate-50/80">
+          <div className={SECTION_INNER}>
+            <h2 className={H2}>What is Vanquish Water Vapor Therapy?</h2>
+            <div className={PROSE}>
+              <p>
+                Vanquish is a minimally invasive treatment that uses sterile water vapor (steam) to ablate
+                targeted prostate tissue.
+              </p>
+              <p className="font-semibold text-slate-900">The therapy works by:</p>
+            </div>
+            <BulletList
+              items={[
+                "Delivering controlled doses of water vapor into prostate tissue",
+                "Releasing thermal energy that destroys targeted cells",
+                "Allowing the body to naturally reabsorb the treated tissue over time",
+              ]}
+            />
+            <p className="mt-6 text-[15px] leading-relaxed text-slate-800 md:text-base">
+              This process helps relieve urinary symptoms caused by prostate enlargement while preserving
+              surrounding structures.
+            </p>
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200/80 bg-white">
+          <div className={SECTION_INNER}>
+            <h2 className={H2}>Who is a Candidate?</h2>
+            <div className={PROSE}>
+              <p>
+                You may be a candidate for Vanquish Water Vapor Therapy if you have been diagnosed with
+                prostate cancer and are exploring minimally invasive treatment options. This therapy may be
+                appropriate for patients with localized disease who are seeking a targeted approach to
+                treating prostate tissue while minimizing impact on surrounding structures. It can be a
+                consideration for individuals who are not ideal candidates for more invasive surgical
+                procedures or who are looking for an alternative to traditional treatments such as surgery
+                or radiation. Vanquish is designed to precisely ablate prostate tissue using water vapor
+                energy, offering a focused treatment option to preserve quality of life. A thorough
+                evaluation, including imaging, pathology review, and discussion of treatment goals, is
+                necessary to determine if this approach is appropriate based on your specific diagnosis and
+                overall health.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200/80 bg-slate-50/80">
+          <div className={SECTION_INNER}>
+            <h2 className={H2}>How the Procedure Works</h2>
+            <div className={PROSE}>
+              <p>
+                Vanquish Water Vapor Therapy is performed using a specialized delivery system that targets
+                prostate tissue with precision. Water vapor is introduced into the prostate, where it
+                releases energy that ablates excess tissue. Over time, the body naturally clears the treated
+                tissue, improving urinary flow and symptoms. The procedure is minimally invasive and typically
+                performed in an outpatient setting.
               </p>
             </div>
           </div>
         </section>
 
         <section className="relative border-t border-slate-200/80 bg-white">
-          <div className="mx-auto max-w-6xl px-6 py-14 md:py-20">
-            <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
-              <div className={ROUND_IMG}>
-                <Image
-                  src={IMG_CONSULT}
-                  alt="Physician consulting with a patient in the office"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 42vw, 100vw"
-                />
-              </div>
-              <div className={CONTENT_CARD}>
-                <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-                  Why patients explore Vanquish
-                </h2>
-                <ul className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
-                  {BENEFITS.map((line) => (
-                    <li key={line} className="flex gap-3">
-                      <span
-                        className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600"
-                        aria-hidden
-                      />
-                      <span>{line}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className={SECTION_INNER}>
+            <h2 className={H2}>Recovery and Results</h2>
+            <div className={PROSE}>
+              <p>Most patients are able to return home the same day.</p>
+              <p className="font-semibold text-slate-900">What to expect:</p>
+            </div>
+            <BulletList
+              items={[
+                "Temporary urinary symptoms during the healing process",
+                "Mild discomfort or irritation for a short period",
+                "Gradual improvement in urinary function over time",
+              ]}
+            />
+            <p className={`mt-6 text-[15px] leading-relaxed text-slate-800 md:text-base`}>
+              Symptom relief typically develops over several weeks as the body reabsorbs treated tissue.
+            </p>
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200/80 bg-slate-50/80">
+          <div className={SECTION_INNER}>
+            <h2 className={H2}>Benefits of Vanquish Therapy</h2>
+            <BulletList
+              items={[
+                "Minimally invasive treatment option",
+                "No major incisions or extensive surgery",
+                "Targeted tissue ablation",
+                "Designed to preserve surrounding structures",
+                "Backed by ongoing clinical research and innovation",
+              ]}
+            />
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200/80 bg-white">
+          <div className={SECTION_INNER}>
+            <h2 className={H2}>Why The Urology Place?</h2>
+            <BulletList
+              items={[
+                "First site to treat a patient in the VAPOR-2 pivotal clinical trial",
+                "Early adopters of advanced prostate therapies",
+                "Experienced urology team",
+                "Commitment to innovative, patient-centered care",
+              ]}
+            />
+            <p className={`mt-6 text-[15px] leading-relaxed text-slate-800 md:text-base`}>
+              We are dedicated to offering the latest treatment options backed by clinical research and
+              real-world experience.
+            </p>
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200/80 bg-slate-50/80">
+          <div className={SECTION_INNER}>
+            <h2 className={H2}>Insurance and Coverage</h2>
+            <div className={PROSE}>
+              <p>
+                Vanquish Water Vapor Therapy is not currently fully covered by insurance and may be
+                considered on a case-by-case basis. Our team can help review your specific situation and
+                discuss available options.
+              </p>
             </div>
           </div>
         </section>
 
-        <section className={`relative border-t border-slate-200/80 ${PANEL}`}>
-          <div className="mx-auto max-w-3xl px-6 py-14 text-center md:py-16">
-            <h2 className="text-2xl font-bold text-slate-900 md:text-3xl">Next steps</h2>
-            <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
-              If urinary frequency, weak stream, nighttime urination, or incomplete emptying are affecting
-              your day, schedule an evaluation. We will discuss Vanquish alongside other proven options
-              for BPH so you can choose a path that matches your lifestyle.
-            </p>
-            <Link
-              href="/men/prostate-cancer/vanquish/contact-us"
-              className={`${BTN_PRIMARY} mt-8 inline-block`}
-            >
-              Contact us
-            </Link>
+        <section className="relative border-t border-slate-200/80 bg-white">
+          <div className={SECTION_INNER}>
+            <h2 className={H2}>Schedule a Consultation</h2>
+            <div className={PROSE}>
+              <p>To schedule a consultation for Vanquish Water Vapor Therapy:</p>
+              <p>
+                Please call{" "}
+                <a
+                  href={`tel:${PHONE_TEL}`}
+                  className="font-semibold text-blue-600 underline decoration-blue-600/80 underline-offset-2 hover:text-blue-700"
+                >
+                  {PHONE_DISPLAY}
+                </a>{" "}
+                and ask to speak with the Vanquish scheduling team, or select the surgery line when
+                prompted. If the department is unavailable, please leave a voicemail. You may also email us
+                at{" "}
+                <a
+                  href={`mailto:${EMAIL_SCHEDULING}?subject=Vanquish%20scheduling`}
+                  className="font-semibold text-blue-600 underline decoration-blue-600/80 underline-offset-2 hover:text-blue-700"
+                >
+                  {EMAIL_SCHEDULING}
+                </a>{" "}
+                and request to speak with Patsy or Raji regarding scheduling.
+              </p>
+            </div>
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200 bg-white">
+        <section
+          id="vanquish-contact"
+          className="relative scroll-mt-28 border-t border-slate-200 bg-white"
+        >
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
             <ContactFormTemplate
               variant="embedded"

@@ -7,7 +7,7 @@ import {
 import { HomePrivacyBanner } from "./components/home-privacy-banner";
 import { PatientReviewCarousel } from "./components/patient-review-carousel";
 import { HomeContactSection } from "./components/home-contact-section";
-import { BTN_PRIMARY, BTN_PRIMARY_LARGE } from "./lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO, BTN_PRIMARY } from "./lib/button-styles";
 import {
   HERO_IMAGE_SECTION,
   HERO_SUBTITLE_ON_IMAGE,
@@ -95,7 +95,7 @@ export default async function HomePage() {
         />
 
         {/* Scrolling content (not part of background) */}
-        <div className="relative z-10 max-w-3xl text-center">
+        <div className="relative z-10 mx-auto max-w-3xl text-center">
           <h1 className={HERO_TITLE_ON_IMAGE}>
             Experience Matters
           </h1>
@@ -103,10 +103,7 @@ export default async function HomePage() {
             Get the care you need from providers who are experts in their fields.
           </p>
           <div className="mt-8">
-            <Link
-              href="/patient-resources/contact-us"
-              className={`inline-block ${BTN_PRIMARY_LARGE}`}
-            >
+            <Link href="/patient-resources/contact-us" className={BTN_MAKE_APPOINTMENT_HERO}>
               Make Appointment
             </Link>
           </div>

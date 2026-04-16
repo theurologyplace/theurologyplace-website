@@ -66,11 +66,9 @@ export const HERO_IMAGE_SECTION = `${HERO_WINDOW_BASE} text-center`;
 export const HERO_IMAGE_SECTION_NEUTRAL = HERO_WINDOW_BASE;
 
 /**
- * Same vertical window as other image heroes; `justify-center` only (no `items-center`)
- * so inner wrappers can align content (e.g. right-aligned title on iTind).
+ * Same centered hero window as {@link HERO_IMAGE_SECTION} (all image-hero titles use centered type).
  */
-export const HERO_IMAGE_SECTION_ALIGN_CONTENT =
-  "relative min-h-[48vh] flex flex-col justify-center px-6 py-14";
+export const HERO_IMAGE_SECTION_ALIGN_CONTENT = HERO_IMAGE_SECTION;
 
 /** Empty spacer over fixed background (e.g. UroLift) — only enforces window height. */
 export const HERO_IMAGE_SPACER = "relative min-h-[48vh]";

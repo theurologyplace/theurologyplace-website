@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import { BTN_PRIMARY } from "@/app/lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import {
   HERO_AFTER_SLIDE_BASE,
@@ -50,12 +49,11 @@ export function VaricocelePageContent() {
               Antonio, we evaluate varicoceles that cause pain, fertility concerns, or testicular
               asymmetry and discuss evidence-based options.
             </p>
-            <Link
-              href="/men/male-sexual-dysfunction/varicocele/contact-us"
-              className={`${BTN_PRIMARY} mt-8 inline-block`}
-            >
-              Request a consultation
-            </Link>
+            <div className="mt-8">
+              <a href="#men-varicocele-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+                Make Appointment
+              </a>
+            </div>
           </div>
         </section>
 
@@ -125,16 +123,15 @@ export function VaricocelePageContent() {
               Whether you need reassurance, imaging, or a plan for treatment, we are here to help you
               move forward with clear information and coordinated care.
             </p>
-            <Link
-              href="/men/male-sexual-dysfunction/varicocele/contact-us"
-              className={`${BTN_PRIMARY} mt-8 inline-block`}
-            >
-              Contact us
-            </Link>
+            <div className="mt-8">
+              <a href="#men-varicocele-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+                Make Appointment
+              </a>
+            </div>
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200 bg-white">
+        <section id="men-varicocele-contact" className="relative scroll-mt-28 border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
             <ContactFormTemplate
               variant="embedded"
