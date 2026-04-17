@@ -100,6 +100,9 @@ export function ContactFormFields({
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
+  const recaptchaDisabled =
+    process.env.NEXT_PUBLIC_DISABLE_CONTACT_RECAPTCHA === "true";
+  const recaptchaEnabled = Boolean(recaptchaSiteKey) && !recaptchaDisabled;
 
   const reasonIsOther = appointmentReason === "Other";
   const timeIsOther = bestTimeToReach === "Other";
@@ -221,7 +224,7 @@ export function ContactFormFields({
     }
 
     let gRecaptchaResponse = "";
-    if (recaptchaSiteKey) {
+    if (recaptchaEnabled && recaptchaSiteKey) {
       try {
         gRecaptchaResponse = await executeRecaptchaV3Token(recaptchaSiteKey);
       } catch {
@@ -769,23 +772,39 @@ export function ContactFormFields({
           ) : null}
         </div>
 
-        {!recaptchaSiteKey ? (
+        {!recaptchaEnabled ? (
           <div className="sm:col-span-2">
             <div
               className="rounded-lg border border-dashed border-slate-300 bg-slate-50/80 px-4 py-6 text-center"
               role="status"
-              aria-label="reCAPTCHA not configured"
+              aria-label={
+                recaptchaDisabled
+                  ? "reCAPTCHA temporarily disabled"
+                  : "reCAPTCHA not configured"
+              }
             >
               <p className="text-sm text-slate-600">
-                Add{" "}
-                <code className="rounded bg-slate-200 px-1.5 py-0.5 text-xs">
-                  NEXT_PUBLIC_RECAPTCHA_SITE_KEY
-                </code>{" "}
-                (and{" "}
-                <code className="rounded bg-slate-200 px-1.5 py-0.5 text-xs">
-                  RECAPTCHA_SECRET_KEY
-                </code>{" "}
-                server-side) to enable Google reCAPTCHA v3 on this form.
+                {recaptchaDisabled ? (
+                  <>
+                    Google reCAPTCHA v3 is temporarily disabled for testing via{" "}
+                    <code className="rounded bg-slate-200 px-1.5 py-0.5 text-xs">
+                      NEXT_PUBLIC_DISABLE_CONTACT_RECAPTCHA=true
+                    </code>
+                    .
+                  </>
+                ) : (
+                  <>
+                    Add{" "}
+                    <code className="rounded bg-slate-200 px-1.5 py-0.5 text-xs">
+                      NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+                    </code>{" "}
+                    (and{" "}
+                    <code className="rounded bg-slate-200 px-1.5 py-0.5 text-xs">
+                      RECAPTCHA_SECRET_KEY
+                    </code>{" "}
+                    server-side) to enable Google reCAPTCHA v3 on this form.
+                  </>
+                )}
               </p>
             </div>
           </div>

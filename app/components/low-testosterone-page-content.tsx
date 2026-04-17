@@ -342,14 +342,6 @@ export function LowTestosteronePageContent() {
                 with CGMP, which is the same as large commercial drug
                 manufacturers.
               </p>
-              <div className="mt-8">
-                <Link
-                  href="/patient-resources/new-patient-forms"
-                  className={`inline-flex ${BTN_PRIMARY}`}
-                >
-                  Post-Insertion Instructions
-                </Link>
-              </div>
             </div>
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-slate-100 ring-1 ring-slate-200 shadow-sm">
               <Image

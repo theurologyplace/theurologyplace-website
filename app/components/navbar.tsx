@@ -110,7 +110,6 @@ const NAV_ITEMS: NavItem[] = [
     children: [
       { label: "Contact Us", href: "/patient-resources/contact-us" },
       { label: "Physician Referral", href: "/patient-resources/physician-referral" },
-      { label: "New Patient Forms", href: "/patient-resources/new-patient-forms" },
       { label: "Patient Portal", href: "/patient-resources/patient-portal" },
       { label: "Insurance", href: "/patient-resources/insurance" },
       { label: "Out of Town Patients", href: "/patient-resources/out-of-town-patients" },

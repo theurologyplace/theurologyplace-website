@@ -7,6 +7,10 @@ import { CONTACT_RECAPTCHA_ACTION } from "@/app/lib/contact-recaptcha-constants"
 
 const VERIFY_URL = "https://www.google.com/recaptcha/api/siteverify";
 
+function isRecaptchaTemporarilyDisabled(): boolean {
+  return process.env.NEXT_PUBLIC_DISABLE_CONTACT_RECAPTCHA?.trim() === "true";
+}
+
 /** Minimum score (0–1). Override with RECAPTCHA_SCORE_THRESHOLD (e.g. 0.5). */
 function getRecaptchaScoreThreshold(): number {
   const raw = process.env.RECAPTCHA_SCORE_THRESHOLD?.trim();
@@ -71,6 +75,8 @@ export async function verifyRecaptchaResponse(
 }
 
 export function isRecaptchaConfigured(): boolean {
+  if (isRecaptchaTemporarilyDisabled()) return false;
+
   return (
     Boolean(process.env.RECAPTCHA_SECRET_KEY?.trim()) &&
     Boolean(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY?.trim())
