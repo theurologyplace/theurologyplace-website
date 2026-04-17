@@ -231,31 +231,13 @@ export function ProstaticArteryEmbolizationPageContent() {
               Scheduling Information
             </h2>
             <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
-              To schedule your initial consultation with Dr. Kella&apos;s team: Please call{" "}
+              To schedule your consultation with Dr. Kella: Please call{" "}
               <a href="tel:2106173670" className="font-semibold text-blue-700 underline underline-offset-2">
                 210-617-3670
               </a>{" "}
               and ask to speak with the PAE scheduling team, or select the surgery line when prompted. If
               the department is unavailable, please dial extension 107, 103, or leave a voicemail.
             </p>
-
-            <h3 className="mt-10 text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
-              PAE Procedure Location
-            </h3>
-            <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
-              To schedule the PAE procedure with Dr. Rao: Please contact Monica at{" "}
-              <a href="tel:2106602010" className="font-semibold text-blue-700 underline underline-offset-2">
-                210-660-2010
-              </a>
-              .
-            </p>
-            <address className="mt-4 not-italic text-[15px] leading-relaxed text-slate-800 md:text-base">
-              I-Vascular Center
-              <br />
-              19234 Stonehue
-              <br />
-              San Antonio, TX 78258
-            </address>
           </div>
         </section>
 
