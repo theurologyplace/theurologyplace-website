@@ -209,8 +209,8 @@ export default function HormoneReplacementTherapyPage() {
               <div className="order-1 lg:order-2">
                 <h3 className="text-2xl font-bold text-slate-900 md:text-3xl">Cream</h3>
                 <div className="mt-3 h-px w-12 bg-slate-900" aria-hidden />
-                <p className="mt-4 text-sm font-bold text-slate-900">730 Per Year</p>
-                <p className="text-sm font-bold text-slate-900">2 Times Daily</p>
+                <p className="mt-4 text-sm font-bold text-slate-900">365 Applications Per Year</p>
+                <p className="text-sm font-bold text-slate-900">Once Daily</p>
                 <p className="mt-5 text-sm font-normal leading-relaxed text-slate-600">
                   This is a painless way of applying testosterone. Transdermal testosterone formulations (patches, gels) can have limitations, such as local reactions, poor adhesion, fear of transmission to others, unpleasant odor, and high discontinuation rates.
                 </p>
@@ -230,7 +230,7 @@ export default function HormoneReplacementTherapyPage() {
               </p>
               <div className="mt-8">
                 <Link
-                  href="/patient-resources/new-patient-forms"
+                  href="/women/hormone-replacement-therapy/post-insertion-instructions"
                   className={`inline-flex ${BTN_PRIMARY}`}
                 >
                   Post-Insertion Instructions
