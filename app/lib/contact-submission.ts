@@ -36,7 +36,7 @@ export function buildTrelloCardDescription(data: NormalizedContact): string {
   return lines.join("\n");
 }
 
-/** Card title: New Request - First Last */
+/** Card title: use the final appointment reason shown to staff in Trello. */
 export function buildTrelloCardName(data: NormalizedContact): string {
-  return `New Request - ${safeLine(data.firstName)} ${safeLine(data.lastName)}`;
+  return safeLine(data.appointmentReasonFinal);
 }
