@@ -39,9 +39,7 @@ export function ProstateBiopsyPageContent() {
         <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
           <div className="relative z-10 mx-auto max-w-4xl text-center">
-            <h1 className={HERO_TITLE_ON_IMAGE}>
-              PROSTATE BIOPSY
-            </h1>
+            <h1 className={HERO_TITLE_ON_IMAGE}>Transperineal Prostate Biopsy</h1>
             <p className={`mt-4 ${HERO_SUBTITLE_ON_IMAGE}`}>
               More precise, less invasive prostate biopsy with UroNav fusion technology at The Urology
               Place in San Antonio.
@@ -303,10 +301,10 @@ export function ProstateBiopsyPageContent() {
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
             <ContactFormTemplate
               variant="embedded"
-              pageName="Prostate Biopsy"
-              serviceName="Prostate Biopsy"
+              pageName="Transperineal Prostate Biopsy"
+              serviceName="Transperineal Prostate Biopsy"
               category="Men > Prostate Cancer"
-              sourcePath="/men/prostate-cancer/prostate-biopsy"
+              sourcePath="/men/prostate-cancer/transperineal-prostate-biopsy"
               idPrefix="men-prostate-biopsy"
             />
           </div>

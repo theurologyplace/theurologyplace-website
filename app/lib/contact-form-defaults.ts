@@ -71,6 +71,7 @@ const PAGE_TO_DEFAULT_REASON: Record<string, AppointmentReasonOption> = {
   "peyronie's disease": "Peyronie's Disease",
   "prostate biopsies": "Prostate Cancer",
   "prostate biopsy": "Prostate Cancer",
+  "transperineal prostate biopsy": "Prostate Cancer",
   "kidney stones": "Kidney Stones",
   "prostate cancer": "Prostate Cancer",
   "emsella for incontinence": "Urinary Incontinence",

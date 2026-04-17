@@ -33,13 +33,13 @@ const NAV_ITEMS: NavItem[] = [
     href: "/men",
     children: [
       { label: "Men's Wellness", href: "/men/mens-wellness" },
-      { label: "Hematuria", href: "/men/hematuria" },
+      { label: "Vasectomy", href: "/men/vasectomy" },
       {
         label: "Prostate Cancer",
         href: "/men/prostate-cancer",
         children: [
           { label: "Robotic Prostatectomy", href: "/men/prostate-cancer/robotic-prostatectomy" },
-          { label: "Prostate Biopsy", href: "/men/prostate-cancer/prostate-biopsy" },
+          { label: "Transperineal Prostate Biopsy", href: "/men/prostate-cancer/transperineal-prostate-biopsy" },
           { label: "TULSA for Prostate", href: "/men/prostate-cancer/tulsa-for-prostate" },
           { label: "Nuclear Medicine", href: "/men/prostate-cancer/nuclear-medicine" },
           {
@@ -48,7 +48,6 @@ const NAV_ITEMS: NavItem[] = [
           },
         ],
       },
-      { label: "Adult Circumcision", href: "/men/adult-circumcision" },
       {
         label: "Enlarged Prostate",
         href: "/men/enlarged-prostate",
@@ -64,6 +63,9 @@ const NAV_ITEMS: NavItem[] = [
         ],
       },
       { label: "Bladder Cancer", href: "/men/bladder-cancer" },
+      { label: "Adult Circumcision", href: "/men/adult-circumcision" },
+      { label: "Hematuria", href: "/men/hematuria" },
+      { label: "Low Testosterone", href: "/men/low-testosterone" },
       {
         label: "Male Sexual Dysfunction",
         href: "/men/male-sexual-dysfunction",
@@ -73,8 +75,6 @@ const NAV_ITEMS: NavItem[] = [
           { label: "Varicocele", href: "/men/male-sexual-dysfunction/varicocele" },
         ],
       },
-      { label: "Vasectomy", href: "/men/vasectomy" },
-      { label: "Low Testosterone", href: "/men/low-testosterone" },
       { label: "Urinary Incontinence", href: "/men/urinary-incontinence" },
       { label: "Kidney Stones", href: "/men/kidney-stones" },
     ],
