@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { sendContactNotificationEmail } from "@/app/lib/contact-email";
 import {
   buildTrelloCardDescription,
   buildTrelloCardName,
@@ -118,6 +119,15 @@ export async function POST(request: Request) {
   }
 
   const card = (await trelloResponse.json()) as { id?: string; shortUrl?: string };
+  try {
+    await sendContactNotificationEmail({
+      contact: normalized,
+      trelloCardUrl: card.shortUrl,
+    });
+  } catch (error) {
+    console.error("[contact] Resend email failed", error);
+  }
+
   return NextResponse.json({
     ok: true,
     cardId: card.id,
