@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
-import { sendContactNotificationEmail } from "@/app/lib/contact-email";
 import {
-  buildTrelloCardDescription,
-  buildTrelloCardName,
+  sendContactNotificationEmail,
+  sendTrelloBoardEmail,
+} from "@/app/lib/contact-email";
+import {
   validateAndNormalizeContact,
   type RawContactBody,
 } from "@/app/lib/contact-submission";
@@ -22,7 +23,7 @@ const GENERIC_VALIDATION_ERROR =
 const RATE_LIMIT_MESSAGE =
   "Too many submissions from this connection. Please wait and try again later.";
 
-/** POST /api/contact — creates a Trello card (TRELLO_KEY, TRELLO_TOKEN, TRELLO_LIST_ID). */
+/** POST /api/contact — validates the submission and creates a Trello card via email-to-board. */
 export async function POST(request: Request) {
   const ip = getClientIp(request);
   if (!checkContactRateLimit(ip)) {
@@ -77,60 +78,26 @@ export async function POST(request: Request) {
 
   const normalized = validated.data;
 
-  const key = process.env.TRELLO_KEY;
-  const token = process.env.TRELLO_TOKEN;
-  const idList = process.env.TRELLO_LIST_ID;
-
-  if (!key || !token || !idList) {
-    console.error("[contact] Trello env not configured");
-    return NextResponse.json(
-      { ok: false, error: "The server could not process your request." },
-      { status: 500 },
-    );
-  }
-
-  const name = buildTrelloCardName(normalized);
-  const desc = buildTrelloCardDescription(normalized);
-
-  const trelloUrl = new URL("https://api.trello.com/1/cards");
-  trelloUrl.searchParams.set("key", key);
-  trelloUrl.searchParams.set("token", token);
-  trelloUrl.searchParams.set("idList", idList);
-  trelloUrl.searchParams.set("name", name);
-  trelloUrl.searchParams.set("desc", desc);
-
-  let trelloResponse: Response;
   try {
-    trelloResponse = await fetch(trelloUrl.toString(), { method: "POST" });
-  } catch {
-    console.error("[contact] Trello fetch failed");
+    await sendTrelloBoardEmail({ contact: normalized });
+  } catch (error) {
+    console.error("[contact] Trello board email failed", error);
     return NextResponse.json(
-      { ok: false, error: "Failed to reach Trello" },
+      {
+        ok: false,
+        error: "The request could not be completed. Please try again later.",
+      },
       { status: 502 },
     );
   }
 
-  if (!trelloResponse.ok) {
-    console.error("[contact] Trello error status:", trelloResponse.status);
-    return NextResponse.json(
-      { ok: false, error: "The request could not be completed. Please try again later." },
-      { status: 502 },
-    );
-  }
-
-  const card = (await trelloResponse.json()) as { id?: string; shortUrl?: string };
   try {
-    await sendContactNotificationEmail({
-      contact: normalized,
-      trelloCardUrl: card.shortUrl,
-    });
+    await sendContactNotificationEmail({ contact: normalized });
   } catch (error) {
     console.error("[contact] Resend email failed", error);
   }
 
   return NextResponse.json({
     ok: true,
-    cardId: card.id,
-    shortUrl: card.shortUrl,
   });
 }

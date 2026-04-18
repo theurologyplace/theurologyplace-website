@@ -7,47 +7,43 @@ import {
 
 type SendContactNotificationEmailArgs = {
   contact: NormalizedContact;
-  trelloCardUrl?: string;
 };
 
-function buildContactNotificationEmailText(
-  contact: NormalizedContact,
-  trelloCardUrl?: string,
-): string {
-  const lines = [
-    "A new contact form submission was received.",
-    "",
-    buildTrelloCardDescription(contact),
-  ];
+type SendTrelloBoardEmailArgs = {
+  contact: NormalizedContact;
+};
 
-  if (trelloCardUrl) {
-    lines.push("", `Trello Card: ${trelloCardUrl}`);
-  }
-
-  return lines.join("\n");
-}
-
-export async function sendContactNotificationEmail({
-  contact,
-  trelloCardUrl,
-}: SendContactNotificationEmailArgs): Promise<void> {
+function getResendClient(): { resend: Resend; from: string } {
   const apiKey = process.env.RESEND_API_KEY?.trim() ?? "";
-  const to = process.env.CONTACT_NOTIFICATION_TO?.trim() ?? "";
   const from = process.env.CONTACT_NOTIFICATION_FROM?.trim() ?? "";
 
-  if (!apiKey || !to || !from) {
-    console.error("[contact] Resend env not configured");
-    return;
+  if (!apiKey || !from) {
+    throw new Error("Resend env not configured");
   }
 
-  const resend = new Resend(apiKey);
-  const subject = `New Contact Request: ${buildTrelloCardName(contact)}`;
-  const text = buildContactNotificationEmailText(contact, trelloCardUrl);
+  return {
+    resend: new Resend(apiKey),
+    from,
+  };
+}
+
+async function sendResendTextEmail({
+  to,
+  replyTo,
+  subject,
+  text,
+}: {
+  to: string;
+  replyTo: string;
+  subject: string;
+  text: string;
+}): Promise<void> {
+  const { resend, from } = getResendClient();
 
   const result = await resend.emails.send({
     from,
     to,
-    replyTo: contact.email,
+    replyTo,
     subject,
     text,
   });
@@ -55,4 +51,54 @@ export async function sendContactNotificationEmail({
   if (result.error) {
     throw new Error(result.error.message || "Resend email send failed");
   }
+}
+
+function buildContactNotificationEmailText(
+  contact: NormalizedContact,
+): string {
+  const lines = [
+    "A new contact form submission was received.",
+    "",
+    buildTrelloCardDescription(contact),
+  ];
+
+  return lines.join("\n");
+}
+
+export async function sendContactNotificationEmail({
+  contact,
+}: SendContactNotificationEmailArgs): Promise<void> {
+  const to = process.env.CONTACT_NOTIFICATION_TO?.trim() ?? "";
+
+  if (!to) {
+    console.error("[contact] CONTACT_NOTIFICATION_TO not configured");
+    return;
+  }
+
+  const subject = `New Contact Request: ${buildTrelloCardName(contact)}`;
+  const text = buildContactNotificationEmailText(contact);
+
+  await sendResendTextEmail({
+    to,
+    replyTo: contact.email,
+    subject,
+    text,
+  });
+}
+
+export async function sendTrelloBoardEmail({
+  contact,
+}: SendTrelloBoardEmailArgs): Promise<void> {
+  const to = process.env.TRELLO_BOARD_EMAIL?.trim() ?? "";
+
+  if (!to) {
+    throw new Error("TRELLO_BOARD_EMAIL not configured");
+  }
+
+  await sendResendTextEmail({
+    to,
+    replyTo: contact.email,
+    subject: `New Contact Request: ${buildTrelloCardName(contact)}`,
+    text: buildTrelloCardDescription(contact),
+  });
 }

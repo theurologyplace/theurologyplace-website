@@ -1,5 +1,5 @@
 /**
- * Trello card builders for the contact form.
+ * Shared contact submission formatters.
  * Validation lives in contact-validation.ts — import from there for API routes.
  */
 
@@ -16,7 +16,7 @@ function safeLine(s: string): string {
   return stripControlChars(s).replace(/\r\n/g, "\n");
 }
 
-/** Build Trello card description (plain text). All values sanitized for safe embedding. */
+/** Build the plain-text submission details used in emails/Trello card descriptions. */
 export function buildTrelloCardDescription(data: NormalizedContact): string {
   const lines = [
     `Name: ${safeLine(data.firstName)} ${safeLine(data.lastName)}`,
@@ -36,7 +36,7 @@ export function buildTrelloCardDescription(data: NormalizedContact): string {
   return lines.join("\n");
 }
 
-/** Card title: use the final appointment reason shown to staff in Trello. */
+/** Concise title derived from the final appointment reason. */
 export function buildTrelloCardName(data: NormalizedContact): string {
   return safeLine(data.appointmentReasonFinal);
 }
