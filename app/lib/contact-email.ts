@@ -98,7 +98,7 @@ export async function sendTrelloBoardEmail({
   await sendResendTextEmail({
     to,
     replyTo: contact.email,
-    subject: `New Contact Request: ${buildTrelloCardName(contact)}`,
+    subject: buildTrelloCardName(contact),
     text: buildTrelloCardDescription(contact),
   });
 }
