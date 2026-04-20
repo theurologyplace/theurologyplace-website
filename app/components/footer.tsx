@@ -3,6 +3,7 @@ import { BTN_PRIMARY, BTN_ICON_PRIMARY } from "@/app/lib/button-styles";
 import {
   CLINIC_BUSINESS_HOURS_ROWS,
   CLINIC_PHONE,
+  clinicPhoneTelHref,
 } from "@/app/lib/clinic-info";
 const EMAIL = "messages@theupi.com";
 const ADDRESS = "9618 Huebner Road, Suite 120 San Antonio, TX 78240";
@@ -32,7 +33,12 @@ export function Footer() {
           {/* Contact + map */}
           <div className="lg:col-span-5">
             <div className="flex flex-wrap items-center gap-3 text-sm">
-              <span className="font-medium text-slate-800">{CLINIC_PHONE}</span>
+              <a
+                href={clinicPhoneTelHref()}
+                className="font-medium text-blue-600 hover:text-blue-700"
+              >
+                {CLINIC_PHONE}
+              </a>
               <span className="text-slate-400" aria-hidden>|</span>
               <a
                 href={`mailto:${EMAIL}`}

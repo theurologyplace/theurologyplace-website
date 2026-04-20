@@ -37,14 +37,11 @@ export default async function AboutUsPage() {
             Who We Are
           </h2>
           <p className="mt-6 text-left text-slate-700 leading-relaxed">
-            We love what we do and it shows. With more than 20 years of
-            experience in the field, we know urology and are relentless in our
+            With more than 20 years of experience in the field, we know urology and are relentless in our
             pursuit of new technologies and techniques that provide our patients
             with the best possible outcomes. Whether a patient has prostate
             cancer, desires a vasectomy, has a sexual health concern, or needs a
-            second opinion, we can help. There&apos;s no challenge too big or too
-            small, and we dedicate ourselves to every patient we see, and every
-            procedure we take on.
+            second opinion, we can help.
           </p>
         </div>
       </section>

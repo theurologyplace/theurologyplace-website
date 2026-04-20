@@ -4,7 +4,12 @@ import { VasectomyFaqAccordion } from "@/app/components/vasectomy-faq-accordion"
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import { VasectomyTabs } from "@/app/men/vasectomy/vasectomy-tabs";
-import { BTN_MAKE_APPOINTMENT_HERO, BTN_SECONDARY } from "@/app/lib/button-styles";
+import {
+  BTN_MAKE_APPOINTMENT_HERO,
+  BTN_PRIMARY,
+  BTN_SECONDARY,
+} from "@/app/lib/button-styles";
+import { clinicPhoneTelHref } from "@/app/lib/clinic-info";
 import {
   HERO_IMAGE_SECTION,
   HERO_SUBTITLE_ON_IMAGE,
@@ -18,6 +23,7 @@ const HERO_BG = encodeURI(
 const IMG = (name: string) => `/images/vasectomy/${name}`;
 
 const FEATURES = [
+  "In office anasthesia for extra comfort",
   "Less than 1% failure rate",
   "No scalpel means less bleeding, risk of infection and pain",
   "A single opening for the procedure",
@@ -83,7 +89,7 @@ export function VasectomyPageContent() {
               "linear-gradient(145deg, #ffffff 0%, #f4f4f4 45%, #ececec 100%)",
           }}
         >
-          <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          <div className="mx-auto grid max-w-6xl gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
             {FEATURES.map((text) => (
               <div
                 key={text}
@@ -176,15 +182,72 @@ export function VasectomyPageContent() {
               "linear-gradient(145deg, #ffffff 0%, #f4f4f4 45%, #ececec 100%)",
           }}
         >
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-              Concierge Executive Vasectomy
-            </h2>
-            <p className="mt-6 text-[15px] leading-relaxed text-slate-800 md:text-base">
-              We offer after-hours and weekend appointments for busy patients,
-              using no-scalpel and no-needle techniques with Nitrous gas for pain
-              management.
-            </p>
+          <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white shadow-sm ring-1 ring-slate-200/70">
+            <div className="grid lg:grid-cols-[minmax(0,1.2fr)_minmax(260px,0.8fr)]">
+              <div className="p-8 md:p-10 lg:p-12">
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-blue-600">
+                  Concierge Care
+                </p>
+                <h2 className="mt-4 text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                  Concierge Executive Vasectomy
+                </h2>
+                <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-slate-700 md:text-base">
+                  Designed for busy patients who want a streamlined visit, this
+                  option offers after-hours and weekend appointments with
+                  no-scalpel and no-needle techniques plus Nitrous gas for pain
+                  management.
+                </p>
+
+                <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-slate-200 bg-slate-50/80 p-5">
+                    <p className="text-sm font-semibold text-slate-900">
+                      Efficient Scheduling
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                      Your consultation and procedure can often be completed
+                      within an hour.
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-slate-200 bg-slate-50/80 p-5">
+                    <p className="text-sm font-semibold text-slate-900">
+                      Comfort-Focused Technique
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                      No-scalpel and no-needle options are paired with Nitrous
+                      gas to help minimize discomfort.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-8 rounded-2xl border border-blue-100 bg-blue-50/60 p-5">
+                  <p className="text-sm font-medium text-slate-700">
+                    Call or message us for pricing and availability.
+                  </p>
+                  <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <a
+                      href={clinicPhoneTelHref()}
+                      className={`inline-flex w-full justify-center sm:w-auto ${BTN_PRIMARY}`}
+                    >
+                      Call (210) 617-3670
+                    </a>
+                    <p className="text-sm text-slate-600">
+                      After-hours and weekend appointments available.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative min-h-[280px] border-t border-slate-200 bg-slate-100 lg:min-h-full lg:border-l lg:border-t-0">
+                <Image
+                  src={IMG("man-smiling-grey-background-1920w.jpg")}
+                  alt="Smiling patient portrait"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 32vw, 100vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-slate-900/10 to-transparent" />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -206,56 +269,6 @@ export function VasectomyPageContent() {
               >
                 Learn More Here
               </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Anesthesia */}
-        <div className="border-t border-slate-200">
-          <div
-            className="px-6 py-7 text-center md:py-8"
-            style={{
-              background:
-                "linear-gradient(145deg, #ffffff 0%, #f4f4f4 45%, #ececec 100%)",
-            }}
-          >
-            <h2 className="text-xl font-bold text-slate-900 md:text-2xl">
-              Considering Having This Procedure Under Anesthesia?
-            </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm text-slate-600 md:text-base">
-              Experience a smooth, stress-free vasectomy with our expert
-              care—where precision meets comfort under anesthesia. Self pay price
-              of $2200
-            </p>
-          </div>
-          <div className="bg-[#9db2d6] px-6 py-7 md:py-8">
-            <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-4 text-center lg:flex-row lg:gap-5">
-              <div className="text-white lg:max-w-md">
-                <p className="text-base font-semibold md:text-lg">
-                  We can complete your Vasectomy consultation and Procedure
-                  within an hour!
-                </p>
-                <p className="mt-3 text-[15px] leading-relaxed md:text-base">
-                  Call us at{" "}
-                  <a
-                    href="tel:+12106173670"
-                    className="font-semibold underline decoration-white/70 underline-offset-2"
-                  >
-                    (210) 617-3670
-                  </a>{" "}
-                  to schedule an appointment today!
-                </p>
-                <div className="mx-auto mt-4 h-px max-w-xs bg-white/50" aria-hidden />
-              </div>
-              <div className="relative aspect-[3/4] w-[min(100%,9rem)] shrink-0 overflow-hidden rounded-xl bg-slate-300 shadow-sm ring-1 ring-slate-200/80 sm:w-[10rem] md:w-[11rem]">
-                <Image
-                  src={IMG("man-smiling-grey-background-1920w.jpg")}
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes="176px"
-                />
-              </div>
             </div>
           </div>
         </div>

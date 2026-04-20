@@ -158,24 +158,16 @@ export function MaleSexualDysfunctionPageContent() {
             <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
               Simple &amp; Powerful Solutions
             </h2>
-            <ul className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-10">
-              <li className="flex gap-4 text-left">
+            <ul className="mt-12 flex flex-wrap justify-center gap-8 lg:gap-x-10 lg:gap-y-10">
+              <li className="flex w-full max-w-sm gap-4 text-left md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.75rem)]">
                 <SolutionIconCircle>
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
                     <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </SolutionIconCircle>
-                <p className="text-base font-medium text-teal-600">GAINSWave or Acoustic Therapy</p>
+                <p className="text-base font-bold text-slate-900">GAINSWave or Acoustic Therapy</p>
               </li>
-              <li className="flex gap-4 text-left">
-                <SolutionIconCircle>
-                  <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
-                    <path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                  </svg>
-                </SolutionIconCircle>
-                <p className="text-base font-medium text-teal-600">Injections such as PRP and Amnion</p>
-              </li>
-              <li className="flex gap-4 text-left">
+              <li className="flex w-full max-w-sm gap-4 text-left md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.75rem)]">
                 <SolutionIconCircle>
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
                     <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
@@ -188,7 +180,7 @@ export function MaleSexualDysfunctionPageContent() {
                   </p>
                 </div>
               </li>
-              <li className="flex gap-4 text-left">
+              <li className="flex w-full max-w-sm gap-4 text-left md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.75rem)]">
                 <SolutionIconCircle>
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
                     <rect x="7" y="9" width="10" height="8" rx="1" />
@@ -201,11 +193,11 @@ export function MaleSexualDysfunctionPageContent() {
                 <div>
                   <p className="text-base font-bold text-slate-900">Medications</p>
                   <p className="mt-1 text-sm text-slate-600">
-                    Such as Cialis, Viagra, Staxyn, and Levitra
+                    Mark Cuban pharmacy to provide cost efficient medication
                   </p>
                 </div>
               </li>
-              <li className="flex gap-4 text-left">
+              <li className="flex w-full max-w-sm gap-4 text-left md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.75rem)]">
                 <SolutionIconCircle>
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
                     <rect x="6" y="10" width="12" height="5" rx="1" />
@@ -213,11 +205,11 @@ export function MaleSexualDysfunctionPageContent() {
                     <path d="M18 12.5h3M4 12.5h2" strokeLinecap="round" />
                   </svg>
                 </SolutionIconCircle>
-                <p className="text-base font-medium text-teal-600">
+                <p className="text-base font-bold text-slate-900">
                   Hormone Therapy or Testosterone Injections
                 </p>
               </li>
-              <li className="flex gap-4 text-left">
+              <li className="flex w-full max-w-sm gap-4 text-left md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.75rem)]">
                 <SolutionIconCircle>
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.75" viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="9" />
@@ -225,7 +217,7 @@ export function MaleSexualDysfunctionPageContent() {
                     <path d="M12 3v2M12 19v2M3 12h2M19 12h2" />
                   </svg>
                 </SolutionIconCircle>
-                <p className="text-base font-medium text-teal-600">CaverStem/Stem Cell Therapy</p>
+                <p className="text-base font-bold text-slate-900">CaverStem policy</p>
               </li>
             </ul>
           </div>
@@ -242,11 +234,6 @@ export function MaleSexualDysfunctionPageContent() {
               urinary incontinence, penile pain, and prostate cancer, urologists know men. Further, they are trained to
               have a deep understanding of erectile dysfunction and can speak to you in depth about your specific
               condition.
-            </p>
-            <p className="mt-6 text-base leading-relaxed text-slate-800 md:text-lg">
-              We make it easy to schedule appointments for ED and other private conditions online, as many patients
-              feel more comfortable writing out their concerns versus speaking them over the phone. Our patient intake
-              paperwork is fed through a secure HIPAA-compliant portal, so your data stays protected at all times.
             </p>
 
             <h2 className="mt-14 text-2xl font-bold tracking-tight text-slate-800 md:text-3xl md:mt-20">

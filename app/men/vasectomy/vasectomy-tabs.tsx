@@ -64,11 +64,12 @@ const TABS: TabConfig[] = [
           <li>Open ended vasectomy (ask)</li>
         </ul>
         <p className="mt-4">
-          To begin, we numb the area with lidocaine. We have our no-needle
-          technique. In this situation, we use what&apos;s called a MadaJet to
-          actually spray in a local anesthetic without needles. We use a very
-          tiny needle to minimize discomfort. In addition, for those wanting the
-          least painful route Nitrous gas is avaliable.
+          To begin, we numb the area with lidocaine. We have a no needle
+          technique, and in this situation we could use whats called a MadaJet
+          to actually spray in a local anesthetic without needles.
+          Alternatively we use a very tiny needle to minimize discomfort. In
+          addition, for those wanting the least painful route Nitrous gas is
+          avaliable.
         </p>
       </>
     ),
