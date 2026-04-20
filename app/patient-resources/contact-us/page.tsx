@@ -5,10 +5,15 @@ import {
   CLINIC_PHONE,
   clinicPhoneTelHref,
 } from "@/app/lib/clinic-info";
-import { HERO_IMAGE_SECTION, HERO_TITLE_ON_IMAGE } from "@/app/lib/hero";
+import {
+  HERO_AFTER_SLIDE_BASE,
+  HERO_IMAGE_SECTION,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 const EMAIL = "messages@theupi.com";
 const RESEARCH_EMAIL = "research@theupi.com";
 const BILLING_EMAIL = "billing@theupi.com";
+const NEW_PATIENT_REFERRAL_FAX = "(210) 761-8851";
 
 const DEPARTMENT_EMAIL_CONTACTS = [
   {
@@ -34,6 +39,8 @@ const ADDRESS_LINES = [
 
 const MAP_EMBED_URL =
   "https://maps.google.com/maps?q=9618+Huebner+Road+Suite+120+San+Antonio+TX+78240&t=&z=15&ie=UTF8&iwloc=&output=embed";
+const MAPS_DIRECTIONS_URL =
+  "https://www.google.com/maps/search/?api=1&query=9618+Huebner+Road+Suite+120+San+Antonio+TX+78240";
 
 export default function ContactUsPage() {
   return (
@@ -57,9 +64,24 @@ export default function ContactUsPage() {
       </section>
 
       {/* Sliding page */}
-      <section className="rounded-t-3xl border-t border-slate-200 bg-white">
+      <section className={`${HERO_AFTER_SLIDE_BASE} bg-white`}>
+        {/* Contact form */}
+        <section className="bg-slate-50/50">
+          <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+            <ContactFormTemplate
+              variant="embedded"
+              pageName="Patient Resources"
+              headingOverride="Contact Us"
+              serviceName="General Inquiry"
+              category="Patient Resources"
+              sourcePath="/patient-resources/contact-us"
+              idPrefix="contact-us"
+            />
+          </div>
+        </section>
+
         {/* How to reach us — centered */}
-        <section className="bg-white">
+        <section className="border-t border-slate-200 bg-white">
           <div className="mx-auto max-w-6xl px-6 py-16 text-center md:py-20">
             <h2 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
               How to reach us
@@ -128,22 +150,37 @@ export default function ContactUsPage() {
             <div className="mx-auto mt-8 max-w-lg rounded-2xl bg-white p-6 text-center shadow-sm ring-1 ring-slate-200 md:p-8">
               <div className="text-slate-700">
                 <p className="text-sm font-semibold text-slate-900">Address</p>
-                <p className="mt-2 text-sm">
+                <a
+                  href={MAPS_DIRECTIONS_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-2 inline-block text-sm text-blue-700 underline decoration-blue-300 underline-offset-4 transition hover:text-blue-800"
+                >
                   {ADDRESS_LINES[0]}
                   <br />
                   {ADDRESS_LINES[1]}
-                </p>
+                </a>
               </div>
               <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 sm:text-center">
                 <div className="rounded-xl bg-slate-50/80 p-4 ring-1 ring-slate-200">
                   <p className="text-sm font-semibold text-slate-900">Phone</p>
-                  <p className="mt-1 text-sm text-slate-700">{CLINIC_PHONE}</p>
+                  <a
+                    href={clinicPhoneTelHref()}
+                    className="mt-1 inline-block text-sm text-blue-700 underline decoration-blue-300 underline-offset-4 transition hover:text-blue-800"
+                  >
+                    {CLINIC_PHONE}
+                  </a>
                 </div>
                 <div className="rounded-xl bg-slate-50/80 p-4 ring-1 ring-slate-200">
                   <p className="text-sm font-semibold text-slate-900">
                     New Patient Referral Fax
                   </p>
-                  <p className="mt-1 text-sm text-slate-700">(210) 761-8851</p>
+                  <a
+                    href="tel:2107618851"
+                    className="mt-1 inline-block text-sm text-blue-700 underline decoration-blue-300 underline-offset-4 transition hover:text-blue-800"
+                  >
+                    {NEW_PATIENT_REFERRAL_FAX}
+                  </a>
                 </div>
                 <div className="rounded-xl bg-slate-50/80 p-4 ring-1 ring-slate-200 sm:col-span-2 lg:col-span-1">
                   <p className="text-sm font-semibold text-slate-900">
@@ -215,20 +252,6 @@ export default function ContactUsPage() {
           </div>
         </section>
 
-        {/* Contact form */}
-        <section className="border-t border-slate-200 bg-slate-50/50">
-          <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-            <ContactFormTemplate
-              variant="embedded"
-              pageName="Patient Resources"
-              headingOverride="Contact Us"
-              serviceName="General Inquiry"
-              category="Patient Resources"
-              sourcePath="/patient-resources/contact-us"
-              idPrefix="contact-us"
-            />
-          </div>
-        </section>
       </section>
     </main>
   );
