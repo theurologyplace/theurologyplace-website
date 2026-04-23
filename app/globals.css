@@ -35,7 +35,7 @@ html {
   }
 }
 
-/* Prostate Biopsy — MRI section: slow crossfade between two UroNav images (no separate component file). */
+/* Prostate Biopsy — MRI section: slow crossfade between two Navigo images (no separate component file). */
 @keyframes prostate-biopsy-mri-fade-a {
   0%,
   40% {

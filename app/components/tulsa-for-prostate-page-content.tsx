@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import { TulsaForProstateFaqAccordion } from "@/app/components/tulsa-for-prostate-faq-accordion";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import {
@@ -131,19 +130,10 @@ export function TulsaForProstatePageContent() {
           </div>
         </section>
 
-        {/* CTA + What is TULSA + Why Choose */}
+        {/* What is TULSA + Why Choose */}
         <section className={`relative border-t border-slate-200/80 ${PANEL_BLUE}`}>
           <div className="mx-auto max-w-6xl px-6 py-14 md:py-20">
-            <div className="flex justify-center">
-              <span
-                className={`${BTN_PRIMARY_LARGE} inline-block cursor-default select-none`}
-                aria-hidden
-              >
-                Ready to make an appointment?
-              </span>
-            </div>
-
-            <div className="mt-16 grid items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
+            <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-slate-200/80">
                 <Image
                   src={TULSA_DIAGRAM}

@@ -8,8 +8,7 @@ const FAQ_ITEMS = [
     question: "Is this an inpatient or outpatient procedure?",
     answer: (
       <p>
-        Following the TULSA Procedure, you are usually discharged from the hospital the same day or
-        the next day, depending on Dr. Kella&apos;s assessment.
+        Following the TULSA Procedure, you are discharged from the hospital the same day.
       </p>
     ),
   },
@@ -29,21 +28,18 @@ const FAQ_ITEMS = [
     question: "How does the TULSA Procedure compare to HIFU?",
     answer: (
       <p>
-        The TULSA Procedure uses Directional High-Intensity Ultrasound delivered through the urethra.
+        The TULSA Procedure uses Directional Ultrasound delivered through the urethra.
         This means the energy is delivered directly through the urethra (which is being cooled
         throughout the procedure) to the edge of the prostate. The energy does not come through the
         rectum, leaving the rectum preserved. In addition, TULSA has rectal cooling throughout the
-        procedure to further protect the rectum from any unintended heat. HIFU uses High-Intensity
-        Focused Ultrasound. This means the energy must pass through other tissue to reach the
-        intended location. The energy is directed through the rectum, meaning the rectal wall is
-        exposed to direct heat.
+        procedure to further protect the rectum from any unintended heat.
       </p>
     ),
   },
   {
     id: "risks",
     question:
-      "What are the risks, especially to sexual function? What are the chances of ED or retrograde ejaculation?",
+      "What are the risks, especially to sexual function? What are the chances of Erectile Dysfunction or retrograde ejaculation?",
     answer: (
       <p>
         As with many procedures, there are side effects associated with the TULSA Procedure. The most
@@ -71,8 +67,8 @@ const FAQ_ITEMS = [
     answer: (
       <p>
         The TULSA Procedure is done under general anesthesia to keep your body as still as possible
-        within the MRI machine during the procedure. Patients have minimal discomfort, if any.
-        However, this is manageable using over-the-counter pain medication.
+        within the MRI machine during the procedure. Patients may have minimal discomfort, which are manageable with 
+        over the counter medications.
       </p>
     ),
   },

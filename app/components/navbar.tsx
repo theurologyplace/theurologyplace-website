@@ -9,12 +9,15 @@ import { THORNE_DISPENSARY_URL } from "@/app/lib/external-links";
 type NavItem = {
   label: string;
   href?: string;
+  badgeLabel?: string;
   children?: {
     label: string;
     href: string;
+    badgeLabel?: string;
     children?: {
       label: string;
       href: string;
+      badgeLabel?: string;
     }[];
   }[];
 };
@@ -23,6 +26,23 @@ const CONTACT_HREF = "/patient-resources/contact-us";
 
 function isExternalNavHref(href: string): boolean {
   return /^https?:\/\//i.test(href);
+}
+
+function NavBadge({ label }: { label: string }) {
+  return (
+    <span className="inline-flex items-center rounded-full border border-cyan-200/80 bg-cyan-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-700 shadow-sm">
+      {label}
+    </span>
+  );
+}
+
+function renderNavLabel(label: string, badgeLabel?: string) {
+  return (
+    <span className="inline-flex items-center gap-2">
+      <span>{label}</span>
+      {badgeLabel ? <NavBadge label={badgeLabel} /> : null}
+    </span>
+  );
 }
 
 const NAV_ITEMS: NavItem[] = [
@@ -45,6 +65,7 @@ const NAV_ITEMS: NavItem[] = [
           {
             label: "Vanquish (Water Vapor Ablation)",
             href: "/men/prostate-cancer/vanquish",
+            badgeLabel: "New",
           },
         ],
       },
@@ -59,6 +80,7 @@ const NAV_ITEMS: NavItem[] = [
           {
             label: "Prostatic Artery Embolization (PAE)",
             href: "/men/enlarged-prostate/prostatic-artery-embolization",
+            badgeLabel: "New",
           },
         ],
       },
@@ -72,7 +94,11 @@ const NAV_ITEMS: NavItem[] = [
         children: [
           { label: "Peyronie's Disease", href: "/men/male-sexual-dysfunction/peyronies" },
           { label: "GAINSWave", href: "/men/male-sexual-dysfunction/gainswave" },
-          { label: "Varicocele", href: "/men/male-sexual-dysfunction/varicocele" },
+          {
+            label: "Varicocele",
+            href: "/men/male-sexual-dysfunction/varicocele",
+            badgeLabel: "New",
+          },
         ],
       },
       { label: "Urinary Incontinence", href: "/men/urinary-incontinence" },
@@ -243,11 +269,11 @@ export function Navbar() {
                                 rel="noopener noreferrer"
                                 className="min-w-0 flex-1"
                               >
-                                {child.label}
+                                {renderNavLabel(child.label, child.badgeLabel)}
                               </a>
                             ) : (
                               <Link href={child.href} className="min-w-0 flex-1">
-                                {child.label}
+                                {renderNavLabel(child.label, child.badgeLabel)}
                               </Link>
                             )}
                             {hasFlyout ? (
@@ -284,7 +310,7 @@ export function Navbar() {
                               href={grand.href}
                               className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900"
                             >
-                              {grand.label}
+                              {renderNavLabel(grand.label, grand.badgeLabel)}
                             </Link>
                           ))}
                         </div>
@@ -427,7 +453,7 @@ export function Navbar() {
                                     onClick={() => setMobileOpen(false)}
                                     className="block py-1.5 text-sm text-slate-700"
                                   >
-                                    {child.label}
+                                    {renderNavLabel(child.label, child.badgeLabel)}
                                   </a>
                                 ) : (
                                   <Link
@@ -439,7 +465,7 @@ export function Navbar() {
                                         : "text-slate-700"
                                     }`}
                                   >
-                                    {child.label}
+                                    {renderNavLabel(child.label, child.badgeLabel)}
                                   </Link>
                                 )}
                               </li>
@@ -454,7 +480,7 @@ export function Navbar() {
                                 className="flex w-full items-center justify-between gap-2 py-1.5 text-left text-sm font-medium text-slate-800 hover:text-slate-900"
                                 aria-expanded={isSubOpen}
                               >
-                                <span>{child.label}</span>
+                                {renderNavLabel(child.label, child.badgeLabel)}
                                 <span className="text-slate-500" aria-hidden>
                                   {isSubOpen ? "−" : "+"}
                                 </span>
@@ -468,7 +494,7 @@ export function Navbar() {
                                         onClick={() => setMobileOpen(false)}
                                         className="block py-1 text-sm text-slate-700 hover:text-slate-900"
                                       >
-                                        {grand.label}
+                                        {renderNavLabel(grand.label, grand.badgeLabel)}
                                       </Link>
                                     </li>
                                   ))}

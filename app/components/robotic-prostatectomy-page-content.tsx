@@ -16,14 +16,30 @@ import {
 /** Encoded public URL so + in filename is not treated as space */
 const IMG_BASE = "/images/robotic%20prostatectomy";
 const KELLA_OR_IMAGE = `${IMG_BASE}/kella%2Bdirecting%2Bbaptist%2BOR-1920w.png`;
+const ROBOTIC_SURGERY_THUMBNAIL = `${IMG_BASE}/roboticsurgerythumbnail.png`;
+const ROBOTIC_SURGERY_VIDEO_URL = "http://www.youtube.com/watch?v=ZchNF25kALw";
 
-function VideoCard({ videoId, title, caption }: { videoId: string; title: string; caption: string }) {
+function VideoCard({
+  videoId,
+  title,
+  caption,
+  thumbnailSrc,
+  thumbnailHref,
+}: {
+  videoId: string;
+  title: string;
+  caption: string;
+  thumbnailSrc?: string;
+  thumbnailHref?: string;
+}) {
   return (
     <div className="flex flex-col overflow-hidden rounded-xl p-1">
       <YouTubeEmbed
         videoId={videoId}
         title={title}
         className="overflow-hidden rounded-lg shadow-sm ring-1 ring-slate-200/80"
+        posterImageSrc={thumbnailSrc}
+        posterLinkHref={thumbnailHref}
       />
       <p className="mt-4 text-center text-sm font-bold leading-snug text-slate-900 md:text-base">
         {caption}
@@ -47,7 +63,7 @@ const FEATURES = [
   },
   {
     title: "Respected.",
-    body: 'Video "how-to" step-by-step on YouTube with over 220,000 views',
+    body: 'Video "how-to" step-by-step on YouTube with 300,000 views',
   },
 ] as const;
 
@@ -185,7 +201,9 @@ export function RoboticProstatectomyPageContent() {
               <VideoCard
                 videoId="ZchNF25kALw"
                 title="Full robotic prostatectomy case step by step"
-                caption="Full Robotic Surgery, over 220,000 views"
+                caption="Full Robotic Surgery, 300,000 views"
+                thumbnailSrc={ROBOTIC_SURGERY_THUMBNAIL}
+                thumbnailHref={ROBOTIC_SURGERY_VIDEO_URL}
               />
               <VideoCard
                 videoId="jPerxA1TR54"

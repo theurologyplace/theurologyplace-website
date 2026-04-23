@@ -1,5 +1,70 @@
 import { HERO_IMAGE_SECTION, HERO_TITLE_ON_IMAGE } from "@/app/lib/hero";
 
+const IN_NETWORK_ITEMS = [
+  { label: "AETNA PPO" },
+  { label: "AETNA HMO (REFERRAL NEEDED)" },
+  { label: "ALLSAVERS" },
+  { label: "APWU" },
+  { label: "AARP SUPPLEMENT(S)" },
+  { label: "BCBS PPO" },
+  {
+    label: "BAYLOR SCOTT",
+    boldNotes: ["PPO AND HMO ONLY", "NO MEDICARE ADVANTAGE PLANS"],
+  },
+  { label: "CIGNA PPO" },
+  { label: "CIGNA HMO (REFERRAL NEEDED)" },
+  { label: "CURATIVE" },
+  { label: "COMMUNITY CARE (VA- REFERRAL NEEDED)" },
+  { label: "GEHA" },
+  { label: "HUMANA PPO" },
+  {
+    label: "HUMANA HMO (REFERRAL NEEDED)",
+    boldNotes: ["ONLY GOLD +"],
+  },
+  { label: "UNIVERSITY OF INCARNATE WORLD" },
+  { label: "MEDICARE PART B" },
+  { label: "MEDISHARE" },
+  { label: "MULTIPLAN" },
+  { label: "MUTUAL OF OMAHA SUPPLEMENT(S)" },
+  { label: "OSCAR PPO" },
+  { label: "OSCAR HMO (REFERRAL NEEDED)" },
+  { label: "PROSPECT MEDICAL MEMBERS" },
+  { label: "SCAN" },
+  { label: "TRICARE PRIME (REFERRAL NEEDED)" },
+  { label: "TRICARE SELECT" },
+  { label: "TRICARE FOR LIFE" },
+  { label: "PHCS" },
+  { label: "UMR" },
+  { label: "UHC PPO" },
+  {
+    label: "UHC HMO (REFERRAL NEEDED)",
+    boldNotes: ["NO MARKET PLACE PLANS"],
+  },
+  { label: "WEBTPA" },
+  { label: "WELLPOINT" },
+  { label: "90 DEGREE" },
+] as const;
+
+const OUT_OF_NETWORK_ITEMS = [
+  "AETNA BETTER HEALTH",
+  "AMBETTER",
+  "AETNA WHOLE HEALTH",
+  "AETNA CVS EXCHANGE PLANS",
+  "AMERIGROUP",
+  "BCBS HMO/ HME/ HNP/ TRS",
+  "BCBS BLUE HEALTH",
+  "COMMUNITY FIRST HEALTH PLANS",
+  "CHRISTUS HEALTH PLAN",
+  "HUMANA GOLD",
+  "MEDICAID",
+  "MOLINA",
+  "SUPERIOR HEALTH",
+  "UHC TEXAS EXCHANGE",
+  "UHC DUAL COMPLETE",
+  "UHC MARKETPLACE PLANS",
+  "WELLCARE",
+] as const;
+
 export default function InsurancePage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
@@ -26,39 +91,41 @@ export default function InsurancePage() {
       <section className="rounded-t-3xl border-t border-slate-200 bg-white">
         <section className="bg-white">
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-            <h2 className="text-center text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
-              INSURANCE WE ACCEPT
-            </h2>
-            <p className="mt-6 text-center text-slate-700">
-              The Urology Place accepts most insurance plans (non HMO)
-            </p>
+            <div className="mx-auto grid max-w-7xl items-start justify-center gap-8 lg:grid-cols-2">
+              <section className="w-full rounded-2xl bg-slate-50/70 p-6 ring-1 ring-slate-200 md:p-8">
+                <h3 className="text-center text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                  INSURANCE WE ACCEPT
+                </h3>
+                <p className="mt-3 text-center text-sm font-medium tracking-wide text-slate-600">
+                  IN NETWORK
+                </p>
+                <ul className="mt-8 space-y-1.5 text-slate-700">
+                  {IN_NETWORK_ITEMS.map((item) => (
+                    <li key={item.label}>
+                      -{item.label}
+                      {item.boldNotes?.map((note) => (
+                        <span key={note} className="ml-1 font-bold italic text-slate-900">
+                          {note}
+                        </span>
+                      )) ?? null}
+                    </li>
+                  ))}
+                </ul>
+              </section>
 
-            <div className="mx-auto mt-10 max-w-4xl rounded-2xl bg-slate-50/70 p-6 ring-1 ring-slate-200 md:p-8">
-              <ul className="grid grid-cols-1 gap-x-10 gap-y-2 text-slate-700 sm:grid-cols-2">
-                <li>Aetna</li>
-                <li>Blue Cross Blue Shield (no HMO)</li>
-                <li>Champ VA</li>
-                <li>Cigna (includes Healthspring &amp; Bravo)</li>
-                <li>Health Texas</li>
-                <li>Humana (except for Humana Gold)</li>
-                <li>Health Payors Organization</li>
-                <li>HealthSmart Preferred Care</li>
-                <li>Independent Medical Systems</li>
-                <li>Medicare</li>
-                <li>Medicare (Railroad)</li>
-                <li>Multiplan &amp; Private Healthcare Systems (PHCS)</li>
-                <li>Oscar Insurance Health Plan</li>
-                <li>PHCS Savility PPO</li>
-                <li>Three Rivers Provider Network</li>
-                <li>Tricare</li>
-                <li>
-                  United Healthcare (includes AARP Medicare, Care Improvement
-                  Plus, &amp; UMR)
-                </li>
-                <li>USA Managed Care Organization</li>
-                <li>WellMed</li>
-                <li>Multiplan</li>
-              </ul>
+              <section className="w-full rounded-2xl bg-slate-50/70 p-6 ring-1 ring-slate-200 md:p-8">
+                <h3 className="text-center text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                  INSURANCE WE DON&apos;T ACCEPT
+                </h3>
+                <p className="mt-3 text-center text-sm font-medium tracking-wide text-slate-600">
+                  OUT OF NETWORK
+                </p>
+                <ul className="mt-8 space-y-1.5 text-slate-700">
+                  {OUT_OF_NETWORK_ITEMS.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </section>
             </div>
 
             <div className="mx-auto mt-12 max-w-4xl text-slate-700 leading-relaxed">

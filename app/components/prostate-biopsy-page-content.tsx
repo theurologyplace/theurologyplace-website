@@ -41,7 +41,7 @@ export function ProstateBiopsyPageContent() {
           <div className="relative z-10 mx-auto max-w-4xl text-center">
             <h1 className={HERO_TITLE_ON_IMAGE}>Transperineal Prostate Biopsy</h1>
             <p className={`mt-4 ${HERO_SUBTITLE_ON_IMAGE}`}>
-              More precise, less invasive prostate biopsy with UroNav fusion technology at The Urology
+              More precise, less invasive prostate biopsy with Navigo fusion technology at The Urology
               Place in San Antonio.
             </p>
             <div className="mt-8">
@@ -58,7 +58,7 @@ export function ProstateBiopsyPageContent() {
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-200 shadow-md ring-1 ring-slate-200/80">
                 <Image
                   src={IMG("UroNav-Team-640w-1920w.jpg")}
-                  alt="The Urology Place team with the UroNav fusion biopsy system"
+                  alt="The Urology Place team with the Navigo fusion biopsy system"
                   fill
                   className="object-cover object-center"
                   sizes="(min-width: 768px) 50vw, 100vw"
@@ -70,7 +70,7 @@ export function ProstateBiopsyPageContent() {
                   More Precise. Less Invasive Prostate Biopsy
                 </h2>
                 <p className="mt-5 text-[15px] leading-relaxed text-slate-700 md:text-base">
-                  With UroNav, we perform targeted fusion biopsy: MRI images are fused with live
+                  With Navigo, we perform targeted fusion biopsy: MRI images are fused with live
                   ultrasound so suspicious areas can be sampled accurately. We also offer
                   transperineal biopsy—an approach that reduces infection risk compared with the
                   traditional transrectal route. Many procedures are done comfortably in our office.
@@ -89,14 +89,14 @@ export function ProstateBiopsyPageContent() {
             <div className="mt-10 grid gap-8 md:grid-cols-3 md:gap-6">
               <p className="text-sm font-bold leading-relaxed text-slate-800 md:text-[15px]">
                 • We were the first to start fusion biopsy in San Antonio. We are the only practice
-                performing transperineal prostate biopsy in South Texas.
+                performing transperineal prostate biopsy in office in South Texas.
               </p>
               <p className="text-sm font-bold leading-relaxed text-slate-800 md:text-[15px]">
                 • We do biopsies comfortably in the office, avoiding the unnecessary increase in costs
                 that come with routinely doing biopsies in the surgery center or hospital.
               </p>
               <p className="text-sm font-bold leading-relaxed text-slate-800 md:text-[15px]">
-                • Mike Nevarez is a urology ultrasound technician with over 20 years of experience in
+                • Our ultrasound technician has over 20 years experience in
                 prostate ultrasound and biopsies. He has completed thousands of prostate ultrasounds.
               </p>
             </div>
@@ -118,17 +118,21 @@ export function ProstateBiopsyPageContent() {
               </div>
               <div className="space-y-5 text-[15px] leading-relaxed text-slate-700 md:text-base">
                 <p>
-                  Current methods of prostate cancer screening, such as prostate-specific antigen
-                  (PSA) tests and digital rectal exams (DRE), can lead to a recommendation for a
-                  prostate biopsy. Urologists rely on ultrasound during the biopsy to visualize the
-                  prostate—good enough for systematic biopsies. In most cases, however, ultrasound
-                  cannot reliably distinguish cancer inside the prostate, so cancer can sometimes be
-                  missed during systematic sampling alone.
+                Current methods of prostate cancer screening, such as prostate-specific antigen (PSA) 
+                tests and digital rectal exams (DRE), often lead to a recommendation for a prostate biopsy. 
+                Traditionally, urologists rely on ultrasound to visualize the prostate—a method sufficient 
+                for systematic biopsies but limited in its ability to distinguish cancerous tissue from 
+                healthy anatomy. Because ultrasound often fails to reveal specific lesions, cancer can 
+                sometimes be missed during systematic sampling alone.
                 </p>
                 <p>
-                  Prostate biopsy is the gold standard for tissue diagnosis; treatment is not offered
-                  without pathology showing prostate cancer. Fusion biopsy with MRI helps target
-                  suspicious areas so sampling is more accurate than systematic biopsy alone.
+                To overcome these limitations, our practice utilizes high-resolution 3T MRI interpreted by
+                experienced readers to identify specific areas of concern. This powerful imaging allows us 
+                to pinpoint suspicious lesions that standard scans might overlook. By performing a fusion 
+                biopsy, we merge these detailed MRI maps with real-time ultrasound, ensuring that sampling 
+                is targeted and significantly more effective than systematic biopsy alone. Ultimately, 
+                since biopsy remains the gold standard for tissue diagnosis, this precision is vital for 
+                confirming pathology before treatment begins.
                 </p>
               </div>
             </div>
@@ -178,7 +182,7 @@ export function ProstateBiopsyPageContent() {
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-900 shadow-md ring-1 ring-slate-200/80">
                 <Image
                   src={IMG("Current-Prior-Cores-with-3-1920w.jpg")}
-                  alt="UroNav software showing current and prior biopsy cores mapped on prostate imaging"
+                  alt="Navigo software showing current and prior biopsy cores mapped on prostate imaging"
                   fill
                   className="object-contain object-center"
                   sizes="(min-width: 768px) 45vw, 100vw"
@@ -189,14 +193,14 @@ export function ProstateBiopsyPageContent() {
                   Fusion Biopsy at The Urology Place
                 </h2>
                 <p className="mt-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
-                  With UroNav, we perform your prostate biopsy with MRI images fused to ultrasound.
+                  With Navigo, we perform your prostate biopsy with MRI images fused to ultrasound.
                   The software identifies lesion areas that can be targeted. We still perform the
                   procedure in the office. Advantages include:
                 </p>
                 <ul className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
                   <li>
                     <span className="font-semibold text-slate-900">Less anxiety after a negative biopsy.</span>{" "}
-                    If your biopsy is negative with UroNav-targeted sampling, we can be more confident
+                    If your biopsy is negative with Navigo-targeted sampling, we can be more confident
                     that worrisome tumor was not missed.
                   </li>
                   <li>
@@ -228,7 +232,7 @@ export function ProstateBiopsyPageContent() {
               <div
                 className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-slate-950 shadow-md ring-1 ring-slate-200/80"
                 role="img"
-                aria-label="UroNav fusion biopsy software and mobile workstation"
+                aria-label="Navigo fusion biopsy software and mobile workstation"
               >
                 <Image
                   src={IMG("UroNav_Screenshot_Rev02-1920w.jpg")}
@@ -257,7 +261,7 @@ export function ProstateBiopsyPageContent() {
               <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-slate-950 shadow-md ring-1 ring-slate-200/80">
                 <Image
                   src={IMG("US_Only_Biopsy_Screen-1920w.jpg")}
-                  alt="UroNav ultrasound-guided biopsy targeting interface"
+                  alt="Navigo ultrasound-guided biopsy targeting interface"
                   fill
                   className="object-contain object-center"
                   sizes="(min-width: 768px) 45vw, 100vw"
@@ -270,7 +274,7 @@ export function ProstateBiopsyPageContent() {
                   often more than this procedure requires. We offer medication, a numbing prostate
                   block, and optional nitrous oxide (laughing gas) to make the experience as
                   comfortable as possible—often without an IV or hospital facility fees. The Urology
-                  Place has partnered with Aurora Cancer Center to offer UroNav Smart Biopsy.
+                  Place has partnered with Aurora Cancer Center to offer Navigo Smart Biopsy.
                   Insurances may cover a portion; depending on coverage, we can discuss self-pay
                   options for MRI and Smart Biopsy at an affordable price point.
                 </p>
