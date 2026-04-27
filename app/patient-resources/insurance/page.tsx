@@ -1,6 +1,11 @@
 import { HERO_IMAGE_SECTION, HERO_TITLE_ON_IMAGE } from "@/app/lib/hero";
 
-const IN_NETWORK_ITEMS = [
+type InNetworkItem = {
+  label: string;
+  boldNotes?: readonly string[];
+};
+
+const IN_NETWORK_ITEMS: readonly InNetworkItem[] = [
   { label: "AETNA PPO" },
   { label: "AETNA HMO (REFERRAL NEEDED)" },
   { label: "ALLSAVERS" },
@@ -43,7 +48,7 @@ const IN_NETWORK_ITEMS = [
   { label: "WEBTPA" },
   { label: "WELLPOINT" },
   { label: "90 DEGREE" },
-] as const;
+];
 
 const OUT_OF_NETWORK_ITEMS = [
   "AETNA BETTER HEALTH",
