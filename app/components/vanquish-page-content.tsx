@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import {
@@ -8,15 +9,20 @@ import {
 } from "@/app/lib/hero";
 
 const HERO_BG = encodeURI("/images/vanquish/1765481756241.jpg");
+const VANQUISH_SYSTEM_IMAGE = encodeURI("/images/vanquish/Vanquish-System.jpg");
+const VANQUISH_TEAM_IMAGE = encodeURI("/images/vanquish/Final-1200x901.jpg");
 
 const PHONE_DISPLAY = "210-617-3670";
 const PHONE_TEL = "2106173670";
 const EMAIL_SCHEDULING = "messages@theupi.com";
 
 const SECTION_INNER = "mx-auto max-w-3xl px-6 py-14 md:py-16";
+const SECTION_WIDE_INNER = "mx-auto max-w-6xl px-6 py-14 md:py-16";
 const H2 = "text-2xl font-bold tracking-tight text-slate-900 md:text-3xl";
 const PROSE = "mt-5 space-y-4 text-[15px] leading-relaxed text-slate-800 md:text-base";
 const LIST = "mt-5 space-y-3 text-[15px] leading-relaxed text-slate-800 md:text-base";
+const ROUND_IMG =
+  "relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100 shadow-md ring-1 ring-slate-200/80";
 
 function BulletList({ items }: { items: readonly string[] }) {
   return (
@@ -85,7 +91,7 @@ export function VanquishPageContent() {
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200/80 bg-slate-50/80">
+        <section className="relative border-t border-slate-200/80 bg-slate-50">
           <div className={SECTION_INNER}>
             <h2 className={H2}>What is Vanquish Water Vapor Therapy?</h2>
             <div className={PROSE}>
@@ -130,17 +136,37 @@ export function VanquishPageContent() {
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200/80 bg-slate-50/80">
-          <div className={SECTION_INNER}>
-            <h2 className={H2}>How the Procedure Works</h2>
-            <div className={PROSE}>
-              <p>
-                Vanquish Water Vapor Therapy is performed using a specialized delivery system that targets
-                prostate tissue with precision. Water vapor is introduced into the prostate, where it
-                releases energy that ablates excess tissue. Over time, the body naturally clears the treated
-                tissue, improving urinary flow and symptoms. The procedure is minimally invasive and typically
-                performed in an outpatient setting.
-              </p>
+        <section className="relative border-t border-slate-200/80 bg-slate-50">
+          <div className={SECTION_WIDE_INNER}>
+            <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
+              <div>
+                <h2 className={H2}>How the Procedure Works</h2>
+                <div className={PROSE}>
+                  <p>
+                    Vanquish Water Vapor Therapy is performed using a specialized delivery system that
+                    targets prostate tissue with precision. Water vapor is introduced into the prostate,
+                    where it releases energy that ablates excess tissue.
+                  </p>
+                  <p>
+                    Over time, the body naturally clears the treated tissue, improving urinary flow and
+                    symptoms. The procedure is minimally invasive and typically performed in an outpatient
+                    setting.
+                  </p>
+                  <p>
+                    The image shown highlights the equipment used during the procedure, helping patients
+                    better understand the advanced technology behind this treatment.
+                  </p>
+                </div>
+              </div>
+              <div className={ROUND_IMG}>
+                <Image
+                  src={VANQUISH_SYSTEM_IMAGE}
+                  alt="Vanquish water vapor therapy system and procedure equipment"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 42vw, 100vw"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -165,7 +191,7 @@ export function VanquishPageContent() {
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200/80 bg-slate-50/80">
+        <section className="relative border-t border-slate-200/80 bg-slate-50">
           <div className={SECTION_INNER}>
             <h2 className={H2}>Benefits of Vanquish Therapy</h2>
             <BulletList
@@ -181,24 +207,41 @@ export function VanquishPageContent() {
         </section>
 
         <section className="relative border-t border-slate-200/80 bg-white">
-          <div className={SECTION_INNER}>
-            <h2 className={H2}>Why The Urology Place?</h2>
-            <BulletList
-              items={[
-                "First site to treat a patient in the VAPOR-2 pivotal clinical trial",
-                "Early adopters of advanced prostate therapies",
-                "Experienced urology team",
-                "Commitment to innovative, patient-centered care",
-              ]}
-            />
-            <p className={`mt-6 text-[15px] leading-relaxed text-slate-800 md:text-base`}>
-              We are dedicated to offering the latest treatment options backed by clinical research and
-              real-world experience.
-            </p>
+          <div className={SECTION_WIDE_INNER}>
+            <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
+              <div>
+                <h2 className={H2}>Why The Urology Place?</h2>
+                <BulletList
+                  items={[
+                    "First site to treat a patient in the VAPOR-2 pivotal clinical trial",
+                    "Early adopters of advanced prostate therapies",
+                    "Experienced urology team",
+                    "Commitment to innovative, patient-centered care",
+                  ]}
+                />
+                <p className={`mt-6 text-[15px] leading-relaxed text-slate-800 md:text-base`}>
+                  We are dedicated to offering the latest treatment options backed by clinical research and
+                  real-world experience.
+                </p>
+                <p className={`mt-4 text-[15px] leading-relaxed text-slate-800 md:text-base`}>
+                  This photo highlights the first team to perform the procedure in the United States and
+                  reflects our commitment to bringing advanced innovation to patients early.
+                </p>
+              </div>
+              <div className={ROUND_IMG}>
+                <Image
+                  src={VANQUISH_TEAM_IMAGE}
+                  alt="The first team to perform the Vanquish procedure in the United States"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 42vw, 100vw"
+                />
+              </div>
+            </div>
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200/80 bg-slate-50/80">
+        <section className="relative border-t border-slate-200/80 bg-slate-50">
           <div className={SECTION_INNER}>
             <h2 className={H2}>Insurance and Coverage</h2>
             <div className={PROSE}>

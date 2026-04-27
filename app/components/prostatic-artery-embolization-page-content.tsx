@@ -10,8 +10,9 @@ import {
 
 const HERO_BG = encodeURI("/images/pae/What-is-Prostate-Artery-Embolization-PAE.webp");
 const IMG_LIFESTYLE = encodeURI("/images/enlarged prostate/photo-1491484925566-336b202157a5-2880w.jpg");
+const IMG_PROCEDURE = encodeURI("/images/pae/PAE.jpeg");
 
-const PANEL = "bg-[#e8edf5]";
+const PANEL = "bg-slate-50";
 const CONTENT_CARD =
   "rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm ring-1 ring-slate-200/60 md:p-8";
 const ROUND_IMG =
@@ -79,7 +80,7 @@ export function ProstaticArteryEmbolizationPageContent() {
           </div>
         </section>
 
-        <section className={`${HERO_AFTER_SLIDE_BASE} ${PANEL}`}>
+        <section className={`${HERO_AFTER_SLIDE_BASE} bg-white`}>
           <div className="mx-auto max-w-3xl px-6 py-14 md:py-16">
             <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
               Advanced, Minimally Invasive Treatment for Enlarged Prostate
@@ -182,16 +183,39 @@ export function ProstaticArteryEmbolizationPageContent() {
         </section>
 
         <section className={`relative border-t border-slate-200/80 ${PANEL}`}>
-          <div className="mx-auto max-w-3xl px-6 py-14 md:py-16">
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-              How the Procedure Works
-            </h2>
-            <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
-              A small catheter is inserted through the wrist or groin and guided to the prostate arteries
-              using advanced imaging. Tiny particles are then injected to reduce blood flow, allowing the
-              prostate to gradually shrink. The procedure typically takes 1 to 2 hours, is performed in an
-              outpatient setting, and uses local anesthesia with light sedation.
-            </p>
+          <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
+            <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
+              <div className={CONTENT_CARD}>
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                  How the Procedure Works
+                </h2>
+                <div className="mt-5 space-y-4 text-[15px] leading-relaxed text-slate-800 md:text-base">
+                  <p>
+                    A small catheter is inserted through the wrist or groin and guided to the prostate
+                    arteries using advanced imaging.
+                  </p>
+                  <p>
+                    Tiny particles are then injected to reduce blood flow, allowing the prostate to
+                    gradually shrink. The procedure typically takes 1 to 2 hours, is performed in an
+                    outpatient setting, and uses local anesthesia with light sedation.
+                  </p>
+                  <p>
+                    This illustration shows the PAE procedure itself and helps visualize how targeted
+                    treatment is delivered to the prostate.
+                  </p>
+                </div>
+              </div>
+              <div className="overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200/80">
+                <Image
+                  src={IMG_PROCEDURE}
+                  alt="Illustration of the prostate artery embolization procedure"
+                  width={1024}
+                  height={362}
+                  className="block h-auto w-full"
+                  sizes="(min-width: 768px) 42vw, 100vw"
+                />
+              </div>
+            </div>
           </div>
         </section>
 
