@@ -154,14 +154,16 @@ export function VasectomyPageContent() {
                 Founder and Experienced Vasectomy Doctor
               </p>
               <p className="mt-6 text-[15px] leading-relaxed text-white/90 md:text-base">
-                Dr. Naveen Kella is board certified in urology, with a
+                Dr. Naveen Kella is board-certified in urology, with a
                 fellowship in Urologic Oncology and robotic surgery. He is known
-                for his experience in treating prostate cancer and has performed
-                over 3,000 robotic prostate cancer surgeries. Literature notes
-                the best surgeons usually have a superior experience. Dr. Kella
-                is the most experienced robotic prostate surgeon in San Antonio
-                and South Texas. In fact, he is one of the most experienced in
-                the nation.
+                for his expertise in treating prostate cancer and has performed
+                over 3,000 robotic prostate cancer surgeries (RALP). In
+                addition, he has proctored over 100 physicians in robotic
+                prostatectomy techniques. Literature notes that the best
+                surgeons usually have superior experience. Dr. Kella is the most
+                experienced robotic prostate surgeon in San Antonio and South
+                Texas, and one of the most experienced in the nation. He is also
+                an Adjunct Assistant Professor at the UT Health Science Center.
               </p>
             </div>
           </div>
