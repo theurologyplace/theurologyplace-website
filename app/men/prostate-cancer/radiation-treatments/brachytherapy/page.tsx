@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
-import { CancerTreatmentDetailPage } from "@/app/components/cancer-treatment-detail-page";
+import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
+import {
+  HERO_AFTER_SLIDE_BASE,
+  HERO_FIXED_BACKDROP,
+  HERO_IMAGE_SECTION,
+  HERO_SUBTITLE_ON_IMAGE,
+  HERO_TITLE_ON_IMAGE,
+} from "@/app/lib/hero";
 
 const HERO_BG = encodeURI("/images/prostate cancer/OR+PICTURE-2880w.JPG").replace(
   /\+/g,
@@ -9,39 +17,215 @@ const HERO_BG = encodeURI("/images/prostate cancer/OR+PICTURE-2880w.JPG").replac
 export const metadata: Metadata = {
   title: "Brachytherapy",
   description:
-    "Brachytherapy information for prostate cancer patients at The Urology Place in San Antonio.",
+    "LDR brachytherapy information for prostate cancer patients at The Urology Place in San Antonio.",
 };
 
 export default function BrachytherapyPage() {
   return (
-    <CancerTreatmentDetailPage
-      title="Brachytherapy"
-      subtitle="A radiation-based prostate cancer option for selected patients"
-      heroBg={HERO_BG}
-      introTitle="What Is Brachytherapy?"
-      introParagraphs={[
-        "Brachytherapy is a form of radiation treatment that places radiation sources in or near the prostate. It may be discussed for certain patients as part of a personalized prostate cancer treatment plan.",
-        "At The Urology Place, we help patients understand when brachytherapy may be worth exploring, how it fits with other treatment options, and when referral to a radiation oncology specialist is appropriate.",
-      ]}
-      highlightsTitle="What to Know About Brachytherapy"
-      highlights={[
-        "It is a radiation treatment option used in selected prostate cancer situations",
-        "Treatment planning depends on cancer characteristics, prostate size, and overall goals",
-        "It may be considered on its own or as part of a broader treatment discussion",
-        "A full consultation helps determine whether it fits your diagnosis and priorities",
-      ]}
-      whenToAskTitle="When to Ask About Brachytherapy"
-      whenToAsk={[
-        "You have been diagnosed with prostate cancer and want to compare radiation options",
-        "You are interested in learning about internal radiation approaches",
-        "You are reviewing alternatives to surgery or other treatment pathways",
-        "You want coordinated guidance before meeting with additional specialists",
-      ]}
-      scheduleBody="To schedule a consultation with Dr. Kella and review whether brachytherapy may be appropriate, please call"
-      category="Men > Prostate Cancer"
-      sourcePath="/men/prostate-cancer/radiation-treatments/brachytherapy"
-      pageName="Brachytherapy"
-      idPrefix="men-brachytherapy"
-    />
+    <div className="relative isolate min-h-screen text-slate-900">
+      <div
+        className={HERO_FIXED_BACKDROP}
+        aria-hidden
+        style={{
+          backgroundImage: `url('${HERO_BG}')`,
+          backgroundAttachment: "fixed",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+
+      <div className="relative z-10">
+        <section className={HERO_IMAGE_SECTION}>
+          <div className="absolute inset-0 bg-slate-900/45" aria-hidden />
+          <div className="relative z-10 mx-auto max-w-4xl text-center">
+            <h1 className={HERO_TITLE_ON_IMAGE}>Brachytherapy</h1>
+            <p className={`mt-4 ${HERO_SUBTITLE_ON_IMAGE}`}>
+              LDR Brachytherapy for Prostate Cancer at The Urology Place
+            </p>
+            <div className="mt-8">
+              <a href="#men-brachytherapy-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
+                Make Appointment
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className={`${HERO_AFTER_SLIDE_BASE} bg-white`}>
+          <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
+            <h2 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+              LDR Brachytherapy: Precision Healing for Prostate Cancer
+            </h2>
+            <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
+              <p>
+                When it comes to treating prostate cancer, the goal is simple:{" "}
+                <strong>eliminate the cancer while preserving your quality of life</strong>. Our
+                practice is proud to offer Low-Dose Rate (LDR) Brachytherapy, a highly
+                specialized, internal radiation treatment that offers a &quot;one-and-done&quot;
+                solution for many men.
+              </p>
+              <p>
+                By partnering with the nation&apos;s most experienced Radiation Oncology group
+                (with over 3,000 successful cases), we provide a level of expertise and
+                precision that is second to none.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200/80 bg-[#e8edf5]">
+          <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+              What is LDR Brachytherapy?
+            </h2>
+            <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
+              Unlike traditional radiation that travels from a machine outside the body through
+              healthy tissue, Brachytherapy involves placing tiny, radioactive &quot;seeds&quot;
+              directly into the prostate.
+            </p>
+            <ul className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
+              <li className="flex gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span>
+                  <strong>Targeted Power:</strong> The radiation travels only a few millimeters,
+                  concentrating the treatment exactly where it&apos;s needed.
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span>
+                  <strong>Convenience:</strong> The procedure is performed in an outpatient
+                  setting and typically takes only 30 minutes.
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span>
+                  <strong>Fast Recovery:</strong> Most patients return home the same day and
+                  resume normal activities within 24 to 48 hours{" "}
+                  <strong>(without the need for a urinary catheter)</strong>.
+                </span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200/80 bg-white">
+          <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+              Why Choose LDR Brachytherapy?
+            </h2>
+            <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
+              Recent clinical literature and long-term studies highlight several key advantages
+              that make LDR Brachytherapy a preferred choice for localized prostate cancer:
+            </p>
+            <ul className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
+              <li className="flex gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span>
+                  <strong>Superior Cancer Control:</strong> Clinical data show that LDR
+                  brachytherapy provides excellent long-term cure rates, often outperforming
+                  external beam radiation for many patients because it allows for a higher, more
+                  concentrated dose of radiation directly to the tumor.
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span>
+                  <strong>Preserving What Matters:</strong> Because the radiation is so localized,
+                  there is a significantly lower risk of the urinary and sexual side effects often
+                  associated with surgery or external radiation.
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span>
+                  <strong>Avoiding Hormone Therapy:</strong> For many intermediate-risk patients,
+                  LDR brachytherapy can be used as a standalone treatment. This allows many men to{" "}
+                  <strong>avoid Androgen Deprivation Therapy (ADT)</strong> - the hormone-blocking
+                  treatment often required with external radiation that can cause fatigue, weight
+                  gain, and mood changes.
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span>
+                  <strong>The &quot;One-and-Done&quot; Advantage:</strong> While external radiation
+                  can require daily trips to the clinic for 5 to 9 weeks, LDR brachytherapy is a
+                  single, permanent implant.
+                </span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200/80 bg-[#e8edf5]">
+          <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+              Is LDR Brachytherapy Right for You?
+            </h2>
+            <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
+              LDR brachytherapy is an ideal option for men with localized prostate cancer who are
+              looking for a curative treatment that minimizes disruption to their lives.
+            </p>
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200/80 bg-white">
+          <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+              Summary of Benefits
+            </h2>
+            <ul className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
+              <li className="flex gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span>
+                  <strong>30-minute</strong> outpatient procedure.
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span>
+                  <strong>No urinary catheter</strong> required post-op.
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span>
+                  <strong>Highly effective</strong> long-term cancer control.
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span>
+                  <strong>Lower risk</strong> of sexual and urinary side effects.
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span>
+                  <strong>Potential to avoid</strong> hormone therapy (ADT).
+                </span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section
+          id="men-brachytherapy-contact"
+          className="relative scroll-mt-28 border-t border-slate-200 bg-white"
+        >
+          <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+            <ContactFormTemplate
+              variant="embedded"
+              pageName="Brachytherapy"
+              serviceName="Brachytherapy"
+              category="Men > Prostate Cancer"
+              sourcePath="/men/prostate-cancer/radiation-treatments/brachytherapy"
+              idPrefix="men-brachytherapy"
+            />
+          </div>
+        </section>
+      </div>
+    </div>
   );
 }
