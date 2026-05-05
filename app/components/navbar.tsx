@@ -6,20 +6,18 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { THORNE_DISPENSARY_URL } from "@/app/lib/external-links";
 
+type NavNode = {
+  label: string;
+  href: string;
+  badgeLabel?: string;
+  children?: NavNode[];
+};
+
 type NavItem = {
   label: string;
   href?: string;
   badgeLabel?: string;
-  children?: {
-    label: string;
-    href: string;
-    badgeLabel?: string;
-    children?: {
-      label: string;
-      href: string;
-      badgeLabel?: string;
-    }[];
-  }[];
+  children?: NavNode[];
 };
 
 const CONTACT_HREF = "/patient-resources/contact-us";
@@ -60,6 +58,23 @@ const NAV_ITEMS: NavItem[] = [
         children: [
           { label: "Robotic Prostatectomy", href: "/men/prostate-cancer/robotic-prostatectomy" },
           { label: "Transperineal Prostate Biopsy", href: "/men/prostate-cancer/transperineal-prostate-biopsy" },
+          {
+            label: "Radiation Treatments",
+            href: "/men/prostate-cancer/radiation-treatments",
+            badgeLabel: "New",
+            children: [
+              {
+                label: "Brachytherapy",
+                href: "/men/prostate-cancer/radiation-treatments/brachytherapy",
+                badgeLabel: "New",
+              },
+              {
+                label: "Rectal Spacer",
+                href: "/men/prostate-cancer/radiation-treatments/rectal-spacer",
+                badgeLabel: "New",
+              },
+            ],
+          },
           { label: "TULSA for Prostate", href: "/men/prostate-cancer/tulsa-for-prostate" },
           { label: "Nuclear Medicine", href: "/men/prostate-cancer/nuclear-medicine" },
           {
@@ -84,7 +99,17 @@ const NAV_ITEMS: NavItem[] = [
           },
         ],
       },
-      { label: "Bladder Cancer", href: "/men/bladder-cancer" },
+      {
+        label: "Bladder Cancer",
+        href: "/men/bladder-cancer",
+        children: [
+          {
+            label: "Zusduri & BCG",
+            href: "/men/bladder-cancer/zusduri-bcg",
+            badgeLabel: "New",
+          },
+        ],
+      },
       { label: "Adult Circumcision", href: "/men/adult-circumcision" },
       { label: "Hematuria", href: "/men/hematuria" },
       { label: "Low Testosterone", href: "/men/low-testosterone" },
@@ -158,6 +183,12 @@ export function Navbar() {
     childLabel: string;
     topPx: number;
   } | null>(null);
+  const [activeDesktopNestedFlyout, setActiveDesktopNestedFlyout] = useState<{
+    parentLabel: string;
+    childLabel: string;
+    grandLabel: string;
+    topPx: number;
+  } | null>(null);
 
   const toggleMobile = () => setMobileOpen((prev) => !prev);
 
@@ -218,7 +249,10 @@ export function Navbar() {
               <div
                 key={item.label}
                 className="group relative flex h-10 items-center after:absolute after:left-0 after:right-0 after:top-full after:h-2 after:content-['']"
-                onMouseLeave={() => setActiveDesktopFlyout(null)}
+                onMouseLeave={() => {
+                  setActiveDesktopFlyout(null);
+                  setActiveDesktopNestedFlyout(null);
+                }}
               >
                 <button
                   className={`flex h-10 items-center gap-1 whitespace-nowrap border-b-2 pb-0 pt-0.5 transition ${
@@ -252,8 +286,10 @@ export function Navbar() {
                                   childLabel: child.label,
                                   topPx: (e.currentTarget as HTMLDivElement).offsetTop,
                                 });
+                                setActiveDesktopNestedFlyout(null);
                               } else {
                                 setActiveDesktopFlyout(null);
+                                setActiveDesktopNestedFlyout(null);
                               }
                             }}
                             className={`flex items-center justify-between gap-3 px-4 py-2 text-sm transition ${
@@ -294,26 +330,86 @@ export function Navbar() {
                           : undefined;
                       const flyoutItems = activeChild?.children ?? [];
                       const showFlyout = flyoutItems.length > 0;
+                      const activeGrand =
+                        activeDesktopNestedFlyout?.parentLabel === item.label &&
+                        activeDesktopNestedFlyout?.childLabel === activeChild?.label
+                          ? flyoutItems.find((grand) => grand.label === activeDesktopNestedFlyout.grandLabel)
+                          : undefined;
+                      const nestedFlyoutItems = activeGrand?.children ?? [];
+                      const showNestedFlyout = nestedFlyoutItems.length > 0;
 
                       return (
-                        <div
-                          className={`absolute left-[18rem] w-80 rounded-xl border border-slate-200 bg-white py-2 shadow-lg transition-all duration-200 ease-out ${
-                            showFlyout
-                              ? "pointer-events-auto translate-x-0 opacity-100"
-                              : "pointer-events-none translate-x-4 opacity-0"
-                          }`}
-                          style={{ top: activeDesktopFlyout?.topPx ?? 0 }}
-                        >
-                          {flyoutItems.map((grand) => (
-                            <Link
-                              key={grand.href}
-                              href={grand.href}
-                              className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900"
-                            >
-                              {renderNavLabel(grand.label, grand.badgeLabel)}
-                            </Link>
-                          ))}
-                        </div>
+                        <>
+                          <div
+                            className={`absolute left-[18rem] w-80 rounded-xl border border-slate-200 bg-white py-2 shadow-lg transition-all duration-200 ease-out ${
+                              showFlyout
+                                ? "pointer-events-auto translate-x-0 opacity-100"
+                                : "pointer-events-none translate-x-4 opacity-0"
+                            }`}
+                            style={{ top: activeDesktopFlyout?.topPx ?? 0 }}
+                          >
+                            {flyoutItems.map((grand) => {
+                              const hasNestedFlyout = Boolean(grand.children?.length);
+                              const isNestedActive =
+                                activeDesktopNestedFlyout?.parentLabel === item.label &&
+                                activeDesktopNestedFlyout?.childLabel === activeChild?.label &&
+                                activeDesktopNestedFlyout?.grandLabel === grand.label;
+
+                              return (
+                                <div
+                                  key={grand.href}
+                                  onMouseEnter={(e) => {
+                                    if (hasNestedFlyout && activeDesktopFlyout) {
+                                      setActiveDesktopNestedFlyout({
+                                        parentLabel: item.label,
+                                        childLabel: activeChild?.label ?? "",
+                                        grandLabel: grand.label,
+                                        topPx:
+                                          activeDesktopFlyout.topPx +
+                                          (e.currentTarget as HTMLDivElement).offsetTop,
+                                      });
+                                    } else {
+                                      setActiveDesktopNestedFlyout(null);
+                                    }
+                                  }}
+                                  className={`flex items-center justify-between gap-3 px-4 py-2 text-sm transition ${
+                                    isNestedActive
+                                      ? "bg-slate-50 text-slate-900"
+                                      : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                                  }`}
+                                >
+                                  <Link href={grand.href} className="min-w-0 flex-1">
+                                    {renderNavLabel(grand.label, grand.badgeLabel)}
+                                  </Link>
+                                  {hasNestedFlyout ? (
+                                    <span className="text-slate-400" aria-hidden>
+                                      ▸
+                                    </span>
+                                  ) : null}
+                                </div>
+                              );
+                            })}
+                          </div>
+
+                          <div
+                            className={`absolute left-[38rem] w-80 rounded-xl border border-slate-200 bg-white py-2 shadow-lg transition-all duration-200 ease-out ${
+                              showNestedFlyout
+                                ? "pointer-events-auto translate-x-0 opacity-100"
+                                : "pointer-events-none translate-x-4 opacity-0"
+                            }`}
+                            style={{ top: activeDesktopNestedFlyout?.topPx ?? 0 }}
+                          >
+                            {nestedFlyoutItems.map((great) => (
+                              <Link
+                                key={great.href}
+                                href={great.href}
+                                className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                              >
+                                {renderNavLabel(great.label, great.badgeLabel)}
+                              </Link>
+                            ))}
+                          </div>
+                        </>
                       );
                     })()}
                   </div>
@@ -474,17 +570,28 @@ export function Navbar() {
 
                           return (
                             <li key={child.href}>
-                              <button
-                                type="button"
-                                onClick={() => toggleMobileSubsection(subKey)}
-                                className="flex w-full items-center justify-between gap-2 py-1.5 text-left text-sm font-medium text-slate-800 hover:text-slate-900"
-                                aria-expanded={isSubOpen}
-                              >
-                                {renderNavLabel(child.label, child.badgeLabel)}
-                                <span className="text-slate-500" aria-hidden>
-                                  {isSubOpen ? "−" : "+"}
-                                </span>
-                              </button>
+                              <div className="flex items-center justify-between gap-3">
+                                <Link
+                                  href={child.href}
+                                  onClick={() => setMobileOpen(false)}
+                                  className={`min-w-0 flex-1 py-1.5 text-left text-sm font-medium ${
+                                    pathname === child.href
+                                      ? "text-blue-700"
+                                      : "text-slate-800 hover:text-slate-900"
+                                  }`}
+                                >
+                                  {renderNavLabel(child.label, child.badgeLabel)}
+                                </Link>
+                                <button
+                                  type="button"
+                                  onClick={() => toggleMobileSubsection(subKey)}
+                                  className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:bg-slate-50 hover:text-slate-700"
+                                  aria-expanded={isSubOpen}
+                                  aria-label={`Toggle ${child.label} submenu`}
+                                >
+                                  <span aria-hidden>{isSubOpen ? "−" : "+"}</span>
+                                </button>
+                              </div>
                               {isSubOpen ? (
                                 <ul className="mt-1 space-y-1 pl-4">
                                   {child.children?.map((grand) => (
