@@ -11,6 +11,7 @@ import {
 const HERO_BG = encodeURI("/images/vanquish/1765481756241.jpg");
 const VANQUISH_SYSTEM_IMAGE = encodeURI("/images/vanquish/Vanquish-System.jpg");
 const VANQUISH_TEAM_IMAGE = encodeURI("/images/vanquish/Final-1200x901.jpg");
+const VANQUISH_GROUP_IMAGE = encodeURI("/images/vanquish/image002.PNG");
 
 const PHONE_DISPLAY = "210-617-3670";
 const PHONE_TEL = "2106173670";
@@ -228,14 +229,17 @@ export function VanquishPageContent() {
                   reflects our commitment to bringing advanced innovation to patients early.
                 </p>
               </div>
-              <div className={ROUND_IMG}>
-                <Image
-                  src={VANQUISH_TEAM_IMAGE}
-                  alt="The first team to perform the Vanquish procedure in the United States"
-                  fill
-                  className="object-cover"
-                  sizes="(min-width: 768px) 42vw, 100vw"
-                />
+              <div className="rounded-[28px] border border-slate-200/80 bg-gradient-to-br from-slate-50 via-white to-sky-50/60 p-3 shadow-md ring-1 ring-slate-200/60">
+                <div className={ROUND_IMG}>
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900/10 to-transparent" aria-hidden />
+                  <Image
+                    src={VANQUISH_TEAM_IMAGE}
+                    alt="The first team to perform the Vanquish procedure in the United States"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 768px) 42vw, 100vw"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -255,29 +259,45 @@ export function VanquishPageContent() {
         </section>
 
         <section className="relative border-t border-slate-200/80 bg-white">
-          <div className={SECTION_INNER}>
-            <h2 className={H2}>Schedule a Consultation</h2>
-            <div className={PROSE}>
-              <p>To schedule a consultation for Vanquish Water Vapor Therapy:</p>
-              <p>
-                Please call{" "}
-                <a
-                  href={`tel:${PHONE_TEL}`}
-                  className="font-semibold text-blue-600 underline decoration-blue-600/80 underline-offset-2 hover:text-blue-700"
-                >
-                  {PHONE_DISPLAY}
-                </a>{" "}
-                and ask to speak with the Vanquish scheduling team, or select the surgery line when
-                prompted. If the department is unavailable, please leave a voicemail. You may also email us
-                at{" "}
-                <a
-                  href={`mailto:${EMAIL_SCHEDULING}?subject=Vanquish%20scheduling`}
-                  className="font-semibold text-blue-600 underline decoration-blue-600/80 underline-offset-2 hover:text-blue-700"
-                >
-                  {EMAIL_SCHEDULING}
-                </a>{" "}
-                and request to speak with Patsy or Raji regarding scheduling.
-              </p>
+          <div className={SECTION_WIDE_INNER}>
+            <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
+              <div>
+                <h2 className={H2}>Schedule a Consultation</h2>
+                <div className={PROSE}>
+                  <p>To schedule a consultation for Vanquish Water Vapor Therapy:</p>
+                  <p>
+                    Please call{" "}
+                    <a
+                      href={`tel:${PHONE_TEL}`}
+                      className="font-semibold text-blue-600 underline decoration-blue-600/80 underline-offset-2 hover:text-blue-700"
+                    >
+                      {PHONE_DISPLAY}
+                    </a>{" "}
+                    and ask to speak with the Vanquish scheduling team, or select the surgery line when
+                    prompted. If the department is unavailable, please leave a voicemail. You may also email us
+                    at{" "}
+                    <a
+                      href={`mailto:${EMAIL_SCHEDULING}?subject=Vanquish%20scheduling`}
+                      className="font-semibold text-blue-600 underline decoration-blue-600/80 underline-offset-2 hover:text-blue-700"
+                    >
+                      {EMAIL_SCHEDULING}
+                    </a>{" "}
+                    and request to speak with Patsy or Raji regarding scheduling.
+                  </p>
+                </div>
+              </div>
+              <div className="rounded-[28px] border border-slate-200/80 bg-white p-3 shadow-md ring-1 ring-slate-200/60">
+                <div className={ROUND_IMG}>
+                  <Image
+                    src={VANQUISH_GROUP_IMAGE}
+                    alt="Expanded clinical team celebrating the first Vanquish patient treatment"
+                    fill
+                    className="object-cover scale-[1.06]"
+                    style={{ objectPosition: "50% 45%" }}
+                    sizes="(min-width: 768px) 42vw, 100vw"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
