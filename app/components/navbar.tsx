@@ -57,7 +57,10 @@ const NAV_ITEMS: NavItem[] = [
         href: "/men/prostate-cancer",
         children: [
           { label: "Robotic Prostatectomy", href: "/men/prostate-cancer/robotic-prostatectomy" },
-          { label: "Transperineal Prostate Biopsy", href: "/men/prostate-cancer/transperineal-prostate-biopsy" },
+          {
+            label: "PSA / Transperineal Prostate Biopsy",
+            href: "/men/prostate-cancer/psa-transperineal-prostate-biopsy",
+          },
           {
             label: "Radiation Treatments",
             href: "/men/prostate-cancer/radiation-treatments",
@@ -104,8 +107,8 @@ const NAV_ITEMS: NavItem[] = [
         href: "/men/bladder-cancer",
         children: [
           {
-            label: "Zusduri & BCG",
-            href: "/men/bladder-cancer/zusduri-bcg",
+            label: "Zusduri, BCG & En Block",
+            href: "/men/bladder-cancer/zusduri-bcg-en-block",
             badgeLabel: "New",
           },
         ],

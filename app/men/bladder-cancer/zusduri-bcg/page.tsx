@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import {
@@ -14,12 +15,16 @@ const HERO_BG = "/images/zusduri/zusduri.png";
 const TEAM_IMG = encodeURI("/images/zusduri/zusduri group.png");
 
 export const metadata: Metadata = {
-  title: "Zusduri & BCG",
+  title: "Zusduri, BCG & En Block",
   description:
     "Advanced bladder cancer treatment options including Zusduri and BCG at The Urology Place in San Antonio.",
 };
 
 export default function ZusduriAndBcgPage() {
+  redirect("/men/bladder-cancer/zusduri-bcg-en-block");
+}
+
+export function ZusduriBcgPageContent() {
   return (
     <div className="relative isolate min-h-screen text-slate-900">
       <div
@@ -37,7 +42,7 @@ export default function ZusduriAndBcgPage() {
         <section className={HERO_IMAGE_SECTION}>
           <div className="absolute inset-0 bg-slate-900/50" aria-hidden />
           <div className="relative z-10 mx-auto max-w-4xl text-center">
-            <h1 className={HERO_TITLE_ON_IMAGE}>Zusduri &amp; BCG</h1>
+            <h1 className={HERO_TITLE_ON_IMAGE}>Zusduri, BCG &amp; En Block</h1>
             <p className={`mt-4 ${HERO_SUBTITLE_ON_IMAGE}`}>
               Advanced bladder cancer treatments at The Urology Place
             </p>
@@ -249,10 +254,10 @@ export default function ZusduriAndBcgPage() {
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
             <ContactFormTemplate
               variant="embedded"
-              pageName="Zusduri & BCG"
-              serviceName="Zusduri & BCG"
+              pageName="Zusduri, BCG & En Block"
+              serviceName="Zusduri, BCG & En Block"
               category="Men > Bladder Cancer"
-              sourcePath="/men/bladder-cancer/zusduri-bcg"
+              sourcePath="/men/bladder-cancer/zusduri-bcg-en-block"
               idPrefix="men-zusduri-bcg"
             />
           </div>

@@ -14,6 +14,16 @@ const nextConfig: NextConfig = {
         destination: THORNE_DISPENSARY_URL,
         permanent: true,
       },
+      {
+        source: "/men/prostate-cancer/transperineal-prostate-biopsy",
+        destination: "/men/prostate-cancer/psa-transperineal-prostate-biopsy",
+        permanent: true,
+      },
+      {
+        source: "/men/bladder-cancer/zusduri-bcg",
+        destination: "/men/bladder-cancer/zusduri-bcg-en-block",
+        permanent: true,
+      },
     ];
   },
   compiler: {
