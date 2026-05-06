@@ -173,6 +173,27 @@ const NAV_ITEMS: NavItem[] = [
   { label: "In-Office Anesthesia", href: "/in-office-anesthesia" },
 ];
 
+function prioritizeNewChildren(items: readonly NavNode[]): NavNode[] {
+  const withNew = items.filter((i) => Boolean(i.badgeLabel));
+  const withoutNew = items.filter((i) => !i.badgeLabel);
+  return [...withNew, ...withoutNew].map((i) => {
+    if (!i.children?.length) return i;
+    return { ...i, children: prioritizeNewChildren(i.children) };
+  });
+}
+
+function prioritizeNewNavItems(items: readonly NavItem[]): NavItem[] {
+  const withNew = items.filter((i) => Boolean(i.badgeLabel));
+  const withoutNew = items.filter((i) => !i.badgeLabel);
+  return [...withNew, ...withoutNew].map((i) => {
+    if (!i.children?.length) return i;
+    return { ...i, children: prioritizeNewChildren(i.children) };
+  });
+}
+
+// Ensures any tab with the "New" badge appears at the top of its subsection list.
+const NAV_ITEMS_SORTED = prioritizeNewNavItems(NAV_ITEMS);
+
 export function Navbar() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -244,7 +265,7 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden h-10 flex-nowrap items-center gap-3 text-sm font-medium text-slate-700 lg:ml-6 lg:mr-6 lg:flex xl:gap-4">
-          {NAV_ITEMS.map((item) =>
+          {NAV_ITEMS_SORTED.map((item) =>
             item.children ? (
               <div
                 key={item.label}
@@ -500,7 +521,7 @@ export function Navbar() {
 
           <nav className="flex-1 overflow-y-auto px-4 py-4 text-sm">
             <ul className="space-y-2">
-              {NAV_ITEMS.map((item) => (
+              {NAV_ITEMS_SORTED.map((item) => (
                 <li key={item.label} className="border-b border-slate-100 pb-2 last:border-b-0">
                   {item.children ? (
                     <div>
