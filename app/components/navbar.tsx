@@ -199,6 +199,9 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedMobileSection, setExpandedMobileSection] = useState<string | null>(null);
   const [expandedMobileSubsection, setExpandedMobileSubsection] = useState<string | null>(null);
+  const [expandedMobileNestedSubsection, setExpandedMobileNestedSubsection] = useState<string | null>(
+    null,
+  );
   const [activeDesktopFlyout, setActiveDesktopFlyout] = useState<{
     parentLabel: string;
     childLabel: string;
@@ -216,10 +219,16 @@ export function Navbar() {
   const toggleMobileSection = (label: string) => {
     setExpandedMobileSection((current) => (current === label ? null : label));
     setExpandedMobileSubsection(null);
+    setExpandedMobileNestedSubsection(null);
   };
 
   const toggleMobileSubsection = (key: string) => {
     setExpandedMobileSubsection((current) => (current === key ? null : key));
+    setExpandedMobileNestedSubsection(null);
+  };
+
+  const toggleMobileNestedSubsection = (key: string) => {
+    setExpandedMobileNestedSubsection((current) => (current === key ? null : key));
   };
 
   const isActive = (href?: string) => {
@@ -615,17 +624,63 @@ export function Navbar() {
                               </div>
                               {isSubOpen ? (
                                 <ul className="mt-1 space-y-1 pl-4">
-                                  {child.children?.map((grand) => (
-                                    <li key={grand.href}>
-                                      <Link
-                                        href={grand.href}
-                                        onClick={() => setMobileOpen(false)}
-                                        className="block py-1 text-sm text-slate-700 hover:text-slate-900"
-                                      >
-                                        {renderNavLabel(grand.label, grand.badgeLabel)}
-                                      </Link>
-                                    </li>
-                                  ))}
+                                  {child.children?.map((grand) => {
+                                    const hasNested = Boolean(grand.children?.length);
+                                    const nestedKey = `${subKey}:${grand.label}`;
+                                    const isNestedOpen = expandedMobileNestedSubsection === nestedKey;
+
+                                    if (!hasNested) {
+                                      return (
+                                        <li key={grand.href}>
+                                          <Link
+                                            href={grand.href}
+                                            onClick={() => setMobileOpen(false)}
+                                            className="block py-1 text-sm text-slate-700 hover:text-slate-900"
+                                          >
+                                            {renderNavLabel(grand.label, grand.badgeLabel)}
+                                          </Link>
+                                        </li>
+                                      );
+                                    }
+
+                                    return (
+                                      <li key={grand.href}>
+                                        <div className="flex items-center justify-between gap-3">
+                                          <Link
+                                            href={grand.href}
+                                            onClick={() => setMobileOpen(false)}
+                                            className="min-w-0 flex-1 py-1 text-left text-sm text-slate-700 hover:text-slate-900"
+                                          >
+                                            {renderNavLabel(grand.label, grand.badgeLabel)}
+                                          </Link>
+                                          <button
+                                            type="button"
+                                            onClick={() => toggleMobileNestedSubsection(nestedKey)}
+                                            className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-500 transition hover:bg-slate-50 hover:text-slate-700"
+                                            aria-expanded={isNestedOpen}
+                                            aria-label={`Toggle ${grand.label} submenu`}
+                                          >
+                                            <span aria-hidden>{isNestedOpen ? "−" : "+"}</span>
+                                          </button>
+                                        </div>
+                                        {isNestedOpen ? (
+                                          <ul className="mt-1 space-y-1 pl-4">
+                                            {grand.children?.map((great) => (
+                                              <li key={great.href}>
+                                                <Link
+                                                  href={great.href}
+                                                  onClick={() => setMobileOpen(false)}
+                                                  className="block py-1 text-sm text-slate-700 hover:text-slate-900"
+                                                >
+                                                  {renderNavLabel(great.label, great.badgeLabel)}
+                                                </Link>
+                                              </li>
+                                            ))}
+                                          </ul>
+                                        ) : null}
+                                      </li>
+                                    );
+                                  })}
                                 </ul>
                               ) : null}
                             </li>
