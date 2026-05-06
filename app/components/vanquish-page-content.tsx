@@ -12,6 +12,9 @@ const HERO_BG = encodeURI("/images/vanquish/1765481756241.jpg");
 const VANQUISH_SYSTEM_IMAGE = encodeURI("/images/vanquish/Vanquish-System.jpg");
 const VANQUISH_TEAM_IMAGE = encodeURI("/images/vanquish/Final-1200x901.jpg");
 const VANQUISH_GROUP_IMAGE = encodeURI("/images/vanquish/image002.PNG");
+const VANQUISH_SCHEDULING_IMAGE = encodeURI(
+  "/images/peyronies disease/photo-1522308300961-fdb949cac8aa-2880w.jpg",
+);
 
 const PHONE_DISPLAY = "210-617-3670";
 const PHONE_TEL = "2106173670";
@@ -88,6 +91,24 @@ export function VanquishPageContent() {
                 </a>
                 .
               </p>
+            </div>
+            <div className="mt-10">
+              <h3 className="text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
+                Commercial Vanquish Procedure
+              </h3>
+              <p className="mt-2 text-[15px] leading-relaxed text-slate-800 md:text-base">
+                New info coming soon!
+              </p>
+              <div className={ROUND_IMG}>
+                <Image
+                  src={VANQUISH_GROUP_IMAGE}
+                  alt="Expanded clinical team celebrating the first Vanquish patient treatment"
+                  fill
+                  className="object-cover scale-[1.50]"
+                  style={{ objectPosition: "50% 90%" }}
+                  sizes="(min-width: 768px) 48rem, 100vw"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -229,17 +250,18 @@ export function VanquishPageContent() {
                   reflects our commitment to bringing advanced innovation to patients early.
                 </p>
               </div>
-              <div className="rounded-[28px] border border-slate-200/80 bg-gradient-to-br from-slate-50 via-white to-sky-50/60 p-3 shadow-md ring-1 ring-slate-200/60">
-                <div className={ROUND_IMG}>
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900/10 to-transparent" aria-hidden />
-                  <Image
-                    src={VANQUISH_TEAM_IMAGE}
-                    alt="The first team to perform the Vanquish procedure in the United States"
-                    fill
-                    className="object-cover"
-                    sizes="(min-width: 768px) 42vw, 100vw"
-                  />
-                </div>
+              <div className={ROUND_IMG}>
+                <div
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-900/10 to-transparent"
+                  aria-hidden
+                />
+                <Image
+                  src={VANQUISH_TEAM_IMAGE}
+                  alt="The first team to perform the Vanquish procedure in the United States"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 42vw, 100vw"
+                />
               </div>
             </div>
           </div>
@@ -286,17 +308,14 @@ export function VanquishPageContent() {
                   </p>
                 </div>
               </div>
-              <div className="rounded-[28px] border border-slate-200/80 bg-white p-3 shadow-md ring-1 ring-slate-200/60">
-                <div className={ROUND_IMG}>
-                  <Image
-                    src={VANQUISH_GROUP_IMAGE}
-                    alt="Expanded clinical team celebrating the first Vanquish patient treatment"
-                    fill
-                    className="object-cover scale-[1.06]"
-                    style={{ objectPosition: "50% 45%" }}
-                    sizes="(min-width: 768px) 42vw, 100vw"
-                  />
-                </div>
+              <div className={ROUND_IMG}>
+                <Image
+                  src={VANQUISH_SCHEDULING_IMAGE}
+                  alt="Patient consultation paperwork being completed at a desk"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 42vw, 100vw"
+                />
               </div>
             </div>
           </div>
