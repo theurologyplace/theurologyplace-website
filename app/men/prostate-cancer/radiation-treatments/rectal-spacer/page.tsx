@@ -10,10 +10,7 @@ import {
   HERO_TITLE_ON_IMAGE,
 } from "@/app/lib/hero";
 
-const HERO_BG = encodeURI("/images/prostate cancer/OR+PICTURE-2880w.JPG").replace(
-  /\+/g,
-  "%2B",
-);
+const HERO_BG = "/images/brachytherapy/maxresdefault.png";
 const PROCESS_IMG = encodeURI("/images/brachytherapy/rectal spacer process.png");
 
 export const metadata: Metadata = {

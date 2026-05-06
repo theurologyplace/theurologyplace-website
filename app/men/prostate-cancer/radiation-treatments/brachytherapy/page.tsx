@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import {
@@ -9,10 +10,9 @@ import {
   HERO_TITLE_ON_IMAGE,
 } from "@/app/lib/hero";
 
-const HERO_BG = encodeURI("/images/prostate cancer/OR+PICTURE-2880w.JPG").replace(
-  /\+/g,
-  "%2B",
-);
+const HERO_BG = "/images/brachytherapy/hipxray.jpg";
+const BRACHYTHERAPY_DIAGRAM_IMG = "/images/brachytherapy/brachtherapy.png";
+const SEED_PLACEMENT_IMG = "/images/brachytherapy/prostate_seed.jpg";
 
 export const metadata: Metadata = {
   title: "Brachytherapy",
@@ -74,38 +74,78 @@ export default function BrachytherapyPage() {
 
         <section className="relative border-t border-slate-200/80 bg-[#e8edf5]">
           <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-              What is LDR Brachytherapy?
-            </h2>
-            <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
-              Unlike traditional radiation that travels from a machine outside the body through
-              healthy tissue, Brachytherapy involves placing tiny, radioactive &quot;seeds&quot;
-              directly into the prostate.
-            </p>
-            <ul className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
-              <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
-                <span>
-                  <strong>Targeted Power:</strong> The radiation travels only a few millimeters,
-                  concentrating the treatment exactly where it&apos;s needed.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
-                <span>
-                  <strong>Convenience:</strong> The procedure is performed in an outpatient
-                  setting and typically takes only 30 minutes.
-                </span>
-              </li>
-              <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
-                <span>
-                  <strong>Fast Recovery:</strong> Most patients return home the same day and
-                  resume normal activities within 24 to 48 hours{" "}
-                  <strong>(without the need for a urinary catheter)</strong>.
-                </span>
-              </li>
-            </ul>
+            <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-start md:gap-10">
+              <div className="min-w-0">
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                  What is LDR Brachytherapy?
+                </h2>
+                <div className="mt-5 space-y-6">
+                  <p className="text-[15px] leading-relaxed text-slate-800 md:text-base">
+                    Unlike traditional radiation that travels from a machine outside the body through
+                    healthy tissue, Brachytherapy involves placing tiny, radioactive &quot;seeds&quot;
+                    directly into the prostate.
+                  </p>
+                  <ul className="space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
+                    <li className="flex gap-3">
+                      <span
+                        className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600"
+                        aria-hidden
+                      />
+                      <span>
+                        <strong>Targeted Power:</strong> The radiation travels only a few millimeters,
+                        concentrating the treatment exactly where it&apos;s needed.
+                      </span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span
+                        className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600"
+                        aria-hidden
+                      />
+                      <span>
+                        <strong>Convenience:</strong> The procedure is performed in an outpatient
+                        setting and typically takes only 30 minutes.
+                      </span>
+                    </li>
+                    <li className="flex gap-3">
+                      <span
+                        className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600"
+                        aria-hidden
+                      />
+                      <span>
+                        <strong>Fast Recovery:</strong> Most patients return home the same day and
+                        resume normal activities within 24 to 48 hours{" "}
+                        <strong>(without the need for a urinary catheter)</strong>.
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="flex justify-center md:justify-end md:self-start">
+                <div className="flex w-full max-w-64 flex-col gap-4 sm:max-w-72 md:max-w-xs">
+                  <div className="overflow-hidden rounded-2xl shadow-sm ring-1 ring-slate-900/10">
+                    <Image
+                      src={BRACHYTHERAPY_DIAGRAM_IMG}
+                      alt="Diagram of brachytherapy seeds placed throughout the prostate to treat the tumor"
+                      width={640}
+                      height={360}
+                      className="h-auto w-full object-cover"
+                      sizes="(min-width: 768px) 320px, 100vw"
+                    />
+                  </div>
+                  <div className="overflow-hidden rounded-2xl shadow-sm ring-1 ring-slate-900/10">
+                    <Image
+                      src={SEED_PLACEMENT_IMG}
+                      alt="Pelvic X-ray showing radioactive brachytherapy seeds implanted in the prostate"
+                      width={286}
+                      height={176}
+                      className="h-auto w-full object-cover"
+                      sizes="(min-width: 768px) 320px, 100vw"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

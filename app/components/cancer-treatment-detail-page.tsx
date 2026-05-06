@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import {
@@ -14,6 +15,7 @@ type CancerTreatmentDetailPageProps = {
   heroBg: string;
   highlights: readonly string[];
   highlightsTitle: string;
+  hideScheduleSection?: boolean;
   idPrefix: string;
   introParagraphs: readonly string[];
   introTitle: string;
@@ -22,6 +24,8 @@ type CancerTreatmentDetailPageProps = {
     href: string;
     title: string;
     body: string;
+    imageSrc?: string;
+    imageAlt?: string;
   }[];
   scheduleBody: string;
   sourcePath: string;
@@ -54,6 +58,7 @@ export function CancerTreatmentDetailPage({
   heroBg,
   highlights,
   highlightsTitle,
+  hideScheduleSection,
   idPrefix,
   introParagraphs,
   introTitle,
@@ -135,15 +140,40 @@ export function CancerTreatmentDetailPage({
                   <Link
                     key={page.href}
                     href={page.href}
-                    className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm ring-1 ring-slate-200/70 transition hover:-translate-y-0.5 hover:shadow-md"
+                    className="group overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm ring-1 ring-slate-200/70 transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600/70"
                   >
-                    <h3 className="text-xl font-bold tracking-tight text-slate-900">
-                      {page.title}
-                    </h3>
-                    <p className="mt-4 text-[15px] leading-relaxed text-slate-700">
-                      {page.body}
-                    </p>
-                    <p className="mt-5 font-semibold text-blue-700">Learn more</p>
+                    {page.imageSrc ? (
+                      <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100">
+                        <Image
+                          src={page.imageSrc}
+                          alt={page.imageAlt ?? `${page.title} preview image`}
+                          fill
+                          className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                          sizes="(min-width: 768px) 560px, 100vw"
+                        />
+                        <div
+                          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/10 via-transparent to-transparent"
+                          aria-hidden
+                        />
+                      </div>
+                    ) : null}
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold tracking-tight text-slate-900">
+                        {page.title}
+                      </h3>
+                      <p className="mt-3 text-[15px] leading-relaxed text-slate-700">
+                        {page.body}
+                      </p>
+                      <p className="mt-5 inline-flex items-center font-semibold text-blue-700">
+                        Learn more
+                        <span
+                          className="ml-2 translate-x-0 transition group-hover:translate-x-0.5"
+                          aria-hidden
+                        >
+                          →
+                        </span>
+                      </p>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -151,23 +181,25 @@ export function CancerTreatmentDetailPage({
           </section>
         ) : null}
 
-        <section className={`relative border-t border-slate-200/80 ${PANEL}`}>
-          <div className="mx-auto max-w-3xl px-6 py-14 md:py-16">
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-              Scheduling Information
-            </h2>
-            <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
-              {scheduleBody}{" "}
-              <a
-                href="tel:2106173670"
-                className="font-semibold text-blue-700 underline underline-offset-2"
-              >
-                210-617-3670
-              </a>
-              .
-            </p>
-          </div>
-        </section>
+        {hideScheduleSection ? null : (
+          <section className={`relative border-t border-slate-200/80 ${PANEL}`}>
+            <div className="mx-auto max-w-3xl px-6 py-14 md:py-16">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                Scheduling Information
+              </h2>
+              <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
+                {scheduleBody}{" "}
+                <a
+                  href="tel:2106173670"
+                  className="font-semibold text-blue-700 underline underline-offset-2"
+                >
+                  210-617-3670
+                </a>
+                .
+              </p>
+            </div>
+          </section>
+        )}
 
         <section
           id={`${idPrefix}-contact`}

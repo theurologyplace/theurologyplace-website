@@ -10,7 +10,7 @@ import {
   HERO_TITLE_ON_IMAGE,
 } from "@/app/lib/hero";
 
-const HERO_BG = encodeURI("/images/bladder cancer/Blog_Post-Bladder_Cancer.webp");
+const HERO_BG = "/images/zusduri/zusduri.png";
 const TEAM_IMG = encodeURI("/images/zusduri/zusduri group.png");
 
 export const metadata: Metadata = {

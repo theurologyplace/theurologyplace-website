@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { CancerTreatmentDetailPage } from "@/app/components/cancer-treatment-detail-page";
 
-const HERO_BG = encodeURI("/images/prostate cancer/OR+PICTURE-2880w.JPG").replace(
-  /\+/g,
-  "%2B",
+const HERO_BG = encodeURI(
+  "/images/radiation treatments/Medical-examination-using-modern-CT-scanner-scaled-e1601502017995-2048x1059.jpeg",
 );
 
 export const metadata: Metadata = {
@@ -37,16 +36,21 @@ export default function RadiationTreatmentsPage() {
         "You are comparing side effects, recovery, and long-term goals across treatment choices",
         "You would like help deciding whether radiation may fit your diagnosis and priorities",
       ]}
+      hideScheduleSection
       relatedPages={[
         {
           href: "/men/prostate-cancer/radiation-treatments/brachytherapy",
           title: "Brachytherapy",
           body: "Learn more about brachytherapy as an internal radiation option that may be discussed for selected prostate cancer cases.",
+          imageSrc: "/images/brachytherapy/hipxray.jpg",
+          imageAlt: "Hip X-ray style image used for the brachytherapy page",
         },
         {
           href: "/men/prostate-cancer/radiation-treatments/rectal-spacer",
           title: "Rectal Spacer",
           body: "Review how a rectal spacer may be used during radiation treatment planning to help protect nearby tissue.",
+          imageSrc: "/images/brachytherapy/maxresdefault.png",
+          imageAlt: "Abstract medical-style image used for the rectal spacer page",
         },
       ]}
       scheduleBody="To schedule a consultation with Dr. Kella and discuss radiation treatment planning, please call"
