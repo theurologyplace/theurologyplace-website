@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import { BTN_PRIMARY } from "@/app/lib/button-styles";
 import { HERO_IMAGE_SECTION, HERO_TITLE_ON_IMAGE } from "@/app/lib/hero";
 
@@ -63,17 +64,10 @@ export default function OveractiveBladderStudiesPage() {
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start lg:gap-16">
               <div>
                 <div className="overflow-hidden rounded-3xl bg-slate-900 shadow-sm ring-1 ring-slate-200">
-                  <video
-                    className="aspect-video w-full"
-                    controls
-                    preload="metadata"
-                  >
-                    <source
-                      src="/images/overactive%20bladder%20studies/San%20Antonio%20Urology%20Board%20Certified%20Experienced%20Doctors.mp4"
-                      type="video/mp4"
-                    />
-                    Your browser does not support the video tag.
-                  </video>
+                  <YouTubeEmbed
+                    videoId="hiphswL-Mh0"
+                    title="Overactive bladder study — The Urology Place"
+                  />
                 </div>
               </div>
 

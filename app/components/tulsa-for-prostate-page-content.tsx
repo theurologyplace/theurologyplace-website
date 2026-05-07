@@ -1,4 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
+"use client";
+
 import Image from "next/image";
+import { useCallback, useState } from "react";
 import { TulsaForProstateFaqAccordion } from "@/app/components/tulsa-for-prostate-faq-accordion";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import {
@@ -13,10 +17,12 @@ const HERO_BG = encodeURI("/images/tulsa for prostate/IMG-3622-2880w.jpg");
 
 const TULSA_DIAGRAM = encodeURI("/images/tulsa for prostate/tulsa-2880w.jpg");
 
-/** Local TULSA-PRO procedure animation (public folder; spaces encoded). */
-const TULSA_HOW_IT_WORKS_MP4 = encodeURI(
-  "/images/tulsa for prostate/TULSA-PRO prostate cancer treatment.mp4",
-);
+/** External TULSA-PRO procedure animation (vendor hosted). */
+const TULSA_HOW_IT_WORKS_MP4 =
+  "https://profoundmedical.com/wp-content/uploads/2025/05/106885B-TULSA-PRO-3D-ANIMATION-compressed.mp4";
+
+/** Backup YouTube player if vendor MP4 fails. */
+const TULSA_HOW_IT_WORKS_YOUTUBE_ID = "EygXPcSSGLc";
 
 const PANEL_BLUE = "bg-[#e8edf5]";
 const VIDEO_BAND = "bg-[#e6ebf5]";
@@ -79,6 +85,11 @@ const FEATURES = [
 ] as const;
 
 export function TulsaForProstatePageContent() {
+  const [useYouTubeBackup, setUseYouTubeBackup] = useState(false);
+  const enableYouTubeBackup = useCallback(() => {
+    setUseYouTubeBackup(true);
+  }, []);
+
   return (
     <div className="relative isolate min-h-screen text-slate-900">
       <div
@@ -206,15 +217,27 @@ export function TulsaForProstatePageContent() {
 
             <div className="mt-16 grid items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-14">
               <div className={`md:order-2 ${VIDEO_SHELL} bg-black`}>
-                <video
-                  className="aspect-video w-full"
-                  controls
-                  playsInline
-                  preload="metadata"
-                  aria-label="TULSA-PRO procedure animation"
-                >
-                  <source src={TULSA_HOW_IT_WORKS_MP4} type="video/mp4" />
-                </video>
+                {useYouTubeBackup ? (
+                  <YouTubeEmbed
+                    videoId={TULSA_HOW_IT_WORKS_YOUTUBE_ID}
+                    title="TULSA-PRO procedure animation (backup)"
+                  />
+                ) : (
+                  <video
+                    className="aspect-video w-full"
+                    controls
+                    playsInline
+                    preload="metadata"
+                    aria-label="TULSA-PRO procedure animation"
+                    onError={enableYouTubeBackup}
+                  >
+                    <source
+                      src={TULSA_HOW_IT_WORKS_MP4}
+                      type="video/mp4"
+                      onError={enableYouTubeBackup}
+                    />
+                  </video>
+                )}
               </div>
               <div className="md:order-1">
                 <h2 className="text-xl font-bold tracking-tight text-slate-900 md:text-2xl">

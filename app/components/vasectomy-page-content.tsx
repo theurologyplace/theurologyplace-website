@@ -22,10 +22,6 @@ const HERO_BG = encodeURI(
 
 const IMG = (name: string) => `/images/vasectomy/${name}`;
 
-const VASECTOMY_PATIENT_EXPERIENCE_FAQ_VIDEO = encodeURI(
-  "/images/vasectomy/Vasectomy Patient Experience FAQ.MOV",
-);
-
 const FEATURES = [
   "In office anasthesia for extra comfort",
   "Less than 1% failure rate",
@@ -134,25 +130,6 @@ export function VasectomyPageContent() {
                 posterLinkHref="https://www.youtube.com/watch?v=b4AyNyrN7rU"
                 className="overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200"
               />
-            </div>
-          </div>
-        </div>
-
-        {/* Vasectomy Patient Experience FAQ */}
-        <div className="border-t border-slate-200 bg-slate-50 px-6 py-16 md:py-24">
-          <div className="mx-auto max-w-6xl">
-            <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-              Vasectomy Patient Experience FAQ
-            </h2>
-            <div className="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200">
-              <video
-                className="aspect-video w-full bg-black object-contain"
-                controls
-                playsInline
-                preload="metadata"
-              >
-                <source src={VASECTOMY_PATIENT_EXPERIENCE_FAQ_VIDEO} type="video/quicktime" />
-              </video>
             </div>
           </div>
         </div>
