@@ -11,7 +11,8 @@ import {
 const HERO_BG = encodeURI("/images/vanquish/1765481756241.jpg");
 const VANQUISH_SYSTEM_IMAGE = encodeURI("/images/vanquish/Vanquish-System.jpg");
 const VANQUISH_TEAM_IMAGE = encodeURI("/images/vanquish/Final-1200x901.jpg");
-const VANQUISH_GROUP_IMAGE = encodeURI("/images/vanquish/image002.PNG");
+const VANQUISH_GROUP_IMAGE = encodeURI("/images/vanquish/vanquishteam.png");
+const VANQUISH_SURGERY_IMAGE = encodeURI("/images/vanquish/vanquishsurgery.png");
 const VANQUISH_SCHEDULING_IMAGE = encodeURI(
   "/images/peyronies disease/photo-1522308300961-fdb949cac8aa-2880w.jpg",
 );
@@ -110,13 +111,12 @@ export function VanquishPageContent() {
                   </a>
                 </p>
               </div>
-              <div className={ROUND_IMG}>
+              <div className={`${ROUND_IMG} mt-8`}>
                 <Image
                   src={VANQUISH_GROUP_IMAGE}
                   alt="Expanded clinical team celebrating the first Vanquish patient treatment"
                   fill
-                  className="object-cover scale-[1.50]"
-                  style={{ objectPosition: "50% 90%" }}
+                  className="object-cover"
                   sizes="(min-width: 768px) 48rem, 100vw"
                 />
               </div>
@@ -225,17 +225,30 @@ export function VanquishPageContent() {
         </section>
 
         <section className="relative border-t border-slate-200/80 bg-slate-50">
-          <div className={SECTION_INNER}>
-            <h2 className={H2}>Benefits of Vanquish Therapy</h2>
-            <BulletList
-              items={[
-                "Minimally invasive treatment option",
-                "No major incisions or extensive surgery",
-                "Targeted tissue ablation",
-                "Designed to preserve surrounding structures",
-                "Backed by ongoing clinical research and innovation",
-              ]}
-            />
+          <div className={SECTION_WIDE_INNER}>
+            <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
+              <div>
+                <h2 className={H2}>Benefits of Vanquish Therapy</h2>
+                <BulletList
+                  items={[
+                    "Minimally invasive treatment option",
+                    "No major incisions or extensive surgery",
+                    "Targeted tissue ablation",
+                    "Designed to preserve surrounding structures",
+                    "Backed by ongoing clinical research and innovation",
+                  ]}
+                />
+              </div>
+              <div className={ROUND_IMG}>
+                <Image
+                  src={VANQUISH_SURGERY_IMAGE}
+                  alt="Clinical procedure environment during a Vanquish procedure"
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 768px) 42vw, 100vw"
+                />
+              </div>
+            </div>
           </div>
         </section>
 
