@@ -77,28 +77,39 @@ export function VanquishPageContent() {
                 and ablate prostate tissue using the natural energy of water vapor. This approach offers a
                 precise, effective option for patients seeking alternatives to traditional surgical treatments.
               </p>
-              <p>
-                At The Urology Place, we are proud to be at the forefront of this technology and were the
-                first site to treat a patient in the VAPOR-2 pivotal clinical trial, highlighting our
-                commitment to innovation and cutting-edge patient care.{" "}
-                <a
-                  href="https://www.francismedical.com/press-release-francis-medical-announces-first-patient-treated-in-vapor2-pivotal-trial/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-medium text-blue-600 underline decoration-blue-600/80 underline-offset-2 hover:text-blue-700"
-                >
-                  Read the Francis Medical press release
-                </a>
-                .
-              </p>
             </div>
             <div className="mt-10">
               <h3 className="text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
                 Commercial Vanquish Procedure
               </h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-slate-800 md:text-base">
-                New info coming soon!
-              </p>
+              <div className={`${PROSE} mt-6`}>
+                <p>
+                  We&apos;re proud to announce that The Urology Place is the first clinic in South Texas to
+                  offer commercial procedures using the Vanquish&reg; Water Vapor Ablation System, an
+                  innovative minimally invasive technology designed to treat targeted prostate tissue.
+                </p>
+                <p>
+                  Following FDA clearance, Dr. Naveen Kella recently performed the first commercial Vanquish
+                  procedures in San Antonio, helping bring next-generation prostate care to patients across
+                  South Texas. The Vanquish system uses targeted water vapor technology with advanced imaging
+                  guidance to precisely ablate prostate tissue while aiming to preserve quality of life.
+                </p>
+                <p>
+                  This milestone reflects our commitment to providing patients with advanced, cutting-edge
+                  urologic treatment options close to home.
+                </p>
+                <p className="font-medium text-slate-900">
+                  Read the full press release here:{" "}
+                  <a
+                    href="https://www.francismedical.com/francis-medical-announces-further-expansion-of-commercial-vanquish-procedures-to-ablate-prostate-tissue/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 underline decoration-blue-600/80 underline-offset-2 hover:text-blue-700"
+                  >
+                    Francis Medical Press Release
+                  </a>
+                </p>
+              </div>
               <div className={ROUND_IMG}>
                 <Image
                   src={VANQUISH_GROUP_IMAGE}
@@ -248,6 +259,17 @@ export function VanquishPageContent() {
                 <p className={`mt-4 text-[15px] leading-relaxed text-slate-800 md:text-base`}>
                   This photo highlights the first team to perform the procedure in the United States and
                   reflects our commitment to bringing advanced innovation to patients early.
+                </p>
+                <p className={`mt-4 text-[15px] leading-relaxed text-slate-800 md:text-base`}>
+                  <a
+                    href="https://www.francismedical.com/press-release-francis-medical-announces-first-patient-treated-in-vapor2-pivotal-trial/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-blue-600 underline decoration-blue-600/80 underline-offset-2 hover:text-blue-700"
+                  >
+                    Read the VAPOR-2 press release
+                  </a>
+                  .
                 </p>
               </div>
               <div className={ROUND_IMG}>

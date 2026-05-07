@@ -134,6 +134,22 @@ export function VasectomyPageContent() {
           </div>
         </div>
 
+        {/* Vasectomy Patient Experience FAQ */}
+        <div className="border-t border-slate-200 bg-slate-50 px-6 py-16 md:py-24">
+          <div className="mx-auto max-w-6xl">
+            <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+              Vasectomy Patient Experience FAQ
+            </h2>
+            <div className="mx-auto mt-10 max-w-4xl overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200">
+              <YouTubeEmbed
+                videoId="FGVZCEtJleA"
+                title="Vasectomy Patient Experience FAQ"
+                className="rounded-none shadow-none ring-0"
+              />
+            </div>
+          </div>
+        </div>
+
         {/* Dr. Kella */}
         <div className="border-t border-slate-200 bg-slate-600 px-6 py-16 text-white md:py-24">
           <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
