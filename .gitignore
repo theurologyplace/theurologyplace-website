@@ -39,6 +39,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local image optimization artifacts
+/backups/image-optimization/
+/reports/image-optimization/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
