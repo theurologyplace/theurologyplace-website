@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import {
   HERO_AFTER_SLIDE_BASE,
   HERO_FIXED_BACKDROP,
@@ -215,6 +216,18 @@ export function ProstaticArteryEmbolizationPageContent() {
                   sizes="(min-width: 768px) 42vw, 100vw"
                 />
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200/80 bg-white">
+          <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
+            <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200">
+              <YouTubeEmbed
+                videoId="nRFKRDHyHfI"
+                title="Prostate Artery Embolization (PAE) discussion with Dr. Kella and Dr. Rao"
+                className="rounded-none shadow-none ring-0"
+              />
             </div>
           </div>
         </section>
