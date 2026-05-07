@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { metadata, viewport } from "next-sanity/studio";
+import { metadata as studioMetadata, viewport } from "next-sanity/studio";
 
-export { metadata, viewport };
+export const metadata: Metadata = {
+  ...studioMetadata,
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
+export { viewport };
 
 export default function StudioLayout({ children }: { children: ReactNode }) {
   return children;

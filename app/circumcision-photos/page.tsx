@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   title: "Circumcision Photos",
   description:
     "Before and after photographs of adult circumcisions performed at The Urology Place in San Antonio.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default async function CircumcisionPhotosPage() {
