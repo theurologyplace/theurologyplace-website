@@ -172,6 +172,11 @@ const NAV_ITEMS: NavItem[] = [
       { label: "Privacy Policy HIPAA", href: "/patient-resources/privacy-policy-hipaa" },
     ],
   },
+  {
+    label: "Financing",
+    href: "/financing",
+    badgeLabel: "New",
+  },
   { label: "Join Our Team", href: "/join-our-team" },
   { label: "In-Office Anesthesia", href: "/in-office-anesthesia" },
 ];
@@ -186,9 +191,7 @@ function prioritizeNewChildren(items: readonly NavNode[]): NavNode[] {
 }
 
 function prioritizeNewNavItems(items: readonly NavItem[]): NavItem[] {
-  const withNew = items.filter((i) => Boolean(i.badgeLabel));
-  const withoutNew = items.filter((i) => !i.badgeLabel);
-  return [...withNew, ...withoutNew].map((i) => {
+  return items.map((i) => {
     if (!i.children?.length) return i;
     return { ...i, children: prioritizeNewChildren(i.children) };
   });
@@ -452,13 +455,15 @@ export function Navbar() {
               <Link
                 key={item.label}
                 href={item.href || "#"}
-                className={`flex h-10 items-center whitespace-nowrap border-b-2 pb-0 pt-0.5 text-sm transition ${
+                className={`flex h-10 items-center gap-2 whitespace-nowrap border-b-2 pb-0 pt-0.5 text-sm transition ${
                   isActive(item.href)
                     ? "border-blue-600 text-slate-900"
                     : "border-transparent text-slate-700 hover:border-slate-300 hover:text-slate-900"
                 }`}
               >
-                {item.label}
+                {item.badgeLabel
+                  ? renderNavLabel(item.label, item.badgeLabel)
+                  : item.label}
               </Link>
             ),
           )}
@@ -695,11 +700,13 @@ export function Navbar() {
                     <Link
                       href={item.href || "#"}
                       onClick={() => setMobileOpen(false)}
-                      className={`block py-2 text-sm font-medium ${
+                      className={`flex items-center gap-2 py-2 text-sm font-medium ${
                         isActive(item.href) ? "text-blue-700" : "text-slate-800"
                       }`}
                     >
-                      {item.label}
+                      {item.badgeLabel
+                        ? renderNavLabel(item.label, item.badgeLabel)
+                        : item.label}
                     </Link>
                   )}
                 </li>
