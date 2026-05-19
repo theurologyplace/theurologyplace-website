@@ -109,54 +109,57 @@ function FeaturedDoctorSection({
   const name = member.name ?? "Team member";
   const alt =
     (member.profileImage as { alt?: string } | null)?.alt?.trim() || name;
+  const credentialUrls =
+    member.credentialImages
+      ?.map((img, i) => ({
+        url: profileImageUrl(img, 256),
+        alt: (img as { alt?: string })?.alt?.trim() || `Credential ${i + 1}`,
+        key: `${member._id}-cred-${i}`,
+      }))
+      .filter((c): c is { url: string; alt: string; key: string } =>
+        Boolean(c.url),
+      ) ?? [];
+  const showImageColumn = Boolean(mainUrl) || credentialUrls.length > 0;
 
   const content = (
     <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
       <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
-        <div className="flex shrink-0 flex-col gap-6 lg:w-[480px]">
-          <div className="relative h-[28rem] w-full overflow-hidden rounded-xl bg-slate-100 md:h-[32rem]">
+        {showImageColumn ? (
+          <div className="flex shrink-0 flex-col gap-6 lg:w-[480px]">
             {mainUrl ? (
-              <Image
-                src={mainUrl}
-                alt={alt}
-                fill
-                className="object-cover object-top"
-                sizes="(min-width: 1024px) 480px, 100vw"
-                priority={imagePriority}
-                unoptimized
-              />
-            ) : (
-              <div className="flex h-full items-center justify-center text-sm text-slate-500">
-                Add a profile image in Sanity
+              <div className="relative h-[28rem] w-full overflow-hidden rounded-xl bg-slate-100 md:h-[32rem]">
+                <Image
+                  src={mainUrl}
+                  alt={alt}
+                  fill
+                  className="object-cover object-top"
+                  sizes="(min-width: 1024px) 480px, 100vw"
+                  priority={imagePriority}
+                  unoptimized
+                />
               </div>
-            )}
-          </div>
-          {member.credentialImages && member.credentialImages.length > 0 ? (
-            <div className="flex flex-wrap justify-center gap-6">
-              {member.credentialImages.map((img, i) => {
-                const url = profileImageUrl(img, 256);
-                const credAlt =
-                  (img as { alt?: string })?.alt?.trim() ||
-                  `Credential ${i + 1}`;
-                return url ? (
+            ) : null}
+            {credentialUrls.length > 0 ? (
+              <div className="flex flex-wrap justify-center gap-6">
+                {credentialUrls.map((cred) => (
                   <div
-                    key={`${member._id}-cred-${i}`}
+                    key={cred.key}
                     className="relative h-28 w-28 shrink-0 md:h-32 md:w-32"
                   >
                     <Image
-                      src={url}
-                      alt={credAlt}
+                      src={cred.url}
+                      alt={cred.alt}
                       fill
                       className="object-contain"
                       sizes="128px"
                       unoptimized
                     />
                   </div>
-                ) : null;
-              })}
-            </div>
-          ) : null}
-        </div>
+                ))}
+              </div>
+            ) : null}
+          </div>
+        ) : null}
         <div className="min-w-0 flex-1">
           <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
             {name}
@@ -200,8 +203,8 @@ function ProfileSection({
   const content = (
     <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
       <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
-        <div className="relative h-80 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100 md:h-96 lg:w-[380px]">
-          {mainUrl ? (
+        {mainUrl ? (
+          <div className="relative h-80 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100 md:h-96 lg:w-[380px]">
             <Image
               src={mainUrl}
               alt={alt}
@@ -210,12 +213,8 @@ function ProfileSection({
               sizes="(min-width: 1024px) 380px, 100vw"
               unoptimized
             />
-          ) : (
-            <div className="flex h-full items-center justify-center text-sm text-slate-500">
-              Add a profile image in Sanity
-            </div>
-          )}
-        </div>
+          </div>
+        ) : null}
         <div className="min-w-0 flex-1">
           <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
             {name}
@@ -263,8 +262,8 @@ function TeamMemberGridCards({
         key={member._id}
         className="flex flex-col items-center text-center"
       >
-        <div className="relative h-80 w-80 overflow-hidden rounded-xl bg-slate-200 md:h-96 md:w-96">
-          {imgUrl ? (
+        {imgUrl ? (
+          <div className="relative h-80 w-80 overflow-hidden rounded-xl bg-slate-200 md:h-96 md:w-96">
             <Image
               src={imgUrl}
               alt={alt}
@@ -273,13 +272,13 @@ function TeamMemberGridCards({
               sizes="(min-width: 768px) 384px, 320px"
               unoptimized
             />
-          ) : (
-            <div className="flex h-full items-center justify-center px-4 text-sm text-slate-500">
-              Add a profile image in Sanity
-            </div>
-          )}
-        </div>
-        <p className="mt-4 text-lg font-semibold text-slate-900">{name}</p>
+          </div>
+        ) : null}
+        <p
+          className={`text-lg font-semibold text-slate-900${imgUrl ? " mt-4" : ""}`}
+        >
+          {name}
+        </p>
         {member.role ? <p className="text-slate-600">{member.role}</p> : null}
         {member.shortSummary ? (
           <p className="mt-2 max-w-sm text-sm text-slate-600 leading-relaxed">
@@ -332,14 +331,10 @@ function TeamMemberGridCards({
 function CategoryTeamSection({
   category,
   members,
-  betweenFeaturedAndProfiles,
-  youtubeInsertedRef,
   imagePriorityRef,
 }: {
   category: TeamCategory;
   members: TeamMember[];
-  betweenFeaturedAndProfiles: ReactNode;
-  youtubeInsertedRef: { current: boolean };
   imagePriorityRef: { current: boolean };
 }) {
   const blocks: ReactNode[] = [];
@@ -378,14 +373,6 @@ function CategoryTeamSection({
           embedded
         />,
       );
-      if (!youtubeInsertedRef.current && betweenFeaturedAndProfiles) {
-        youtubeInsertedRef.current = true;
-        blocks.push(
-          <div key={`${category._id}-youtube-after-featured`}>
-            {betweenFeaturedAndProfiles}
-          </div>,
-        );
-      }
     } else if (layout === "profile") {
       blocks.push(
         <ProfileSection key={member._id} member={member} embedded />,
@@ -409,13 +396,9 @@ function CategoryTeamSection({
 
 function UncategorizedTeamSections({
   members,
-  betweenFeaturedAndProfiles,
-  youtubeInsertedRef,
   imagePriorityRef,
 }: {
   members: TeamMember[];
-  betweenFeaturedAndProfiles: ReactNode;
-  youtubeInsertedRef: { current: boolean };
   imagePriorityRef: { current: boolean };
 }) {
   if (members.length === 0) return null;
@@ -435,16 +418,6 @@ function UncategorizedTeamSections({
           />
         );
       })}
-      {!youtubeInsertedRef.current &&
-        featured.length > 0 &&
-        betweenFeaturedAndProfiles && (
-          <>
-            {(() => {
-              youtubeInsertedRef.current = true;
-              return betweenFeaturedAndProfiles;
-            })()}
-          </>
-        )}
       {profiles.map((member) => (
         <ProfileSection key={member._id} member={member} />
       ))}
@@ -463,18 +436,17 @@ function UncategorizedTeamSections({
 }
 
 /**
- * Renders Sanity-driven team sections. Pass `betweenFeaturedAndProfiles` for the
- * YouTube block so it stays after the first featured doctor on the page.
+ * Renders Sanity-driven team sections. Pass `afterAllMembers` to append content
+ * (e.g. a YouTube block) after every team section on the page.
  */
 export function AboutUsTeamFromSanity({
   members,
-  betweenFeaturedAndProfiles,
+  afterAllMembers,
 }: {
   members: TeamMember[];
-  betweenFeaturedAndProfiles: ReactNode;
+  afterAllMembers?: ReactNode;
 }) {
   const { groups, uncategorized } = groupMembersByCategory(members);
-  const youtubeInsertedRef = { current: false };
   const imagePriorityRef = { current: true };
 
   return (
@@ -484,17 +456,14 @@ export function AboutUsTeamFromSanity({
           key={category._id}
           category={category}
           members={categoryMembers}
-          betweenFeaturedAndProfiles={betweenFeaturedAndProfiles}
-          youtubeInsertedRef={youtubeInsertedRef}
           imagePriorityRef={imagePriorityRef}
         />
       ))}
       <UncategorizedTeamSections
         members={uncategorized}
-        betweenFeaturedAndProfiles={betweenFeaturedAndProfiles}
-        youtubeInsertedRef={youtubeInsertedRef}
         imagePriorityRef={imagePriorityRef}
       />
+      {afterAllMembers}
     </>
   );
 }

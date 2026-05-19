@@ -48,7 +48,7 @@ export default async function AboutUsPage() {
 
       <AboutUsTeamFromSanity
         members={teamMembers}
-        betweenFeaturedAndProfiles={
+        afterAllMembers={
           <section className="border-t border-slate-200 bg-slate-50/50">
             <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
               <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-12">
