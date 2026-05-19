@@ -28,10 +28,21 @@ export type TeamMember = {
   category: TeamCategory | null;
 };
 
+const SECTION_TITLE =
+  "text-3xl font-bold tracking-tight text-slate-900 md:text-4xl";
+const SECTION_ACCENT =
+  "mx-auto mt-4 h-1 w-14 rounded-full bg-gradient-to-r from-blue-600 to-blue-400";
+const CARD_SURFACE =
+  "rounded-2xl border border-slate-200/90 bg-white shadow-sm ring-1 ring-slate-100";
+const IMAGE_FRAME =
+  "overflow-hidden rounded-2xl bg-slate-100 shadow-md ring-1 ring-slate-200/80";
+
 const bioComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
-      <p className="mt-4 text-slate-700 leading-relaxed first:mt-4">{children}</p>
+      <p className="mt-4 text-base leading-relaxed text-slate-600 first:mt-4 md:text-lg">
+        {children}
+      </p>
     ),
   },
 };
@@ -96,6 +107,76 @@ function profileImageUrl(
   return urlFor(image).width(width).quality(85).url();
 }
 
+/** Row widths for team card grids (max 3 per row; 4 → 2+2, 5 → 3+2, etc.). */
+function getTeamGridRowSizes(count: number): number[] {
+  if (count <= 0) return [];
+  const presets: Record<number, number[]> = {
+    1: [1],
+    2: [2],
+    3: [3],
+    4: [2, 2],
+    5: [3, 2],
+    6: [3, 3],
+    7: [3, 2, 2],
+    8: [3, 3, 2],
+    9: [3, 3, 3],
+  };
+  if (presets[count]) return presets[count];
+
+  const rows: number[] = [];
+  let remaining = count;
+  while (remaining > 0) {
+    if (remaining === 4) {
+      rows.push(2, 2);
+      break;
+    }
+    if (remaining === 5) {
+      rows.push(3, 2);
+      break;
+    }
+    if (remaining === 1 && rows.length > 0) {
+      const last = rows.pop()!;
+      if (last === 3) {
+        rows.push(2, 2);
+      } else {
+        rows.push(last, 1);
+      }
+      break;
+    }
+    const take = Math.min(3, remaining);
+    rows.push(take);
+    remaining -= take;
+  }
+  return rows;
+}
+
+function SectionHeading({ title }: { title: string }) {
+  return (
+    <div className="mb-10 text-center md:mb-12">
+      <h2 className={SECTION_TITLE}>{title}</h2>
+      <div className={SECTION_ACCENT} aria-hidden />
+    </div>
+  );
+}
+
+function MemberName({ name, className = "" }: { name: string; className?: string }) {
+  return (
+    <h3
+      className={`text-xl font-bold tracking-tight text-slate-900 md:text-2xl ${className}`}
+    >
+      {name}
+    </h3>
+  );
+}
+
+function MemberRole({ role }: { role: string }) {
+  return (
+    <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-blue-600 md:text-base">
+      {role}
+    </p>
+  );
+}
+
 function FeaturedDoctorSection({
   member,
   imagePriority,
@@ -121,65 +202,63 @@ function FeaturedDoctorSection({
       ) ?? [];
   const showImageColumn = Boolean(mainUrl) || credentialUrls.length > 0;
 
-  const content = (
-    <div
-      className={
-        embedded
-          ? "mx-auto max-w-6xl px-6"
-          : "mx-auto max-w-6xl px-6 py-16 md:py-20"
-      }
-    >
-      <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
-        {showImageColumn ? (
-          <div className="flex shrink-0 flex-col gap-6 lg:w-[480px]">
-            {mainUrl ? (
-              <div className="relative h-[28rem] w-full overflow-hidden rounded-xl bg-slate-100 md:h-[32rem]">
-                <Image
-                  src={mainUrl}
-                  alt={alt}
-                  fill
-                  className="object-cover object-top"
-                  sizes="(min-width: 1024px) 480px, 100vw"
-                  priority={imagePriority}
-                  unoptimized
-                />
-              </div>
-            ) : null}
-            {credentialUrls.length > 0 ? (
-              <div className="flex flex-wrap justify-center gap-6">
-                {credentialUrls.map((cred) => (
-                  <div
-                    key={cred.key}
-                    className="relative h-28 w-28 shrink-0 md:h-32 md:w-32"
-                  >
-                    <Image
-                      src={cred.url}
-                      alt={cred.alt}
-                      fill
-                      className="object-contain"
-                      sizes="128px"
-                      unoptimized
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : null}
-          </div>
-        ) : null}
-        <div className="min-w-0 flex-1">
-          <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-            {name}
-          </h2>
-          {member.role ? (
-            <p className="mt-1 font-bold text-slate-600">{member.role}</p>
+  const inner = (
+    <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
+      {showImageColumn ? (
+        <div className="flex shrink-0 flex-col gap-5 lg:w-[440px]">
+          {mainUrl ? (
+            <div
+              className={`relative h-[26rem] w-full md:h-[30rem] ${IMAGE_FRAME}`}
+            >
+              <Image
+                src={mainUrl}
+                alt={alt}
+                fill
+                className="object-cover object-top"
+                sizes="(min-width: 1024px) 440px, 100vw"
+                priority={imagePriority}
+                unoptimized
+              />
+            </div>
           ) : null}
-          {member.bio && member.bio.length > 0 ? (
-            <div className="bio">
-              <PortableText value={member.bio} components={bioComponents} />
+          {credentialUrls.length > 0 ? (
+            <div className="flex flex-wrap justify-center gap-5">
+              {credentialUrls.map((cred) => (
+                <div
+                  key={cred.key}
+                  className="relative h-24 w-24 shrink-0 md:h-28 md:w-28"
+                >
+                  <Image
+                    src={cred.url}
+                    alt={cred.alt}
+                    fill
+                    className="object-contain p-1"
+                    sizes="112px"
+                    unoptimized
+                  />
+                </div>
+              ))}
             </div>
           ) : null}
         </div>
+      ) : null}
+      <div className="min-w-0 flex-1">
+        <MemberName name={name} />
+        {member.role ? <MemberRole role={member.role} /> : null}
+        {member.bio && member.bio.length > 0 ? (
+          <div className="bio mt-4">
+            <PortableText value={member.bio} components={bioComponents} />
+          </div>
+        ) : null}
       </div>
+    </div>
+  );
+
+  const content = embedded ? (
+    <div className={`${CARD_SURFACE} p-6 md:p-8`}>{inner}</div>
+  ) : (
+    <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <div className={`${CARD_SURFACE} p-6 md:p-10`}>{inner}</div>
     </div>
   );
 
@@ -202,39 +281,39 @@ function ProfileSection({
   const alt =
     (member.profileImage as { alt?: string } | null)?.alt?.trim() || name;
 
-  const content = (
-    <div
-      className={
-        embedded
-          ? "mx-auto max-w-6xl px-6"
-          : "mx-auto max-w-6xl px-6 py-16 md:py-20"
-      }
-    >
-      <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
-        {mainUrl ? (
-          <div className="relative h-80 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100 md:h-96 lg:w-[380px]">
-            <Image
-              src={mainUrl}
-              alt={alt}
-              fill
-              className="object-cover object-top"
-              sizes="(min-width: 1024px) 380px, 100vw"
-              unoptimized
-            />
+  const inner = (
+    <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
+      {mainUrl ? (
+        <div
+          className={`relative h-72 w-full shrink-0 md:h-80 lg:w-[340px] ${IMAGE_FRAME}`}
+        >
+          <Image
+            src={mainUrl}
+            alt={alt}
+            fill
+            className="object-cover object-top"
+            sizes="(min-width: 1024px) 340px, 100vw"
+            unoptimized
+          />
+        </div>
+      ) : null}
+      <div className="min-w-0 flex-1">
+        <MemberName name={name} />
+        {member.role ? <MemberRole role={member.role} /> : null}
+        {member.bio && member.bio.length > 0 ? (
+          <div className="mt-4">
+            <PortableText value={member.bio} components={bioComponents} />
           </div>
         ) : null}
-        <div className="min-w-0 flex-1">
-          <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-            {name}
-          </h2>
-          {member.role ? (
-            <p className="mt-1 font-bold text-slate-600">{member.role}</p>
-          ) : null}
-          {member.bio && member.bio.length > 0 ? (
-            <PortableText value={member.bio} components={bioComponents} />
-          ) : null}
-        </div>
       </div>
+    </div>
+  );
+
+  const content = embedded ? (
+    <div className={`${CARD_SURFACE} p-6 md:p-8`}>{inner}</div>
+  ) : (
+    <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <div className={`${CARD_SURFACE} p-6 md:p-10`}>{inner}</div>
     </div>
   );
 
@@ -243,6 +322,41 @@ function ProfileSection({
   }
 
   return <section className="bg-white">{content}</section>;
+}
+
+function TeamMemberGridCard({ member }: { member: TeamMember }) {
+  const imgUrl = profileImageUrl(member.profileImage, 768);
+  const name = member.name ?? "Team member";
+  const alt =
+    (member.profileImage as { alt?: string } | null)?.alt?.trim() || name;
+
+  return (
+    <div className="flex w-52 flex-col items-center text-center sm:w-56 md:w-64">
+      {imgUrl ? (
+        <div
+          className={`relative mb-5 h-56 w-56 md:h-64 md:w-64 ${IMAGE_FRAME}`}
+        >
+          <Image
+            src={imgUrl}
+            alt={alt}
+            fill
+            className="object-cover object-top"
+            sizes="(min-width: 768px) 256px, 224px"
+            unoptimized
+          />
+        </div>
+      ) : null}
+      <MemberName name={name} className={imgUrl ? "" : "text-lg md:text-xl"} />
+      {member.role ? (
+        <p className="mt-2 text-sm text-slate-600">{member.role}</p>
+      ) : null}
+      {member.shortSummary ? (
+        <p className="mt-3 text-sm leading-relaxed text-slate-500">
+          {member.shortSummary}
+        </p>
+      ) : null}
+    </div>
+  );
 }
 
 function TeamMemberGridCards({
@@ -256,52 +370,32 @@ function TeamMemberGridCards({
 }) {
   if (members.length === 0) return null;
 
-  const cards = members.map((member) => {
-    const imgUrl = profileImageUrl(member.profileImage, 768);
-    const name = member.name ?? "Team member";
-    const alt =
-      (member.profileImage as { alt?: string } | null)?.alt?.trim() || name;
-    return (
-      <div
-        key={member._id}
-        className="flex flex-col items-center text-center"
-      >
-        {imgUrl ? (
-          <div className="relative h-80 w-80 overflow-hidden rounded-xl bg-slate-200 md:h-96 md:w-96">
-            <Image
-              src={imgUrl}
-              alt={alt}
-              fill
-              className="object-cover object-top"
-              sizes="(min-width: 768px) 384px, 320px"
-              unoptimized
-            />
-          </div>
-        ) : null}
-        <p
-          className={`text-lg font-semibold text-slate-900${imgUrl ? " mt-4" : ""}`}
-        >
-          {name}
-        </p>
-        {member.role ? <p className="text-slate-600">{member.role}</p> : null}
-        {member.shortSummary ? (
-          <p className="mt-2 max-w-sm text-sm text-slate-600 leading-relaxed">
-            {member.shortSummary}
-          </p>
-        ) : null}
-      </div>
-    );
-  });
+  const rowSizes = getTeamGridRowSizes(members.length);
+  const rows: TeamMember[][] = [];
+  let offset = 0;
+  for (const size of rowSizes) {
+    rows.push(members.slice(offset, offset + size));
+    offset += size;
+  }
 
   const gridInner = (
-    <div
-      className={
-        nested
-          ? "flex flex-wrap justify-center gap-x-16 gap-y-10 lg:gap-x-20"
-          : "flex flex-wrap justify-center gap-x-16 gap-y-10 lg:gap-x-20"
-      }
-    >
-      {cards}
+    <div className="flex w-full flex-col items-center gap-y-10 md:gap-y-12">
+      {rows.map((rowMembers, rowIndex) => {
+        const count = rowMembers.length;
+        const rowGridClass =
+          count === 1
+            ? "mx-auto grid max-w-xs grid-cols-1 justify-items-center"
+            : count === 2
+              ? "mx-auto grid w-full max-w-lg grid-cols-2 justify-items-center gap-x-8 md:max-w-xl md:gap-x-12"
+              : "mx-auto grid w-full max-w-4xl grid-cols-3 justify-items-center gap-x-6 md:max-w-5xl md:gap-x-10 lg:gap-x-14";
+        return (
+          <div key={`row-${rowIndex}`} className={rowGridClass}>
+            {rowMembers.map((member) => (
+              <TeamMemberGridCard key={member._id} member={member} />
+            ))}
+          </div>
+        );
+      })}
     </div>
   );
 
@@ -323,17 +417,19 @@ function TeamMemberGridCards({
     return grid;
   }
 
-  return <section className="bg-slate-50/50">{grid}</section>;
+  return <section className="bg-slate-50/80">{grid}</section>;
 }
 
 function CategoryTeamSection({
   category,
   members,
   imagePriorityRef,
+  variantIndex,
 }: {
   category: TeamCategory;
   members: TeamMember[];
   imagePriorityRef: { current: boolean };
+  variantIndex: number;
 }) {
   const blocks: ReactNode[] = [];
   let gridBatch: TeamMember[] = [];
@@ -380,13 +476,13 @@ function CategoryTeamSection({
 
   flushGridBatch();
 
+  const bgClass = variantIndex % 2 === 0 ? "bg-slate-50/80" : "bg-white";
+
   return (
-    <section className="bg-slate-50/50 py-10 md:py-12">
+    <section className={`${bgClass} py-12 md:py-16`}>
       <div className="mx-auto max-w-6xl px-6">
-        <h2 className="mb-10 text-center text-3xl font-bold uppercase tracking-tight text-slate-900 md:mb-12 md:text-4xl">
-          {category.title ?? "Team"}
-        </h2>
-        <div className="flex flex-col gap-10 md:gap-12">{blocks}</div>
+        <SectionHeading title={category.title ?? "Team"} />
+        <div className="flex flex-col gap-8 md:gap-10">{blocks}</div>
       </div>
     </section>
   );
@@ -395,13 +491,16 @@ function CategoryTeamSection({
 function UncategorizedTeamSections({
   members,
   imagePriorityRef,
+  variantIndex,
 }: {
   members: TeamMember[];
   imagePriorityRef: { current: boolean };
+  variantIndex: number;
 }) {
   if (members.length === 0) return null;
 
   const { featured, profiles, grid } = partitionTeamMembers(members);
+  const bgClass = variantIndex % 2 === 0 ? "bg-slate-50/80" : "bg-white";
 
   return (
     <>
@@ -420,11 +519,9 @@ function UncategorizedTeamSections({
         <ProfileSection key={member._id} member={member} />
       ))}
       {grid.length > 0 ? (
-        <section className="bg-slate-50/50 py-10 md:py-12">
+        <section className={`${bgClass} py-12 md:py-16`}>
           <div className="mx-auto max-w-6xl px-6">
-            <h2 className="mb-10 text-center text-3xl font-bold uppercase tracking-tight text-slate-900 md:mb-12 md:text-4xl">
-              Our Team
-            </h2>
+            <SectionHeading title="Our Team" />
             <TeamMemberGridCards members={grid} nested />
           </div>
         </section>
@@ -448,20 +545,22 @@ export function AboutUsTeamFromSanity({
   const imagePriorityRef = { current: true };
 
   return (
-    <>
-      {groups.map(({ category, members: categoryMembers }) => (
+    <div>
+      {groups.map(({ category, members: categoryMembers }, index) => (
         <CategoryTeamSection
           key={category._id}
           category={category}
           members={categoryMembers}
           imagePriorityRef={imagePriorityRef}
+          variantIndex={index}
         />
       ))}
       <UncategorizedTeamSections
         members={uncategorized}
         imagePriorityRef={imagePriorityRef}
+        variantIndex={groups.length}
       />
       {afterAllMembers}
-    </>
+    </div>
   );
 }
