@@ -36,8 +36,16 @@ export default defineType({
       name: 'sortOrder',
       title: 'Display order',
       type: 'number',
-      description: 'Lower numbers appear first within the same layout group.',
+      description: 'Lower numbers appear first within the same team category.',
       initialValue: 0,
+    }),
+    defineField({
+      name: 'category',
+      title: 'Team category',
+      type: 'reference',
+      to: [{type: 'teamCategory'}],
+      description:
+        'Optional. Groups this member under a section heading on About Us (any layout: Featured, Profile, or Team card). Create categories under Content → Team category.',
     }),
     defineField({
       name: 'role',
@@ -95,14 +103,6 @@ export default defineType({
           ],
         }),
       ],
-    }),
-    defineField({
-      name: 'category',
-      title: 'Team category',
-      type: 'reference',
-      to: [{type: 'teamCategory'}],
-      description:
-        'Optional. For Team card layout, groups members under this section heading on About Us. Create categories under Content → Team category.',
     }),
   ],
   orderings: [
