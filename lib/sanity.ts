@@ -41,7 +41,12 @@ export const teamMembersQuery = `
     profileImage,
     credentialImages,
     layoutVariant,
-    sortOrder
+    sortOrder,
+    category->{
+      _id,
+      title,
+      sortOrder
+    }
   }
 `
 

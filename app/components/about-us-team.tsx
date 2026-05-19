@@ -9,6 +9,12 @@ import { urlFor } from "@/lib/sanity";
 
 export type TeamMemberLayout = "featured" | "profile" | "grid";
 
+export type TeamCategory = {
+  _id: string;
+  title: string | null;
+  sortOrder: number | null;
+};
+
 export type TeamMember = {
   _id: string;
   name: string | null;
@@ -19,6 +25,7 @@ export type TeamMember = {
   credentialImages: Parameters<typeof urlFor>[0][] | null;
   layoutVariant: TeamMemberLayout | null;
   sortOrder: number | null;
+  category: TeamCategory | null;
 };
 
 const bioComponents: PortableTextComponents = {
@@ -44,6 +51,38 @@ export function partitionTeamMembers(members: TeamMember[]) {
     .filter((m) => m.layoutVariant === "grid")
     .sort(sortByOrder);
   return { featured, profiles, grid };
+}
+
+export function groupGridMembersByCategory(members: TeamMember[]) {
+  const byCategory = new Map<
+    string,
+    { category: TeamCategory; members: TeamMember[] }
+  >();
+  const uncategorized: TeamMember[] = [];
+
+  for (const member of members) {
+    const category = member.category;
+    if (category?._id) {
+      const existing = byCategory.get(category._id);
+      if (existing) {
+        existing.members.push(member);
+      } else {
+        byCategory.set(category._id, { category, members: [member] });
+      }
+    } else {
+      uncategorized.push(member);
+    }
+  }
+
+  const groups = [...byCategory.values()].sort(
+    (a, b) => (a.category.sortOrder ?? 0) - (b.category.sortOrder ?? 0),
+  );
+  for (const group of groups) {
+    group.members.sort(sortByOrder);
+  }
+  uncategorized.sort(sortByOrder);
+
+  return { groups, uncategorized };
 }
 
 function profileImageUrl(
@@ -176,60 +215,82 @@ function ProfileSection({ member }: { member: TeamMember }) {
   );
 }
 
+function TeamMemberGridCards({ members }: { members: TeamMember[] }) {
+  return (
+    <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:gap-12">
+      {members.map((member) => {
+        const imgUrl = profileImageUrl(member.profileImage, 768);
+        const name = member.name ?? "Team member";
+        const alt =
+          (member.profileImage as { alt?: string } | null)?.alt?.trim() || name;
+        return (
+          <div
+            key={member._id}
+            className="flex flex-col items-center text-center"
+          >
+            <div className="relative h-80 w-80 overflow-hidden rounded-xl bg-slate-200 md:h-96 md:w-96">
+              {imgUrl ? (
+                <Image
+                  src={imgUrl}
+                  alt={alt}
+                  fill
+                  className="object-cover object-top"
+                  sizes="(min-width: 768px) 384px, 320px"
+                  unoptimized
+                />
+              ) : (
+                <div className="flex h-full items-center justify-center px-4 text-sm text-slate-500">
+                  Add a profile image in Sanity
+                </div>
+              )}
+            </div>
+            <p className="mt-4 text-lg font-semibold text-slate-900">{name}</p>
+            {member.role ? (
+              <p className="text-slate-600">{member.role}</p>
+            ) : null}
+            {member.shortSummary ? (
+              <p className="mt-2 max-w-sm text-sm text-slate-600 leading-relaxed">
+                {member.shortSummary}
+              </p>
+            ) : null}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function TeamGridSection({ members }: { members: TeamMember[] }) {
   if (members.length === 0) return null;
 
+  const { groups, uncategorized } = groupGridMembersByCategory(members);
+
   return (
-    <section className="border-t border-slate-200 bg-slate-50/50">
-      <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-        <h2 className="text-center text-3xl font-bold uppercase tracking-tight text-slate-900 md:text-4xl">
-          Our Team
-        </h2>
-        <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:gap-12">
-          {members.map((member) => {
-            const imgUrl = profileImageUrl(member.profileImage, 768);
-            const name = member.name ?? "Team member";
-            const alt =
-              (member.profileImage as { alt?: string } | null)?.alt?.trim() ||
-              name;
-            return (
-              <div
-                key={member._id}
-                className="flex flex-col items-center text-center"
-              >
-                <div className="relative h-80 w-80 overflow-hidden rounded-xl bg-slate-200 md:h-96 md:w-96">
-                  {imgUrl ? (
-                    <Image
-                      src={imgUrl}
-                      alt={alt}
-                      fill
-                      className="object-cover object-top"
-                      sizes="(min-width: 768px) 384px, 320px"
-                      unoptimized
-                    />
-                  ) : (
-                    <div className="flex h-full items-center justify-center px-4 text-sm text-slate-500">
-                      Add a profile image in Sanity
-                    </div>
-                  )}
-                </div>
-                <p className="mt-4 text-lg font-semibold text-slate-900">
-                  {name}
-                </p>
-                {member.role ? (
-                  <p className="text-slate-600">{member.role}</p>
-                ) : null}
-                {member.shortSummary ? (
-                  <p className="mt-2 max-w-sm text-sm text-slate-600 leading-relaxed">
-                    {member.shortSummary}
-                  </p>
-                ) : null}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+    <>
+      {groups.map(({ category, members: categoryMembers }) => (
+        <section
+          key={category._id}
+          className="border-t border-slate-200 bg-slate-50/50"
+        >
+          <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+            <h2 className="text-center text-3xl font-bold uppercase tracking-tight text-slate-900 md:text-4xl">
+              {category.title ?? "Team"}
+            </h2>
+            <TeamMemberGridCards members={categoryMembers} />
+          </div>
+        </section>
+      ))}
+      {uncategorized.length > 0 ? (
+        <section className="border-t border-slate-200 bg-slate-50/50">
+          <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+            <h2 className="text-center text-3xl font-bold uppercase tracking-tight text-slate-900 md:text-4xl">
+              Our Team
+            </h2>
+            <TeamMemberGridCards members={uncategorized} />
+          </div>
+        </section>
+      ) : null}
+    </>
   );
 }
 

@@ -96,6 +96,14 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'category',
+      title: 'Team category',
+      type: 'reference',
+      to: [{type: 'teamCategory'}],
+      description:
+        'Optional. For Team card layout, groups members under this section heading on About Us. Create categories under Content → Team category.',
+    }),
   ],
   orderings: [
     {
@@ -113,18 +121,20 @@ export default defineType({
     select: {
       title: 'name',
       subtitle: 'layoutVariant',
+      categoryTitle: 'category.title',
       media: 'profileImage',
     },
-    prepare({title, subtitle, media}) {
+    prepare({title, subtitle, categoryTitle, media}) {
       const layoutLabel =
         subtitle === 'featured'
           ? 'Featured'
           : subtitle === 'profile'
             ? 'Profile'
             : 'Team card'
+      const categorySuffix = categoryTitle ? ` · ${categoryTitle}` : ''
       return {
         title: title ?? 'Untitled',
-        subtitle: layoutLabel,
+        subtitle: `${layoutLabel}${categorySuffix}`,
         media,
       }
     },
