@@ -122,7 +122,13 @@ function FeaturedDoctorSection({
   const showImageColumn = Boolean(mainUrl) || credentialUrls.length > 0;
 
   const content = (
-    <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+    <div
+      className={
+        embedded
+          ? "mx-auto max-w-6xl px-6"
+          : "mx-auto max-w-6xl px-6 py-16 md:py-20"
+      }
+    >
       <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
         {showImageColumn ? (
           <div className="flex shrink-0 flex-col gap-6 lg:w-[480px]">
@@ -178,14 +184,10 @@ function FeaturedDoctorSection({
   );
 
   if (embedded) {
-    return (
-      <div className="border-t border-slate-200 bg-white">{content}</div>
-    );
+    return content;
   }
 
-  return (
-    <section className="border-t border-slate-200 bg-white">{content}</section>
-  );
+  return <section className="bg-white">{content}</section>;
 }
 
 function ProfileSection({
@@ -201,7 +203,13 @@ function ProfileSection({
     (member.profileImage as { alt?: string } | null)?.alt?.trim() || name;
 
   const content = (
-    <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+    <div
+      className={
+        embedded
+          ? "mx-auto max-w-6xl px-6"
+          : "mx-auto max-w-6xl px-6 py-16 md:py-20"
+      }
+    >
       <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-12">
         {mainUrl ? (
           <div className="relative h-80 w-full shrink-0 overflow-hidden rounded-xl bg-slate-100 md:h-96 lg:w-[380px]">
@@ -231,14 +239,10 @@ function ProfileSection({
   );
 
   if (embedded) {
-    return (
-      <div className="border-t border-slate-200 bg-white">{content}</div>
-    );
+    return content;
   }
 
-  return (
-    <section className="border-t border-slate-200 bg-white">{content}</section>
-  );
+  return <section className="bg-white">{content}</section>;
 }
 
 function TeamMemberGridCards({
@@ -293,8 +297,8 @@ function TeamMemberGridCards({
     <div
       className={
         nested
-          ? "mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:gap-12"
-          : "grid grid-cols-1 gap-10 sm:grid-cols-2 lg:gap-12"
+          ? "flex flex-wrap justify-center gap-x-16 gap-y-10 lg:gap-x-20"
+          : "flex flex-wrap justify-center gap-x-16 gap-y-10 lg:gap-x-20"
       }
     >
       {cards}
@@ -308,9 +312,7 @@ function TeamMemberGridCards({
   const grid = (
     <div
       className={
-        embedded
-          ? "mx-auto max-w-6xl px-6 pb-16 md:pb-20"
-          : "mx-auto max-w-6xl px-6 py-16 md:py-20"
+        embedded ? "mx-auto max-w-6xl px-6" : "mx-auto max-w-6xl px-6 py-16 md:py-20"
       }
     >
       {gridInner}
@@ -318,14 +320,10 @@ function TeamMemberGridCards({
   );
 
   if (embedded) {
-    return <div className="border-t border-slate-200">{grid}</div>;
+    return grid;
   }
 
-  return (
-    <section className="border-t border-slate-200 bg-slate-50/50">
-      {grid}
-    </section>
-  );
+  return <section className="bg-slate-50/50">{grid}</section>;
 }
 
 function CategoryTeamSection({
@@ -383,13 +381,13 @@ function CategoryTeamSection({
   flushGridBatch();
 
   return (
-    <section className="border-t border-slate-200 bg-slate-50/50">
-      <div className="mx-auto max-w-6xl px-6 pt-16 md:pt-20">
-        <h2 className="text-center text-3xl font-bold uppercase tracking-tight text-slate-900 md:text-4xl">
+    <section className="bg-slate-50/50 py-10 md:py-12">
+      <div className="mx-auto max-w-6xl px-6">
+        <h2 className="mb-10 text-center text-3xl font-bold uppercase tracking-tight text-slate-900 md:mb-12 md:text-4xl">
           {category.title ?? "Team"}
         </h2>
+        <div className="flex flex-col gap-10 md:gap-12">{blocks}</div>
       </div>
-      {blocks}
     </section>
   );
 }
@@ -422,9 +420,9 @@ function UncategorizedTeamSections({
         <ProfileSection key={member._id} member={member} />
       ))}
       {grid.length > 0 ? (
-        <section className="border-t border-slate-200 bg-slate-50/50">
-          <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-            <h2 className="text-center text-3xl font-bold uppercase tracking-tight text-slate-900 md:text-4xl">
+        <section className="bg-slate-50/50 py-10 md:py-12">
+          <div className="mx-auto max-w-6xl px-6">
+            <h2 className="mb-10 text-center text-3xl font-bold uppercase tracking-tight text-slate-900 md:mb-12 md:text-4xl">
               Our Team
             </h2>
             <TeamMemberGridCards members={grid} nested />
