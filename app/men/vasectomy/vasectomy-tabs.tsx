@@ -4,11 +4,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import { useState } from "react";
 
-type VasectomyTabId =
-  | "what-is"
-  | "pain-free"
-  | "during"
-  | "cost";
+type VasectomyTabId = "what-is" | "pain-free" | "during";
 
 type TabConfig = {
   id: VasectomyTabId;
@@ -99,37 +95,6 @@ const TABS: TabConfig[] = [
           separate compartments. Usually, we can locate your second vas deferens
           via the same tiny hole and repeat the procedure without any additional
           openings.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: "cost",
-    label: "How Much Does a Vasectomy Cost?",
-    title: "Pricing and Insurance Information",
-    imageSrc: IMG("incrediblemarketing40-1920w.jpg"),
-    imageAlt: "The Urology Place reception area",
-    body: (
-      <>
-        <p>
-          Most insurance plans cover the cost of a vasectomy. They typically
-          require you to have one pre-procedure office visit and then a second
-          appointment on a different day for the actual procedure. If you are
-          committed to a vasectomy and don&apos;t want to deal with your
-          insurance rules, we have a convenient same day self pay option.
-        </p>
-        <p className="mt-6 font-bold text-slate-900">No Insurance?</p>
-        <p className="mt-2">
-          If you are paying out of pocket for your vasectomy, we can provide you
-          with both the consultation and the procedure on the same day for a
-          prompt-pay price of $825. Insurance otherwise covers a vasectomy but
-          you usually are required to have your consultation separate from the
-          procedure. There is a $75 deposit required to secure an appointment
-          for the procedure. This deposit is NON-REFUNDABLE 2 business days
-          before your appointment because we have dedicated our time slot to you
-          and your procedure. The deposit will still apply to the overall balance
-          of the service. If you refund your deposit, there is a $5 fee to cover
-          credit card charges and overhead.
         </p>
       </>
     ),

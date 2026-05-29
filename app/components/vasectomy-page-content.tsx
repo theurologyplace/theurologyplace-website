@@ -4,6 +4,7 @@ import { VasectomyFaqAccordion } from "@/app/components/vasectomy-faq-accordion"
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import { VasectomyTabs } from "@/app/men/vasectomy/vasectomy-tabs";
+import { VasectomyPricing } from "@/app/men/vasectomy/vasectomy-pricing";
 import {
   BTN_MAKE_APPOINTMENT_HERO,
   BTN_PRIMARY,
@@ -203,6 +204,7 @@ export function VasectomyPageContent() {
           }}
         >
           <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white shadow-sm ring-1 ring-slate-200/70">
+            {/* Concierge intro + portrait (side by side on large screens) */}
             <div className="grid lg:grid-cols-[minmax(0,1.2fr)_minmax(260px,0.8fr)]">
               <div className="p-8 md:p-10 lg:p-12">
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-blue-600">
@@ -238,34 +240,42 @@ export function VasectomyPageContent() {
                     </p>
                   </div>
                 </div>
-
-                <div className="mt-8 rounded-2xl border border-blue-100 bg-blue-50/60 p-5">
-                  <p className="text-sm font-medium text-slate-700">
-                    Call or message us for pricing and availability.
-                  </p>
-                  <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
-                    <a
-                      href={clinicPhoneTelHref()}
-                      className={`inline-flex w-full justify-center sm:w-auto ${BTN_PRIMARY}`}
-                    >
-                      Call (210) 617-3670
-                    </a>
-                    <p className="text-sm text-slate-600">
-                      After-hours and weekend appointments available.
-                    </p>
-                  </div>
-                </div>
               </div>
 
-              <div className="relative min-h-[280px] border-t border-slate-200 bg-slate-100 lg:min-h-full lg:border-l lg:border-t-0">
+              <div className="relative min-h-[280px] border-t border-slate-200 bg-slate-100 sm:min-h-[320px] lg:min-h-0 lg:border-l lg:border-t-0">
                 <Image
                   src={IMG("man-smiling-grey-background-1920w.jpg")}
                   alt="Smiling patient portrait"
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   sizes="(min-width: 1024px) 32vw, 100vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-slate-900/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent lg:bg-gradient-to-l lg:from-slate-950/30 lg:via-transparent lg:to-transparent" />
+              </div>
+            </div>
+
+            {/* Pricing spans full width below */}
+            <div className="border-t border-slate-200 p-8 md:p-10 lg:p-12">
+              <h3 className="text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
+                Pricing &amp; Insurance
+              </h3>
+              <div className="mt-6">
+                <VasectomyPricing />
+              </div>
+
+              <div className="mt-10 rounded-2xl border border-blue-100 bg-blue-50/60 p-5 md:p-6">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <p className="text-sm leading-relaxed text-slate-700">
+                    After-hours and weekend appointments are available. Call to
+                    schedule your visit or ask about concierge scheduling.
+                  </p>
+                  <a
+                    href={clinicPhoneTelHref()}
+                    className={`inline-flex shrink-0 justify-center sm:w-auto ${BTN_PRIMARY}`}
+                  >
+                    Call (210) 617-3670
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -280,7 +290,7 @@ export function VasectomyPageContent() {
             <div className="mx-auto mt-4 h-px w-16 bg-white/70" aria-hidden />
             <p className="mt-6 text-[15px] leading-relaxed text-white/95 md:text-base">
               We welcome patients traveling from outside the area with same-day
-              consultations and a self-pay price of $825.
+              consultations and a self-pay price of $875.
             </p>
             <div className="mt-8 flex justify-center">
               <Link
