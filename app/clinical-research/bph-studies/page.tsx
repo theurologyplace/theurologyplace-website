@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import { BPH_STAGE_ILLUSTRATIONS } from "@/app/data/bph-stage-illustrations";
 import { HERO_IMAGE_SECTION, HERO_TITLE_BPH_TRIALS } from "@/app/lib/hero";
 
@@ -25,6 +26,9 @@ const STUDY_SECTIONS = [
     nct: "NCT04757116",
     image: "/images/bph studies/photo-1589447388921-2c2c70d26d0a-2880w.jpg",
     alt: "Walnuts on a green background illustrating prostate size comparison",
+    youtubeVideoId: "XcDnlQSicfA",
+    youtubeTitle:
+      "Dr. Naveen Kella discusses the MT-08 clinical trial comparing iTind and UroLift",
   },
   {
     title: "Customized TULSA-PRO Ablation Registry",
@@ -171,6 +175,15 @@ export default function BphStudiesPage() {
                     </p>
                   </div>
                 </div>
+
+                {"youtubeVideoId" in section && section.youtubeVideoId ? (
+                  <div className="mx-auto mt-12 max-w-4xl overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200">
+                    <YouTubeEmbed
+                      videoId={section.youtubeVideoId}
+                      title={section.youtubeTitle}
+                    />
+                  </div>
+                ) : null}
               </div>
             </section>
           );
