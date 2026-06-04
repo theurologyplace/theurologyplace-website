@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import { PaeRaoCredentialsAccordion } from "@/app/components/pae-rao-credentials-accordion";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import {
   HERO_AFTER_SLIDE_BASE,
@@ -12,6 +13,7 @@ import {
 const HERO_BG = encodeURI("/images/pae/What-is-Prostate-Artery-Embolization-PAE.webp");
 const IMG_LIFESTYLE = encodeURI("/images/enlarged prostate/photo-1491484925566-336b202157a5-2880w.jpg");
 const IMG_PROCEDURE = encodeURI("/images/pae/PAE.jpeg");
+const IMG_DR_RAO = encodeURI("/images/enlarged prostate/sandeep-1-e1750158588460.jpg");
 
 const PANEL = "bg-slate-50";
 const CONTENT_CARD =
@@ -232,6 +234,63 @@ export function ProstaticArteryEmbolizationPageContent() {
           </div>
         </section>
 
+        <section className={`relative border-t border-slate-200/80 ${PANEL}`}>
+          <div className="mx-auto max-w-6xl px-6 py-14 md:py-20">
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                Your PAE Care Team
+              </h2>
+              <p className="mt-5 text-[15px] leading-relaxed text-slate-700 md:text-base">
+                At The Urology Place, Dr. Naveen Kella evaluates your symptoms, confirms whether PAE
+                is appropriate, and coordinates your overall BPH care. The embolization procedure is
+                performed by Dr. Sandeep Rao, a board-certified interventional radiologist who works
+                closely with Dr. Kella to deliver image-guided, minimally invasive treatment.
+              </p>
+            </div>
+
+            <div className="mt-12 grid items-start gap-10 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-14">
+              <div className="mx-auto w-full max-w-xs lg:mx-0 lg:max-w-none">
+                <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-slate-100 shadow-md ring-1 ring-slate-200/80">
+                  <Image
+                    src={IMG_DR_RAO}
+                    alt="Dr. Sandeep Rao, interventional radiologist"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(min-width: 1024px) 320px, 288px"
+                  />
+                </div>
+              </div>
+
+              <div className={CONTENT_CARD}>
+                <h3 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                  Dr. Sandeep Rao, MD, MBA, CWSP
+                </h3>
+                <p className="mt-2 text-[15px] font-semibold text-blue-700 md:text-base">
+                  Board-Certified Interventional Radiologist
+                </p>
+                <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
+                  <p>
+                    With more than two decades in practice, Dr. Rao focuses on minimally invasive,
+                    image-guided treatments for vascular disease, chronic pain, and other complex
+                    conditions.
+                  </p>
+                  <p>
+                    His expertise includes prostate artery embolization for enlarged prostate, along
+                    with genicular artery embolization for knee pain and plantar fascia embolization.
+                    He is known for adopting newer endovascular techniques early in their clinical use.
+                  </p>
+                  <p>
+                    Dr. Rao performs hundreds of embolization procedures each year and partners with
+                    Dr. Kella so patients receive thorough urologic evaluation before and coordinated
+                    follow-up after PAE.
+                  </p>
+                </div>
+                <PaeRaoCredentialsAccordion />
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="relative border-t border-slate-200/80 bg-white">
           <div className="mx-auto max-w-3xl px-6 py-14 md:py-16">
             <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
@@ -275,6 +334,24 @@ export function ProstaticArteryEmbolizationPageContent() {
               and ask to speak with the PAE scheduling team, or select the surgery line when prompted. If
               the department is unavailable, please dial extension 107, 103, or leave a voicemail.
             </p>
+
+            <h3 className="mt-10 text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
+              Procedure Location
+            </h3>
+            <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
+              To schedule the PAE procedure with Dr. Rao: Please contact Monica at{" "}
+              <a href="tel:2106602010" className="font-semibold text-blue-700 underline underline-offset-2">
+                210-660-2010
+              </a>
+              .
+            </p>
+            <address className="mt-4 not-italic text-[15px] leading-relaxed text-slate-800 md:text-base">
+              I-Vascular Center
+              <br />
+              19234 Stonehue
+              <br />
+              San Antonio, TX 78258
+            </address>
           </div>
         </section>
 
