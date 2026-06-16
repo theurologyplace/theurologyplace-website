@@ -45,6 +45,12 @@ const TREATMENT_OPTION_CARDS = [
     imageAlt: "Laser surgery for enlarged prostate",
   },
   {
+    label: "PAE",
+    href: "/men/enlarged-prostate/prostatic-artery-embolization",
+    imageSrc: encodeURI("/images/pae/PAE.jpeg"),
+    imageAlt: "Prostate artery embolization for enlarged prostate",
+  },
+  {
     label: "TULSA",
     href: "/men/prostate-cancer/tulsa-for-prostate",
     imageSrc: IMG("tulsa-card.jpg"),
@@ -180,7 +186,7 @@ export function EnlargedProstatePageContent() {
           </div>
 
           <div className="mx-auto max-w-7xl px-6 pb-16 md:pb-20">
-            <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+            <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-7">
               {TREATMENT_OPTION_CARDS.map((item) => (
                 <li key={item.label}>
                   <Link
@@ -193,7 +199,7 @@ export function EnlargedProstatePageContent() {
                         alt={item.imageAlt}
                         fill
                         className="object-cover transition group-hover:opacity-95"
-                        sizes="(min-width: 1280px) 16vw, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                        sizes="(min-width: 1280px) 14vw, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
                       />
                     </div>
                     <div className="border-t border-slate-200 px-3 py-4">
