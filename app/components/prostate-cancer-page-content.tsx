@@ -148,7 +148,11 @@ export function ProstateCancerPageContent() {
           </div>
         </section>
 
-        <MoreInformationCardGrid items={PROSTATE_CANCER_MORE_INFORMATION_ITEMS} />
+        <MoreInformationCardGrid
+          items={PROSTATE_CANCER_MORE_INFORMATION_ITEMS.filter(
+            (item) => item.label !== "PSA, MRI and Gleason Score",
+          )}
+        />
 
         <section
           id="men-prostate-cancer-contact"
