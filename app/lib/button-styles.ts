@@ -4,7 +4,7 @@
  * See PROJECT_RULES.md → Button styling (site-wide, non-navbar).
  */
 
-/** Primary: matches Contact button (pill, solid blue). Use for Make Appointment, Submit, Subscribe, Learn More. */
+/** Primary: matches Contact button (pill, solid blue). Use for Make Appointment, Submit, Learn More. */
 export const BTN_PRIMARY =
   "rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2";
 

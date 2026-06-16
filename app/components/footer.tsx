@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BTN_PRIMARY, BTN_ICON_PRIMARY } from "@/app/lib/button-styles";
+import { BTN_ICON_PRIMARY } from "@/app/lib/button-styles";
 import {
   CLINIC_BUSINESS_HOURS_ROWS,
   CLINIC_PHONE,
@@ -104,35 +104,18 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Newsletter + social */}
-          <div className="lg:col-span-4 space-y-4">
+          {/* Social */}
+          <div className="lg:col-span-4">
             <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                Newsletter
-              </h3>
-              <form
-                className="mt-2 flex flex-col gap-2 sm:flex-row sm:items-center"
-                action="#"
-                method="post"
-              >
-                <input
-                  type="email"
-                  name="newsletterEmail"
-                  placeholder="Your email"
-                  className="min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                />
-                <button
-                  type="submit"
-                  className={`shrink-0 ${BTN_PRIMARY}`}
-                >
-                  Subscribe
-                </button>
-              </form>
-            </div>
-            <div>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                Follow Us
-              </h3>
+              <p>
+                <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                  Follow Us
+                </span>
+                <span className="text-sm font-normal normal-case tracking-normal text-slate-700">
+                  {" "}
+                  - Get fresh, cutting edge health news from us
+                </span>
+              </p>
               <div className="mt-2 flex gap-2">
                 {SOCIAL.map(({ label, href }) => (
                   <a

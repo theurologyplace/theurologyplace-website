@@ -256,7 +256,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Request appointment + contact, map, newsletter, hours */}
+      {/* Request appointment + contact */}
       <HomeContactSection />
     </main>
   );
