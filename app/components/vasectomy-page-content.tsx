@@ -71,7 +71,8 @@ export function VasectomyPageContent() {
           <p className={`mx-auto mt-6 max-w-3xl leading-relaxed ${HERO_SUBTITLE_ON_IMAGE}`}>
             No-scalpel, no-needle vasectomy with Nitrous gas. We strive to make
             your vasectomy as painless as possible and get you back on your feet
-            quickly. We are excited to offer this nearly painless solution!
+            quickly. We are excited to offer this nearly painless solution! Over
+            3,200 procedures performed. Experience helps bring superior results.
           </p>
           <div className="mt-8">
             <a href="#men-vasectomy-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
@@ -177,12 +178,19 @@ export function VasectomyPageContent() {
                 fellowship in Urologic Oncology and robotic surgery. He is known
                 for his expertise in treating prostate cancer and has performed
                 over 3,000 robotic prostate cancer surgeries (RALP). In
-                addition, he has proctored over 100 physicians in robotic
-                prostatectomy techniques. Literature notes that the best
-                surgeons usually have superior experience. Dr. Kella is the most
-                experienced robotic prostate surgeon in San Antonio and South
-                Texas, and one of the most experienced in the nation. He is also
-                an Adjunct Assistant Professor at the UT Health Science Center.
+                addition, he has proctored more than 100 physicians in robotic
+                prostatectomy techniques. Dr. Kella has also performed over
+                3,200 no-scalpel vasectomy procedures, making him one of the
+                most experienced vasectomy providers in South Texas. Literature
+                suggests that surgical outcomes are often associated with
+                experience, and Dr. Kella is the most experienced robotic
+                prostate surgeon in San Antonio and South Texas, and one of the
+                most experienced in the nation. He is also an Adjunct Assistant
+                Professor at the UT Health Science Center. To ensure a
+                comfortable patient experience, we offer a range of comfort
+                options tailored to individual preferences, including a relaxed
+                office environment, music, nitrous oxide (laughing gas), and IV
+                sedation with propofol.
               </p>
             </div>
           </div>

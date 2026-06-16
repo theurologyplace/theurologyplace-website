@@ -8,7 +8,7 @@ const FAQ_ITEMS = [
     question: "How do I prepare for a Vasectomy?",
     answer: (
       <p>
-        Patients need to avoid bloodthinners up to 7 days prior to their procedure, 
+        Patients need to avoid blood thinners up to 7 days prior to their procedure, 
         trim the hair around the area with clippers only, razors increase risk for 
         contamination and infection. Also, patients need to purchase and bring compression 
         shorts to their appointment. Please review the aftercare section ahead of time to prepare. 
@@ -67,8 +67,7 @@ const FAQ_ITEMS = [
     answer: (
       <p>
         Dr Kella has extensively researched this commonly performed procedure. 
-        Studies indicate this is the least invasive and most comfortable way to perform a vasectomy. 
-        Here is a comprehensive review regarding no scalpel vasectomy.
+        Studies indicate this is the least invasive and most comfortable way to perform a vasectomy.
       </p>
     ),
   },

@@ -33,7 +33,7 @@ function PriceCard({
 export function VasectomyPricing() {
   return (
     <div className="space-y-8">
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 md:grid-cols-3">
         <PriceCard
           price="$875"
           title="In-office vasectomy"
@@ -44,6 +44,11 @@ export function VasectomyPricing() {
           price="$1,275"
           title="Vasectomy with in-office IV anesthesia"
           description="Administered by a CRNA—you will be asleep and won't remember a thing!"
+        />
+        <PriceCard
+          price="$105"
+          title="Nitrous gas"
+          description="Nitrous gas is a self-pay rate of $105, not covered by insurance."
         />
       </div>
 

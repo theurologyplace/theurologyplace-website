@@ -54,10 +54,7 @@ const FAQ_ITEMS = [
     question: "Will Medicare/private insurance cover the procedure costs?",
     answer: (
       <p>
-        The procedure is FDA approved. The company is diligently working for an insurance code.
-        This is currently a self-pay procedure. Depending on individual insurance policies, there may
-        be some reimbursement for the procedure, which should be further discussed with your policy
-        provider.
+        The procedure has a code covered by Medicare. Commercial insurances vary.
       </p>
     ),
   },
