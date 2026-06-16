@@ -154,19 +154,6 @@ const FAQ_ITEMS = [
       </p>
     ),
   },
-  {
-    id: "dr-hlavinka",
-    question:
-      "Dr Hlavinka has special training for women hormonal needs?",
-    answer: (
-      <p>
-        Yes. Dr. Hlavinka has dedicated experience in women&apos;s hormonal
-        health. We&apos;re happy to discuss your goals and whether pellet
-        therapy is a fit—call us or use the contact form to schedule a
-        consultation.
-      </p>
-    ),
-  },
 ] as const;
 
 export function HormoneReplacementFaqAccordion() {

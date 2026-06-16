@@ -36,7 +36,7 @@ export const PATIENT_REVIEWS: PatientReview[] = [
   },
   {
     quote:
-      "I've heard wonderful things about this place. Two of my good friends go here. I've heard Dr. Hlavinka's experise in the area of urology and hormone replacement therapy works wonders and his new staff is wonderful.",
+      "I've heard wonderful things about this place. Two of my good friends go here. Their expertise in the area of urology and hormone replacement therapy works wonders and his new staff is wonderful.",
     name: "DeAnna H.",
   },
   {
@@ -46,7 +46,7 @@ export const PATIENT_REVIEWS: PatientReview[] = [
   },
   {
     quote:
-      "Love The Urology Place, we drove over 3 hours each way to see Dr. Kella and Dr. Hlavinka. They are amazing! Clean, new office and very friendly staff. I am very happy.",
+      "Love The Urology Place, we drove over 3 hours each way to see Dr. Kella. They are amazing! Clean, new office and very friendly staff. I am very happy.",
     name: "Jacob V.",
   },
 ];
