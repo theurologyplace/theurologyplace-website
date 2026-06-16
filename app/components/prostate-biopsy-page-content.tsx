@@ -273,10 +273,16 @@ export function ProstateBiopsyPageContent() {
                   We understand that a prostate biopsy can be uncomfortable. General anesthesia is
                   often more than this procedure requires. We offer medication, a numbing prostate
                   block, and optional nitrous oxide (laughing gas) to make the experience as
-                  comfortable as possible—often without an IV or hospital facility fees. The Urology
-                  Place has partnered with Aurora Cancer Center to offer Navigo Smart Biopsy.
-                  Insurances may cover a portion; depending on coverage, we can discuss self-pay
-                  options for MRI and Smart Biopsy at an affordable price point.
+                  comfortable as possible—often without an IV or hospital facility fees. Learn more
+                  about our{" "}
+                  <Link
+                    href="/in-office-anesthesia"
+                    className="font-semibold text-blue-600 underline decoration-blue-600/80 underline-offset-2 hover:text-blue-700"
+                  >
+                    in-office anesthesia
+                  </Link>{" "}
+                  services tailored for urologic care. Insurances may cover a portion; depending on
+                  coverage, we can discuss self-pay options for MRI at an affordable price point.
                 </p>
               </div>
             </div>
