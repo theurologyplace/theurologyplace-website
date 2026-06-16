@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 const FAQ_ITEMS = [
@@ -21,6 +22,15 @@ const FAQ_ITEMS = [
       <p>
         We have significant experience with all the options. In fact, Dr. Kella was the first surgeon
         to perform UroLift in Texas and he was the first person to perform iTind in the Southwest.
+        The Urology Place was also among the first groups in the region to partner with
+        interventional radiology to offer{" "}
+        <Link
+          href="/men/enlarged-prostate/prostatic-artery-embolization"
+          className="font-medium text-blue-600 hover:text-blue-700"
+        >
+          prostate artery embolization (PAE)
+        </Link>
+        .
       </p>
     ),
   },
