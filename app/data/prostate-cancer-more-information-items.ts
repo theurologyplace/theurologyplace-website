@@ -48,6 +48,6 @@ export const PROSTATE_CANCER_MORE_INFORMATION_ITEMS: MoreInformationItem[] = [
     imageSrc: `${IMG_BASE}/image8.png`,
     imageAlt: "Dr. Kella's Thoughts on Choosing Your Prostate Cancer Surgeon",
     label: "Dr. Kella's Thoughts on Choosing Your Prostate Cancer Surgeon",
-    href: "/men/prostate-cancer/robotic-prostatectomy",
+    href: "/men/prostate-cancer/robotic-prostatectomy#why-experience-matters",
   },
 ];

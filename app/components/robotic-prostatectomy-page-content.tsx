@@ -215,7 +215,7 @@ export function RoboticProstatectomyPageContent() {
         </section>
 
         {/* 7 — Experience & credentials */}
-        <section className="relative bg-white">
+        <section id="why-experience-matters" className="relative scroll-mt-28 bg-white">
           <div className="mx-auto max-w-4xl px-6 py-16 md:py-20">
             <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
               Why is Dr. Kella one of the most Experienced Robotic Prostate Surgeons in South Texas?
@@ -264,7 +264,8 @@ export function RoboticProstatectomyPageContent() {
                   DaVinci Xi surgical system
                 </a>
                 : the latest system. Dr. Kella believes the vision, movement and energy-delivery
-                systems are better with the Xi.
+                systems are better with the Xi. Dr. Kella also is using the DaVinci 5, which offers
+                the surgeon a better user interface.
               </li>
               <li>
                 <a href="#" className="font-medium text-sky-600 underline hover:text-sky-700">
@@ -277,13 +278,7 @@ export function RoboticProstatectomyPageContent() {
                 the following day.
               </li>
               <li>
-                Nerve monitoring technology in select cases to help with nerve sparing. Dr. Kella is
-                a pioneer with{" "}
-                <a href="#" className="font-medium text-sky-600 underline hover:text-sky-700">
-                  ProPep
-                </a>
-                . He was the first surgeon to start using ProPep after the founder developed the
-                system.
+                Nerve monitoring technology in select cases to help with nerve sparing.
               </li>
               <li>
                 <a href="#" className="font-medium text-sky-600 underline hover:text-sky-700">
@@ -298,7 +293,6 @@ export function RoboticProstatectomyPageContent() {
             </h3>
             <ul className="mt-4 list-disc space-y-2 pl-5 text-slate-700 leading-relaxed">
               <li>Preoperative preparation</li>
-              <li>Onsite visit with fellowship-trained cardiologist available</li>
               <li>
                 Post-operative package with Dr. Kella and staff to restore urinary and sexual function
               </li>
@@ -309,12 +303,6 @@ export function RoboticProstatectomyPageContent() {
                   penile pump
                 </a>{" "}
                 for patients wanting a fast return of continence.
-              </li>
-              <li>
-                <a href="#" className="font-medium text-sky-600 underline hover:text-sky-700">
-                  Injectable medications (Alprostadil)
-                </a>{" "}
-                available to enhance sexual function recovery.
               </li>
               <li>
                 <a href="#" className="font-medium text-sky-600 underline hover:text-sky-700">

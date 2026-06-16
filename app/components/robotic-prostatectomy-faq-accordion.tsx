@@ -80,8 +80,9 @@ const FAQ_ITEMS = [
     question: "Where does Dr. Kella perform his robotic surgery?",
     answer: (
       <p>
-        St Lukes Baptist is in San Antonio&apos;s medical center. Patients have been impressed with
-        the hospital and its well appointed private rooms.
+        Dr. Kella performs robotic surgery at St Lukes Baptist and Methodist Landmark. St Lukes
+        Baptist is in San Antonio&apos;s medical center. Patients have been impressed with the
+        hospital and its well appointed private rooms.
       </p>
     ),
   },
@@ -107,7 +108,7 @@ const FAQ_ITEMS = [
     answer: (
       <p>
         Yes. We have an all inclusive rate, which is extremely competitive. Our charge (as of
-        January 2019) is $25,000. This covers the surgeon, assistant, anesthesia, pathologist, and
+        2026) is $21,500. This covers the surgeon, assistant, anesthesia, pathologist, and
         hospital for up to a 3 day stay. Your preoperative visit and post operative visit are also
         covered. You should not see any other surprise charges.
       </p>
@@ -119,10 +120,9 @@ const FAQ_ITEMS = [
       "I am from out of state or out of the country. Are you set up to see me for surgery with Dr. Kella?",
     answer: (
       <p>
-        Of course. We see patients routinely from outside South Texas. We have discounted rates
-        with Staybridge Suites close to the medical center. You can go home if you like the day
-        after surgery by plane or automobile. We can even manage post operative care with your
-        local doctor and telemedicine if needed.
+        Of course. We see patients routinely from outside South Texas. You can go home if you like
+        the day after surgery by plane or automobile. We can even manage post operative care with
+        your local doctor and telemedicine if needed.
       </p>
     ),
   },
