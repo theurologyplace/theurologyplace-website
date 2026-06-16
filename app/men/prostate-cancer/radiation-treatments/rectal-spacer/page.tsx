@@ -82,14 +82,23 @@ export default function RectalSpacerPage() {
             </div>
             <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
               <p>
-                A rectal spacer is a <strong>temporary, absorbable hydrogel</strong> that is
-                placed between the prostate and the rectum. Because these two structures sit very
+                A rectal spacer is placed between the prostate and the rectum to help protect
+                healthy tissue during prostate radiation. Because these two structures sit very
                 close together, the rectum can be exposed to unintended radiation during prostate
                 treatments.
               </p>
               <p>
-                The spacer creates a small but important separation, helping to protect the rectum
-                from radiation exposure.
+                One option is a <strong>temporary, absorbable hydrogel</strong> that is injected
+                into the space between the prostate and rectum, where it forms a soft barrier.
+                Another option is a <strong>biodegradable balloon spacer</strong>, which is placed
+                in the same area and inflated with saline to create separation. Unlike hydrogel that
+                sets in place after injection, a balloon spacer can be adjusted or repositioned if
+                needed before treatment begins.
+              </p>
+              <p>
+                In both cases, the spacer creates a small but important separation, helping to
+                protect the rectum from radiation exposure. Both hydrogel and balloon spacers are
+                naturally absorbed by the body over time after treatment.
               </p>
             </div>
           </div>
