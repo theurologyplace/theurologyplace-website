@@ -154,10 +154,21 @@ const NAV_ITEMS: NavItem[] = [
         label: "Prostate Cancer Studies",
         href: "/clinical-research/prostate-cancer-studies",
       },
-      { label: "Overactive Bladder", href: "/clinical-research/overactive-bladder" },
+      {
+        label: "Bladder Cancer Studies",
+        href: "/clinical-research/bladder-cancer-studies",
+      },
+      {
+        label: "Urinary Incontinence Studies",
+        href: "/clinical-research/urinary-incontinence-studies",
+      },
       {
         label: "Benign Prostatic Hyperplasia (BPH) Studies",
         href: "/clinical-research/bph-studies",
+      },
+      {
+        label: "Renal Studies",
+        href: "/clinical-research/renal-studies",
       },
     ],
   },

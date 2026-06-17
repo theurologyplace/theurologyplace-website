@@ -20,8 +20,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/men/bladder-cancer/zusduri-bcg",
-        destination: "/men/bladder-cancer/zusduri-bcg-en-block",
+        source: "/clinical-research/overactive-bladder",
+        destination: "/clinical-research/urinary-incontinence-studies",
         permanent: true,
       },
     ];

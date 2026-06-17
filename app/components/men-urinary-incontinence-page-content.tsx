@@ -120,7 +120,7 @@ export function MenUrinaryIncontinencePageContent() {
                 <p className="mt-3 text-[15px] leading-relaxed text-slate-800 md:text-base">
                   Botox, Emsella, Interstim and{" "}
                   <Link
-                    href="/clinical-research/overactive-bladder"
+                    href="/clinical-research/urinary-incontinence-studies"
                     className="font-semibold text-cyan-600 underline decoration-cyan-600/50 underline-offset-2 hover:text-cyan-700"
                   >
                     Revi
