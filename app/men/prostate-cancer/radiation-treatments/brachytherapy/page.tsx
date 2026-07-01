@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
-import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
+import { BTN_MAKE_APPOINTMENT_HERO, BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import {
   HERO_AFTER_SLIDE_BASE,
   HERO_FIXED_BACKDROP,
@@ -14,10 +15,13 @@ const HERO_BG = "/images/brachytherapy/hipxray.jpg";
 const BRACHYTHERAPY_DIAGRAM_IMG = "/images/brachytherapy/brachtherapy.png";
 const SEED_PLACEMENT_IMG = "/images/brachytherapy/prostate_seed.jpg";
 
+const BULLET =
+  "mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600";
+
 export const metadata: Metadata = {
   title: "Brachytherapy",
   description:
-    "LDR brachytherapy information for prostate cancer patients at The Urology Place in San Antonio.",
+    "Interventional radiotherapy and LDR brachytherapy for prostate cancer at The Urology Place in San Antonio.",
 };
 
 export default function BrachytherapyPage() {
@@ -40,7 +44,7 @@ export default function BrachytherapyPage() {
           <div className="relative z-10 mx-auto max-w-4xl text-center">
             <h1 className={HERO_TITLE_ON_IMAGE}>Brachytherapy</h1>
             <p className={`mt-4 ${HERO_SUBTITLE_ON_IMAGE}`}>
-              LDR Brachytherapy for Prostate Cancer at The Urology Place
+              Interventional Radiotherapy: Low-Dose-Rate (LDR) Brachytherapy for Prostate Cancer
             </p>
             <div className="mt-8">
               <a href="#men-brachytherapy-contact" className={BTN_MAKE_APPOINTMENT_HERO}>
@@ -52,72 +56,38 @@ export default function BrachytherapyPage() {
 
         <section className={`${HERO_AFTER_SLIDE_BASE} bg-white`}>
           <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
-              LDR Brachytherapy: Precision Healing for Prostate Cancer
-            </h2>
-            <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
-              <p>
-                When it comes to treating prostate cancer, the goal is simple:{" "}
-                <strong>eliminate the cancer while preserving your quality of life</strong>. Our
-                practice is proud to offer Low-Dose Rate (LDR) Brachytherapy, a highly
-                specialized, internal radiation treatment that offers a &quot;one-and-done&quot;
-                solution for many men.
-              </p>
-              <p>
-                By partnering with the nation&apos;s most experienced Radiation Oncology group
-                (with over 3,000 successful cases), we provide a level of expertise and
-                precision that is second to none.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="relative border-t border-slate-200/80 bg-[#e8edf5]">
-          <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
             <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-start md:gap-10">
               <div className="min-w-0">
-                <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-                  What is LDR Brachytherapy?
+                <h2 className="text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+                  What is Modern LDR Brachytherapy?
                 </h2>
-                <div className="mt-5 space-y-6">
-                  <p className="text-[15px] leading-relaxed text-slate-800 md:text-base">
-                    Unlike traditional radiation that travels from a machine outside the body through
-                    healthy tissue, Brachytherapy involves placing tiny, radioactive &quot;seeds&quot;
-                    directly into the prostate.
+                <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
+                  <p>
+                    Low-Dose-Rate (LDR) brachytherapy often referred to as &quot;seed
+                    implantation&quot; is a highly precise form of internal radiation therapy.
+                    Unlike traditional external radiation, which must travel through healthy skin
+                    and tissue to reach the target, modern brachytherapy places tiny, radioactive
+                    seeds (each about the size of a grain of rice) directly inside the prostate
+                    gland.
                   </p>
-                  <ul className="space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
-                    <li className="flex gap-3">
-                      <span
-                        className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600"
-                        aria-hidden
-                      />
-                      <span>
-                        <strong>Targeted Power:</strong> The radiation travels only a few millimeters,
-                        concentrating the treatment exactly where it&apos;s needed.
-                      </span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span
-                        className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600"
-                        aria-hidden
-                      />
-                      <span>
-                        <strong>Convenience:</strong> The procedure is performed in an outpatient
-                        setting and typically takes only 30 minutes.
-                      </span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span
-                        className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600"
-                        aria-hidden
-                      />
-                      <span>
-                        <strong>Fast Recovery:</strong> Most patients return home the same day and
-                        resume normal activities within 24 to 48 hours{" "}
-                        <strong>(without the need for a urinary catheter)</strong>.
-                      </span>
-                    </li>
-                  </ul>
+                  <p>
+                    Using advanced, live-ultrasound guidance and state-of-the-art computer
+                    mapping, our radiation oncology team precisely distributes these seeds to match
+                    the exact shape and size of your prostate.
+                  </p>
+                  <p>
+                    Just like surgery, experience is KEY for good outcomes. Dr Kella has performed
+                    thousands of robotic prostate surgeries, putting him in the top 1% for surgical
+                    experience. He has partnered with Western Radiation Oncology after years of
+                    planning. The group has done thousands of brachytherapy cases and is the busiest
+                    active group in the world. No one in the Southwest comes close to their
+                    experience.
+                  </p>
+                  <p>
+                    Over several weeks and months, the seeds continuously deliver a localized,
+                    cancer-killing dose of radiation. Eventually, the radiation safely fades away,
+                    leaving the harmless, microscopic seeds permanently in place.
+                  </p>
                 </div>
               </div>
 
@@ -149,49 +119,97 @@ export default function BrachytherapyPage() {
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200/80 bg-white">
+        <section className="relative border-t border-slate-200/80 bg-[#e8edf5]">
           <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
             <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-              Why Choose LDR Brachytherapy?
+              Why Pursue Brachytherapy?
             </h2>
             <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
-              Recent clinical literature and long-term studies highlight several key advantages
-              that make LDR Brachytherapy a preferred choice for localized prostate cancer:
+              When confronting prostate cancer, choosing a treatment is a balance between long-term
+              cure rates and quality of life. Brachytherapy is widely pursued for several compelling
+              reasons:
             </p>
             <ul className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
               <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span className={BULLET} aria-hidden />
                 <span>
-                  <strong>Superior Cancer Control:</strong> Clinical data show that LDR
-                  brachytherapy provides excellent long-term cure rates, often outperforming
-                  external beam radiation for many patients because it allows for a higher, more
-                  concentrated dose of radiation directly to the tumor.
+                  <strong>Maximum Impact, Minimum Side Effects:</strong> Because the radiation source
+                  is inside the tumor, it delivers an incredibly high dose to the cancer cells while
+                  dramatically sparing the surrounding healthy organs (like the bladder and rectum).
+                  Most patients do NOT need a urinary catheter afterwards. Many patients will be
+                  offered a temporary{" "}
+                  <Link
+                    href="/men/prostate-cancer/radiation-treatments/rectal-spacer"
+                    className="font-medium text-blue-700 underline decoration-blue-700/30 underline-offset-2 hover:text-blue-900"
+                  >
+                    rectal spacer
+                  </Link>
+                  , 1-3 weeks prior to the procedure. This moves the rectum away from the prostate,
+                  reducing any future rectal damage from the radiation to about 1% risk. In addition,
+                  there is less erectile dysfunction risk with the spacer. This procedure is quick
+                  and done in the office.
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span className={BULLET} aria-hidden />
                 <span>
-                  <strong>Preserving What Matters:</strong> Because the radiation is so localized,
-                  there is a significantly lower risk of the urinary and sexual side effects often
-                  associated with surgery or external radiation.
+                  <strong>Superb Preservation of Quality of Life:</strong> Compared to radical
+                  surgical removal of the prostate, modern brachytherapy carries a significantly
+                  lower risk of urinary incontinence and offers a more favorable profile for
+                  preserving long-term sexual function.
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span className={BULLET} aria-hidden />
                 <span>
-                  <strong>Avoiding Hormone Therapy:</strong> For many intermediate-risk patients,
-                  LDR brachytherapy can be used as a standalone treatment. This allows many men to{" "}
-                  <strong>avoid Androgen Deprivation Therapy (ADT)</strong> - the hormone-blocking
-                  treatment often required with external radiation that can cause fatigue, weight
-                  gain, and mood changes.
+                  <strong>Unmatched Convenience:</strong> While standard external beam radiation
+                  requires daily trips to a facility for up to several weeks, LDR brachytherapy is a
+                  one-time, outpatient procedure. You walk in and walk out the same day.
+                </span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200/80 bg-white">
+          <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+              Proven Outcomes Across Risk Groups
+            </h2>
+            <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
+              Prostate cancer is typically categorized into risk groups based on your PSA level,
+              Gleason score, and clinical stage. LDR brachytherapy has an exceptional track record,
+              heavily supported by decades of clinical data:
+            </p>
+            <ul className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
+              <li className="flex gap-3">
+                <span className={BULLET} aria-hidden />
+                <span>
+                  <strong>Low-Risk Prostate Cancer:</strong> For localized, early-stage cancer,
+                  brachytherapy is highly effective as a standalone &quot;monotherapy.&quot; Long-term
+                  data shows disease-free cure rates as high as 95% at 15 years, rivaling radical
+                  prostatectomy.
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span className={BULLET} aria-hidden />
                 <span>
-                  <strong>The &quot;One-and-Done&quot; Advantage:</strong> While external radiation
-                  can require daily trips to the clinic for 5 to 9 weeks, LDR brachytherapy is a
-                  single, permanent implant.
+                  <strong>Intermediate-Risk Prostate Cancer:</strong> For men with intermediate
+                  features, brachytherapy remains a premiere option. It can be used alone or
+                  combined with a short course of external beam radiation/hormone therapy,
+                  consistently achieving excellent 10-year biochemical control rates (often between
+                  85% to 94%).
+                </span>
+              </li>
+              <li className="flex gap-3">
+                <span className={BULLET} aria-hidden />
+                <span>
+                  <strong>High-Risk Prostate Cancer:</strong> For advanced or aggressive cases,
+                  modern brachytherapy is used as a powerful &quot;boost&quot; alongside external
+                  beam radiation therapy (EBRT). Large-scale clinical trials (such as the landmark
+                  ASCENDE-RT trial) have proven that adding a brachytherapy boost provides
+                  significantly higher cure rates and superior recurrence-free survival compared to
+                  external radiation alone.
                 </span>
               </li>
             </ul>
@@ -201,58 +219,85 @@ export default function BrachytherapyPage() {
         <section className="relative border-t border-slate-200/80 bg-[#e8edf5]">
           <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
             <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-              Is LDR Brachytherapy Right for You?
+              The Patient Experience: What to Expect
             </h2>
             <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
-              LDR brachytherapy is an ideal option for men with localized prostate cancer who are
-              looking for a curative treatment that minimizes disruption to their lives.
+              At The Urology Place, we ensure your journey is smooth, clear, and focused on your
+              comfort.
             </p>
-          </div>
-        </section>
-
-        <section className="relative border-t border-slate-200/80 bg-white">
-          <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-              Summary of Benefits
-            </h2>
             <ul className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
               <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span className={BULLET} aria-hidden />
                 <span>
-                  <strong>30-minute</strong> outpatient procedure.
+                  <strong>The Pre-Planning Phase:</strong> A few weeks prior to the procedure, you
+                  will have a mapping session. Imaging can build a 3D computerized template of your
+                  prostate to order your exact number of seeds. If you have a large prostate or
+                  significant urinary symptoms, Dr Kella will discuss possible options to make you
+                  an optimal candidate for brachytherapy.
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span className={BULLET} aria-hidden />
                 <span>
-                  <strong>No urinary catheter</strong> required post-op.
+                  <strong>Rectal Spacing Day:</strong> 1-3 weeks prior to your procedure, you will
+                  have a rectal spacer placed. This is done in the office with Dr Kella and usually
+                  takes 15-30 minutes. This will give extra protection to your rectum and nerves.
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span className={BULLET} aria-hidden />
                 <span>
-                  <strong>Highly effective</strong> long-term cancer control.
+                  <strong>The Procedure Day:</strong> The implant is performed in an outpatient
+                  surgical environment. You will meet your surgeons, the radiation oncologist and
+                  Dr Kella. You will receive anesthesia so you are completely asleep and feel no
+                  pain. Using the 3D map as a blueprint, seeds are placed through thin needles
+                  guided by live ultrasound. The procedure usually takes about an hour.
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span className={BULLET} aria-hidden />
                 <span>
-                  <strong>Lower risk</strong> of sexual and urinary side effects.
+                  <strong>Immediate Recovery:</strong> After a brief stay in the recovery room, you
+                  return home the same day. Most men report only mild soreness or a &quot;heavy&quot;
+                  sensation in the pelvic area, which is easily managed with mild over-the-counter
+                  pain relievers.
                 </span>
               </li>
               <li className="flex gap-3">
-                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
+                <span className={BULLET} aria-hidden />
                 <span>
-                  <strong>Potential to avoid</strong> hormone therapy (ADT).
+                  <strong>The Weeks Following:</strong> As the seeds actively emit radiation over the
+                  first few weeks, you may experience temporary urinary symptoms like a stronger
+                  urgency to go, a slower stream, or mild burning. These side effects peak around 4
+                  to 6 weeks and steadily resolve as the seeds lose their energy. Most men return to
+                  regular, everyday activities within just a few days of the procedure.
                 </span>
               </li>
             </ul>
           </div>
         </section>
 
+        <section className="relative border-t border-slate-200/80 bg-white">
+          <div className="mx-auto max-w-4xl px-6 py-14 text-center md:py-16">
+            <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+              Take the Next Step
+            </h2>
+            <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
+              Are you a candidate for LDR Brachytherapy? Schedule a consultation with our specialized
+              team at The Urology Place to explore your options and build a treatment plan tailored
+              to your life.
+            </p>
+            <div className="mt-8">
+              <a href="#men-brachytherapy-contact" className={BTN_PRIMARY_LARGE}>
+                Schedule a Consultation
+              </a>
+            </div>
+          </div>
+        </section>
+
         <section
           id="men-brachytherapy-contact"
-          className="relative scroll-mt-28 border-t border-slate-200 bg-white"
+          className="relative scroll-mt-28 border-t border-slate-200 bg-[#e8edf5]"
         >
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
             <ContactFormTemplate
