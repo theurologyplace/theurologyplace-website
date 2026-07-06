@@ -292,16 +292,25 @@ export function ProstaticArteryEmbolizationPageContent() {
         </section>
 
         <section className="relative border-t border-slate-200/80 bg-white">
-          <div className="mx-auto max-w-3xl px-6 py-14 md:py-16">
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-              Recovery and Results
-            </h2>
-            <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
-              Most patients go home the same day. You may experience mild pelvic discomfort for a few days
-              along with temporary urinary urgency or frequency. Most individuals are able to return to
-              normal activities within 1 to 3 days. Symptom improvement typically begins within a few weeks
-              and continues to improve over the course of 2 to 3 months.
-            </p>
+          <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
+            <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
+              <div>
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                  Recovery and Results
+                </h2>
+                <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
+                  Most patients go home the same day. You may experience mild pelvic discomfort for a few
+                  days along with temporary urinary urgency or frequency. Most individuals are able to
+                  return to normal activities within 1 to 3 days. Symptom improvement typically begins
+                  within a few weeks and continues to improve over the course of 2 to 3 months.
+                </p>
+              </div>
+              <YouTubeEmbed
+                videoId="uAwHDmbrZcw"
+                title="Prostate Artery Embolization (PAE) at The Urology Place"
+                className="overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200"
+              />
+            </div>
           </div>
         </section>
 
