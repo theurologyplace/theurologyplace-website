@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
+import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import { BTN_MAKE_APPOINTMENT_HERO, BTN_PRIMARY_LARGE } from "@/app/lib/button-styles";
 import {
   HERO_AFTER_SLIDE_BASE,
@@ -120,6 +121,18 @@ export default function BrachytherapyPage() {
         </section>
 
         <section className="relative border-t border-slate-200/80 bg-[#e8edf5]">
+          <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
+            <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200">
+              <YouTubeEmbed
+                videoId="xrTYoYcwN1I"
+                title="LDR brachytherapy for prostate cancer"
+                className="rounded-none shadow-none ring-0"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200/80 bg-white">
           <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
             <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
               Why Pursue Brachytherapy?
@@ -171,7 +184,7 @@ export default function BrachytherapyPage() {
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200/80 bg-white">
+        <section className="relative border-t border-slate-200/80 bg-[#e8edf5]">
           <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
             <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
               Proven Outcomes Across Risk Groups
@@ -216,7 +229,7 @@ export default function BrachytherapyPage() {
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200/80 bg-[#e8edf5]">
+        <section className="relative border-t border-slate-200/80 bg-white">
           <div className="mx-auto max-w-4xl px-6 py-14 md:py-16">
             <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
               The Patient Experience: What to Expect
@@ -277,7 +290,7 @@ export default function BrachytherapyPage() {
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200/80 bg-white">
+        <section className="relative border-t border-slate-200/80 bg-[#e8edf5]">
           <div className="mx-auto max-w-4xl px-6 py-14 text-center md:py-16">
             <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
               Take the Next Step
@@ -297,7 +310,7 @@ export default function BrachytherapyPage() {
 
         <section
           id="men-brachytherapy-contact"
-          className="relative scroll-mt-28 border-t border-slate-200 bg-[#e8edf5]"
+          className="relative scroll-mt-28 border-t border-slate-200 bg-white"
         >
           <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
             <ContactFormTemplate
