@@ -15,9 +15,12 @@ import {
 const HERO_BG = "/images/brachytherapy/hipxray.jpg";
 const BRACHYTHERAPY_DIAGRAM_IMG = "/images/brachytherapy/brachtherapy.png";
 const SEED_PLACEMENT_IMG = "/images/brachytherapy/prostate_seed.jpg";
+const IMG_DR_AGARWAL = encodeURI("/images/brachytherapy/Ankit Agarwal MD MBA.png");
 
 const BULLET =
   "mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600";
+const CONTENT_CARD =
+  "rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm ring-1 ring-slate-200/60 md:p-8";
 
 export const metadata: Metadata = {
   title: "Brachytherapy",
@@ -291,6 +294,80 @@ export default function BrachytherapyPage() {
         </section>
 
         <section className="relative border-t border-slate-200/80 bg-[#e8edf5]">
+          <div className="mx-auto max-w-6xl px-6 py-14 md:py-20">
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                Your Brachytherapy Care Team
+              </h2>
+              <p className="mt-5 text-[15px] leading-relaxed text-slate-700 md:text-base">
+                At The Urology Place, Dr. Naveen Kella evaluates your candidacy, coordinates
+                pre-procedure planning (including rectal spacer placement when appropriate), and
+                works alongside your radiation oncology team on procedure day. The seed implant is
+                performed in partnership with Western Radiation Oncology, led by Dr. Ankit Agarwal,
+                one of the most experienced prostate brachytherapy specialists in the field.
+              </p>
+            </div>
+
+            <div className="mt-12 grid items-start gap-10 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-14">
+              <div className="mx-auto w-full max-w-xs lg:mx-0 lg:max-w-none">
+                <div className="relative aspect-square w-full overflow-hidden rounded-2xl bg-slate-100 shadow-md ring-1 ring-slate-200/80">
+                  <Image
+                    src={IMG_DR_AGARWAL}
+                    alt="Dr. Ankit Agarwal, radiation oncologist"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(min-width: 1024px) 320px, 288px"
+                  />
+                </div>
+              </div>
+
+              <div className={CONTENT_CARD}>
+                <h3 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                  Dr. Ankit Agarwal, MD, MBA
+                </h3>
+                <p className="mt-2 text-[15px] font-semibold text-blue-700 md:text-base">
+                  Director of Radiation Therapy, Western Radiation Oncology
+                </p>
+                <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
+                  <p>
+                    Dr. Ankit Agarwal is a distinguished radiation oncologist with a particular
+                    interest in innovative cancer treatments, especially for prostate cancer. With
+                    a passion for innovative, patient-centered care, he has treated over 1,000 men
+                    using intraoperatively planned prostate brachytherapy and currently performs
+                    over 300 prostate brachytherapy cases annually.
+                  </p>
+                  <p>
+                    Dr. Agarwal is also experienced with a range of cutting-edge technologies,
+                    including CyberKnife SBRT for prostate cancer and Adaptive Radiation Therapy. In
+                    addition to prostate cancer, Dr. Agarwal is skilled in treating oligometastatic
+                    cancers with Stereotactic Body Radiation Therapy (SBRT) and has expertise in
+                    advanced techniques for breast, lung, head and neck, gastrointestinal,
+                    gynecological, and non-melanoma skin cancers. He is also proficient in using
+                    radiopharmaceuticals like Pluvicto and Xofigo for prostate cancer and advanced
+                    rectal spacing methods, including SpaceOAR, Barrigel, and Bioprotect.
+                  </p>
+                  <p>
+                    A prolific researcher, Dr. Agarwal has authored over 40 peer-reviewed
+                    publications in leading oncology journals such as JAMA Oncology and the
+                    International Journal of Radiation Oncology, Biology, Physics. His dedication to
+                    advancing cancer treatment extends to leadership roles in the American Medical
+                    Association and the American Society for Radiation Oncology, where he has
+                    presented numerous policy and research talks at national conferences.
+                  </p>
+                  <p>
+                    Dr. Agarwal graduated with honors from Boston University and Boston University
+                    School of Medicine and completed his residency in radiation oncology at the
+                    University of North Carolina in Chapel Hill. Outside of his professional life,
+                    Dr. Agarwal enjoys spending time with his wife, traveling, cooking, and hiking
+                    in the beautiful San Francisco Bay Area.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative border-t border-slate-200/80 bg-white">
           <div className="mx-auto max-w-4xl px-6 py-14 text-center md:py-16">
             <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
               Take the Next Step
