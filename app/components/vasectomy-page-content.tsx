@@ -438,6 +438,36 @@ export function VasectomyPageContent() {
           </div>
         </div>
 
+        {/* Vasectomy Reversal */}
+        <div className="border-t border-slate-200 bg-slate-50 px-6 py-16 md:py-24">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="border-b-2 border-blue-600 pb-3 text-center text-2xl font-bold text-blue-700 md:text-3xl">
+              Considering a Vasectomy Reversal?
+            </h2>
+            <div className="mt-10 space-y-6 text-[15px] leading-relaxed text-slate-800 md:text-base">
+              <p>
+                While a vasectomy is intended to be a permanent form of birth
+                control, life changes can lead men to consider a reversal. The
+                good news is that a vasectomy reversal can be highly effective,
+                often achieving success rates, meaning the return of sperm to
+                the ejaculate ranging from 60% to over 90%. However, several key
+                factors influence this outcome, most notably the time that has
+                passed since your original vasectomy (success rates are
+                generally highest within the first 10 years) and the surgical
+                technique required to reconnect the pathways.
+              </p>
+              <p>
+                It is important to note that while we specialize in expert,
+                comfortable vasectomy procedures at The Urology Place, our
+                practice does not perform vasectomy reversals. If you decide to
+                pursue a reversal, we highly recommend consulting with a
+                fellowship-trained microsurgical urologist to discuss your
+                options and maximize your chances of success.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* FAQ */}
         <div className="border-t border-slate-200 bg-white px-6 py-16 md:py-24">
           <div className="mx-auto max-w-4xl">
