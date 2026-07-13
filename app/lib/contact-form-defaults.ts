@@ -20,8 +20,6 @@ export const APPOINTMENT_REASON_OPTIONS = [
   "Low Testosterone",
   "Urinary Incontinence",
   "Kidney Stones",
-  "Ultrafemme",
-  "Vaginal Mesh Removal",
   "Hormone Replacement Therapy",
   "Other",
 ] as const;
