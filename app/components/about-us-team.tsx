@@ -36,6 +36,12 @@ const CARD_SURFACE =
   "rounded-2xl border border-slate-200/90 bg-white shadow-sm ring-1 ring-slate-100";
 const IMAGE_FRAME =
   "overflow-hidden rounded-2xl bg-slate-100 shadow-md ring-1 ring-slate-200/80";
+/** Shared portrait size for featured providers and matching grid portraits. */
+const FEATURED_PORTRAIT_COLUMN = "lg:w-[360px]";
+const FEATURED_PORTRAIT_FRAME = `relative h-[22rem] w-full md:h-[26rem] ${IMAGE_FRAME}`;
+const FEATURED_PORTRAIT_SIZES = "(min-width: 1024px) 360px, 100vw";
+const FEATURED_PORTRAIT_GRID =
+  "relative mb-5 h-[22rem] w-[min(100%,360px)] md:h-[26rem] md:w-[360px]";
 
 const bioComponents: PortableTextComponents = {
   block: {
@@ -205,35 +211,30 @@ function FeaturedDoctorSection({
   const inner = (
     <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
       {showImageColumn ? (
-        <div className="flex shrink-0 flex-col gap-5 lg:w-[440px]">
+        <div className={`flex shrink-0 flex-col gap-5 ${FEATURED_PORTRAIT_COLUMN}`}>
           {mainUrl ? (
-            <div
-              className={`relative h-[26rem] w-full md:h-[30rem] ${IMAGE_FRAME}`}
-            >
+            <div className={FEATURED_PORTRAIT_FRAME}>
               <Image
                 src={mainUrl}
                 alt={alt}
                 fill
                 className="object-cover object-top"
-                sizes="(min-width: 1024px) 440px, 100vw"
+                sizes={FEATURED_PORTRAIT_SIZES}
                 priority={imagePriority}
                 unoptimized
               />
             </div>
           ) : null}
           {credentialUrls.length > 0 ? (
-            <div className="flex flex-wrap justify-center gap-5">
+            <div className="flex w-full flex-nowrap gap-2">
               {credentialUrls.map((cred) => (
-                <div
-                  key={cred.key}
-                  className="relative h-24 w-24 shrink-0 md:h-28 md:w-28"
-                >
+                <div key={cred.key} className="relative aspect-square min-w-0 flex-1">
                   <Image
                     src={cred.url}
                     alt={cred.alt}
                     fill
-                    className="object-contain p-1"
-                    sizes="112px"
+                    className="object-contain p-0.5"
+                    sizes="120px"
                     unoptimized
                   />
                 </div>
@@ -324,24 +325,48 @@ function ProfileSection({
   return <section className="bg-white">{content}</section>;
 }
 
-function TeamMemberGridCard({ member }: { member: TeamMember }) {
-  const imgUrl = profileImageUrl(member.profileImage, 768);
+function TeamMemberGridCard({
+  member,
+  matchFeaturedPortrait = false,
+}: {
+  member: TeamMember;
+  /** Use the same portrait frame as featured providers (e.g. Savannah under Dr. Kella). */
+  matchFeaturedPortrait?: boolean;
+}) {
+  const imgUrl = profileImageUrl(
+    member.profileImage,
+    matchFeaturedPortrait ? 960 : 768,
+  );
   const name = member.name ?? "Team member";
   const alt =
     (member.profileImage as { alt?: string } | null)?.alt?.trim() || name;
 
   return (
-    <div className="flex w-52 flex-col items-center text-center sm:w-56 md:w-64">
+    <div
+      className={`flex flex-col items-center text-center ${
+        matchFeaturedPortrait
+          ? "w-full max-w-[360px]"
+          : "w-52 sm:w-56 md:w-64"
+      }`}
+    >
       {imgUrl ? (
         <div
-          className={`relative mb-5 h-56 w-56 md:h-64 md:w-64 ${IMAGE_FRAME}`}
+          className={`${
+            matchFeaturedPortrait
+              ? FEATURED_PORTRAIT_GRID
+              : "relative mb-5 h-56 w-56 md:h-64 md:w-64"
+          } ${IMAGE_FRAME}`}
         >
           <Image
             src={imgUrl}
             alt={alt}
             fill
             className="object-cover object-top"
-            sizes="(min-width: 768px) 256px, 224px"
+            sizes={
+              matchFeaturedPortrait
+                ? FEATURED_PORTRAIT_SIZES
+                : "(min-width: 768px) 256px, 224px"
+            }
             unoptimized
           />
         </div>
@@ -366,10 +391,12 @@ function TeamMemberGridCards({
   members,
   embedded = false,
   nested = false,
+  matchFeaturedPortrait = false,
 }: {
   members: TeamMember[];
   embedded?: boolean;
   nested?: boolean;
+  matchFeaturedPortrait?: boolean;
 }) {
   if (members.length === 0) return null;
 
@@ -387,14 +414,20 @@ function TeamMemberGridCards({
         const count = rowMembers.length;
         const rowGridClass =
           count === 1
-            ? "mx-auto grid max-w-xs grid-cols-1 justify-items-center"
+            ? matchFeaturedPortrait
+              ? "mx-auto grid max-w-[360px] grid-cols-1 justify-items-center"
+              : "mx-auto grid max-w-xs grid-cols-1 justify-items-center"
             : count === 2
               ? "mx-auto grid w-full max-w-lg grid-cols-2 justify-items-center gap-x-8 md:max-w-xl md:gap-x-12"
               : "mx-auto grid w-full max-w-4xl grid-cols-3 justify-items-center gap-x-6 md:max-w-5xl md:gap-x-10 lg:gap-x-14";
         return (
           <div key={`row-${rowIndex}`} className={rowGridClass}>
             {rowMembers.map((member) => (
-              <TeamMemberGridCard key={member._id} member={member} />
+              <TeamMemberGridCard
+                key={member._id}
+                member={member}
+                matchFeaturedPortrait={matchFeaturedPortrait}
+              />
             ))}
           </div>
         );
@@ -436,6 +469,7 @@ function CategoryTeamSection({
 }) {
   const blocks: ReactNode[] = [];
   let gridBatch: TeamMember[] = [];
+  const hasFeatured = members.some((m) => m.layoutVariant === "featured");
 
   const flushGridBatch = () => {
     if (gridBatch.length === 0) return;
@@ -444,6 +478,7 @@ function CategoryTeamSection({
         key={`${category._id}-grid-${blocks.length}`}
         members={gridBatch}
         embedded
+        matchFeaturedPortrait={hasFeatured}
       />,
     );
     gridBatch = [];
@@ -525,7 +560,11 @@ function UncategorizedTeamSections({
         <section className={`${bgClass} py-12 md:py-16`}>
           <div className="mx-auto max-w-6xl px-6">
             <SectionHeading title="Our Team" />
-            <TeamMemberGridCards members={grid} nested />
+            <TeamMemberGridCards
+              members={grid}
+              nested
+              matchFeaturedPortrait={featured.length > 0}
+            />
           </div>
         </section>
       ) : null}
