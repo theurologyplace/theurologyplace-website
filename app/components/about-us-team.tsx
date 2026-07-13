@@ -346,7 +346,10 @@ function TeamMemberGridCard({ member }: { member: TeamMember }) {
           />
         </div>
       ) : null}
-      <MemberName name={name} className={imgUrl ? "" : "text-lg md:text-xl"} />
+      <MemberName
+        name={name}
+        className={`whitespace-nowrap ${imgUrl ? "" : "text-lg md:text-xl"}`}
+      />
       {member.role ? (
         <p className="mt-2 text-sm text-slate-600">{member.role}</p>
       ) : null}
