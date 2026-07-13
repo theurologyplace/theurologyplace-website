@@ -2,6 +2,7 @@ import Image from "next/image";
 import { BTN_MAKE_APPOINTMENT_HERO } from "@/app/lib/button-styles";
 import { ContactFormTemplate } from "@/app/components/contact-form-template";
 import { PaeRaoCredentialsAccordion } from "@/app/components/pae-rao-credentials-accordion";
+import { PaeResearchTabs } from "@/app/components/pae-research-tabs";
 import { YouTubeEmbed } from "@/app/components/youtube-embed";
 import {
   HERO_AFTER_SLIDE_BASE,
@@ -25,33 +26,51 @@ const BULLET = (
   <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-blue-600" aria-hidden />
 );
 
-const WHAT_IS_PAE = [
-  "Reduces blood flow to the prostate",
-  "Causes the prostate to shrink naturally",
-  "Improves urinary symptoms over time",
-] as const;
-
-const WHY_CHOOSE = [
-  "Minimally invasive alternative to surgery",
-  "Faster recovery (days instead of weeks)",
-  "Lower risk of sexual side effects",
-  "Effective for larger prostates",
-  "Performed with advanced imaging precision",
-] as const;
-
 const CANDIDATE_IF = [
-  "Have moderate to severe urinary symptoms",
-  "Are exploring alternatives to surgery such as TURP",
-  "Have not had success with medications",
-  "Prefer a minimally invasive option",
-  "Have a larger prostate",
+  "Have moderate to severe urinary symptoms from an enlarged prostate",
+  "Have not found adequate relief from medications",
+  "Want to avoid traditional surgery",
+  "Are concerned about sexual side effects",
+  "Prefer a same-day, minimally invasive procedure",
 ] as const;
 
-const COMMON_SYMPTOMS = [
-  "Frequent urination, especially at night",
-  "Weak or slow urine stream",
-  "Difficulty starting urination",
-  "Feeling like your bladder is not fully empty",
+const COMPARISON_ROWS = [
+  {
+    label: "Procedure",
+    pae: "Minimally invasive (tiny wrist/groin puncture)",
+    medication: "Daily pills",
+    turp: "Surgery under anesthesia",
+  },
+  {
+    label: "Recovery",
+    pae: "Same day; return to activities in days",
+    medication: "No recovery needed",
+    turp: "1–2 nights in hospital; weeks to recover",
+  },
+  {
+    label: "Effectiveness",
+    pae: "Significant and lasting",
+    medication: "Moderate",
+    turp: "Greatest improvement",
+  },
+  {
+    label: "Risks / Side Effects",
+    pae: "Very low risk",
+    medication: "Common (erectile dysfunction, ejaculation changes)",
+    turp: "Common (retrograde ejaculation)",
+  },
+  {
+    label: "Catheter",
+    pae: "Usually not",
+    medication: "N/A",
+    turp: "Typically yes, for days",
+  },
+  {
+    label: "Retreatment",
+    pae: "~16% over 5 years",
+    medication: "Ongoing daily use",
+    turp: "~10–15% over time",
+  },
 ] as const;
 
 export function ProstaticArteryEmbolizationPageContent() {
@@ -108,23 +127,23 @@ export function ProstaticArteryEmbolizationPageContent() {
             <div className="grid items-start gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
               <div className={CONTENT_CARD}>
                 <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-                  What is PAE?
+                  What Is PAE?
                 </h2>
-                <p className="mt-5 text-[15px] leading-relaxed text-slate-700 md:text-base">
-                  PAE is a minimally invasive procedure performed using advanced imaging. Instead of
-                  removing prostate tissue, PAE:
-                </p>
-                <ul className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
-                  {WHAT_IS_PAE.map((line) => (
-                    <li key={line} className="flex gap-3">
-                      {BULLET}
-                      <span>{line}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-6 font-medium text-slate-900 md:text-[17px]">
-                  No incisions. No hospital stay. No general anesthesia.
-                </p>
+                <div className="mt-5 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
+                  <p>
+                    Prostate Artery Embolization (PAE) is a minimally invasive procedure used to treat
+                    symptoms of an enlarged prostate (also called benign prostatic hyperplasia, or BPH).
+                    During the procedure, a specially trained doctor threads a tiny catheter through a
+                    small puncture in the wrist or groin and uses X-ray guidance to reach the blood
+                    vessels feeding the prostate. Tiny particles are then injected to reduce blood flow
+                    to the prostate, causing it to shrink over time. This relieves urinary symptoms
+                    without traditional surgery.
+                  </p>
+                  <p>
+                    PAE is typically performed as an outpatient procedure, meaning most patients go home
+                    the same day.
+                  </p>
+                </div>
               </div>
               <div className={ROUND_IMG}>
                 <Image
@@ -140,28 +159,80 @@ export function ProstaticArteryEmbolizationPageContent() {
         </section>
 
         <section className={`relative border-t border-slate-200/80 ${PANEL}`}>
+          <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
+            <PaeResearchTabs />
+          </div>
+        </section>
+
+        <section className={`relative border-t border-slate-200/80 ${PANEL}`}>
           <div className="mx-auto max-w-3xl px-6 py-14 md:py-16">
             <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-              Why Patients Choose PAE at The Urology Place
+              Is PAE Recommended by Medical Societies?
             </h2>
-            <ul className="mt-6 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
-              {WHY_CHOOSE.map((line) => (
-                <li key={line} className="flex gap-3">
-                  {BULLET}
-                  <span>{line}</span>
-                </li>
-              ))}
-            </ul>
+            <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
+              Yes. The American Urological Association (AUA) — the leading professional organization for
+              urologists in the United States — includes PAE as a recommended treatment option for men
+              with prostates 50 cc or larger in their 2026 clinical guidelines.
+            </p>
           </div>
         </section>
 
         <section className="relative border-t border-slate-200/80 bg-white">
+          <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
+            <h2 className="text-center text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+              Quick Comparison
+            </h2>
+            <div className="mt-8 overflow-x-auto rounded-2xl border border-slate-200/80 shadow-sm ring-1 ring-slate-200/60">
+              <table className="min-w-[40rem] w-full border-collapse text-left text-[14px] leading-snug md:text-[15px]">
+                <caption className="sr-only">
+                  Comparison of PAE, medication, and TURP surgery for BPH
+                </caption>
+                <thead>
+                  <tr className="bg-slate-900 text-white">
+                    <th scope="col" className="px-4 py-4 font-semibold md:px-5">
+                      <span className="sr-only">Category</span>
+                    </th>
+                    <th scope="col" className="px-4 py-4 font-semibold md:px-5">
+                      PAE
+                    </th>
+                    <th scope="col" className="px-4 py-4 font-semibold md:px-5">
+                      Medication
+                    </th>
+                    <th scope="col" className="px-4 py-4 font-semibold md:px-5">
+                      TURP (Surgery)
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARISON_ROWS.map((row, index) => (
+                    <tr
+                      key={row.label}
+                      className={index % 2 === 0 ? "bg-white" : "bg-slate-50"}
+                    >
+                      <th
+                        scope="row"
+                        className="whitespace-nowrap px-4 py-4 font-semibold text-slate-900 md:px-5"
+                      >
+                        {row.label}
+                      </th>
+                      <td className="px-4 py-4 text-slate-700 md:px-5">{row.pae}</td>
+                      <td className="px-4 py-4 text-slate-700 md:px-5">{row.medication}</td>
+                      <td className="px-4 py-4 text-slate-700 md:px-5">{row.turp}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section className={`relative border-t border-slate-200/80 ${PANEL}`}>
           <div className="mx-auto max-w-3xl px-6 py-14 md:py-16">
             <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-              Am I a Candidate for PAE?
+              Is PAE Right for You?
             </h2>
             <p className="mt-5 text-[15px] font-medium text-slate-900 md:text-base">
-              You may be a good candidate if you:
+              PAE may be a good option if you:
             </p>
             <ul className="mt-4 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
               {CANDIDATE_IF.map((line) => (
@@ -171,21 +242,15 @@ export function ProstaticArteryEmbolizationPageContent() {
                 </li>
               ))}
             </ul>
-            <p className="mt-8 text-[15px] font-medium text-slate-900 md:text-base">
-              Common symptoms include:
+            <p className="mt-8 text-[15px] leading-relaxed text-slate-800 md:text-base">
+              The best way to find out if PAE is right for you is to schedule a consultation. We will
+              review your symptoms, medical history, and imaging to determine whether you are a good
+              candidate.
             </p>
-            <ul className="mt-4 space-y-4 text-[15px] leading-relaxed text-slate-700 md:text-base">
-              {COMMON_SYMPTOMS.map((line) => (
-                <li key={line} className="flex gap-3">
-                  {BULLET}
-                  <span>{line}</span>
-                </li>
-              ))}
-            </ul>
           </div>
         </section>
 
-        <section className={`relative border-t border-slate-200/80 ${PANEL}`}>
+        <section className="relative border-t border-slate-200/80 bg-white">
           <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
             <div className="grid items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
               <div className={CONTENT_CARD}>
@@ -222,7 +287,7 @@ export function ProstaticArteryEmbolizationPageContent() {
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200/80 bg-white">
+        <section className={`relative border-t border-slate-200/80 ${PANEL}`}>
           <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
             <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200">
               <YouTubeEmbed
@@ -234,7 +299,7 @@ export function ProstaticArteryEmbolizationPageContent() {
           </div>
         </section>
 
-        <section className={`relative border-t border-slate-200/80 ${PANEL}`}>
+        <section className="relative border-t border-slate-200/80 bg-white">
           <div className="mx-auto max-w-6xl px-6 py-14 md:py-20">
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
@@ -291,7 +356,7 @@ export function ProstaticArteryEmbolizationPageContent() {
           </div>
         </section>
 
-        <section className="relative border-t border-slate-200/80 bg-white">
+        <section className={`relative border-t border-slate-200/80 ${PANEL}`}>
           <div className="mx-auto max-w-6xl px-6 py-14 md:py-16">
             <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-14">
               <div>
@@ -311,22 +376,6 @@ export function ProstaticArteryEmbolizationPageContent() {
                 className="overflow-hidden rounded-2xl shadow-md ring-1 ring-slate-200"
               />
             </div>
-          </div>
-        </section>
-
-        <section className={`relative border-t border-slate-200/80 ${PANEL}`}>
-          <div className="mx-auto max-w-3xl px-6 py-14 md:py-16">
-            <h2 className="text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
-              PAE Compared to Surgical Options
-            </h2>
-            <p className="mt-5 text-[15px] leading-relaxed text-slate-800 md:text-base">
-              Both PAE and surgical procedures, such as TURP, are effective treatment options for BPH, each
-              offering unique benefits depending on the patient&apos;s individual condition. The most
-              appropriate approach will depend on several factors, including the severity of your symptoms,
-              prostate size, medical history, and overall health. To determine whether PAE is the right
-              option for you, we recommend scheduling a consultation with Dr. Kella, who can provide a
-              thorough evaluation and guide you toward the treatment plan that best fits your needs.
-            </p>
           </div>
         </section>
 
