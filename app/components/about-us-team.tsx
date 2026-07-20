@@ -36,12 +36,17 @@ const CARD_SURFACE =
   "rounded-2xl border border-slate-200/90 bg-white shadow-sm ring-1 ring-slate-100";
 const IMAGE_FRAME =
   "overflow-hidden rounded-2xl bg-slate-100 shadow-md ring-1 ring-slate-200/80";
-/** Shared portrait size for featured providers and matching grid portraits. */
-const FEATURED_PORTRAIT_COLUMN = "lg:w-[360px]";
-const FEATURED_PORTRAIT_FRAME = `relative h-[22rem] w-full md:h-[26rem] ${IMAGE_FRAME}`;
-const FEATURED_PORTRAIT_SIZES = "(min-width: 1024px) 360px, 100vw";
+/** Shared portrait size for featured providers and matching summary cards. */
+const FEATURED_PORTRAIT_COLUMN = "flex w-full shrink-0 flex-col gap-5 md:w-[360px]";
+const FEATURED_PORTRAIT_FRAME = `relative h-[22rem] w-full md:h-[26rem] md:w-[360px] ${IMAGE_FRAME}`;
+const FEATURED_PORTRAIT_SIZES = "(min-width: 768px) 360px, 100vw";
+/** Reserves the same vertical space as a row of credential badges. */
+const FEATURED_CREDENTIAL_SLOT = "h-[7.5rem] w-full";
 const FEATURED_PORTRAIT_GRID =
   "relative mb-5 h-[22rem] w-[min(100%,360px)] md:h-[26rem] md:w-[360px]";
+const FEATURED_CARD_INNER =
+  "flex flex-col gap-8 md:flex-row md:items-start md:gap-10";
+const FEATURED_CARD_PADDING = "p-6 md:p-8";
 
 const bioComponents: PortableTextComponents = {
   block: {
@@ -209,9 +214,9 @@ function FeaturedDoctorSection({
   const showImageColumn = Boolean(mainUrl) || credentialUrls.length > 0;
 
   const inner = (
-    <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
+    <div className={FEATURED_CARD_INNER}>
       {showImageColumn ? (
-        <div className={`flex shrink-0 flex-col gap-5 ${FEATURED_PORTRAIT_COLUMN}`}>
+        <div className={FEATURED_PORTRAIT_COLUMN}>
           {mainUrl ? (
             <div className={FEATURED_PORTRAIT_FRAME}>
               <Image
@@ -226,9 +231,9 @@ function FeaturedDoctorSection({
             </div>
           ) : null}
           {credentialUrls.length > 0 ? (
-            <div className="flex w-full flex-nowrap gap-2">
+            <div className={`flex flex-nowrap gap-2 ${FEATURED_CREDENTIAL_SLOT}`}>
               {credentialUrls.map((cred) => (
-                <div key={cred.key} className="relative aspect-square min-w-0 flex-1">
+                <div key={cred.key} className="relative min-w-0 flex-1">
                   <Image
                     src={cred.url}
                     alt={cred.alt}
@@ -256,7 +261,7 @@ function FeaturedDoctorSection({
   );
 
   const content = embedded ? (
-    <div className={`${CARD_SURFACE} p-6 md:p-8`}>{inner}</div>
+    <div className={`${CARD_SURFACE} ${FEATURED_CARD_PADDING}`}>{inner}</div>
   ) : (
     <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
       <div className={`${CARD_SURFACE} p-6 md:p-10`}>{inner}</div>
@@ -366,10 +371,10 @@ function TeamMemberGridCard({
 
   if (shortSummary) {
     return (
-      <div className={`${CARD_SURFACE} w-full p-6 md:p-8`}>
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
+      <div className={`${CARD_SURFACE} w-full ${FEATURED_CARD_PADDING}`}>
+        <div className={FEATURED_CARD_INNER}>
           {imgUrl ? (
-            <div className={`flex shrink-0 flex-col ${FEATURED_PORTRAIT_COLUMN}`}>
+            <div className={FEATURED_PORTRAIT_COLUMN}>
               <div className={FEATURED_PORTRAIT_FRAME}>
                 <Image
                   src={imgUrl}
@@ -380,6 +385,8 @@ function TeamMemberGridCard({
                   unoptimized
                 />
               </div>
+              {/* Match featured left-column height when credential badges are present. */}
+              <div className={FEATURED_CREDENTIAL_SLOT} aria-hidden />
             </div>
           ) : null}
           <div className="min-w-0 flex-1">
@@ -511,7 +518,7 @@ function TeamMemberGridCards({
   flushPortraitBatch();
 
   const gridInner = (
-    <div className="flex w-full flex-col items-center gap-y-10 md:gap-y-12">
+    <div className="flex w-full flex-col items-stretch gap-y-10 md:gap-y-12">
       {blocks}
     </div>
   );
