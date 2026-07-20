@@ -326,10 +326,24 @@ function ProfileSection({
 }
 
 function ShortSummaryText({ text }: { text: string }) {
+  const paragraphs = text
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  if (paragraphs.length === 0) return null;
+
   return (
-    <p className="whitespace-pre-line text-left text-sm leading-relaxed text-slate-500 md:text-base">
-      {text}
-    </p>
+    <div className="mt-4">
+      {paragraphs.map((paragraph, index) => (
+        <p
+          key={index}
+          className="mt-4 whitespace-pre-line text-base leading-relaxed text-slate-600 first:mt-4 md:text-lg"
+        >
+          {paragraph}
+        </p>
+      ))}
+    </div>
   );
 }
 
@@ -350,8 +364,40 @@ function TeamMemberGridCard({
     (member.profileImage as { alt?: string } | null)?.alt?.trim() || name;
   const shortSummary = member.shortSummary?.trim() || null;
 
-  const portrait = (
-    <>
+  if (shortSummary) {
+    return (
+      <div className={`${CARD_SURFACE} w-full p-6 md:p-8`}>
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
+          {imgUrl ? (
+            <div className={`flex shrink-0 flex-col ${FEATURED_PORTRAIT_COLUMN}`}>
+              <div className={FEATURED_PORTRAIT_FRAME}>
+                <Image
+                  src={imgUrl}
+                  alt={alt}
+                  fill
+                  className="object-cover object-top"
+                  sizes={FEATURED_PORTRAIT_SIZES}
+                  unoptimized
+                />
+              </div>
+            </div>
+          ) : null}
+          <div className="min-w-0 flex-1">
+            <MemberName name={name} />
+            {member.role ? <MemberRole role={member.role} /> : null}
+            <ShortSummaryText text={shortSummary} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`flex min-w-0 w-full flex-col items-center px-1 text-center ${
+        matchFeaturedPortrait ? "max-w-[360px]" : "max-w-64"
+      }`}
+    >
       {imgUrl ? (
         <div
           className={`${
@@ -379,33 +425,10 @@ function TeamMemberGridCard({
         className={imgUrl ? "" : "text-lg md:text-xl"}
       />
       {member.role ? (
-        <p className="mt-2 w-full text-sm leading-snug text-slate-600 text-balance">
+        <p className="mt-2 w-full text-sm leading-snug text-balance text-slate-600">
           {member.role}
         </p>
       ) : null}
-    </>
-  );
-
-  if (shortSummary) {
-    return (
-      <div className="flex w-full max-w-4xl flex-col items-center gap-6 sm:flex-row sm:items-start sm:gap-8 md:gap-10">
-        <div className="flex w-full shrink-0 flex-col items-center text-center sm:w-auto">
-          {portrait}
-        </div>
-        <div className="min-w-0 flex-1 pt-1">
-          <ShortSummaryText text={shortSummary} />
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div
-      className={`flex min-w-0 w-full flex-col items-center px-1 text-center ${
-        matchFeaturedPortrait ? "max-w-[360px]" : "max-w-64"
-      }`}
-    >
-      {portrait}
     </div>
   );
 }
@@ -473,7 +496,7 @@ function TeamMemberGridCards({
       blocks.push(
         <div
           key={member._id}
-          className="mx-auto grid w-full max-w-4xl grid-cols-1 justify-items-stretch"
+          className="mx-auto grid w-full grid-cols-1 justify-items-stretch"
         >
           <TeamMemberGridCard
             member={member}
