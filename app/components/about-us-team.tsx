@@ -168,7 +168,7 @@ function SectionHeading({ title }: { title: string }) {
 function MemberName({ name, className = "" }: { name: string; className?: string }) {
   return (
     <h3
-      className={`text-xl font-bold tracking-tight text-slate-900 md:text-2xl ${className}`}
+      className={`w-full text-xl font-bold tracking-tight text-slate-900 md:text-2xl ${className}`}
     >
       {name}
     </h3>
@@ -376,10 +376,12 @@ function TeamMemberGridCard({
       ) : null}
       <MemberName
         name={name}
-        className={`whitespace-nowrap ${imgUrl ? "" : "text-lg md:text-xl"}`}
+        className={imgUrl ? "" : "text-lg md:text-xl"}
       />
       {member.role ? (
-        <p className="mt-2 text-sm text-slate-600">{member.role}</p>
+        <p className="mt-2 w-full text-sm leading-snug text-slate-600 text-balance">
+          {member.role}
+        </p>
       ) : null}
     </>
   );
@@ -387,7 +389,7 @@ function TeamMemberGridCard({
   if (shortSummary) {
     return (
       <div className="flex w-full max-w-4xl flex-col items-center gap-6 sm:flex-row sm:items-start sm:gap-8 md:gap-10">
-        <div className="flex shrink-0 flex-col items-center text-center">
+        <div className="flex w-full shrink-0 flex-col items-center text-center sm:w-auto">
           {portrait}
         </div>
         <div className="min-w-0 flex-1 pt-1">
@@ -399,10 +401,8 @@ function TeamMemberGridCard({
 
   return (
     <div
-      className={`flex flex-col items-center text-center ${
-        matchFeaturedPortrait
-          ? "w-full max-w-[360px]"
-          : "w-52 sm:w-56 md:w-64"
+      className={`flex min-w-0 w-full flex-col items-center px-1 text-center ${
+        matchFeaturedPortrait ? "max-w-[360px]" : "max-w-64"
       }`}
     >
       {portrait}
@@ -440,8 +440,8 @@ function TeamMemberGridCards({
             ? "mx-auto grid max-w-[360px] grid-cols-1 justify-items-center"
             : "mx-auto grid max-w-xs grid-cols-1 justify-items-center"
           : count === 2
-            ? "mx-auto grid w-full max-w-lg grid-cols-2 justify-items-center gap-x-8 md:max-w-xl md:gap-x-12"
-            : "mx-auto grid w-full max-w-4xl grid-cols-3 justify-items-center gap-x-6 md:max-w-5xl md:gap-x-10 lg:gap-x-14";
+            ? "mx-auto grid w-full max-w-lg grid-cols-2 justify-items-center gap-x-4 sm:gap-x-8 md:max-w-xl md:gap-x-12"
+            : "mx-auto grid w-full max-w-4xl grid-cols-3 justify-items-center gap-x-3 sm:gap-x-6 md:max-w-5xl md:gap-x-10 lg:gap-x-14";
       return (
         <div key={`${keyPrefix}-${rowIndex}`} className={rowGridClass}>
           {rowMembers.map((member) => (
