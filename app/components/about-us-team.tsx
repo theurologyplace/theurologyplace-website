@@ -188,6 +188,28 @@ function MemberRole({ role }: { role: string }) {
   );
 }
 
+function ShortSummaryText({ text }: { text: string }) {
+  const paragraphs = text
+    .split(/\n\s*\n/)
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  if (paragraphs.length === 0) return null;
+
+  return (
+    <div className="mt-4">
+      {paragraphs.map((paragraph, index) => (
+        <p
+          key={index}
+          className="mt-4 whitespace-pre-line text-base leading-relaxed text-slate-600 first:mt-4 md:text-lg"
+        >
+          {paragraph}
+        </p>
+      ))}
+    </div>
+  );
+}
+
 function FeaturedDoctorSection({
   member,
   imagePriority,
@@ -212,6 +234,7 @@ function FeaturedDoctorSection({
         Boolean(c.url),
       ) ?? [];
   const showImageColumn = Boolean(mainUrl) || credentialUrls.length > 0;
+  const shortSummary = member.shortSummary?.trim() || null;
 
   const inner = (
     <div className={FEATURED_CARD_INNER}>
@@ -255,6 +278,8 @@ function FeaturedDoctorSection({
           <div className="bio mt-4">
             <PortableText value={member.bio} components={bioComponents} />
           </div>
+        ) : shortSummary ? (
+          <ShortSummaryText text={shortSummary} />
         ) : null}
       </div>
     </div>
@@ -264,7 +289,7 @@ function FeaturedDoctorSection({
     <div className={`${CARD_SURFACE} ${FEATURED_CARD_PADDING}`}>{inner}</div>
   ) : (
     <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
-      <div className={`${CARD_SURFACE} p-6 md:p-10`}>{inner}</div>
+      <div className={`${CARD_SURFACE} ${FEATURED_CARD_PADDING}`}>{inner}</div>
     </div>
   );
 
@@ -330,28 +355,6 @@ function ProfileSection({
   return <section className="bg-white">{content}</section>;
 }
 
-function ShortSummaryText({ text }: { text: string }) {
-  const paragraphs = text
-    .split(/\n\s*\n/)
-    .map((p) => p.trim())
-    .filter(Boolean);
-
-  if (paragraphs.length === 0) return null;
-
-  return (
-    <div className="mt-4">
-      {paragraphs.map((paragraph, index) => (
-        <p
-          key={index}
-          className="mt-4 whitespace-pre-line text-base leading-relaxed text-slate-600 first:mt-4 md:text-lg"
-        >
-          {paragraph}
-        </p>
-      ))}
-    </div>
-  );
-}
-
 function TeamMemberGridCard({
   member,
   matchFeaturedPortrait = false,
@@ -367,36 +370,9 @@ function TeamMemberGridCard({
   const name = member.name ?? "Team member";
   const alt =
     (member.profileImage as { alt?: string } | null)?.alt?.trim() || name;
-  const shortSummary = member.shortSummary?.trim() || null;
 
-  if (shortSummary) {
-    return (
-      <div className={`${CARD_SURFACE} w-full ${FEATURED_CARD_PADDING}`}>
-        <div className={FEATURED_CARD_INNER}>
-          {imgUrl ? (
-            <div className={FEATURED_PORTRAIT_COLUMN}>
-              <div className={FEATURED_PORTRAIT_FRAME}>
-                <Image
-                  src={imgUrl}
-                  alt={alt}
-                  fill
-                  className="object-cover object-top"
-                  sizes={FEATURED_PORTRAIT_SIZES}
-                  unoptimized
-                />
-              </div>
-              {/* Match featured left-column height when credential badges are present. */}
-              <div className={FEATURED_CREDENTIAL_SLOT} aria-hidden />
-            </div>
-          ) : null}
-          <div className="min-w-0 flex-1">
-            <MemberName name={name} />
-            {member.role ? <MemberRole role={member.role} /> : null}
-            <ShortSummaryText text={shortSummary} />
-          </div>
-        </div>
-      </div>
-    );
+  if (member.shortSummary?.trim()) {
+    return <FeaturedDoctorSection member={member} embedded />;
   }
 
   return (
@@ -565,7 +541,7 @@ function CategoryTeamSection({
       <TeamMemberGridCards
         key={`${category._id}-grid-${blocks.length}`}
         members={gridBatch}
-        embedded
+        nested
         matchFeaturedPortrait={hasFeatured}
       />,
     );

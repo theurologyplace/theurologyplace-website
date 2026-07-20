@@ -17,11 +17,11 @@ export default defineType({
       title: 'Layout',
       type: 'string',
       description:
-        'Featured = large doctor section with optional award images. Profile = image beside full bio. Team card = “Our Team” grid (photo, name, title).',
+        'Featured = shown first in the category (same card size; optional credential images). Profile = image beside full bio. Team card = “Our Team” grid (photo, name, title).',
       options: {
         list: [
           {
-            title: 'Featured doctor (large profile + credential images)',
+            title: 'Featured (shown first + optional credentials)',
             value: 'featured',
           },
           {title: 'Profile (image beside full bio)', value: 'profile'},
@@ -88,7 +88,7 @@ export default defineType({
       title: 'Credential / award images',
       type: 'array',
       description:
-        'Optional. Shown in a row below the profile image on the Featured doctor layout only.',
+        'Optional. Shown in a row below the profile image on the Featured layout only.',
       of: [
         defineArrayMember({
           type: 'image',
