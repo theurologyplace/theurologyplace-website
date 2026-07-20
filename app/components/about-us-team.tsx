@@ -325,6 +325,14 @@ function ProfileSection({
   return <section className="bg-white">{content}</section>;
 }
 
+function ShortSummaryText({ text }: { text: string }) {
+  return (
+    <p className="whitespace-pre-line text-left text-sm leading-relaxed text-slate-500 md:text-base">
+      {text}
+    </p>
+  );
+}
+
 function TeamMemberGridCard({
   member,
   matchFeaturedPortrait = false,
@@ -340,15 +348,10 @@ function TeamMemberGridCard({
   const name = member.name ?? "Team member";
   const alt =
     (member.profileImage as { alt?: string } | null)?.alt?.trim() || name;
+  const shortSummary = member.shortSummary?.trim() || null;
 
-  return (
-    <div
-      className={`flex flex-col items-center text-center ${
-        matchFeaturedPortrait
-          ? "w-full max-w-[360px]"
-          : "w-52 sm:w-56 md:w-64"
-      }`}
-    >
+  const portrait = (
+    <>
       {imgUrl ? (
         <div
           className={`${
@@ -378,11 +381,31 @@ function TeamMemberGridCard({
       {member.role ? (
         <p className="mt-2 text-sm text-slate-600">{member.role}</p>
       ) : null}
-      {member.shortSummary ? (
-        <p className="mt-3 text-sm leading-relaxed text-slate-500">
-          {member.shortSummary}
-        </p>
-      ) : null}
+    </>
+  );
+
+  if (shortSummary) {
+    return (
+      <div className="flex w-full max-w-4xl flex-col items-center gap-6 sm:flex-row sm:items-start sm:gap-8 md:gap-10">
+        <div className="flex shrink-0 flex-col items-center text-center">
+          {portrait}
+        </div>
+        <div className="min-w-0 flex-1 pt-1">
+          <ShortSummaryText text={shortSummary} />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`flex flex-col items-center text-center ${
+        matchFeaturedPortrait
+          ? "w-full max-w-[360px]"
+          : "w-52 sm:w-56 md:w-64"
+      }`}
+    >
+      {portrait}
     </div>
   );
 }
@@ -400,38 +423,73 @@ function TeamMemberGridCards({
 }) {
   if (members.length === 0) return null;
 
-  const rowSizes = getTeamGridRowSizes(members.length);
-  const rows: TeamMember[][] = [];
-  let offset = 0;
-  for (const size of rowSizes) {
-    rows.push(members.slice(offset, offset + size));
-    offset += size;
+  const renderPortraitRows = (portraitMembers: TeamMember[], keyPrefix: string) => {
+    const rowSizes = getTeamGridRowSizes(portraitMembers.length);
+    const rows: TeamMember[][] = [];
+    let offset = 0;
+    for (const size of rowSizes) {
+      rows.push(portraitMembers.slice(offset, offset + size));
+      offset += size;
+    }
+
+    return rows.map((rowMembers, rowIndex) => {
+      const count = rowMembers.length;
+      const rowGridClass =
+        count === 1
+          ? matchFeaturedPortrait
+            ? "mx-auto grid max-w-[360px] grid-cols-1 justify-items-center"
+            : "mx-auto grid max-w-xs grid-cols-1 justify-items-center"
+          : count === 2
+            ? "mx-auto grid w-full max-w-lg grid-cols-2 justify-items-center gap-x-8 md:max-w-xl md:gap-x-12"
+            : "mx-auto grid w-full max-w-4xl grid-cols-3 justify-items-center gap-x-6 md:max-w-5xl md:gap-x-10 lg:gap-x-14";
+      return (
+        <div key={`${keyPrefix}-${rowIndex}`} className={rowGridClass}>
+          {rowMembers.map((member) => (
+            <TeamMemberGridCard
+              key={member._id}
+              member={member}
+              matchFeaturedPortrait={matchFeaturedPortrait}
+            />
+          ))}
+        </div>
+      );
+    });
+  };
+
+  const blocks: ReactNode[] = [];
+  let portraitBatch: TeamMember[] = [];
+  let batchIndex = 0;
+
+  const flushPortraitBatch = () => {
+    if (portraitBatch.length === 0) return;
+    blocks.push(...renderPortraitRows(portraitBatch, `portraits-${batchIndex}`));
+    batchIndex += 1;
+    portraitBatch = [];
+  };
+
+  for (const member of members) {
+    if (member.shortSummary?.trim()) {
+      flushPortraitBatch();
+      blocks.push(
+        <div
+          key={member._id}
+          className="mx-auto grid w-full max-w-4xl grid-cols-1 justify-items-stretch"
+        >
+          <TeamMemberGridCard
+            member={member}
+            matchFeaturedPortrait={matchFeaturedPortrait}
+          />
+        </div>,
+      );
+    } else {
+      portraitBatch.push(member);
+    }
   }
+  flushPortraitBatch();
 
   const gridInner = (
     <div className="flex w-full flex-col items-center gap-y-10 md:gap-y-12">
-      {rows.map((rowMembers, rowIndex) => {
-        const count = rowMembers.length;
-        const rowGridClass =
-          count === 1
-            ? matchFeaturedPortrait
-              ? "mx-auto grid max-w-[360px] grid-cols-1 justify-items-center"
-              : "mx-auto grid max-w-xs grid-cols-1 justify-items-center"
-            : count === 2
-              ? "mx-auto grid w-full max-w-lg grid-cols-2 justify-items-center gap-x-8 md:max-w-xl md:gap-x-12"
-              : "mx-auto grid w-full max-w-4xl grid-cols-3 justify-items-center gap-x-6 md:max-w-5xl md:gap-x-10 lg:gap-x-14";
-        return (
-          <div key={`row-${rowIndex}`} className={rowGridClass}>
-            {rowMembers.map((member) => (
-              <TeamMemberGridCard
-                key={member._id}
-                member={member}
-                matchFeaturedPortrait={matchFeaturedPortrait}
-              />
-            ))}
-          </div>
-        );
-      })}
+      {blocks}
     </div>
   );
 
