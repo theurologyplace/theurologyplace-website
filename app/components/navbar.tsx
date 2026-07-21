@@ -183,6 +183,7 @@ const NAV_ITEMS: NavItem[] = [
       { label: "Out of Town Patients", href: "/patient-resources/out-of-town-patients" },
       { label: "Blog", href: "/patient-resources/blog" },
       { label: "Order Supplements", href: THORNE_DISPENSARY_URL },
+      { label: "Appointment Policy", href: "/patient-resources/appointment-policy" },
       { label: "Privacy Policy HIPAA", href: "/patient-resources/privacy-policy-hipaa" },
     ],
   },

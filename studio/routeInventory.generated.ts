@@ -528,6 +528,14 @@ export const routeInventory: RouteInventoryEntry[] = [
     "sanityStatus": "hardcoded"
   },
   {
+    "path": "/patient-resources/appointment-policy",
+    "title": "Appointment Policy",
+    "group": "Patient Resources",
+    "kind": "static",
+    "sourceFile": "app/patient-resources/appointment-policy/page.tsx",
+    "sanityStatus": "hardcoded"
+  },
+  {
     "path": "/patient-resources/blog",
     "title": "Blog",
     "group": "Patient Resources",
